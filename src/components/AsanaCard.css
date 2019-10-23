@@ -1,0 +1,18 @@
+.AsanaCard {
+  width: 25%;
+  overflow: hidden;
+}
+
+.AsanaCard img {
+  width: 100%;
+}
+
+.AsanaCard p {
+  text-align: center;
+  user-select: none;
+}
+
+.AsanaCardDragging {
+  width: 0;
+  transition: all 0ms ease 10ms;
+}
