@@ -107,6 +107,17 @@ export function rootReducer(state = initialState, action) {
         }
       };
 
+    case "DRAG_ENTER_EMPTY_SPACE":
+      // console.log("DRAG_ENTER_EMPTY_SPACE");
+      return {
+        ...state,
+        schedule: {
+          ...state.schedule,
+          dragOver: null,
+          fastTransition: false
+        }
+      };
+
     case "DRAG_ENTER_PLACEHOLDER":
       // console.log("DRAG_ENTER_PLACEHOLDER");
       // console.log(action.payload);
@@ -131,7 +142,7 @@ export function rootReducer(state = initialState, action) {
     case "DRAG_LEAVE_GRID":
       // console.log("DRAG_LEAVE_GRID");
       return {
-        ...state,
+        ...state
         // schedule: { ...state.schedule, dragOver: null, fastTransition: false }
       };
 

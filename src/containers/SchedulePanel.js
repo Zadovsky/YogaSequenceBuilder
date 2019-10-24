@@ -13,6 +13,7 @@ import {
   onDragLeaveHolder
 } from "../actions/PlaceHolderActions";
 import { onDragLeaveGrid } from "../actions/AsanasGridActions";
+import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,6 +38,7 @@ function SchedulePanel(props) {
         fastTransition={props.schedule.fastTransition}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
+        onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         dragLeaveAction={props.dragLeaveAction}
         onDragEnterHolder={props.onDragEnterHolder}
         onDragLeaveHolder={props.onDragLeaveHolder}
@@ -65,7 +67,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(onDragEnterHolder(index, gridId)),
     onDragLeaveHolder: (index, gridId) =>
       dispatch(onDragLeaveHolder(index, gridId)),
-    onDragLeaveGrid: e => dispatch(onDragLeaveGrid(e))
+    onDragLeaveGrid: e => dispatch(onDragLeaveGrid(e)),
+    onDragEnterEmptySpace: () => dispatch(onDragEnterEmptySpace())
   };
 };
 

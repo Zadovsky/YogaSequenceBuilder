@@ -1,6 +1,7 @@
 import React from "react";
 import AsanaCard from "./AsanaCard";
 import PlaceHolder from "./PlaceHolder";
+import EmptySpaceAtTheEnd from "./EmptySpaceAtTheEnd";
 import "./AsanaGrid.css";
 
 function makeCardsArr(props) {
@@ -72,6 +73,7 @@ export default function AsanasGrid(props) {
   return (
     <div className="AsanaGrid" onDragLeave={props.onDragLeaveGrid}>
       {cardsHoldersArr}
+      <EmptySpaceAtTheEnd onDragEnterEmptySpace={props.onDragEnterEmptySpace}/>
     </div>
   );
 }
