@@ -10,7 +10,8 @@ export const initialState = {
     nextCardKey: 4,
     dragging: null,
     dragOver: null,
-    fastTransition: false
+    fastTransition: false,
+    onPlaceHolder: false
   },
   asanas: [
     {
@@ -80,7 +81,8 @@ export function rootReducer(state = initialState, action) {
           ...state.schedule,
           dragging: action.payload,
           dragOver: action.payload + 1,
-          fastTransition: true
+          fastTransition: true,
+          onPlaceHolder: true
         }
       };
 
@@ -92,9 +94,15 @@ export function rootReducer(state = initialState, action) {
     case "DRAG_ENTER_CARD_SCHEDULE":
       // console.log("DRAG_ENTER_CARD_SCHEDULE");
       // console.log(action.payload);
+      // console.log("dragOver: " + state.schedule.dragOver);
 
       var newDragOver = action.payload;
-      if (state.schedule.dragOver === newDragOver) {
+      if (
+        (state.schedule.dragOver === newDragOver &&
+          state.schedule.onPlaceHolder) ||
+        (state.schedule.dragOver < newDragOver - 1 &&
+          state.schedule.dragOver != null)
+      ) {
         newDragOver += 1;
       }
 
@@ -103,7 +111,8 @@ export function rootReducer(state = initialState, action) {
         schedule: {
           ...state.schedule,
           dragOver: newDragOver,
-          fastTransition: false
+          fastTransition: false,
+          onPlaceHolder: false
         }
       };
 
@@ -114,7 +123,8 @@ export function rootReducer(state = initialState, action) {
         schedule: {
           ...state.schedule,
           dragOver: null,
-          fastTransition: false
+          fastTransition: false,
+          onPlaceHolder: false
         }
       };
 
@@ -122,8 +132,8 @@ export function rootReducer(state = initialState, action) {
       // console.log("DRAG_ENTER_PLACEHOLDER");
       // console.log(action.payload);
       return {
-        ...state
-        // schedule: { ...state.schedule, dragOver: action.payload }
+        ...state,
+        schedule: { ...state.schedule, onPlaceHolder: true }
       };
 
     case "DRAG_LEAVE_PLACEHOLDER":
