@@ -36,15 +36,16 @@ function makeCardsArr(props) {
   });
 }
 
-function makeCardsHoldersArr(
-  cardsArr,
-  dragOver,
-  onDragEnterHolder,
-  onDragLeaveHolder,
-  gridId,
-  fastTransition,
-  dragging
-) {
+function makeCardsHoldersArr(cardsArr, props) {
+  const {
+    dragOver,
+    onDragEnterHolder,
+    onDragLeaveHolder,
+    gridId,
+    fastTransition,
+    dragging
+  } = props;
+
   var cardsHoldersArr = [];
 
   cardsArr.forEach((card, i) => {
@@ -53,7 +54,7 @@ function makeCardsHoldersArr(
         key={"ph" + i}
         fat={dragOver === i}
         fastTransition={fastTransition}
-        isDragEnd={(dragging == null)}
+        isDragEnd={dragging == null}
         onDragEnterHolder={() => onDragEnterHolder(i, gridId)}
         onDragLeaveHolder={() => onDragLeaveHolder(i, gridId)}
       />
@@ -66,15 +67,7 @@ function makeCardsHoldersArr(
 
 export default function AsanasGrid(props) {
   const cardsArr = makeCardsArr(props);
-  const cardsHoldersArr = makeCardsHoldersArr(
-    cardsArr,
-    props.dragOver,
-    props.onDragEnterHolder,
-    props.onDragLeaveHolder,
-    props.gridId,
-    props.fastTransition,
-    props.dragging
-  );
+  const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
   return (
     <div className="AsanaGrid" onDragLeave={props.onDragLeaveGrid}>
