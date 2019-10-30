@@ -6,13 +6,19 @@ export function startDrag(e) {
     case "ASANAS":
       return {
         type: "START_DRAG_ASANAS",
-        payload: cardPlace
+        payload: {
+          card: cardPlace,
+          source: gridId
+        }
       };
 
     case "SCHEDULE":
       return {
         type: "START_DRAG_SCHEDULE",
-        payload: cardPlace
+        payload: {
+          card: cardPlace,
+          source: gridId
+        }
       };
 
     default:

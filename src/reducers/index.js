@@ -8,6 +8,7 @@ export const initialState = {
       { cardKey: 3, asanaIndex: 4 }
     ],
     nextCardKey: 4,
+    dragSource: null,
     dragging: null,
     dragOver: null,
     fastTransition: false,
@@ -74,18 +75,29 @@ export function rootReducer(state = initialState, action) {
       };
 
     case "START_DRAG_ASANAS":
-      return {
-        ...state
-      };
-
-    case "START_DRAG_SCHEDULE":
-      // console.log("START_DRAG_SCHEDULE");
+      // console.log(action.payload.source);
       return {
         ...state,
         schedule: {
           ...state.schedule,
-          dragging: action.payload,
-          dragOver: action.payload + 1,
+          dragSource: action.payload.source,
+          dragging: action.payload.card,
+          dragOver: null,
+          fastTransition: false,
+          onPlaceHolder: false
+        }
+      };
+
+    case "START_DRAG_SCHEDULE":
+      // console.log("START_DRAG_SCHEDULE");
+      // console.log(action.payload.source);
+      return {
+        ...state,
+        schedule: {
+          ...state.schedule,
+          dragSource: action.payload.source,
+          dragging: action.payload.card,
+          dragOver: action.payload.card + 1,
           fastTransition: true,
           onPlaceHolder: true
         }
@@ -166,18 +178,28 @@ export function rootReducer(state = initialState, action) {
       };
 
     case "END_DRAG":
-      var { dragOver, dragging } = state.schedule;
+      var { dragOver, dragging, dragSource } = state.schedule;
+      var newNextCardKey = state.schedule.nextCardKey;
       // console.log("END_DRAG");
       // console.log(dragOver);
-      const dragCard = state.schedule.cards[dragging];
-      var cardsBegin = state.schedule.cards.slice(0, dragging);
-      var cardsEnd = state.schedule.cards.slice(dragging + 1);
-      var cards = [...cardsBegin, ...cardsEnd];
+      if (dragSource === "SCHEDULE") {
+        var dragCard = state.schedule.cards[dragging];
+        var cardsBegin = state.schedule.cards.slice(0, dragging);
+        var cardsEnd = state.schedule.cards.slice(dragging + 1);
+        var cards = [...cardsBegin, ...cardsEnd];
+      } else if (dragSource === "ASANAS") {
+        dragCard = {
+          cardKey: newNextCardKey,
+          asanaIndex: dragging
+        };
+        newNextCardKey += 1;
+        cards = [...state.schedule.cards];
+      }
 
       if (dragOver === null) {
         cards.push(dragCard);
       } else {
-        if (dragOver > dragging) {
+        if (dragOver > dragging && dragSource === "SCHEDULE") {
           dragOver -= 1;
         }
         cardsBegin = cards.slice(0, dragOver);
@@ -192,7 +214,8 @@ export function rootReducer(state = initialState, action) {
           cards: cards,
           dragOver: null,
           dragging: null,
-          fastTransition: true
+          fastTransition: true,
+          nextCardKey: newNextCardKey
         }
       };
 

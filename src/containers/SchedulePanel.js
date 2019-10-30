@@ -43,6 +43,8 @@ function SchedulePanel(props) {
         onDragEnterHolder={props.onDragEnterHolder}
         onDragLeaveHolder={props.onDragLeaveHolder}
         onDragLeaveGrid={props.onDragLeaveGrid}
+        dragSource={props.schedule.dragSource}
+        removableCards={true}
       />
     </Paper>
   );

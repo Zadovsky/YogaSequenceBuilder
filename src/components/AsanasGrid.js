@@ -12,7 +12,9 @@ function makeCardsArr(props) {
     gridId,
     dragging,
     dragEnterAction,
-    dragLeaveAction
+    dragLeaveAction,
+    dragSource,
+    removableCards
   } = props;
   return asanas.map((asana, i) => {
     return (
@@ -22,7 +24,11 @@ function makeCardsArr(props) {
         key={asana.cardKey}
         cardPlace={i}
         gridId={gridId}
-        isDragging={dragging === null ? false : i === +dragging}
+        isDragging={
+          dragging === null || dragSource !== gridId || !removableCards
+            ? false
+            : i === +dragging
+        }
         dragEnterAction={() => {
           dragEnterAction(i, gridId);
         }}

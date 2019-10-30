@@ -43,6 +43,8 @@ function AsanasPanel(props) {
         onDragEnterHolder={props.onDragEnterHolder}
         onDragLeaveHolder={props.onDragLeaveHolder}
         onDragLeaveGrid={props.onDragLeaveGrid}
+        dragSource={null}
+        removableCards={false}
       />
     </Paper>
   );
