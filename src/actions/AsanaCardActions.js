@@ -1,8 +1,22 @@
-export function addAsanaAction(asanaId) {
-  return {
-    type: "ADD_ASANA",
-    payload: asanaId
-  };
+export function addAsanaAction(asanaId, gridId) {
+  switch (gridId) {
+    case "ASANAS":
+      return {
+        type: "ADD_ASANA_ASANAS",
+        payload: asanaId
+      };
+
+    case "SCHEDULE":
+      return {
+        type: "ADD_ASANA_SCHEDULE",
+        payload: asanaId
+      };
+
+    default:
+      return {
+        type: ""
+      };
+  }
 }
 
 export function dragEnterAction(cardPlace, gridId) {
@@ -20,12 +34,14 @@ export function dragEnterAction(cardPlace, gridId) {
       };
 
     default:
-      return {};
+      return {
+        type: ""
+      };
   }
 }
 
 export function dragLeaveAction(cardPlace, gridId) {
   return {
-    type: "DRAG_LEAVE",
+    type: "DRAG_LEAVE"
   };
 }

@@ -30,7 +30,7 @@ function makeCardsArr(props) {
           dragLeaveAction(i, gridId);
         }}
         addAsanaAction={() => {
-          addAsanaAction(i);
+          addAsanaAction(i, gridId);
         }}
       />
     );
@@ -73,7 +73,9 @@ export default function AsanasGrid(props) {
   return (
     <div className="AsanaGrid" onDragLeave={props.onDragLeaveGrid}>
       {cardsHoldersArr}
-      <EmptySpaceAtTheEnd onDragEnterEmptySpace={props.onDragEnterEmptySpace}/>
+      <EmptySpaceAtTheEnd
+        onDragEnterEmptySpace={() => props.onDragEnterEmptySpace(props.gridId)}
+      />
     </div>
   );
 }

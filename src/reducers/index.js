@@ -55,7 +55,7 @@ export const initialState = {
 
 export function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case "ADD_ASANA":
+    case "ADD_ASANA_ASANAS":
       return {
         ...state,
         schedule: {
@@ -66,6 +66,11 @@ export function rootReducer(state = initialState, action) {
           ],
           nextCardKey: state.schedule.nextCardKey + 1
         }
+      };
+
+    case "ADD_ASANA_SCHEDULE":
+      return {
+        ...state
       };
 
     case "START_DRAG_ASANAS":
@@ -116,8 +121,7 @@ export function rootReducer(state = initialState, action) {
         }
       };
 
-    case "DRAG_ENTER_EMPTY_SPACE":
-      // console.log("DRAG_ENTER_EMPTY_SPACE");
+    case "DRAG_ENTER_EMPTY_SPACE_SCHEDULE":
       return {
         ...state,
         schedule: {
@@ -126,6 +130,11 @@ export function rootReducer(state = initialState, action) {
           fastTransition: false,
           onPlaceHolder: false
         }
+      };
+
+    case "DRAG_ENTER_EMPTY_SPACE_ASANAS":
+      return {
+        ...state
       };
 
     case "DRAG_ENTER_PLACEHOLDER":

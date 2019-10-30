@@ -58,7 +58,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAsanaAction: asanaId => dispatch(addAsanaAction(asanaId)),
+    addAsanaAction: (asanaId, gridId) =>
+      dispatch(addAsanaAction(asanaId, gridId)),
     dragEnterAction: (enterIndex, gridId) =>
       dispatch(dragEnterAction(enterIndex, gridId)),
     dragLeaveAction: (index, gridId) =>
@@ -68,7 +69,7 @@ const mapDispatchToProps = dispatch => {
     onDragLeaveHolder: (index, gridId) =>
       dispatch(onDragLeaveHolder(index, gridId)),
     onDragLeaveGrid: e => dispatch(onDragLeaveGrid(e)),
-    onDragEnterEmptySpace: () => dispatch(onDragEnterEmptySpace())
+    onDragEnterEmptySpace: gridId => dispatch(onDragEnterEmptySpace(gridId))
   };
 };
 
