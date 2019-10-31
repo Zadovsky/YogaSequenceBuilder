@@ -138,7 +138,7 @@ export function rootReducer(state = initialState, action) {
         ...state,
         schedule: {
           ...state.schedule,
-          dragOver: null,
+          dragOver: state.schedule.cards.length,
           fastTransition: false,
           onPlaceHolder: false
         }
@@ -215,9 +215,7 @@ export function rootReducer(state = initialState, action) {
         cards = [...state.schedule.cards];
       }
 
-      if (dragOver === null) {
-        cards.push(dragCard);
-      } else {
+      if (dragOver !== null) {
         if (dragOver > dragging && dragSource === "SCHEDULE") {
           dragOver -= 1;
         }
