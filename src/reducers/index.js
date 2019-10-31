@@ -173,8 +173,13 @@ export function rootReducer(state = initialState, action) {
     case "DRAG_LEAVE_GRID":
       // console.log("DRAG_LEAVE_GRID");
       return {
-        ...state
-        // schedule: { ...state.schedule, dragOver: null, fastTransition: false }
+        ...state,
+        schedule: {
+          ...state.schedule,
+          dragOver: null,
+          fastTransition: false,
+          onPlaceHolder: false
+        }
       };
 
     case "END_DRAG":
