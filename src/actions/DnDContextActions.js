@@ -31,3 +31,10 @@ export function endDrag(e) {
     type: "END_DRAG"
   };
 }
+
+export function dragEnter(e) {
+  return {
+    type: "DRAG_ENTER_DND_CONTEXT",
+    payload: e.target
+  };
+}

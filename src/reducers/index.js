@@ -173,13 +173,27 @@ export function rootReducer(state = initialState, action) {
     case "DRAG_LEAVE_GRID":
       // console.log("DRAG_LEAVE_GRID");
       return {
-        ...state,
-        schedule: {
+        ...state
+      };
+
+    case "DRAG_ENTER_DND_CONTEXT":
+      // console.log("DRAG_ENTER_DND_CONTEXT");
+      // console.log(action.payload);
+      var schedule;
+      if (action.payload.closest(".AsanaGrid") == null) {
+        schedule = {
           ...state.schedule,
           dragOver: null,
           fastTransition: false,
           onPlaceHolder: false
-        }
+        };
+      } else {
+        schedule = { ...state.schedule };
+      }
+
+      return {
+        ...state,
+        schedule: schedule
       };
 
     case "END_DRAG":
