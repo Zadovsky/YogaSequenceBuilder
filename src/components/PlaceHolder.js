@@ -27,9 +27,6 @@ export default function PlaceHolder(props) {
     <div
       className={classStr}
       onDragEnter={props.onDragEnterHolder}
-      onDragOver={e => {
-        e.preventDefault();
-      }}
       style={transitionStyle}
     ></div>
   );

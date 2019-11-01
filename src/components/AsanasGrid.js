@@ -28,7 +28,6 @@ function makeCardsArr(props) {
             ? false
             : i === +dragging
         }
-        removableCards={removableCards}
         dragEnterAction={() => {
           dragEnterAction(i, gridId);
         }}
@@ -71,12 +70,17 @@ export default function AsanasGrid(props) {
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
+  const onDragOverFunc = props.removableCards
+    ? e => {
+        e.preventDefault();
+      }
+    : () => {};
+
   return (
-    <div className="AsanaGrid">
+    <div className="AsanaGrid" onDragOver={onDragOverFunc}>
       {cardsHoldersArr}
       <EmptySpaceAtTheEnd
         onDragEnterEmptySpace={() => props.onDragEnterEmptySpace(props.gridId)}
-        removableCards={props.removableCards}
       />
     </div>
   );
