@@ -2,5 +2,17 @@ import React from "react";
 import "./EmptySpaceAtTheEnd.css";
 
 export default function EmptySpaceAtTheEnd(props) {
-  return <div className="EmptySpaceAtTheEnd" onDragEnter={props.onDragEnterEmptySpace}></div>;
+  const onDragOverFunc = props.removableCards
+    ? e => {
+        e.preventDefault();
+      }
+    : () => {};
+
+  return (
+    <div
+      className="EmptySpaceAtTheEnd"
+      onDragEnter={props.onDragEnterEmptySpace}
+      onDragOver={onDragOverFunc}
+    ></div>
+  );
 }

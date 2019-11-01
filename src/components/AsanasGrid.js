@@ -29,6 +29,7 @@ function makeCardsArr(props) {
             ? false
             : i === +dragging
         }
+        removableCards={removableCards}
         dragEnterAction={() => {
           dragEnterAction(i, gridId);
         }}
@@ -81,6 +82,7 @@ export default function AsanasGrid(props) {
       {cardsHoldersArr}
       <EmptySpaceAtTheEnd
         onDragEnterEmptySpace={() => props.onDragEnterEmptySpace(props.gridId)}
+        removableCards={props.removableCards}
       />
     </div>
   );

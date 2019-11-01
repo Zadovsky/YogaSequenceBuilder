@@ -1,6 +1,11 @@
 .AsanaCard {
   width: 25%;
   overflow: hidden;
+  cursor: grab;
+}
+
+.AsanaCard:active {
+  cursor: grabbing;
 }
 
 .AsanaCard img {
