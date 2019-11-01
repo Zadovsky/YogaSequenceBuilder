@@ -39,9 +39,3 @@ export function dragEnterAction(cardPlace, gridId) {
       };
   }
 }
-
-export function dragLeaveAction(cardPlace, gridId) {
-  return {
-    type: "DRAG_LEAVE"
-  };
-}

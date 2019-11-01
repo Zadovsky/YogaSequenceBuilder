@@ -75,7 +75,6 @@ export function rootReducer(state = initialState, action) {
       };
 
     case "START_DRAG_ASANAS":
-      // console.log(action.payload.source);
       return {
         ...state,
         schedule: {
@@ -89,8 +88,6 @@ export function rootReducer(state = initialState, action) {
       };
 
     case "START_DRAG_SCHEDULE":
-      // console.log("START_DRAG_SCHEDULE");
-      // console.log(action.payload.source);
       return {
         ...state,
         schedule: {
@@ -109,10 +106,6 @@ export function rootReducer(state = initialState, action) {
       };
 
     case "DRAG_ENTER_CARD_SCHEDULE":
-      // console.log("DRAG_ENTER_CARD_SCHEDULE");
-      // console.log(action.payload);
-      // console.log("dragOver: " + state.schedule.dragOver);
-
       var newDragOver = action.payload;
       if (
         (state.schedule.dragOver === newDragOver &&
@@ -150,35 +143,12 @@ export function rootReducer(state = initialState, action) {
       };
 
     case "DRAG_ENTER_PLACEHOLDER":
-      // console.log("DRAG_ENTER_PLACEHOLDER");
-      // console.log(action.payload);
       return {
         ...state,
         schedule: { ...state.schedule, onPlaceHolder: true }
       };
 
-    case "DRAG_LEAVE_PLACEHOLDER":
-      // console.log("DRAG_LEAVE_PLACEHOLDER");
-      // console.log("null");
-      return {
-        ...state
-        // schedule: { ...state.schedule, dragOver: null }
-      };
-
-    case "DRAG_LEAVE":
-      return {
-        ...state
-      };
-
-    case "DRAG_LEAVE_GRID":
-      // console.log("DRAG_LEAVE_GRID");
-      return {
-        ...state
-      };
-
     case "DRAG_ENTER_DND_CONTEXT":
-      // console.log("DRAG_ENTER_DND_CONTEXT");
-      // console.log(action.payload);
       var schedule;
       if (action.payload.closest(".AsanaGrid") == null) {
         schedule = {
@@ -199,8 +169,6 @@ export function rootReducer(state = initialState, action) {
     case "END_DRAG":
       var { dragOver, dragging, dragSource } = state.schedule;
       var newNextCardKey = state.schedule.nextCardKey;
-      // console.log("END_DRAG");
-      // console.log(dragOver);
       if (dragSource === "SCHEDULE") {
         var dragCard = state.schedule.cards[dragging];
         var cardsBegin = state.schedule.cards.slice(0, dragging);

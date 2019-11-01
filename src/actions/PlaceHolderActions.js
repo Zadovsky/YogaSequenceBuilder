@@ -4,10 +4,3 @@ export function onDragEnterHolder(index, gridId) {
     payload: index
   };
 }
-
-export function onDragLeaveHolder(index, gridId) {
-  return {
-    type: "DRAG_LEAVE_PLACEHOLDER",
-    payload: index
-  };
-}

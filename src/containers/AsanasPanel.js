@@ -3,16 +3,8 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import AsanasGrid from "../components/AsanasGrid";
-import {
-  addAsanaAction,
-  dragEnterAction,
-  dragLeaveAction
-} from "../actions/AsanaCardActions";
-import {
-  onDragEnterHolder,
-  onDragLeaveHolder
-} from "../actions/PlaceHolderActions";
-import { onDragLeaveGrid } from "../actions/AsanasGridActions";
+import { addAsanaAction, dragEnterAction } from "../actions/AsanaCardActions";
+import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
 
 const useStyles = makeStyles(theme => ({
@@ -39,10 +31,7 @@ function AsanasPanel(props) {
         fastTransition={false}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-        dragLeaveAction={props.dragLeaveAction}
         onDragEnterHolder={props.onDragEnterHolder}
-        onDragLeaveHolder={props.onDragLeaveHolder}
-        onDragLeaveGrid={props.onDragLeaveGrid}
         dragSource={null}
         removableCards={false}
       />
@@ -63,13 +52,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(addAsanaAction(asanaId, gridId)),
     dragEnterAction: (enterIndex, gridId) =>
       dispatch(dragEnterAction(enterIndex, gridId)),
-    dragLeaveAction: (index, gridId) =>
-      dispatch(dragLeaveAction(index, gridId)),
     onDragEnterHolder: (index, gridId) =>
       dispatch(onDragEnterHolder(index, gridId)),
-    onDragLeaveHolder: (index, gridId) =>
-      dispatch(onDragLeaveHolder(index, gridId)),
-    onDragLeaveGrid: e => dispatch(onDragLeaveGrid(e)),
     onDragEnterEmptySpace: gridId => dispatch(onDragEnterEmptySpace(gridId))
   };
 };
