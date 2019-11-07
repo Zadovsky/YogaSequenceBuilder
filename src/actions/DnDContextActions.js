@@ -40,6 +40,6 @@ export function endDrag(e) {
 export function dragEnter(e) {
   return {
     type: DRAG_ENTER_DND_CONTEXT,
-    payload: e.target
+    payload: e.target.closest(".AsanaGrid") === null
   };
 }

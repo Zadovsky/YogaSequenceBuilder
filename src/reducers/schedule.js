@@ -108,7 +108,7 @@ export function scheduleReducer(state = initialState, action) {
 
     case DRAG_ENTER_DND_CONTEXT:
       var schedule;
-      if (action.payload.closest(".AsanaGrid") == null) {
+      if (action.payload) {
         schedule = {
           ...state,
           dragOver: null,
