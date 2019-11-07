@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import AsanasGrid from "../components/AsanasGrid";
+import ScheduleSectionsSeparator from "../components/ScheduleSectionsSeparator";
 import { addAsanaAction, dragEnterAction } from "../actions/AsanaCardActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
@@ -35,6 +36,7 @@ function SchedulePanel(props) {
         dragSource={props.schedule.dragSource}
         removableCards={true}
       />
+      <ScheduleSectionsSeparator />
     </Paper>
   );
 }
