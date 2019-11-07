@@ -20,13 +20,8 @@ import {
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 
 const initialState = {
-  cards: [
-    { cardKey: 0, asanaIndex: 0 },
-    { cardKey: 1, asanaIndex: 3 },
-    { cardKey: 2, asanaIndex: 1 },
-    { cardKey: 3, asanaIndex: 4 }
-  ],
-  nextCardKey: 4,
+  cards: [],
+  nextCardKey: 0,
   dragSource: null,
   dragging: null,
   dragOver: null,

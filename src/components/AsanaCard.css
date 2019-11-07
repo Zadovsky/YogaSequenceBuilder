@@ -1,5 +1,6 @@
 .AsanaCard {
   width: 25%;
+  height: 268px;
   overflow: hidden;
   cursor: grab;
 }
