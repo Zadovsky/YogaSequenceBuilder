@@ -1,4 +1,4 @@
-export const asanas = [
+const initialState = [
   {
     asanaName: {
       ru: "Тадасана"
@@ -36,3 +36,7 @@ export const asanas = [
     asanaImg: "/img/vrikshasana.jpg"
   }
 ];
+
+export function asanasReducer(state = initialState, action) {
+  return state;
+}
