@@ -1,3 +1,24 @@
+import {
+  ADD_ASANA_ASANAS,
+  ADD_ASANA_SCHEDULE,
+  DRAG_ENTER_CARD_ASANAS,
+  DRAG_ENTER_CARD_SCHEDULE
+} from "../actions/AsanaCardActions";
+
+import {
+  START_DRAG_ASANAS,
+  START_DRAG_SCHEDULE,
+  END_DRAG,
+  DRAG_ENTER_DND_CONTEXT
+} from "../actions/DnDContextActions";
+
+import {
+  DRAG_ENTER_EMPTY_SPACE_ASANAS,
+  DRAG_ENTER_EMPTY_SPACE_SCHEDULE
+} from "../actions/EmptySpaceAtTheEndActions";
+
+import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
+
 const initialState = {
   cards: [
     { cardKey: 0, asanaIndex: 0 },
@@ -15,7 +36,7 @@ const initialState = {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
-    case "ADD_ASANA_ASANAS":
+    case ADD_ASANA_ASANAS:
       return {
         ...state,
         cards: [
@@ -25,12 +46,12 @@ export function scheduleReducer(state = initialState, action) {
         nextCardKey: state.nextCardKey + 1
       };
 
-    case "ADD_ASANA_SCHEDULE":
+    case ADD_ASANA_SCHEDULE:
       return {
         ...state
       };
 
-    case "START_DRAG_ASANAS":
+    case START_DRAG_ASANAS:
       return {
         ...state,
         dragSource: action.payload.source,
@@ -40,7 +61,7 @@ export function scheduleReducer(state = initialState, action) {
         onPlaceHolder: false
       };
 
-    case "START_DRAG_SCHEDULE":
+    case START_DRAG_SCHEDULE:
       return {
         ...state,
         dragSource: action.payload.source,
@@ -50,12 +71,12 @@ export function scheduleReducer(state = initialState, action) {
         onPlaceHolder: true
       };
 
-    case "DRAG_ENTER_CARD_ASANAS":
+    case DRAG_ENTER_CARD_ASANAS:
       return {
         ...state
       };
 
-    case "DRAG_ENTER_CARD_SCHEDULE":
+    case DRAG_ENTER_CARD_SCHEDULE:
       var newDragOver = action.payload;
       if (
         (state.dragOver === newDragOver && state.onPlaceHolder) ||
@@ -71,7 +92,7 @@ export function scheduleReducer(state = initialState, action) {
         onPlaceHolder: false
       };
 
-    case "DRAG_ENTER_EMPTY_SPACE_SCHEDULE":
+    case DRAG_ENTER_EMPTY_SPACE_SCHEDULE:
       return {
         ...state,
         dragOver: state.cards.length,
@@ -79,18 +100,18 @@ export function scheduleReducer(state = initialState, action) {
         onPlaceHolder: false
       };
 
-    case "DRAG_ENTER_EMPTY_SPACE_ASANAS":
+    case DRAG_ENTER_EMPTY_SPACE_ASANAS:
       return {
         ...state
       };
 
-    case "DRAG_ENTER_PLACEHOLDER":
+    case DRAG_ENTER_PLACEHOLDER:
       return {
         ...state,
         onPlaceHolder: true
       };
 
-    case "DRAG_ENTER_DND_CONTEXT":
+    case DRAG_ENTER_DND_CONTEXT:
       var schedule;
       if (action.payload.closest(".AsanaGrid") == null) {
         schedule = {
@@ -107,7 +128,7 @@ export function scheduleReducer(state = initialState, action) {
         ...schedule
       };
 
-    case "END_DRAG":
+    case END_DRAG:
       var { dragOver, dragging, dragSource } = state;
       var newNextCardKey = state.nextCardKey;
       if (dragSource === "SCHEDULE") {
