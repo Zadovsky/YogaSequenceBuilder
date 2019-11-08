@@ -26,7 +26,7 @@ function makeCardsArr(props) {
         isDragging={
           dragging === null || dragSource !== gridId || !removableCards
             ? false
-            : i === +dragging
+            : i === dragging
         }
         dragEnterAction={() => {
           dragEnterAction(i, gridId);
