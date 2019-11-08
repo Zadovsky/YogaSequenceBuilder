@@ -42,6 +42,7 @@ function makeCardsArr(props) {
 function makeCardsHoldersArr(cardsArr, props) {
   const {
     dragOver,
+    dragOverGrid,
     onDragEnterHolder,
     gridId,
     fastTransition,
@@ -54,7 +55,7 @@ function makeCardsHoldersArr(cardsArr, props) {
     const placeHolder = (
       <PlaceHolder
         key={"ph" + i}
-        fat={dragOver === i}
+        fat={dragOver === i && dragOverGrid === gridId}
         fastTransition={fastTransition}
         isDragEnd={dragging == null}
         onDragEnterHolder={() => onDragEnterHolder(i, gridId)}

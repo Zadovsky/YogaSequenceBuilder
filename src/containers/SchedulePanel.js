@@ -16,18 +16,22 @@ const useStyles = makeStyles(theme => ({
 
 function SchedulePanel(props) {
   const classes = useStyles();
-  const asanas = props.schedule.cards.map(card => {
+  const asanas0 = props.schedule.cards[0].map(card => {
+    return { ...props.asanas[card.asanaIndex], cardKey: card.cardKey };
+  });
+  const asanas1 = props.schedule.cards[1].map(card => {
     return { ...props.asanas[card.asanaIndex], cardKey: card.cardKey };
   });
 
   return (
     <Paper className={classes.root}>
       <AsanasGrid
-        gridId="SCHEDULE"
+        gridId={0}
         language={props.language}
-        asanas={asanas}
+        asanas={asanas0}
         dragging={props.schedule.dragging}
         dragOver={props.schedule.dragOver}
+        dragOverGrid={props.schedule.dragOverGrid}
         fastTransition={props.schedule.fastTransition}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
@@ -37,6 +41,21 @@ function SchedulePanel(props) {
         removableCards={true}
       />
       <ScheduleSectionsSeparator />
+      <AsanasGrid
+        gridId={1}
+        language={props.language}
+        asanas={asanas1}
+        dragging={props.schedule.dragging}
+        dragOver={props.schedule.dragOver}
+        dragOverGrid={props.schedule.dragOverGrid}
+        fastTransition={props.schedule.fastTransition}
+        addAsanaAction={props.addAsanaAction}
+        dragEnterAction={props.dragEnterAction}
+        onDragEnterEmptySpace={props.onDragEnterEmptySpace}
+        onDragEnterHolder={props.onDragEnterHolder}
+        dragSource={props.schedule.dragSource}
+        removableCards={true}
+      />
     </Paper>
   );
 }

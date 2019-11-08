@@ -1,103 +1,109 @@
+import { ADD_ASANA, DRAG_ENTER_CARD } from "../actions/AsanaCardActions";
+import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
+import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import {
-  ADD_ASANA_ASANAS,
-  ADD_ASANA_SCHEDULE,
-  DRAG_ENTER_CARD_ASANAS,
-  DRAG_ENTER_CARD_SCHEDULE
-} from "../actions/AsanaCardActions";
-
-import {
-  START_DRAG_ASANAS,
-  START_DRAG_SCHEDULE,
+  START_DRAG,
   END_DRAG,
   DRAG_ENTER_DND_CONTEXT
 } from "../actions/DnDContextActions";
 
-import {
-  DRAG_ENTER_EMPTY_SPACE_ASANAS,
-  DRAG_ENTER_EMPTY_SPACE_SCHEDULE
-} from "../actions/EmptySpaceAtTheEndActions";
-
-import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
-
 const initialState = {
-  cards: [],
+  cards: [[], []],
   nextCardKey: 0,
   dragSource: null,
   dragging: null,
   dragOver: null,
+  dragOverGrid: null,
   fastTransition: false,
   onPlaceHolder: false
 };
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_ASANA_ASANAS:
-      return {
-        ...state,
-        cards: [
-          ...state.cards,
-          { cardKey: state.nextCardKey, asanaIndex: action.payload }
-        ],
-        nextCardKey: state.nextCardKey + 1
-      };
+    case ADD_ASANA:
+      var newState = {};
+      if (action.payload.gridId === "ASANAS") {
+        const gridToAdd = state.cards.length - 1;
+        let cards = [...state.cards];
+        cards[gridToAdd].push({
+          cardKey: state.nextCardKey,
+          asanaIndex: action.payload.asanaId
+        });
 
-    case ADD_ASANA_SCHEDULE:
-      return {
-        ...state
-      };
-
-    case START_DRAG_ASANAS:
-      return {
-        ...state,
-        dragSource: action.payload.source,
-        dragging: action.payload.card,
-        dragOver: null,
-        fastTransition: false,
-        onPlaceHolder: false
-      };
-
-    case START_DRAG_SCHEDULE:
-      return {
-        ...state,
-        dragSource: action.payload.source,
-        dragging: action.payload.card,
-        dragOver: action.payload.card + 1,
-        fastTransition: true,
-        onPlaceHolder: true
-      };
-
-    case DRAG_ENTER_CARD_ASANAS:
-      return {
-        ...state
-      };
-
-    case DRAG_ENTER_CARD_SCHEDULE:
-      var newDragOver = action.payload;
-      if (
-        (state.dragOver === newDragOver && state.onPlaceHolder) ||
-        (state.dragOver < newDragOver - 1 && state.dragOver != null)
-      ) {
-        newDragOver += 1;
+        newState = {
+          cards: cards,
+          nextCardKey: state.nextCardKey + 1
+        };
       }
 
       return {
         ...state,
-        dragOver: newDragOver,
-        fastTransition: false,
-        onPlaceHolder: false
+        ...newState
       };
 
-    case DRAG_ENTER_EMPTY_SPACE_SCHEDULE:
+    case START_DRAG:
+      if (action.payload.source === "ASANAS") {
+        newState = {
+          dragOver: null,
+          dragOverGrid: null,
+          fastTransition: false,
+          onPlaceHolder: false
+        };
+      } else {
+        newState = {
+          dragOver: action.payload.card + 1,
+          dragOverGrid: action.payload.source,
+          fastTransition: true,
+          onPlaceHolder: true
+        };
+      }
+
       return {
         ...state,
-        dragOver: state.cards.length,
-        fastTransition: false,
-        onPlaceHolder: false
+        ...newState,
+        dragSource: action.payload.source,
+        dragging: action.payload.card
       };
 
-    case DRAG_ENTER_EMPTY_SPACE_ASANAS:
+    case DRAG_ENTER_CARD:
+      newState = {};
+
+      if (action.payload.gridId !== "ASANAS") {
+        let newDragOver = action.payload.cardPlace;
+        if (
+          state.dragSource === action.payload.gridId &&
+          ((state.dragOver === newDragOver && state.onPlaceHolder) ||
+            (state.dragOver < newDragOver - 1 && state.dragOver != null))
+        ) {
+          newDragOver += 1;
+        }
+
+        newState = {
+          dragOver: newDragOver,
+          dragOverGrid: action.payload.gridId,
+          fastTransition: false,
+          onPlaceHolder: false
+        };
+      }
+
       return {
-        ...state
+        ...state,
+        ...newState
+      };
+
+    case DRAG_ENTER_EMPTY_SPACE:
+      newState = {};
+      if (action.payload !== "ASANAS") {
+        newState = {
+          dragOver: state.cards[action.payload].length,
+          dragOverGrid: action.payload,
+          fastTransition: false,
+          onPlaceHolder: false
+        };
+      }
+      return {
+        ...state,
+        ...newState
       };
 
     case DRAG_ENTER_PLACEHOLDER:
@@ -107,52 +113,53 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case DRAG_ENTER_DND_CONTEXT:
-      var schedule;
       if (action.payload) {
-        schedule = {
+        newState = {
           ...state,
           dragOver: null,
+          dragOverGrid: null,
           fastTransition: false,
           onPlaceHolder: false
         };
       } else {
-        schedule = { ...state };
+        newState = { ...state };
       }
 
       return {
-        ...schedule
+        ...newState
       };
 
     case END_DRAG:
-      var { dragOver, dragging, dragSource } = state;
+      var { dragOver, dragOverGrid, dragging, dragSource } = state;
       var newNextCardKey = state.nextCardKey;
-      if (dragSource === "SCHEDULE") {
-        var dragCard = state.cards[dragging];
-        var cardsBegin = state.cards.slice(0, dragging);
-        var cardsEnd = state.cards.slice(dragging + 1);
-        var cards = [...cardsBegin, ...cardsEnd];
-      } else if (dragSource === "ASANAS") {
-        dragCard = {
+      var cards = [...state.cards];
+      if (dragSource === "ASANAS") {
+        var dragCard = {
           cardKey: newNextCardKey,
           asanaIndex: dragging
         };
         newNextCardKey += 1;
-        cards = [...state.cards];
+      } else {
+        dragCard = state.cards[dragSource][dragging];
+        var cardsBegin = state.cards[dragSource].slice(0, dragging);
+        var cardsEnd = state.cards[dragSource].slice(dragging + 1);
+        cards[dragSource] = [...cardsBegin, ...cardsEnd];
       }
 
       if (dragOver !== null) {
-        if (dragOver > dragging && dragSource === "SCHEDULE") {
+        if (dragOver > dragging && dragSource === dragOverGrid) {
           dragOver -= 1;
         }
-        cardsBegin = cards.slice(0, dragOver);
-        cardsEnd = cards.slice(dragOver);
-        cards = [...cardsBegin, dragCard, ...cardsEnd];
+        cardsBegin = cards[dragOverGrid].slice(0, dragOver);
+        cardsEnd = cards[dragOverGrid].slice(dragOver);
+        cards[dragOverGrid] = [...cardsBegin, dragCard, ...cardsEnd];
       }
 
       return {
         ...state,
         cards: cards,
         dragOver: null,
+        dragOverGrid: null,
         dragging: null,
         fastTransition: true,
         nextCardKey: newNextCardKey

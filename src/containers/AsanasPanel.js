@@ -28,6 +28,7 @@ function AsanasPanel(props) {
         addAsanaAction={props.addAsanaAction}
         dragging={null}
         dragOver={null}
+        dragOverGrid={null}
         fastTransition={false}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
