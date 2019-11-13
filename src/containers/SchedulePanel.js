@@ -18,52 +18,50 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function createGridArr(props) {
+  return props.schedule.cards.map((cards, i) => {
+    const asanas = cards.map(card => {
+      return { ...props.asanas[card.asanaIndex], cardKey: card.cardKey };
+    });
+
+    return (
+      <AsanasGrid
+        gridId={i}
+        language={props.language}
+        asanas={asanas}
+        dragging={props.schedule.dragging}
+        dragOver={props.schedule.dragOver}
+        dragOverGrid={props.schedule.dragOverGrid}
+        fastTransition={props.schedule.fastTransition}
+        startDragAction={props.startDragAction}
+        addAsanaAction={props.addAsanaAction}
+        dragEnterAction={props.dragEnterAction}
+        onDragEnterEmptySpace={props.onDragEnterEmptySpace}
+        onDragEnterHolder={props.onDragEnterHolder}
+        dragSource={props.schedule.dragSource}
+        removableCards={true}
+      />
+    );
+  });
+}
+
+function createGridSepArr(gridArr) {
+  var gridSepArr = [];
+  gridArr.forEach((grid, i) => {
+    if (i > 0) {
+      gridSepArr.push(<ScheduleSectionsSeparator />);
+    }
+    gridSepArr.push(grid);
+  });
+  return gridSepArr;
+}
+
 function SchedulePanel(props) {
   const classes = useStyles();
-  const asanas0 = props.schedule.cards[0].map(card => {
-    return { ...props.asanas[card.asanaIndex], cardKey: card.cardKey };
-  });
-  const asanas1 = props.schedule.cards[1].map(card => {
-    return { ...props.asanas[card.asanaIndex], cardKey: card.cardKey };
-  });
+  const gridArr = createGridArr(props);
+  const gridSepArr = createGridSepArr(gridArr);
 
-  return (
-    <Paper className={classes.root}>
-      <AsanasGrid
-        gridId={0}
-        language={props.language}
-        asanas={asanas0}
-        dragging={props.schedule.dragging}
-        dragOver={props.schedule.dragOver}
-        dragOverGrid={props.schedule.dragOverGrid}
-        fastTransition={props.schedule.fastTransition}
-        startDragAction={props.startDragAction}
-        addAsanaAction={props.addAsanaAction}
-        dragEnterAction={props.dragEnterAction}
-        onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-        onDragEnterHolder={props.onDragEnterHolder}
-        dragSource={props.schedule.dragSource}
-        removableCards={true}
-      />
-      <ScheduleSectionsSeparator />
-      <AsanasGrid
-        gridId={1}
-        language={props.language}
-        asanas={asanas1}
-        dragging={props.schedule.dragging}
-        dragOver={props.schedule.dragOver}
-        dragOverGrid={props.schedule.dragOverGrid}
-        fastTransition={props.schedule.fastTransition}
-        startDragAction={props.startDragAction}
-        addAsanaAction={props.addAsanaAction}
-        dragEnterAction={props.dragEnterAction}
-        onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-        onDragEnterHolder={props.onDragEnterHolder}
-        dragSource={props.schedule.dragSource}
-        removableCards={true}
-      />
-    </Paper>
-  );
+  return <Paper className={classes.root}>{gridSepArr}</Paper>;
 }
 
 const mapStateToProps = store => {
