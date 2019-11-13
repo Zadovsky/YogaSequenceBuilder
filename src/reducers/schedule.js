@@ -31,7 +31,7 @@ export function scheduleReducer(state = initialState, action) {
     case ADD_ASANA:
       var newState = {};
       if (action.payload.gridId === "ASANAS") {
-        const gridToAdd = state.cards.length == 1 ? 0 : state.cards.length - 2;
+        const gridToAdd = state.cards.length === 1 ? 0 : state.cards.length - 2;
         let cards = [...state.cards];
         cards[gridToAdd].push({
           cardKey: state.nextCardKey,
