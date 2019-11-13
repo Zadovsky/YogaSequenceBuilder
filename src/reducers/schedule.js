@@ -8,7 +8,7 @@ import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
 
 const initialState = {
-  cards: [[], []],
+  cards: [[]],
   nextCardKey: 0,
   dragSource: null,
   dragging: null,
@@ -18,17 +18,27 @@ const initialState = {
   onPlaceHolder: false
 };
 
+function checkCards(cards) {
+  var newCards = cards.filter(card => {
+    return card.length > 0;
+  });
+  newCards.push([]);
+  return newCards;
+}
+
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_ASANA:
       var newState = {};
       if (action.payload.gridId === "ASANAS") {
-        const gridToAdd = state.cards.length - 1;
+        const gridToAdd = state.cards.length == 1 ? 0 : state.cards.length - 2;
         let cards = [...state.cards];
         cards[gridToAdd].push({
           cardKey: state.nextCardKey,
           asanaIndex: action.payload.asanaId
         });
+
+        cards = checkCards(cards);
 
         newState = {
           cards: cards,
@@ -155,6 +165,8 @@ export function scheduleReducer(state = initialState, action) {
         cardsEnd = cards[dragOverGrid].slice(dragOver);
         cards[dragOverGrid] = [...cardsBegin, dragCard, ...cardsEnd];
       }
+
+      cards = checkCards(cards);
 
       return {
         ...state,
