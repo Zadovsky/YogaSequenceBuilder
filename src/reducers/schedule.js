@@ -1,11 +1,11 @@
-import { ADD_ASANA, DRAG_ENTER_CARD } from "../actions/AsanaCardActions";
+import {
+  ADD_ASANA,
+  DRAG_ENTER_CARD,
+  START_DRAG
+} from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
-import {
-  START_DRAG,
-  END_DRAG,
-  DRAG_ENTER_DND_CONTEXT
-} from "../actions/DnDContextActions";
+import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
 
 const initialState = {
   cards: [[], []],

@@ -4,7 +4,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import AsanasGrid from "../components/AsanasGrid";
 import ScheduleSectionsSeparator from "../components/ScheduleSectionsSeparator";
-import { addAsanaAction, dragEnterAction } from "../actions/AsanaCardActions";
+import {
+  addAsanaAction,
+  dragEnterAction,
+  startDragAction
+} from "../actions/AsanaCardActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
 
@@ -33,6 +37,7 @@ function SchedulePanel(props) {
         dragOver={props.schedule.dragOver}
         dragOverGrid={props.schedule.dragOverGrid}
         fastTransition={props.schedule.fastTransition}
+        startDragAction={props.startDragAction}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
@@ -49,6 +54,7 @@ function SchedulePanel(props) {
         dragOver={props.schedule.dragOver}
         dragOverGrid={props.schedule.dragOverGrid}
         fastTransition={props.schedule.fastTransition}
+        startDragAction={props.startDragAction}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
@@ -70,6 +76,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    startDragAction: (asanaId, gridId) =>
+      dispatch(startDragAction(asanaId, gridId)),
     addAsanaAction: (asanaId, gridId) =>
       dispatch(addAsanaAction(asanaId, gridId)),
     dragEnterAction: (enterIndex, gridId) =>
@@ -80,7 +88,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SchedulePanel);
+export default connect(mapStateToProps, mapDispatchToProps)(SchedulePanel);

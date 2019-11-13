@@ -1,11 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { startDrag, endDrag, dragEnter } from "../actions/DnDContextActions";
+import { endDrag, dragEnter } from "../actions/DnDContextActions";
 
 function DnDContext(props) {
   return (
     <div
-      onDragStart={props.startDragAction}
       onDragEnd={props.endDragAction}
       onDragEnter={props.onDragEnterAction}
     >
@@ -20,7 +19,6 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startDragAction: e => dispatch(startDrag(e)),
     endDragAction: e => dispatch(endDrag(e)),
     onDragEnterAction: e => dispatch(dragEnter(e))
   };

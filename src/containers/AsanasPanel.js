@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import AsanasGrid from "../components/AsanasGrid";
-import { addAsanaAction, dragEnterAction } from "../actions/AsanaCardActions";
+import {
+  addAsanaAction,
+  dragEnterAction,
+  startDragAction
+} from "../actions/AsanaCardActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
 
@@ -30,6 +34,7 @@ function AsanasPanel(props) {
         dragOver={null}
         dragOverGrid={null}
         fastTransition={false}
+        startDragAction={props.startDragAction}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         onDragEnterHolder={props.onDragEnterHolder}
@@ -49,6 +54,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    startDragAction: (asanaId, gridId) =>
+      dispatch(startDragAction(asanaId, gridId)),
     addAsanaAction: (asanaId, gridId) =>
       dispatch(addAsanaAction(asanaId, gridId)),
     dragEnterAction: (enterIndex, gridId) =>
@@ -59,7 +66,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AsanasPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(AsanasPanel);

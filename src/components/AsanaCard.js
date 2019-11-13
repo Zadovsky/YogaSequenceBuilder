@@ -11,9 +11,8 @@ export default function AsanaCard(props) {
       className={classStr}
       onClick={props.addAsanaAction}
       onDragEnter={props.dragEnterAction}
+      onDragStart={props.startDragAction}
       draggable="true"
-      gridid={props.gridId}
-      cardplace={props.cardPlace}
     >
       <div
         style={{

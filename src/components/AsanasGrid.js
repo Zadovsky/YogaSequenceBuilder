@@ -8,6 +8,7 @@ function makeCardsArr(props) {
   const {
     language,
     asanas,
+    startDragAction,
     addAsanaAction,
     gridId,
     dragging,
@@ -21,13 +22,14 @@ function makeCardsArr(props) {
         name={asana.asanaName[language]}
         img={asana.asanaImg}
         key={asana.cardKey}
-        cardPlace={i}
-        gridId={gridId}
         isDragging={
           dragging === null || dragSource !== gridId || !removableCards
             ? false
             : i === dragging
         }
+        startDragAction={() => {
+          startDragAction(i, gridId);
+        }}
         dragEnterAction={() => {
           dragEnterAction(i, gridId);
         }}
