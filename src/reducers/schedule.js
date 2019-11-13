@@ -71,9 +71,10 @@ export function scheduleReducer(state = initialState, action) {
       if (action.payload.gridId !== "ASANAS") {
         let newDragOver = action.payload.cardPlace;
         if (
-          state.dragSource === action.payload.gridId &&
-          ((state.dragOver === newDragOver && state.onPlaceHolder) ||
-            (state.dragOver < newDragOver - 1 && state.dragOver != null))
+          (state.dragOver === newDragOver && state.onPlaceHolder) ||
+          (state.dragSource === action.payload.gridId &&
+            state.dragOver < newDragOver - 1 &&
+            state.dragOver != null)
         ) {
           newDragOver += 1;
         }
