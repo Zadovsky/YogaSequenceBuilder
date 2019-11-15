@@ -14,6 +14,8 @@ const initialState = {
   dragging: null,
   dragOver: null,
   dragOverGrid: null,
+  lastDragEnterCard: null,
+  lastDragEnterCardGrid: null,
   fastTransition: false,
   onPlaceHolder: false
 };
@@ -78,7 +80,13 @@ export function scheduleReducer(state = initialState, action) {
     case DRAG_ENTER_CARD:
       newState = {};
 
-      if (action.payload.gridId !== "ASANAS") {
+      if (
+        action.payload.gridId !== "ASANAS" &&
+        !(
+          action.payload.card === state.lastDragEnterCard &&
+          action.payload.gridId === state.lastDragEnterCardGrid
+        )
+      ) {
         let newDragOver = action.payload.cardPlace;
         if (
           (state.dragOver === newDragOver && state.onPlaceHolder) ||
@@ -92,10 +100,16 @@ export function scheduleReducer(state = initialState, action) {
         newState = {
           dragOver: newDragOver,
           dragOverGrid: action.payload.gridId,
+          lastDragEnterCard: action.payload.card,
+          lastDragEnterCardGrid: action.payload.gridId,
           fastTransition: false,
           onPlaceHolder: false
         };
       }
+
+      // action.payload.e.persist();
+      // console.log(action.payload.e.target);
+      // console.log(newState);
 
       return {
         ...state,
@@ -108,6 +122,8 @@ export function scheduleReducer(state = initialState, action) {
         newState = {
           dragOver: state.cards[action.payload].length,
           dragOverGrid: action.payload,
+          lastDragEnterCard: null,
+          lastDragEnterCardGrid: null,
           fastTransition: false,
           onPlaceHolder: false
         };
@@ -120,6 +136,8 @@ export function scheduleReducer(state = initialState, action) {
     case DRAG_ENTER_PLACEHOLDER:
       return {
         ...state,
+        lastDragEnterCard: null,
+        lastDragEnterCardGrid: null,
         onPlaceHolder: true
       };
 
@@ -129,6 +147,8 @@ export function scheduleReducer(state = initialState, action) {
           ...state,
           dragOver: null,
           dragOverGrid: null,
+          lastDragEnterCard: null,
+          lastDragEnterCardGrid: null,
           fastTransition: false,
           onPlaceHolder: false
         };
@@ -174,6 +194,8 @@ export function scheduleReducer(state = initialState, action) {
         dragOver: null,
         dragOverGrid: null,
         dragging: null,
+        lastDragEnterCard: null,
+        lastDragEnterCardGrid: null,
         fastTransition: true,
         nextCardKey: newNextCardKey
       };

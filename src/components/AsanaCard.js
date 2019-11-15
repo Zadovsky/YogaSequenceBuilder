@@ -14,13 +14,15 @@ export default function AsanaCard(props) {
       onDragStart={props.startDragAction}
       draggable="true"
     >
-      <div
-        style={{
-          backgroundImage: "url(" + props.img + ")",
-          height: "200px"
-        }}
-      ></div>
-      <p>{props.name}</p>
+      <div className="AsanaCardInnerDiv">
+        <div
+          style={{
+            backgroundImage: "url(" + props.img + ")",
+            height: "200px"
+          }}
+        ></div>
+        <p>{props.name}</p>
+      </div>
     </div>
   );
 }
