@@ -107,10 +107,6 @@ export function scheduleReducer(state = initialState, action) {
         };
       }
 
-      // action.payload.e.persist();
-      // console.log(action.payload.e.target);
-      // console.log(newState);
-
       return {
         ...state,
         ...newState

@@ -1,5 +1,6 @@
 import React from "react";
 import "./AsanaCard.css";
+import Typography from "@material-ui/core/Typography";
 
 export default function AsanaCard(props) {
   var classArr = ["AsanaCard"];
@@ -21,7 +22,9 @@ export default function AsanaCard(props) {
             height: "200px"
           }}
         ></div>
-        <p>{props.name}</p>
+        <Typography variant="subtitle2" color="textPrimary" component="p">
+          {props.name}
+        </Typography>
       </div>
     </div>
   );
