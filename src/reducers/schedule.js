@@ -110,7 +110,7 @@ export function scheduleReducer(state = initialState, action) {
         newState = {
           dragOver: newDragOver,
           dragOverGrid: action.payload.gridId,
-          lastDragEnterCard: action.payload.card,
+          lastDragEnterCard: action.payload.cardPlace,
           lastDragEnterCardGrid: action.payload.gridId,
           fastTransition: false,
           onPlaceHolder: false
