@@ -8,8 +8,9 @@ import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
 
 const initialState = {
-  cards: [[]],
+  cards: [{ gridCards: [], gridKey: 0 }],
   nextCardKey: 0,
+  nextGridKey: 1,
   dragSource: null,
   dragging: null,
   dragOver: null,
@@ -20,12 +21,20 @@ const initialState = {
   onPlaceHolder: false
 };
 
-function checkCards(cards) {
-  var newCards = cards.filter(card => {
-    return card.length > 0;
+function checkCards(cards, nextGridKey) {
+  var newCards = cards.filter((card, i) => {
+    if (i < cards.length - 1) {
+      return card.gridCards.length > 0;
+    } else return true;
   });
-  newCards.push([]);
-  return newCards;
+
+  var newGridKey = nextGridKey;
+  if (newCards[newCards.length - 1].gridCards.length !== 0) {
+    newCards.push({ gridCards: [], gridKey: newGridKey });
+    newGridKey += 1;
+  }
+
+  return { cards: newCards, nextGridKey: newGridKey };
 }
 
 export function scheduleReducer(state = initialState, action) {
@@ -35,16 +44,17 @@ export function scheduleReducer(state = initialState, action) {
       if (action.payload.gridId === "ASANAS") {
         const gridToAdd = state.cards.length === 1 ? 0 : state.cards.length - 2;
         let cards = [...state.cards];
-        cards[gridToAdd].push({
+        cards[gridToAdd].gridCards.push({
           cardKey: state.nextCardKey,
           asanaIndex: action.payload.asanaId
         });
 
-        cards = checkCards(cards);
+        let newCardsGridKey = checkCards(cards, state.nextGridKey);
 
         newState = {
-          cards: cards,
-          nextCardKey: state.nextCardKey + 1
+          cards: newCardsGridKey.cards,
+          nextCardKey: state.nextCardKey + 1,
+          nextGridKey: newCardsGridKey.nextGridKey
         };
       }
 
@@ -116,7 +126,7 @@ export function scheduleReducer(state = initialState, action) {
       newState = {};
       if (action.payload !== "ASANAS") {
         newState = {
-          dragOver: state.cards[action.payload].length,
+          dragOver: state.cards[action.payload].gridCards.length,
           dragOverGrid: action.payload,
           lastDragEnterCard: null,
           lastDragEnterCardGrid: null,
@@ -167,26 +177,27 @@ export function scheduleReducer(state = initialState, action) {
         };
         newNextCardKey += 1;
       } else {
-        dragCard = state.cards[dragSource][dragging];
-        var cardsBegin = state.cards[dragSource].slice(0, dragging);
-        var cardsEnd = state.cards[dragSource].slice(dragging + 1);
-        cards[dragSource] = [...cardsBegin, ...cardsEnd];
+        dragCard = state.cards[dragSource].gridCards[dragging];
+        var cardsBegin = state.cards[dragSource].gridCards.slice(0, dragging);
+        var cardsEnd = state.cards[dragSource].gridCards.slice(dragging + 1);
+        cards[dragSource].gridCards = [...cardsBegin, ...cardsEnd];
       }
 
       if (dragOver !== null) {
         if (dragOver > dragging && dragSource === dragOverGrid) {
           dragOver -= 1;
         }
-        cardsBegin = cards[dragOverGrid].slice(0, dragOver);
-        cardsEnd = cards[dragOverGrid].slice(dragOver);
-        cards[dragOverGrid] = [...cardsBegin, dragCard, ...cardsEnd];
+        cardsBegin = cards[dragOverGrid].gridCards.slice(0, dragOver);
+        cardsEnd = cards[dragOverGrid].gridCards.slice(dragOver);
+        cards[dragOverGrid].gridCards = [...cardsBegin, dragCard, ...cardsEnd];
       }
 
-      cards = checkCards(cards);
+      let newCardsGridKey = checkCards(cards, state.nextGridKey);
 
       return {
         ...state,
-        cards: cards,
+        cards: newCardsGridKey.cards,
+        nextGridKey: newCardsGridKey.nextGridKey,
         dragOver: null,
         dragOverGrid: null,
         dragging: null,

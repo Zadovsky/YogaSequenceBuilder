@@ -20,12 +20,13 @@ const useStyles = makeStyles(theme => ({
 
 function createGridArr(props) {
   return props.schedule.cards.map((cards, i) => {
-    const asanas = cards.map(card => {
+    const asanas = cards.gridCards.map(card => {
       return { ...props.asanas[card.asanaIndex], cardKey: card.cardKey };
     });
 
     return (
       <AsanasGrid
+        key={cards.gridKey}
         gridId={i}
         language={props.language}
         asanas={asanas}
@@ -49,7 +50,7 @@ function createGridSepArr(gridArr) {
   var gridSepArr = [];
   gridArr.forEach((grid, i) => {
     if (i > 0) {
-      gridSepArr.push(<ScheduleSectionsSeparator />);
+      gridSepArr.push(<ScheduleSectionsSeparator key={"sep" + i} />);
     }
     gridSepArr.push(grid);
   });
