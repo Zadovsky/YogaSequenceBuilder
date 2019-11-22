@@ -7,7 +7,8 @@ import ScheduleSectionsSeparator from "../components/ScheduleSectionsSeparator";
 import {
   addAsanaAction,
   dragEnterAction,
-  startDragAction
+  startDragAction,
+  closeCardAction
 } from "../actions/AsanaCardActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
@@ -41,6 +42,7 @@ function createGridArr(props) {
         onDragEnterHolder={props.onDragEnterHolder}
         dragSource={props.schedule.dragSource}
         removableCards={true}
+        closeCardAction={props.closeCardAction}
       />
     );
   });
@@ -79,6 +81,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(startDragAction(asanaId, gridId)),
     addAsanaAction: (asanaId, gridId) =>
       dispatch(addAsanaAction(asanaId, gridId)),
+    closeCardAction: (cardIndex, gridId) =>
+      dispatch(closeCardAction(cardIndex, gridId)),
     dragEnterAction: (enterIndex, gridId) =>
       dispatch(dragEnterAction(enterIndex, gridId)),
     onDragEnterHolder: (index, gridId) =>

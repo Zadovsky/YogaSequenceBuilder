@@ -31,7 +31,7 @@ export default function AsanaCard(props) {
         {props.removableCards ? (
           <IconButton
             className={classes.button}
-            // onClick={props.closeCardAction}
+            onClick={props.closeCardAction}
           >
             <CloseIcon />
           </IconButton>

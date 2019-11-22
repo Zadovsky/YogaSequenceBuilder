@@ -13,6 +13,16 @@ export function addAsanaAction(asanaId, gridId) {
   };
 }
 
+export function closeCardAction(cardIndex, gridId) {
+  return {
+    type: CLOSE_CARD,
+    payload: {
+      cardIndex: cardIndex,
+      gridId: gridId
+    }
+  };
+}
+
 export function dragEnterAction(cardPlace, gridId) {
   return {
     type: DRAG_ENTER_CARD,
