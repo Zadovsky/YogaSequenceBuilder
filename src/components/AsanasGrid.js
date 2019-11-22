@@ -10,6 +10,7 @@ function makeCardsArr(props) {
     asanas,
     startDragAction,
     addAsanaAction,
+    closeCardAction,
     gridId,
     dragging,
     dragEnterAction,
@@ -27,6 +28,7 @@ function makeCardsArr(props) {
             ? false
             : i === dragging
         }
+        removableCards={removableCards}
         startDragAction={() => {
           startDragAction(i, gridId);
         }}
@@ -35,6 +37,9 @@ function makeCardsArr(props) {
         }}
         addAsanaAction={() => {
           addAsanaAction(i, gridId);
+        }}
+        closeCardAction={() => {
+          closeCardAction(i, gridId);
         }}
       />
     );

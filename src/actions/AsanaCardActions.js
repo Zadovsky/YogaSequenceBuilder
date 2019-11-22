@@ -1,12 +1,23 @@
 export const ADD_ASANA = "ADD_ASANA";
 export const DRAG_ENTER_CARD = "DRAG_ENTER_CARD";
 export const START_DRAG = "START_DRAG";
+export const CLOSE_CARD = "CLOSE_CARD";
 
 export function addAsanaAction(asanaId, gridId) {
   return {
     type: ADD_ASANA,
     payload: {
       asanaId: asanaId,
+      gridId: gridId
+    }
+  };
+}
+
+export function closeCardAction(cardIndex, gridId) {
+  return {
+    type: CLOSE_CARD,
+    payload: {
+      cardIndex: cardIndex,
       gridId: gridId
     }
   };

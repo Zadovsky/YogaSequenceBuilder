@@ -1,7 +1,8 @@
 import {
   ADD_ASANA,
   DRAG_ENTER_CARD,
-  START_DRAG
+  START_DRAG,
+  CLOSE_CARD
 } from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
@@ -61,6 +62,21 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         ...newState
+      };
+
+    case CLOSE_CARD:
+      var cards = JSON.parse(JSON.stringify(state.cards));
+      cards[action.payload.gridId].gridCards.splice(
+        action.payload.cardIndex,
+        1
+      );
+
+      var newCardsGridKey = checkCards(cards, state.nextGridKey);
+
+      return {
+        ...state,
+        cards: newCardsGridKey.cards,
+        nextGridKey: newCardsGridKey.nextGridKey
       };
 
     case START_DRAG:
@@ -171,7 +187,7 @@ export function scheduleReducer(state = initialState, action) {
     case END_DRAG:
       var { dragOver, dragOverGrid, dragging, dragSource } = state;
       var newNextCardKey = state.nextCardKey;
-      var cards = [...state.cards];
+      cards = [...state.cards];
       if (dragSource === "ASANAS") {
         var dragCard = {
           cardKey: newNextCardKey,
@@ -194,7 +210,7 @@ export function scheduleReducer(state = initialState, action) {
         cards[dragOverGrid].gridCards = [...cardsBegin, dragCard, ...cardsEnd];
       }
 
-      let newCardsGridKey = checkCards(cards, state.nextGridKey);
+      newCardsGridKey = checkCards(cards, state.nextGridKey);
 
       return {
         ...state,
