@@ -40,6 +40,7 @@ function AsanasPanel(props) {
         onDragEnterHolder={props.onDragEnterHolder}
         dragSource={null}
         removableCards={false}
+        closeCardAction={() => {}}
       />
     </Paper>
   );
