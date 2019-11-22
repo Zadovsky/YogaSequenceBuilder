@@ -27,6 +27,7 @@ function makeCardsArr(props) {
             ? false
             : i === dragging
         }
+        removableCards={removableCards}
         startDragAction={() => {
           startDragAction(i, gridId);
         }}
