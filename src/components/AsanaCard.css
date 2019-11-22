@@ -33,3 +33,11 @@
   margin: auto;
   margin-top: 5%;
 }
+
+.AsanaCardInnerDiv .MuiButtonBase-root {
+  opacity: 0;
+}
+
+.AsanaCardInnerDiv:hover .MuiButtonBase-root {
+  opacity: 100%;
+}
