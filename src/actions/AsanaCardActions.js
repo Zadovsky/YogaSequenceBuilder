@@ -1,6 +1,7 @@
 export const ADD_ASANA = "ADD_ASANA";
 export const DRAG_ENTER_CARD = "DRAG_ENTER_CARD";
 export const START_DRAG = "START_DRAG";
+export const CLOSE_CARD = "CLOSE_CARD";
 
 export function addAsanaAction(asanaId, gridId) {
   return {
