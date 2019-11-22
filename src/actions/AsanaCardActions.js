@@ -3,14 +3,20 @@ export const DRAG_ENTER_CARD = "DRAG_ENTER_CARD";
 export const START_DRAG = "START_DRAG";
 export const CLOSE_CARD = "CLOSE_CARD";
 
-export function addAsanaAction(asanaId, gridId) {
-  return {
-    type: ADD_ASANA,
-    payload: {
-      asanaId: asanaId,
-      gridId: gridId
-    }
-  };
+export function addAsanaAction(asanaId, gridId, e) {
+  if (e.target.closest(".MuiButtonBase-root") === null) {
+    return {
+      type: ADD_ASANA,
+      payload: {
+        asanaId: asanaId,
+        gridId: gridId
+      }
+    };
+  } else {
+    return {
+      type: ""
+    };
+  }
 }
 
 export function closeCardAction(cardIndex, gridId) {
