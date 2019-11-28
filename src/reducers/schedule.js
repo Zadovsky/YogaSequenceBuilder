@@ -43,8 +43,8 @@ export function scheduleReducer(state = initialState, action) {
     case ADD_ASANA:
       var newState = {};
       if (action.payload.gridId === "ASANAS") {
-        const gridToAdd = state.cards.length === 1 ? 0 : state.cards.length - 2;
         let cards = JSON.parse(JSON.stringify(state.cards));
+        const gridToAdd = cards.length === 1 ? 0 : cards.length - 2;
         cards[gridToAdd].gridCards.push({
           cardKey: state.nextCardKey,
           asanaIndex: action.payload.asanaId
@@ -195,9 +195,9 @@ export function scheduleReducer(state = initialState, action) {
         };
         newNextCardKey += 1;
       } else {
-        dragCard = state.cards[dragSource].gridCards[dragging];
-        var cardsBegin = state.cards[dragSource].gridCards.slice(0, dragging);
-        var cardsEnd = state.cards[dragSource].gridCards.slice(dragging + 1);
+        dragCard = cards[dragSource].gridCards[dragging];
+        var cardsBegin = cards[dragSource].gridCards.slice(0, dragging);
+        var cardsEnd = cards[dragSource].gridCards.slice(dragging + 1);
         cards[dragSource].gridCards = [...cardsBegin, ...cardsEnd];
       }
 
