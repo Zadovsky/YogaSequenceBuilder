@@ -2,7 +2,7 @@ import React from "react";
 import AsanaCard from "./AsanaCard";
 import PlaceHolder from "./PlaceHolder";
 import EmptySpaceAtTheEnd from "./EmptySpaceAtTheEnd";
-import "./AsanaGrid.css";
+import "./AsanasGrid.css";
 
 function makeCardsArr(props) {
   const {
