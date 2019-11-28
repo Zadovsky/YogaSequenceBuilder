@@ -2,8 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import AsanasGrid from "../components/AsanasGrid";
-import ScheduleSectionsSeparator from "../components/ScheduleSectionsSeparator";
+import AsanasGridBlock from "../components/AsanasGridBlock";
 import {
   addAsanaAction,
   dragEnterAction,
@@ -19,52 +18,25 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function createGridArr(props) {
-  return props.schedule.cards.map((cards, i) => {
-    const asanas = cards.gridCards.map(card => {
-      return { ...props.asanas[card.asanaIndex], cardKey: card.cardKey };
-    });
+function SchedulePanel(props) {
+  const classes = useStyles();
 
-    return (
-      <AsanasGrid
-        key={cards.gridKey}
-        gridId={i}
+  return (
+    <Paper className={classes.root}>
+      <AsanasGridBlock
+        schedule={props.schedule}
         language={props.language}
-        asanas={asanas}
-        dragging={props.schedule.dragging}
-        dragOver={props.schedule.dragOver}
-        dragOverGrid={props.schedule.dragOverGrid}
-        fastTransition={props.schedule.fastTransition}
+        asanas={props.asanas}
+        removableCards={true}
         startDragAction={props.startDragAction}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         onDragEnterHolder={props.onDragEnterHolder}
-        dragSource={props.schedule.dragSource}
-        removableCards={true}
         closeCardAction={props.closeCardAction}
       />
-    );
-  });
-}
-
-function createGridSepArr(gridArr) {
-  var gridSepArr = [];
-  gridArr.forEach((grid, i) => {
-    if (i > 0) {
-      gridSepArr.push(<ScheduleSectionsSeparator key={"sep" + i} />);
-    }
-    gridSepArr.push(grid);
-  });
-  return gridSepArr;
-}
-
-function SchedulePanel(props) {
-  const classes = useStyles();
-  const gridArr = createGridArr(props);
-  const gridSepArr = createGridSepArr(gridArr);
-
-  return <Paper className={classes.root}>{gridSepArr}</Paper>;
+    </Paper>
+  );
 }
 
 const mapStateToProps = store => {
