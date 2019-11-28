@@ -44,7 +44,7 @@ export function scheduleReducer(state = initialState, action) {
       var newState = {};
       if (action.payload.gridId === "ASANAS") {
         const gridToAdd = state.cards.length === 1 ? 0 : state.cards.length - 2;
-        let cards = [...state.cards];
+        let cards = JSON.parse(JSON.stringify(state.cards));
         cards[gridToAdd].gridCards.push({
           cardKey: state.nextCardKey,
           asanaIndex: action.payload.asanaId
@@ -187,7 +187,7 @@ export function scheduleReducer(state = initialState, action) {
     case END_DRAG:
       var { dragOver, dragOverGrid, dragging, dragSource } = state;
       var newNextCardKey = state.nextCardKey;
-      cards = [...state.cards];
+      cards = JSON.parse(JSON.stringify(state.cards));
       if (dragSource === "ASANAS") {
         var dragCard = {
           cardKey: newNextCardKey,
