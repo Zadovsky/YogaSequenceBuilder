@@ -11,7 +11,7 @@ function createGridArr(props) {
     return (
       <AsanasGrid
         key={cards.gridKey}
-        gridId={props.gridIdPrefx === "ASANAS" ? "ASANAS" : i}
+        gridId={props.removableCards ? i : "ASANAS"}
         language={props.language}
         asanas={asanas}
         dragging={props.dragging}

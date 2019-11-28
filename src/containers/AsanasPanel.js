@@ -33,7 +33,6 @@ function AsanasPanel(props) {
     <Paper className={classes.root}>
       <AsanasGridBlock
         cards={cards}
-        gridIdPrefx="ASANAS"
         dragging={null}
         dragOver={null}
         dragOverGrid={null}
