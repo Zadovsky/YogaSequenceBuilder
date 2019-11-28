@@ -24,7 +24,12 @@ function SchedulePanel(props) {
   return (
     <Paper className={classes.root}>
       <AsanasGridBlock
-        schedule={props.schedule}
+        cards={props.schedule.cards}
+        dragging={props.schedule.dragging}
+        dragOver={props.schedule.dragOver}
+        dragOverGrid={props.schedule.dragOverGrid}
+        fastTransition={props.schedule.fastTransition}
+        dragSource={props.schedule.dragSource}
         language={props.language}
         asanas={props.asanas}
         removableCards={true}

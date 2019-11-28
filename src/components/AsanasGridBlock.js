@@ -3,7 +3,7 @@ import AsanasGrid from "../components/AsanasGrid";
 import ScheduleSectionsSeparator from "../components/ScheduleSectionsSeparator";
 
 function createGridArr(props) {
-  return props.schedule.cards.map((cards, i) => {
+  return props.cards.map((cards, i) => {
     const asanas = cards.gridCards.map(card => {
       return { ...props.asanas[card.asanaIndex], cardKey: card.cardKey };
     });
@@ -11,19 +11,19 @@ function createGridArr(props) {
     return (
       <AsanasGrid
         key={cards.gridKey}
-        gridId={i}
+        gridId={props.gridIdPrefx === "ASANAS" ? "ASANAS" : i}
         language={props.language}
         asanas={asanas}
-        dragging={props.schedule.dragging}
-        dragOver={props.schedule.dragOver}
-        dragOverGrid={props.schedule.dragOverGrid}
-        fastTransition={props.schedule.fastTransition}
+        dragging={props.dragging}
+        dragOver={props.dragOver}
+        dragOverGrid={props.dragOverGrid}
+        fastTransition={props.fastTransition}
         startDragAction={props.startDragAction}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         onDragEnterHolder={props.onDragEnterHolder}
-        dragSource={props.schedule.dragSource}
+        dragSource={props.dragSource}
         removableCards={props.removableCards}
         closeCardAction={props.closeCardAction}
       />

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import AsanasGrid from "../components/AsanasGrid";
+import AsanasGridBlock from "../components/AsanasGridBlock";
 import {
   addAsanaAction,
   dragEnterAction,
@@ -17,30 +17,37 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function createCardsArr(asanas) {
+  var cards = [{ gridKey: "ASANAS", gridCards: [] }];
+  asanas.forEach((asana, i) => {
+    cards[0].gridCards.push({ asanaIndex: i, cardKey: i });
+  });
+  return cards;
+}
+
 function AsanasPanel(props) {
   const classes = useStyles();
-  const asanas = props.asanas.map((asana, i) => {
-    return { ...asana, cardKey: i };
-  });
+  const cards = createCardsArr(props.asanas);
 
   return (
     <Paper className={classes.root}>
-      <AsanasGrid
-        gridId="ASANAS"
-        language={props.language}
-        asanas={asanas}
-        addAsanaAction={props.addAsanaAction}
+      <AsanasGridBlock
+        cards={cards}
+        gridIdPrefx="ASANAS"
         dragging={null}
         dragOver={null}
         dragOverGrid={null}
         fastTransition={false}
+        dragSource={null}
+        language={props.language}
+        asanas={props.asanas}
+        removableCards={false}
         startDragAction={props.startDragAction}
+        addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         onDragEnterHolder={props.onDragEnterHolder}
-        dragSource={null}
-        removableCards={false}
-        closeCardAction={() => {}}
+        closeCardAction={props.closeCardAction}
       />
     </Paper>
   );
