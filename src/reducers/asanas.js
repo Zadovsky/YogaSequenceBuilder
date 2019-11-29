@@ -1,41 +1,50 @@
-const initialState = [
-  {
-    asanaName: {
-      ru: "Тадасана"
+const initialState = {
+  groupOrder: ["stand", "balance"],
+  arr: [
+    {
+      asanaName: {
+        ru: "Тадасана"
+      },
+      asanaImg: "/img/tadasana.jpg",
+      group: "stand"
     },
-    asanaImg: "/img/tadasana.jpg"
-  },
-  {
-    asanaName: {
-      ru: "Уттхита Триконасана"
+    {
+      asanaName: {
+        ru: "Уттхита Триконасана"
+      },
+      asanaImg: "/img/utrikonasana.jpg",
+      group: "stand"
     },
-    asanaImg: "/img/utrikonasana.jpg"
-  },
-  {
-    asanaName: {
-      ru: "Вирабхадрасана 3"
+    {
+      asanaName: {
+        ru: "Вирабхадрасана 3"
+      },
+      asanaImg: "/img/vira3.jpg",
+      group: "balance"
     },
-    asanaImg: "/img/vira3.jpg"
-  },
-  {
-    asanaName: {
-      ru: "Вирабхадрасана 2"
+    {
+      asanaName: {
+        ru: "Вирабхадрасана 2"
+      },
+      asanaImg: "/img/vira2.jpg",
+      group: "stand"
     },
-    asanaImg: "/img/vira2.jpg"
-  },
-  {
-    asanaName: {
-      ru: "Прасарита Падоттанасана"
+    {
+      asanaName: {
+        ru: "Прасарита Падоттанасана"
+      },
+      asanaImg: "/img/prasarita.jpg",
+      group: "stand"
     },
-    asanaImg: "/img/prasarita.jpg"
-  },
-  {
-    asanaName: {
-      ru: "Врикшасана"
-    },
-    asanaImg: "/img/vrikshasana.jpg"
-  }
-];
+    {
+      asanaName: {
+        ru: "Врикшасана"
+      },
+      asanaImg: "/img/vrikshasana.jpg",
+      group: "balance"
+    }
+  ]
+};
 
 export function asanasReducer(state = initialState, action) {
   return state;

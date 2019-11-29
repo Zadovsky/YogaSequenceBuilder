@@ -18,6 +18,8 @@ function makeCardsArr(props) {
     removableCards
   } = props;
   return asanas.map((asana, i) => {
+    const asanaIndex = gridId === "ASANAS" ? asana.asanaIndex : i;
+
     return (
       <AsanaCard
         name={asana.asanaName[language]}
@@ -30,16 +32,16 @@ function makeCardsArr(props) {
         }
         removableCards={removableCards}
         startDragAction={() => {
-          startDragAction(i, gridId);
+          startDragAction(asanaIndex, gridId);
         }}
         dragEnterAction={() => {
-          dragEnterAction(i, gridId);
+          dragEnterAction(asanaIndex, gridId);
         }}
         addAsanaAction={e => {
-          addAsanaAction(i, gridId, e);
+          addAsanaAction(asanaIndex, gridId, e);
         }}
         closeCardAction={() => {
-          closeCardAction(i, gridId);
+          closeCardAction(asanaIndex, gridId);
         }}
       />
     );

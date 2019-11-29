@@ -18,10 +18,21 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function createCardsArr(asanas) {
-  var cards = [{ gridKey: "ASANAS", gridCards: [] }];
-  asanas.forEach((asana, i) => {
-    cards[0].gridCards.push({ asanaIndex: i, cardKey: i });
+  var cards = [];
+  asanas.groupOrder.forEach(group => {
+    let gridCards = [];
+    asanas.arr.forEach((asana, i) => {
+      if (asana.group === group) {
+        gridCards.push({ asanaIndex: i, cardKey: i });
+      }
+    });
+
+    cards.push({
+      gridKey: group,
+      gridCards: gridCards
+    });
   });
+
   return cards;
 }
 
@@ -39,7 +50,7 @@ function AsanasPanel(props) {
         fastTransition={false}
         dragSource={null}
         language={props.language}
-        asanas={props.asanas}
+        asanas={props.asanas.arr}
         removableCards={false}
         startDragAction={props.startDragAction}
         addAsanaAction={props.addAsanaAction}

@@ -5,7 +5,11 @@ import ScheduleSectionsSeparator from "../components/ScheduleSectionsSeparator";
 function createGridArr(props) {
   return props.cards.map((cards, i) => {
     const asanas = cards.gridCards.map(card => {
-      return { ...props.asanas[card.asanaIndex], cardKey: card.cardKey };
+      return {
+        ...props.asanas[card.asanaIndex],
+        asanaIndex: card.asanaIndex,
+        cardKey: card.cardKey
+      };
     });
 
     return (

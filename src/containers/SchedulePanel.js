@@ -31,7 +31,7 @@ function SchedulePanel(props) {
         fastTransition={props.schedule.fastTransition}
         dragSource={props.schedule.dragSource}
         language={props.language}
-        asanas={props.asanas}
+        asanas={props.asanas.arr}
         removableCards={true}
         startDragAction={props.startDragAction}
         addAsanaAction={props.addAsanaAction}
