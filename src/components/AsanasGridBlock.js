@@ -1,6 +1,5 @@
 import React from "react";
 import AsanasGrid from "../components/AsanasGrid";
-import ScheduleSectionsSeparator from "../components/ScheduleSectionsSeparator";
 
 function createGridArr(props) {
   return props.cards.map((cards, i) => {
@@ -35,20 +34,8 @@ function createGridArr(props) {
   });
 }
 
-function createGridSepArr(gridArr) {
-  var gridSepArr = [];
-  gridArr.forEach((grid, i) => {
-    if (i > 0) {
-      gridSepArr.push(<ScheduleSectionsSeparator key={"sep" + i} />);
-    }
-    gridSepArr.push(grid);
-  });
-  return gridSepArr;
-}
-
 export default function AsanasGridBlock(props) {
   const gridArr = createGridArr(props);
-  const gridSepArr = createGridSepArr(gridArr);
 
-  return <div className="AsanaGridBlock">{gridSepArr}</div>;
+  return <div className="AsanaGridBlock">{gridArr}</div>;
 }

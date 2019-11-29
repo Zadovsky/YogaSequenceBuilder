@@ -1,8 +1,17 @@
 import React from "react";
+import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 import AsanaCard from "./AsanaCard";
 import PlaceHolder from "./PlaceHolder";
 import EmptySpaceAtTheEnd from "./EmptySpaceAtTheEnd";
 import "./AsanasGrid.css";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(2, 2),
+    margin: theme.spacing(3, 2)
+  }
+}));
 
 function makeCardsArr(props) {
   const {
@@ -77,6 +86,7 @@ function makeCardsHoldersArr(cardsArr, props) {
 }
 
 export default function AsanasGrid(props) {
+  const classes = useStyles();
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
@@ -87,11 +97,15 @@ export default function AsanasGrid(props) {
     : () => {};
 
   return (
-    <div className="AsanaGrid" onDragOver={onDragOverFunc}>
-      {cardsHoldersArr}
-      <EmptySpaceAtTheEnd
-        onDragEnterEmptySpace={() => props.onDragEnterEmptySpace(props.gridId)}
-      />
-    </div>
+    <Paper className={classes.root}>
+      <div className="AsanaGrid" onDragOver={onDragOverFunc}>
+        {cardsHoldersArr}
+        <EmptySpaceAtTheEnd
+          onDragEnterEmptySpace={() =>
+            props.onDragEnterEmptySpace(props.gridId)
+          }
+        />
+      </div>
+    </Paper>
   );
 }
