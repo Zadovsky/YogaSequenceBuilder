@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
+import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import { makeStyles } from "@material-ui/core/styles";
 import AsanaCard from "./AsanaCard";
 import PlaceHolder from "./PlaceHolder";
@@ -8,7 +9,6 @@ import "./AsanasGrid.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(2, 2),
     margin: theme.spacing(3, 2)
   }
 }));
@@ -98,13 +98,20 @@ export default function AsanasGrid(props) {
 
   return (
     <Paper className={classes.root}>
-      <div className="AsanaGrid" onDragOver={onDragOverFunc}>
+      <div className="AsanasGrid" onDragOver={onDragOverFunc}>
         {cardsHoldersArr}
         <EmptySpaceAtTheEnd
           onDragEnterEmptySpace={() =>
             props.onDragEnterEmptySpace(props.gridId)
           }
         />
+        {props.removableCards ? (
+          <div className="AsanasGridDragIcon">
+            <DragIndicatorIcon fontSize="large" />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </Paper>
   );
