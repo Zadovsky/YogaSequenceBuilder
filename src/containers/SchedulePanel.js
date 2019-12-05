@@ -66,8 +66,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(startCardDragAction(asanaId, gridId)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
-    onDragIconMouseDownAction: e => dispatch(onDragIconMouseDownAction(e)),
-    onDragIconMouseUpAction: e => dispatch(onDragIconMouseUpAction(e)),
+    onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),
+    onDragIconMouseUpAction: () => dispatch(onDragIconMouseUpAction()),
     addAsanaAction: (asanaId, gridId, e) =>
       dispatch(addAsanaAction(asanaId, gridId, e)),
     closeCardAction: (cardIndex, gridId) =>

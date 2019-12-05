@@ -9,16 +9,14 @@ export function startGridDragAction(gridId, e) {
   };
 }
 
-export function onDragIconMouseDownAction(e) {
+export function onDragIconMouseDownAction() {
   return {
-    type: DRAG_ICON_MOUSE_DOWN,
-    payload: e.target
+    type: DRAG_ICON_MOUSE_DOWN
   };
 }
 
-export function onDragIconMouseUpAction(e) {
+export function onDragIconMouseUpAction() {
   return {
-    type: DRAG_ICON_MOUSE_UP,
-    payload: e.target
+    type: DRAG_ICON_MOUSE_UP
   };
 }

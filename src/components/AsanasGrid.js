@@ -115,12 +115,8 @@ export default function AsanasGrid(props) {
           {props.removableCards ? (
             <div
               className="AsanasGridDragIcon"
-              onMouseDown={e => {
-                props.onDragIconMouseDownAction(e);
-              }}
-              onMouseUp={e => {
-                props.onDragIconMouseUpAction(e);
-              }}
+              onMouseDown={props.onDragIconMouseDownAction}
+              onMouseUp={props.onDragIconMouseUpAction}
             >
               <DragIndicatorIcon fontSize="large" />
             </div>
