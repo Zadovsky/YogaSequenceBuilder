@@ -24,6 +24,7 @@ function createGridArr(props) {
         startCardDragAction={props.startCardDragAction}
         startGridDragAction={props.startGridDragAction}
         onDragIconMouseDownAction={props.onDragIconMouseDownAction}
+        onDragIconMouseUpAction={props.onDragIconMouseUpAction}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}

@@ -53,6 +53,9 @@ function AsanasPanel(props) {
         asanas={props.asanas.arr}
         removableCards={false}
         startCardDragAction={props.startCardDragAction}
+        startGridDragAction={() => {}}
+        onDragIconMouseDownAction={() => {}}
+        onDragIconMouseUpAction={() => {}}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}

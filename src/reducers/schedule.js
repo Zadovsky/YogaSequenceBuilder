@@ -9,6 +9,7 @@ import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
 import {
   DRAG_ICON_MOUSE_DOWN,
+  DRAG_ICON_MOUSE_UP,
   START_DRAG_GRID
 } from "../actions/AsanasGridActions";
 
@@ -25,7 +26,8 @@ const initialState = {
   fastTransition: false,
   onPlaceHolder: false,
   dndGridFlags: {
-    mouseDownTarget: null
+    mouseDownTarget: null,
+    draggingGrid: null
   }
 };
 
@@ -56,14 +58,32 @@ export function scheduleReducer(state = initialState, action) {
         }
       };
 
+    case DRAG_ICON_MOUSE_UP:
+      return {
+        ...state,
+        dndGridFlags: {
+          ...state.dndGridFlags,
+          mouseDownTarget: null
+        }
+      };
+
     case START_DRAG_GRID:
       if (
-        !action.payload.e.target.contains(state.dndGridFlags.mouseDownTarget)
+        action.payload.e.target.contains(state.dndGridFlags.mouseDownTarget)
       ) {
+        return {
+          ...state,
+          dndGridFlags: {
+            ...state.dndGridFlags,
+            draggingGrid: action.payload.gridId
+          }
+        };
+      } else if (state.dragging !== null) {
+        return { ...state };
+      } else {
         action.payload.e.preventDefault();
+        return { ...state };
       }
-
-      return { ...state };
 
     case ADD_ASANA:
       var newState = {};
@@ -210,45 +230,60 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case END_DRAG:
-      var { dragOver, dragOverGrid, dragging, dragSource } = state;
-      var newNextCardKey = state.nextCardKey;
-      cards = JSON.parse(JSON.stringify(state.cards));
-      if (dragSource === "ASANAS") {
-        var dragCard = {
-          cardKey: newNextCardKey,
-          asanaIndex: dragging
-        };
-        newNextCardKey += 1;
-      } else {
-        dragCard = cards[dragSource].gridCards[dragging];
-        var cardsBegin = cards[dragSource].gridCards.slice(0, dragging);
-        var cardsEnd = cards[dragSource].gridCards.slice(dragging + 1);
-        cards[dragSource].gridCards = [...cardsBegin, ...cardsEnd];
-      }
-
-      if (dragOver !== null) {
-        if (dragOver > dragging && dragSource === dragOverGrid) {
-          dragOver -= 1;
+      if (state.dndGridFlags.draggingGrid === null) {
+        var { dragOver, dragOverGrid, dragging, dragSource } = state;
+        var newNextCardKey = state.nextCardKey;
+        cards = JSON.parse(JSON.stringify(state.cards));
+        if (dragSource === "ASANAS") {
+          var dragCard = {
+            cardKey: newNextCardKey,
+            asanaIndex: dragging
+          };
+          newNextCardKey += 1;
+        } else {
+          dragCard = cards[dragSource].gridCards[dragging];
+          var cardsBegin = cards[dragSource].gridCards.slice(0, dragging);
+          var cardsEnd = cards[dragSource].gridCards.slice(dragging + 1);
+          cards[dragSource].gridCards = [...cardsBegin, ...cardsEnd];
         }
-        cardsBegin = cards[dragOverGrid].gridCards.slice(0, dragOver);
-        cardsEnd = cards[dragOverGrid].gridCards.slice(dragOver);
-        cards[dragOverGrid].gridCards = [...cardsBegin, dragCard, ...cardsEnd];
+
+        if (dragOver !== null) {
+          if (dragOver > dragging && dragSource === dragOverGrid) {
+            dragOver -= 1;
+          }
+          cardsBegin = cards[dragOverGrid].gridCards.slice(0, dragOver);
+          cardsEnd = cards[dragOverGrid].gridCards.slice(dragOver);
+          cards[dragOverGrid].gridCards = [
+            ...cardsBegin,
+            dragCard,
+            ...cardsEnd
+          ];
+        }
+
+        newCardsGridKey = checkCards(cards, state.nextGridKey);
+
+        return {
+          ...state,
+          cards: newCardsGridKey.cards,
+          nextGridKey: newCardsGridKey.nextGridKey,
+          dragOver: null,
+          dragOverGrid: null,
+          dragging: null,
+          lastDragEnterCard: null,
+          lastDragEnterCardGrid: null,
+          fastTransition: true,
+          nextCardKey: newNextCardKey
+        };
+      } else {
+        return {
+          ...state,
+          dndGridFlags: {
+            ...state.dndGridFlags,
+            draggingGrid: null,
+            mouseDownTarget: null
+          }
+        };
       }
-
-      newCardsGridKey = checkCards(cards, state.nextGridKey);
-
-      return {
-        ...state,
-        cards: newCardsGridKey.cards,
-        nextGridKey: newCardsGridKey.nextGridKey,
-        dragOver: null,
-        dragOverGrid: null,
-        dragging: null,
-        lastDragEnterCard: null,
-        lastDragEnterCardGrid: null,
-        fastTransition: true,
-        nextCardKey: newNextCardKey
-      };
 
     default:
       return state;

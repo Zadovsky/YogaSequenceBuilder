@@ -118,6 +118,9 @@ export default function AsanasGrid(props) {
               onMouseDown={e => {
                 props.onDragIconMouseDownAction(e);
               }}
+              onMouseUp={e => {
+                props.onDragIconMouseUpAction(e);
+              }}
             >
               <DragIndicatorIcon fontSize="large" />
             </div>
