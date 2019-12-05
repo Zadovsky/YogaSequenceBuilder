@@ -26,7 +26,6 @@ const initialState = {
   fastTransition: false,
   onPlaceHolder: false,
   dndGridFlags: {
-    mouseDownTarget: false,
     draggingGrid: null
   }
 };
@@ -54,7 +53,7 @@ export function scheduleReducer(state = initialState, action) {
         ...state,
         dndGridFlags: {
           ...state.dndGridFlags,
-          mouseDownTarget: true
+          draggingGrid: true
         }
       };
 
@@ -63,15 +62,12 @@ export function scheduleReducer(state = initialState, action) {
         ...state,
         dndGridFlags: {
           ...state.dndGridFlags,
-          mouseDownTarget: false
+          draggingGrid: null
         }
       };
 
     case START_DRAG_GRID:
-      if (
-        state.dndGridFlags.mouseDownTarget
-        // action.payload.e.target.contains(state.dndGridFlags.mouseDownTarget)
-      ) {
+      if (state.dndGridFlags.draggingGrid) {
         return {
           ...state,
           dndGridFlags: {
@@ -280,8 +276,7 @@ export function scheduleReducer(state = initialState, action) {
           ...state,
           dndGridFlags: {
             ...state.dndGridFlags,
-            draggingGrid: null,
-            mouseDownTarget: false
+            draggingGrid: null
           }
         };
       }
