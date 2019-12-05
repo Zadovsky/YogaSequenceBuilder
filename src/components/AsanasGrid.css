@@ -5,9 +5,13 @@
   padding-right: 30px;
 }
 
-.AsanasGrid .AsanasGridDragIcon {
+.AsanasGridDragIcon {
   position: absolute;
   right: 0;
   top: 45%;
   cursor: grab;
+}
+
+.AsanasGridDragIcon:active {
+  cursor: grabbing;
 }

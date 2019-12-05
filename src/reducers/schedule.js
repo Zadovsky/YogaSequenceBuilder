@@ -1,12 +1,16 @@
 import {
   ADD_ASANA,
   DRAG_ENTER_CARD,
-  START_DRAG,
+  START_DRAG_CARD,
   CLOSE_CARD
 } from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
+import {
+  DRAG_ICON_MOUSE_DOWN,
+  START_DRAG_GRID
+} from "../actions/AsanasGridActions";
 
 const initialState = {
   cards: [{ gridCards: [], gridKey: 0 }],
@@ -19,7 +23,10 @@ const initialState = {
   lastDragEnterCard: null,
   lastDragEnterCardGrid: null,
   fastTransition: false,
-  onPlaceHolder: false
+  onPlaceHolder: false,
+  dndGridFlags: {
+    mouseDownTarget: null
+  }
 };
 
 function checkCards(cards, nextGridKey) {
@@ -40,6 +47,24 @@ function checkCards(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case DRAG_ICON_MOUSE_DOWN:
+      return {
+        ...state,
+        dndGridFlags: {
+          ...state.dndGridFlags,
+          mouseDownTarget: action.payload
+        }
+      };
+
+    case START_DRAG_GRID:
+      if (
+        !action.payload.e.target.contains(state.dndGridFlags.mouseDownTarget)
+      ) {
+        action.payload.e.preventDefault();
+      }
+
+      return { ...state };
+
     case ADD_ASANA:
       var newState = {};
       if (action.payload.gridId === "ASANAS") {
@@ -79,7 +104,7 @@ export function scheduleReducer(state = initialState, action) {
         nextGridKey: newCardsGridKey.nextGridKey
       };
 
-    case START_DRAG:
+    case START_DRAG_CARD:
       if (action.payload.source === "ASANAS") {
         newState = {
           dragOver: null,

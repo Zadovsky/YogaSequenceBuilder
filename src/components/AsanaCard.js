@@ -24,7 +24,7 @@ export default function AsanaCard(props) {
       className={classStr}
       onClick={props.addAsanaAction}
       onDragEnter={props.dragEnterAction}
-      onDragStart={props.startDragAction}
+      onDragStart={props.startCardDragAction}
       draggable="true"
     >
       <div className="AsanaCardInnerDiv">

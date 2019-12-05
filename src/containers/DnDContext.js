@@ -4,10 +4,7 @@ import { endDrag, dragEnter } from "../actions/DnDContextActions";
 
 function DnDContext(props) {
   return (
-    <div
-      onDragEnd={props.endDragAction}
-      onDragEnter={props.onDragEnterAction}
-    >
+    <div onDragEnd={props.endDragAction} onDragEnter={props.onDragEnterAction}>
       {props.children}
     </div>
   );
@@ -24,7 +21,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DnDContext);
+export default connect(mapStateToProps, mapDispatchToProps)(DnDContext);

@@ -6,7 +6,7 @@ import AsanasGridBlock from "../components/AsanasGridBlock";
 import {
   addAsanaAction,
   dragEnterAction,
-  startDragAction
+  startCardDragAction
 } from "../actions/AsanaCardActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
@@ -52,7 +52,7 @@ function AsanasPanel(props) {
         language={props.language}
         asanas={props.asanas.arr}
         removableCards={false}
-        startDragAction={props.startDragAction}
+        startCardDragAction={props.startCardDragAction}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
@@ -72,8 +72,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startDragAction: (asanaId, gridId) =>
-      dispatch(startDragAction(asanaId, gridId)),
+    startCardDragAction: (asanaId, gridId) =>
+      dispatch(startCardDragAction(asanaId, gridId)),
     addAsanaAction: (asanaId, gridId, e) =>
       dispatch(addAsanaAction(asanaId, gridId, e)),
     dragEnterAction: (enterIndex, gridId) =>

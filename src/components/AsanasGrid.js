@@ -17,7 +17,7 @@ function makeCardsArr(props) {
   const {
     language,
     asanas,
-    startDragAction,
+    startCardDragAction,
     addAsanaAction,
     closeCardAction,
     gridId,
@@ -40,8 +40,8 @@ function makeCardsArr(props) {
             : i === dragging
         }
         removableCards={removableCards}
-        startDragAction={() => {
-          startDragAction(asanaIndex, gridId);
+        startCardDragAction={() => {
+          startCardDragAction(asanaIndex, gridId);
         }}
         dragEnterAction={() => {
           dragEnterAction(asanaIndex, gridId);
@@ -97,22 +97,35 @@ export default function AsanasGrid(props) {
     : () => {};
 
   return (
-    <Paper className={classes.root}>
-      <div className="AsanasGrid" onDragOver={onDragOverFunc}>
-        {cardsHoldersArr}
-        <EmptySpaceAtTheEnd
-          onDragEnterEmptySpace={() =>
-            props.onDragEnterEmptySpace(props.gridId)
-          }
-        />
-        {props.removableCards ? (
-          <div className="AsanasGridDragIcon">
-            <DragIndicatorIcon fontSize="large" />
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
-    </Paper>
+    <div
+      className="AsanasGridDraggable"
+      draggable="true"
+      onDragStart={e => {
+        props.startGridDragAction(props.gridId, e);
+      }}
+    >
+      <Paper className={classes.root}>
+        <div className="AsanasGrid" onDragOver={onDragOverFunc}>
+          {cardsHoldersArr}
+          <EmptySpaceAtTheEnd
+            onDragEnterEmptySpace={() =>
+              props.onDragEnterEmptySpace(props.gridId)
+            }
+          />
+          {props.removableCards ? (
+            <div
+              className="AsanasGridDragIcon"
+              onMouseDown={e => {
+                props.onDragIconMouseDownAction(e);
+              }}
+            >
+              <DragIndicatorIcon fontSize="large" />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      </Paper>
+    </div>
   );
 }
