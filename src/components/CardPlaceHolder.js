@@ -1,5 +1,5 @@
 import React from "react";
-import "./PlaceHolder.css";
+import "./CardPlaceHolder.css";
 
 function makeTransitionStyle(fast, DragEnd) {
   if (fast) {
@@ -13,8 +13,8 @@ function makeTransitionStyle(fast, DragEnd) {
   }
 }
 
-export default function PlaceHolder(props) {
-  var classArr = ["PlaceHolder"];
+export default function CardPlaceHolder(props) {
+  var classArr = ["CardPlaceHolder"];
   if (props.fat) classArr.push("PlaceHolderFat");
   const classStr = classArr.join(" ");
 

@@ -3,7 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import { makeStyles } from "@material-ui/core/styles";
 import AsanaCard from "./AsanaCard";
-import PlaceHolder from "./PlaceHolder";
+import CardPlaceHolder from "./CardPlaceHolder";
 import EmptySpaceAtTheEnd from "./EmptySpaceAtTheEnd";
 import "./AsanasGrid.css";
 
@@ -71,7 +71,7 @@ function makeCardsHoldersArr(cardsArr, props) {
 
   cardsArr.forEach((card, i) => {
     const placeHolder = (
-      <PlaceHolder
+      <CardPlaceHolder
         key={"ph" + i}
         fat={dragOver === i && dragOverGrid === gridId}
         fastTransition={fastTransition}
