@@ -1,5 +1,6 @@
 import React from "react";
 import AsanasGrid from "../components/AsanasGrid";
+import GridPlaceHolder from "../components/GridPlaceHolder";
 
 function createGridArr(props) {
   return props.cards.map((cards, i) => {
@@ -37,8 +38,37 @@ function createGridArr(props) {
   });
 }
 
+function createGridHolderArr(gridArr, props) {
+  // const {
+  //   dragOver,
+  //   dragOverGrid,
+  //   onDragEnterHolder,
+  //   gridId,
+  //   fastTransition,
+  //   dragging
+  // } = props;
+
+  var gridHoldersArr = [];
+
+  gridArr.forEach((grid, i) => {
+    const placeHolder = (
+      <GridPlaceHolder
+        key={"ph" + i}
+        // fat={dragOver === i && dragOverGrid === gridId}
+        // fastTransition={fastTransition}
+        // isDragEnd={dragging == null}
+        // onDragEnterHolder={() => onDragEnterHolder(i, gridId)}
+      />
+    );
+    gridHoldersArr.push(placeHolder, grid);
+  });
+
+  return gridHoldersArr;
+}
+
 export default function AsanasGridBlock(props) {
   const gridArr = createGridArr(props);
+  const gridHoldersArr = createGridHolderArr(gridArr, props);
 
-  return <div className="AsanaGridBlock">{gridArr}</div>;
+  return <div className="AsanaGridBlock">{gridHoldersArr}</div>;
 }
