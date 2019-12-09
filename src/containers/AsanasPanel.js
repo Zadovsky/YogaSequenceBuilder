@@ -8,6 +8,7 @@ import {
   dragEnterAction,
   startCardDragAction
 } from "../actions/AsanaCardActions";
+import { startGridDragAction } from "../actions/AsanasGridActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
 
@@ -53,7 +54,7 @@ function AsanasPanel(props) {
         asanas={props.asanas.arr}
         removableCards={false}
         startCardDragAction={props.startCardDragAction}
-        startGridDragAction={() => {}}
+        startGridDragAction={props.startGridDragAction}
         onDragIconMouseDownAction={() => {}}
         onDragIconMouseUpAction={() => {}}
         addAsanaAction={props.addAsanaAction}
@@ -77,6 +78,8 @@ const mapDispatchToProps = dispatch => {
   return {
     startCardDragAction: (asanaId, gridId) =>
       dispatch(startCardDragAction(asanaId, gridId)),
+    startGridDragAction: (gridId, e) =>
+      dispatch(startGridDragAction(gridId, e)),
     addAsanaAction: (asanaId, gridId, e) =>
       dispatch(addAsanaAction(asanaId, gridId, e)),
     dragEnterAction: (enterIndex, gridId) =>
