@@ -21,6 +21,11 @@ function createGridArr(props) {
         dragging={props.dragging}
         dragOver={props.dragOver}
         dragOverGrid={props.dragOverGrid}
+        isDragging={
+          props.draggingGrid === null || !props.removableCards
+            ? false
+            : i === props.draggingGrid
+        }
         fastTransition={props.fastTransition}
         startCardDragAction={props.startCardDragAction}
         startGridDragAction={props.startGridDragAction}

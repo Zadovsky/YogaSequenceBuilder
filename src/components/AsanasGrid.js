@@ -96,9 +96,13 @@ export default function AsanasGrid(props) {
       }
     : () => {};
 
+  var classArr = ["AsanasGridDraggable"];
+  if (props.isDragging) classArr.push("AsanaGridDragging");
+  const classStr = classArr.join(" ");
+
   return (
     <div
-      className="AsanasGridDraggable"
+      className={classStr}
       draggable="true"
       onDragStart={e => {
         props.startGridDragAction(props.gridId, e);

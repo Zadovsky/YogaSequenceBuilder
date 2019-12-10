@@ -47,6 +47,7 @@ function SchedulePanel(props) {
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         onDragEnterHolder={props.onDragEnterHolder}
         closeCardAction={props.closeCardAction}
+        draggingGrid={props.schedule.dndGridFlags.draggingGrid}
       />
     </Paper>
   );

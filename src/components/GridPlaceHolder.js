@@ -15,19 +15,19 @@ function makeTransitionStyle(fast, DragEnd) {
 
 export default function GridPlaceHolder(props) {
   var classArr = ["GridPlaceHolder"];
-//   if (props.fat) classArr.push("PlaceHolderFat");
+  //   if (props.fat) classArr.push("PlaceHolderFat");
   const classStr = classArr.join(" ");
 
-//   const transitionStyle = makeTransitionStyle(
-//     props.fastTransition,
-//     props.isDragEnd
-//   );
+  //   const transitionStyle = makeTransitionStyle(
+  //     props.fastTransition,
+  //     props.isDragEnd
+  //   );
 
   return (
     <div
       className={classStr}
-    //   onDragEnter={props.onDragEnterHolder}
-    //   style={transitionStyle}
+      //   onDragEnter={props.onDragEnterHolder}
+      //   style={transitionStyle}
     ></div>
   );
 }

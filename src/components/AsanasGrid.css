@@ -3,6 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   padding-right: 30px;
+  overflow: hidden;
 }
 
 .AsanasGridDragIcon {
@@ -14,4 +15,9 @@
 
 .AsanasGridDragIcon:active {
   cursor: grabbing;
+}
+
+.AsanaGridDragging {
+  height: 0;
+  transition: all 0ms ease 10ms;
 }
