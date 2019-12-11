@@ -48,6 +48,8 @@ function SchedulePanel(props) {
         onDragEnterHolder={props.onDragEnterHolder}
         closeCardAction={props.closeCardAction}
         draggingGrid={props.schedule.dndGridFlags.draggingGrid}
+        dragGridOverGrid={props.schedule.dndGridFlags.dragGridOverGrid}
+        gridHeight={props.schedule.dndGridFlags.gridHeight}
       />
     </Paper>
   );

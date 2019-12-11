@@ -5,7 +5,7 @@ export const DRAG_ICON_MOUSE_UP = "DRAG_ICON_MOUSE_UP";
 export function startGridDragAction(gridId, e) {
   return {
     type: START_DRAG_GRID,
-    payload: { gridId: gridId, e: e }
+    payload: { gridId: gridId, e: e, height: e.target.clientHeight }
   };
 }
 

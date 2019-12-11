@@ -44,14 +44,7 @@ function createGridArr(props) {
 }
 
 function createGridHolderArr(gridArr, props) {
-  // const {
-  //   dragOver,
-  //   dragOverGrid,
-  //   onDragEnterHolder,
-  //   gridId,
-  //   fastTransition,
-  //   dragging
-  // } = props;
+  const { dragGridOverGrid, gridHeight } = props;
 
   var gridHoldersArr = [];
 
@@ -59,6 +52,7 @@ function createGridHolderArr(gridArr, props) {
     const placeHolder = (
       <GridPlaceHolder
         key={"ph" + i}
+        height={i === dragGridOverGrid ? gridHeight : 0}
         // fat={dragOver === i && dragOverGrid === gridId}
         // fastTransition={fastTransition}
         // isDragEnd={dragging == null}

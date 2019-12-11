@@ -62,6 +62,9 @@ function AsanasPanel(props) {
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         onDragEnterHolder={props.onDragEnterHolder}
         closeCardAction={props.closeCardAction}
+        draggingGrid={null}
+        dragGridOverGrid={null}
+        gridHeight={null}
       />
     </Paper>
   );
