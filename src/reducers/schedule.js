@@ -72,6 +72,7 @@ export function scheduleReducer(state = initialState, action) {
       if (state.dndGridFlags.draggingGrid) {
         return {
           ...state,
+          fastTransition: true,
           dndGridFlags: {
             ...state.dndGridFlags,
             draggingGrid: action.payload.gridId,
