@@ -279,6 +279,7 @@ export function scheduleReducer(state = initialState, action) {
       } else {
         return {
           ...state,
+          fastTransition: true,
           dndGridFlags: {
             ...state.dndGridFlags,
             draggingGrid: null,
