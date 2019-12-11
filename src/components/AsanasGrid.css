@@ -17,6 +17,11 @@
   cursor: grabbing;
 }
 
+.AsanasGridDraggable {
+  height: 100%;
+  overflow: hidden;
+}
+
 .AsanaGridDragging {
   height: 0;
   transition: all 0ms ease 10ms;
