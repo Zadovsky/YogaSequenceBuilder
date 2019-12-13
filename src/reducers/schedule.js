@@ -10,7 +10,8 @@ import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
 import {
   DRAG_ICON_MOUSE_DOWN,
   DRAG_ICON_MOUSE_UP,
-  START_DRAG_GRID
+  START_DRAG_GRID,
+  DRAG_ENTER_GRID_ACTION
 } from "../actions/AsanasGridActions";
 
 const initialState = {
@@ -86,6 +87,16 @@ export function scheduleReducer(state = initialState, action) {
         action.payload.e.preventDefault();
         return { ...state };
       }
+
+    case DRAG_ENTER_GRID_ACTION:
+      return {
+        ...state,
+        fastTransition: false,
+        dndGridFlags: {
+          ...state.dndGridFlags,
+          dragGridOverGrid: action.payload
+        }
+      };
 
     case ADD_ASANA:
       var newState = {};

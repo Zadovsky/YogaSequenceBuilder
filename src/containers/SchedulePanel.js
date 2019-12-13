@@ -12,7 +12,8 @@ import {
 import {
   startGridDragAction,
   onDragIconMouseDownAction,
-  onDragIconMouseUpAction
+  onDragIconMouseUpAction,
+  dragEnterGridAction
 } from "../actions/AsanasGridActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
@@ -50,6 +51,7 @@ function SchedulePanel(props) {
         draggingGrid={props.schedule.dndGridFlags.draggingGrid}
         dragGridOverGrid={props.schedule.dndGridFlags.dragGridOverGrid}
         gridHeight={props.schedule.dndGridFlags.gridHeight}
+        dragEnterGridAction={props.dragEnterGridAction}
       />
     </Paper>
   );
@@ -79,7 +81,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(dragEnterAction(enterIndex, gridId)),
     onDragEnterHolder: (index, gridId) =>
       dispatch(onDragEnterHolder(index, gridId)),
-    onDragEnterEmptySpace: gridId => dispatch(onDragEnterEmptySpace(gridId))
+    onDragEnterEmptySpace: gridId => dispatch(onDragEnterEmptySpace(gridId)),
+    dragEnterGridAction: gridId => dispatch(dragEnterGridAction(gridId))
   };
 };
 

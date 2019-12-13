@@ -107,6 +107,7 @@ export default function AsanasGrid(props) {
       onDragStart={e => {
         props.startGridDragAction(props.gridId, e);
       }}
+      onDragEnter={() => props.dragEnterGridAction(props.gridId)}
     >
       <Paper className={classes.root}>
         <div className="AsanasGrid" onDragOver={onDragOverFunc}>
