@@ -11,7 +11,7 @@ import {
   DRAG_ICON_MOUSE_DOWN,
   DRAG_ICON_MOUSE_UP,
   START_DRAG_GRID,
-  DRAG_ENTER_GRID_ACTION
+  DRAG_ENTER_GRID
 } from "../actions/AsanasGridActions";
 
 const initialState = {
@@ -29,7 +29,8 @@ const initialState = {
   dndGridFlags: {
     draggingGrid: null,
     gridHeight: null,
-    dragGridOverGrid: null
+    dragGridOverGrid: null,
+    lastDragEnterGrid: null
   }
 };
 
@@ -74,6 +75,7 @@ export function scheduleReducer(state = initialState, action) {
         return {
           ...state,
           fastTransition: true,
+          onPlaceHolder: true,
           dndGridFlags: {
             ...state.dndGridFlags,
             draggingGrid: action.payload.gridId,
@@ -88,15 +90,29 @@ export function scheduleReducer(state = initialState, action) {
         return { ...state };
       }
 
-    case DRAG_ENTER_GRID_ACTION:
-      return {
-        ...state,
-        fastTransition: false,
-        dndGridFlags: {
-          ...state.dndGridFlags,
-          dragGridOverGrid: action.payload
-        }
-      };
+    case DRAG_ENTER_GRID:
+      if (action.payload !== state.dndGridFlags.lastDragEnterGrid) {
+        const newDragOverGrid =
+          state.onPlaceHolder &&
+          state.dndGridFlags.dragGridOverGrid === action.payload
+            ? action.payload + 1
+            : action.payload;
+
+        return {
+          ...state,
+          fastTransition: false,
+          onPlaceHolder: false,
+          dndGridFlags: {
+            ...state.dndGridFlags,
+            dragGridOverGrid: newDragOverGrid,
+            lastDragEnterGrid: action.payload
+          }
+        };
+      } else {
+        return {
+          ...state
+        };
+      }
 
     case ADD_ASANA:
       var newState = {};
@@ -224,7 +240,7 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case DRAG_ENTER_DND_CONTEXT:
-      if (action.payload) {
+      if (action.payload && state.dndGridFlags.draggingGrid === null) {
         newState = {
           ...state,
           dragOver: null,
@@ -295,7 +311,8 @@ export function scheduleReducer(state = initialState, action) {
             ...state.dndGridFlags,
             draggingGrid: null,
             gridHeight: null,
-            dragGridOverGrid: null
+            dragGridOverGrid: null,
+            lastDragEnterGrid: null
           }
         };
       }
