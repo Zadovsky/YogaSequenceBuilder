@@ -280,10 +280,10 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case END_DRAG:
+      cards = JSON.parse(JSON.stringify(state.cards));
       if (state.dndGridFlags.draggingGrid === null) {
         var { dragOver, dragOverGrid, dragging, dragSource } = state;
         var newNextCardKey = state.nextCardKey;
-        cards = JSON.parse(JSON.stringify(state.cards));
         if (dragSource === "ASANAS") {
           var dragCard = {
             cardKey: newNextCardKey,
@@ -325,8 +325,24 @@ export function scheduleReducer(state = initialState, action) {
           nextCardKey: newNextCardKey
         };
       } else {
+        var { draggingGrid, dragGridOverGrid } = state.dndGridFlags;
+        var dragGrid = cards[draggingGrid];
+
+        cardsBegin = cards.slice(0, draggingGrid);
+        cardsEnd = cards.slice(draggingGrid + 1);
+        cards = [...cardsBegin, ...cardsEnd];
+
+        if (dragGridOverGrid > draggingGrid) {
+          dragGridOverGrid--;
+        }
+
+        cardsBegin = cards.slice(0, dragGridOverGrid);
+        cardsEnd = cards.slice(dragGridOverGrid);
+        cards = [...cardsBegin, dragGrid, ...cardsEnd];
+
         return {
           ...state,
+          cards: cards,
           fastTransition: true,
           dndGridFlags: {
             ...state.dndGridFlags,
