@@ -7,6 +7,7 @@ import {
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
+import { DRAG_ENTER_GRID_PH } from "../actions/GridPlaceHolderActions";
 import {
   DRAG_ICON_MOUSE_DOWN,
   DRAG_ICON_MOUSE_UP,
@@ -113,6 +114,17 @@ export function scheduleReducer(state = initialState, action) {
           ...state
         };
       }
+
+    case DRAG_ENTER_GRID_PH:
+      return {
+        ...state,
+        onPlaceHolder: true,
+        fastTransition: false,
+        dndGridFlags: {
+          ...state.dndGridFlags,
+          lastDragEnterGrid: null
+        }
+      };
 
     case ADD_ASANA:
       var newState = {};

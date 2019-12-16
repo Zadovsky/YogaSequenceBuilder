@@ -27,7 +27,7 @@ export default function GridPlaceHolder(props) {
     <div
       className={classStr}
       style={transitionStyle}
-      // onDragEnter={props.onDragEnterGridPh}
+      onDragEnter={props.onDragEnterGridPhAction}
     ></div>
   );
 }

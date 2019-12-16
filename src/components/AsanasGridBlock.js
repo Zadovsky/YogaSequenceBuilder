@@ -56,7 +56,7 @@ function createGridHolderArr(gridArr, props) {
         height={i === dragGridOverGrid ? gridHeight : 0}
         fastTransition={fastTransition}
         isDragEnd={draggingGrid == null}
-        // onDragEnterGridPh={() => onDragEnterGridPh(i, gridId)}
+        onDragEnterGridPhAction={props.onDragEnterGridPhAction}
       />
     );
     gridHoldersArr.push(placeHolder, grid);
