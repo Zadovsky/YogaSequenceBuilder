@@ -42,32 +42,34 @@ function AsanasPanel(props) {
   const cards = createCardsArr(props.asanas);
 
   return (
-    <Paper className={classes.root}>
-      <AsanasGridBlock
-        cards={cards}
-        dragging={null}
-        dragOver={null}
-        dragOverGrid={null}
-        fastTransition={false}
-        dragSource={null}
-        language={props.language}
-        asanas={props.asanas.arr}
-        removableCards={false}
-        startCardDragAction={props.startCardDragAction}
-        startGridDragAction={props.startGridDragAction}
-        onDragIconMouseDownAction={() => {}}
-        onDragIconMouseUpAction={() => {}}
-        addAsanaAction={props.addAsanaAction}
-        dragEnterAction={props.dragEnterAction}
-        onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-        onDragEnterHolder={props.onDragEnterHolder}
-        closeCardAction={props.closeCardAction}
-        draggingGrid={null}
-        dragGridOverGrid={null}
-        gridHeight={null}
-        dragEnterGridAction={() => {}}
-      />
-    </Paper>
+    <div className="AsanasPanel">
+      <Paper className={classes.root}>
+        <AsanasGridBlock
+          cards={cards}
+          dragging={null}
+          dragOver={null}
+          dragOverGrid={null}
+          fastTransition={false}
+          dragSource={null}
+          language={props.language}
+          asanas={props.asanas.arr}
+          removableCards={false}
+          startCardDragAction={props.startCardDragAction}
+          startGridDragAction={props.startGridDragAction}
+          onDragIconMouseDownAction={() => {}}
+          onDragIconMouseUpAction={() => {}}
+          addAsanaAction={props.addAsanaAction}
+          dragEnterAction={props.dragEnterAction}
+          onDragEnterEmptySpace={props.onDragEnterEmptySpace}
+          onDragEnterHolder={props.onDragEnterHolder}
+          closeCardAction={props.closeCardAction}
+          draggingGrid={null}
+          dragGridOverGrid={null}
+          gridHeight={null}
+          dragEnterGridAction={() => {}}
+        />
+      </Paper>
+    </div>
   );
 }
 

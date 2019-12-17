@@ -261,7 +261,10 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case DRAG_ENTER_DND_CONTEXT:
-      if (action.payload && state.dndGridFlags.draggingGrid === null) {
+      if (
+        action.payload.outOfAsanasGrid &&
+        state.dndGridFlags.draggingGrid === null
+      ) {
         newState = {
           ...state,
           dragOver: null,
@@ -270,6 +273,20 @@ export function scheduleReducer(state = initialState, action) {
           lastDragEnterCardGrid: null,
           fastTransition: false,
           onPlaceHolder: false
+        };
+      } else if (
+        action.payload.outOfPanel &&
+        state.dndGridFlags.draggingGrid !== null
+      ) {
+        newState = {
+          ...state,
+          fastTransition: false,
+          onPlaceHolder: false,
+          dndGridFlags: {
+            ...state.dndGridFlags,
+            dragGridOverGrid: null,
+            lastDragEnterGrid: null
+          }
         };
       } else {
         newState = { ...state };
