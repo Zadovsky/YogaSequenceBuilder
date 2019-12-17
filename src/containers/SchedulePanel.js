@@ -27,9 +27,14 @@ const useStyles = makeStyles(theme => ({
 
 function SchedulePanel(props) {
   const classes = useStyles();
+  const onDragOverFunc = props.schedule.dndGridFlags.draggingGrid !== null
+    ? e => {
+        e.preventDefault();
+      }
+    : () => {};
 
   return (
-    <div className="SchedulePanel">
+    <div className="SchedulePanel" onDragOver={onDragOverFunc}>
       <Paper className={classes.root}>
         <AsanasGridBlock
           cards={props.schedule.cards}
