@@ -15,7 +15,8 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     position: "absolute",
-    right: 0
+    right: 0,
+    top: 0
   }
 }));
 
@@ -135,12 +136,14 @@ export default function AsanasGrid(props) {
             ""
           )}
           {props.removableCards ? (
-            <IconButton
-              className={classes.button}
-              // onClick={props.closeCardAction}
-            >
-              <CloseIcon />
-            </IconButton>
+            <div className="closeGridIconDiv">
+              <IconButton
+                className={classes.button}
+                // onClick={props.closeCardAction}
+              >
+                <CloseIcon />
+              </IconButton>
+            </div>
           ) : (
             ""
           )}

@@ -26,3 +26,11 @@
   height: 0;
   transition: all 0ms ease 10ms;
 }
+
+.AsanasGridDraggable .closeGridIconDiv .MuiButtonBase-root {
+  opacity: 0;
+}
+
+.AsanasGridDraggable:hover .closeGridIconDiv .MuiButtonBase-root {
+  opacity: 100%;
+}
