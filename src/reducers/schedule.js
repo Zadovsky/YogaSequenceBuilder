@@ -350,10 +350,11 @@ export function scheduleReducer(state = initialState, action) {
           dragGridOverGrid--;
         }
 
-        cardsBegin = cards.slice(0, dragGridOverGrid);
-        cardsEnd = cards.slice(dragGridOverGrid);
-        cards = [...cardsBegin, dragGrid, ...cardsEnd];
-
+        if (dragGridOverGrid !== null) {
+          cardsBegin = cards.slice(0, dragGridOverGrid);
+          cardsEnd = cards.slice(dragGridOverGrid);
+          cards = [...cardsBegin, dragGrid, ...cardsEnd];
+        }
         newCardsGridKey = checkCards(cards, state.nextGridKey);
 
         return {
