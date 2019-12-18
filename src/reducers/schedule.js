@@ -36,11 +36,7 @@ const initialState = {
 };
 
 function checkCards(cards, nextGridKey) {
-  var newCards = cards.filter((card, i) => {
-    if (i < cards.length - 1) {
-      return card.gridCards.length > 0;
-    } else return true;
-  });
+  var newCards = cards.slice();
 
   var newGridKey = nextGridKey;
   if (newCards[newCards.length - 1].gridCards.length !== 0) {
