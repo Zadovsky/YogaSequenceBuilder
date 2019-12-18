@@ -361,6 +361,7 @@ export function scheduleReducer(state = initialState, action) {
           cards: newCardsGridKey.cards,
           nextGridKey: newCardsGridKey.nextGridKey,
           fastTransition: true,
+          onPlaceHolder: false,
           dndGridFlags: {
             ...state.dndGridFlags,
             draggingGrid: null,
