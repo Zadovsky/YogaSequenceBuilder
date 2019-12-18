@@ -37,7 +37,6 @@ function createGridArr(props) {
         onDragEnterHolder={props.onDragEnterHolder}
         dragSource={props.dragSource}
         removableCards={props.removableCards}
-        dragIconIsOn={props.removableCards}
         closeCardAction={props.closeCardAction}
         dragEnterGridAction={props.dragEnterGridAction}
       />
