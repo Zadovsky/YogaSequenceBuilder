@@ -234,7 +234,10 @@ export function scheduleReducer(state = initialState, action) {
 
     case DRAG_ENTER_EMPTY_SPACE:
       newState = {};
-      if (action.payload !== "ASANAS") {
+      if (
+        state.dndGridFlags.draggingGrid === null &&
+        action.payload !== "ASANAS"
+      ) {
         newState = {
           dragOver: state.cards[action.payload].gridCards.length,
           dragOverGrid: action.payload,
@@ -356,13 +359,11 @@ export function scheduleReducer(state = initialState, action) {
           cards = [...cardsBegin, dragGrid, ...cardsEnd];
         }
         newCardsGridKey = checkCards(cards, state.nextGridKey);
-
         return {
           ...state,
           cards: newCardsGridKey.cards,
           nextGridKey: newCardsGridKey.nextGridKey,
           fastTransition: true,
-          onPlaceHolder: false,
           dndGridFlags: {
             ...state.dndGridFlags,
             draggingGrid: null,
