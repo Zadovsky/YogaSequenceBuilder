@@ -354,9 +354,12 @@ export function scheduleReducer(state = initialState, action) {
         cardsEnd = cards.slice(dragGridOverGrid);
         cards = [...cardsBegin, dragGrid, ...cardsEnd];
 
+        newCardsGridKey = checkCards(cards, state.nextGridKey);
+
         return {
           ...state,
-          cards: cards,
+          cards: newCardsGridKey.cards,
+          nextGridKey: newCardsGridKey.nextGridKey,
           fastTransition: true,
           dndGridFlags: {
             ...state.dndGridFlags,
