@@ -135,7 +135,7 @@ export default function AsanasGrid(props) {
           ) : (
             ""
           )}
-          {props.removableCards ? (
+          {props.removableCards && props.enableCloseIcon ? (
             <div className="closeGridIconDiv">
               <IconButton
                 className={classes.button}

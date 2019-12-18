@@ -3,7 +3,7 @@ import AsanasGrid from "../components/AsanasGrid";
 import GridPlaceHolder from "../components/GridPlaceHolder";
 
 function createGridArr(props) {
-  return props.cards.map((cards, i) => {
+  return props.cards.map((cards, i, cardsArr) => {
     const asanas = cards.gridCards.map(card => {
       return {
         ...props.asanas[card.asanaIndex],
@@ -39,6 +39,7 @@ function createGridArr(props) {
         removableCards={props.removableCards}
         closeCardAction={props.closeCardAction}
         closeGridAction={() => props.closeGridAction(i)}
+        enableCloseIcon={i === cardsArr.length - 1 ? false : true}
         dragEnterGridAction={props.dragEnterGridAction}
       />
     );
