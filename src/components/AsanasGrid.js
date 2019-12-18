@@ -5,11 +5,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import AsanaCard from "./AsanaCard";
 import CardPlaceHolder from "./CardPlaceHolder";
 import EmptySpaceAtTheEnd from "./EmptySpaceAtTheEnd";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 import "./AsanasGrid.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
     margin: theme.spacing(3, 2)
+  },
+  button: {
+    position: "absolute",
+    right: 0
   }
 }));
 
@@ -125,6 +131,16 @@ export default function AsanasGrid(props) {
             >
               <DragIndicatorIcon fontSize="large" />
             </div>
+          ) : (
+            ""
+          )}
+          {props.removableCards ? (
+            <IconButton
+              className={classes.button}
+              // onClick={props.closeCardAction}
+            >
+              <CloseIcon />
+            </IconButton>
           ) : (
             ""
           )}
