@@ -202,6 +202,7 @@ export function scheduleReducer(state = initialState, action) {
       newState = {};
 
       if (
+        state.dndGridFlags.draggingGrid === null &&
         action.payload.gridId !== "ASANAS" &&
         !(
           action.payload.cardPlace === state.lastDragEnterCard &&
