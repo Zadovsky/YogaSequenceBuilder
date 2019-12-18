@@ -54,10 +54,8 @@ function createGridHolderArr(gridArr, props) {
     onDragEnterGridPhAction
   } = props;
 
-  var gridHoldersArr = [];
-
-  gridArr.forEach((grid, i) => {
-    const placeHolder = (
+  const gridPlaceHolder = function(i) {
+    return (
       <GridPlaceHolder
         key={"ph" + i}
         height={i === dragGridOverGrid ? gridHeight : 0}
@@ -66,8 +64,14 @@ function createGridHolderArr(gridArr, props) {
         onDragEnterGridPhAction={onDragEnterGridPhAction}
       />
     );
-    gridHoldersArr.push(placeHolder, grid);
+  };
+
+  var gridHoldersArr = [];
+
+  gridArr.forEach((grid, i) => {
+    gridHoldersArr.push(gridPlaceHolder(i), grid);
   });
+  gridHoldersArr.push(gridPlaceHolder(gridArr.length));
 
   return gridHoldersArr;
 }
