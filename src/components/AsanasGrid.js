@@ -117,7 +117,7 @@ export default function AsanasGrid(props) {
               props.onDragEnterEmptySpace(props.gridId)
             }
           />
-          {props.removableCards ? (
+          {props.dragIconIsOn ? (
             <div
               className="AsanasGridDragIcon"
               onMouseDown={props.onDragIconMouseDownAction}
