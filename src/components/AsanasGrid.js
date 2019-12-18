@@ -139,7 +139,7 @@ export default function AsanasGrid(props) {
             <div className="closeGridIconDiv">
               <IconButton
                 className={classes.button}
-                // onClick={props.closeCardAction}
+                onClick={props.closeGridAction}
               >
                 <CloseIcon />
               </IconButton>

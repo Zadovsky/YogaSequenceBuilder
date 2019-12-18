@@ -38,6 +38,7 @@ function createGridArr(props) {
         dragSource={props.dragSource}
         removableCards={props.removableCards}
         closeCardAction={props.closeCardAction}
+        closeGridAction={() => props.closeGridAction(i)}
         dragEnterGridAction={props.dragEnterGridAction}
       />
     );

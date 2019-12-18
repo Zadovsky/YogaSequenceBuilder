@@ -12,7 +12,8 @@ import {
   DRAG_ICON_MOUSE_DOWN,
   DRAG_ICON_MOUSE_UP,
   START_DRAG_GRID,
-  DRAG_ENTER_GRID
+  DRAG_ENTER_GRID,
+  CLOSE_GRID
 } from "../actions/AsanasGridActions";
 
 const initialState = {
@@ -131,6 +132,15 @@ export function scheduleReducer(state = initialState, action) {
         }
       };
 
+    case CLOSE_GRID:
+      var cards = JSON.parse(JSON.stringify(state.cards));
+      cards.splice(action.payload, 1);
+
+      return {
+        ...state,
+        cards: cards
+      };
+
     case ADD_ASANA:
       var newState = {};
       if (action.payload.gridId === "ASANAS") {
@@ -156,7 +166,7 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case CLOSE_CARD:
-      var cards = JSON.parse(JSON.stringify(state.cards));
+      cards = JSON.parse(JSON.stringify(state.cards));
       cards[action.payload.gridId].gridCards.splice(
         action.payload.cardIndex,
         1

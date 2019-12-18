@@ -13,7 +13,8 @@ import {
   startGridDragAction,
   onDragIconMouseDownAction,
   onDragIconMouseUpAction,
-  dragEnterGridAction
+  dragEnterGridAction,
+  closeGridAction
 } from "../actions/AsanasGridActions";
 import { onDragEnterGridPhAction } from "../actions/GridPlaceHolderActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
@@ -27,11 +28,12 @@ const useStyles = makeStyles(theme => ({
 
 function SchedulePanel(props) {
   const classes = useStyles();
-  const onDragOverFunc = props.schedule.dndGridFlags.draggingGrid !== null
-    ? e => {
-        e.preventDefault();
-      }
-    : () => {};
+  const onDragOverFunc =
+    props.schedule.dndGridFlags.draggingGrid !== null
+      ? e => {
+          e.preventDefault();
+        }
+      : () => {};
 
   return (
     <div className="SchedulePanel" onDragOver={onDragOverFunc}>
@@ -55,6 +57,7 @@ function SchedulePanel(props) {
           onDragEnterEmptySpace={props.onDragEnterEmptySpace}
           onDragEnterHolder={props.onDragEnterHolder}
           closeCardAction={props.closeCardAction}
+          closeGridAction={props.closeGridAction}
           draggingGrid={props.schedule.dndGridFlags.draggingGrid}
           dragGridOverGrid={props.schedule.dndGridFlags.dragGridOverGrid}
           gridHeight={props.schedule.dndGridFlags.gridHeight}
@@ -86,6 +89,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(addAsanaAction(asanaId, gridId, e)),
     closeCardAction: (cardIndex, gridId) =>
       dispatch(closeCardAction(cardIndex, gridId)),
+    closeGridAction: gridId => dispatch(closeGridAction(gridId)),
     dragEnterAction: (enterIndex, gridId) =>
       dispatch(dragEnterAction(enterIndex, gridId)),
     onDragEnterHolder: (index, gridId) =>
