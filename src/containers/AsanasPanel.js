@@ -53,7 +53,7 @@ function AsanasPanel(props) {
           dragSourceGrid={null}
           language={props.language}
           asanas={props.asanas.arr}
-          removableCards={false}
+          dynamicPanel={false}
           startCardDragAction={props.startCardDragAction}
           startGridDragAction={props.startGridDragAction}
           onDragIconMouseDownAction={() => {}}

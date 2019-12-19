@@ -31,7 +31,7 @@ function makeCardsArr(props) {
     draggingCard,
     dragEnterAction,
     dragSourceGrid,
-    removableCards
+    dynamicPanel
   } = props;
   return asanas.map((asana, i) => {
     const asanaIndex = gridId === "ASANAS" ? asana.asanaIndex : i;
@@ -42,11 +42,11 @@ function makeCardsArr(props) {
         img={asana.asanaImg}
         key={asana.cardKey}
         isDragging={
-          draggingCard === null || dragSourceGrid !== gridId || !removableCards
+          draggingCard === null || dragSourceGrid !== gridId || !dynamicPanel
             ? false
             : i === draggingCard
         }
-        removableCards={removableCards}
+        dynamicPanel={dynamicPanel}
         startCardDragAction={() => {
           startCardDragAction(asanaIndex, gridId);
         }}
@@ -97,7 +97,7 @@ export default function AsanasGrid(props) {
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
-  const onDragOverFunc = props.removableCards
+  const onDragOverFunc = props.dynamicPanel
     ? e => {
         e.preventDefault();
       }
@@ -124,7 +124,7 @@ export default function AsanasGrid(props) {
               props.onDragEnterEmptySpace(props.gridId)
             }
           />
-          {props.removableCards ? (
+          {props.dynamicPanel ? (
             <div
               className="AsanasGridDragIcon"
               onMouseDown={props.onDragIconMouseDownAction}
@@ -135,7 +135,7 @@ export default function AsanasGrid(props) {
           ) : (
             ""
           )}
-          {props.removableCards && props.enableCloseIcon ? (
+          {props.dynamicPanel && props.enableCloseIcon ? (
             <div className="closeGridIconDiv">
               <IconButton
                 className={classes.button}

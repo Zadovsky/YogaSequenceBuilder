@@ -47,7 +47,7 @@ function SchedulePanel(props) {
           dragSourceGrid={props.schedule.dragSourceGrid}
           language={props.language}
           asanas={props.asanas.arr}
-          removableCards={true}
+          dynamicPanel={true}
           startCardDragAction={props.startCardDragAction}
           startGridDragAction={props.startGridDragAction}
           onDragIconMouseDownAction={props.onDragIconMouseDownAction}
