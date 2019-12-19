@@ -34,7 +34,7 @@ function makeCardsArr(props) {
     dynamicPanel
   } = props;
   return asanas.map((asana, i) => {
-    const asanaIndex = gridId === "ASANAS" ? asana.asanaIndex : i;
+    const asanaIndex = dynamicPanel ? i : asana.asanaIndex;
 
     return (
       <AsanaCard
@@ -54,7 +54,7 @@ function makeCardsArr(props) {
           dragEnterAction(asanaIndex, gridId);
         }}
         addAsanaAction={e => {
-          addAsanaAction(asanaIndex, gridId, e);
+          addAsanaAction(asanaIndex, gridId, dynamicPanel, e);
         }}
         closeCardAction={() => {
           closeCardAction(asanaIndex, gridId);

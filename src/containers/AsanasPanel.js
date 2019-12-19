@@ -85,8 +85,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(startCardDragAction(asanaId, gridId)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
-    addAsanaAction: (asanaId, gridId, e) =>
-      dispatch(addAsanaAction(asanaId, gridId, e)),
+    addAsanaAction: (asanaId, gridId, dynamicPanel, e) =>
+      dispatch(addAsanaAction(asanaId, gridId, dynamicPanel, e)),
     dragEnterAction: (enterIndex, gridId) =>
       dispatch(dragEnterAction(enterIndex, gridId)),
     onDragEnterHolder: (index, gridId) =>

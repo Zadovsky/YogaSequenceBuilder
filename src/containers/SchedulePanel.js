@@ -84,8 +84,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(startGridDragAction(gridId, e)),
     onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),
     onDragIconMouseUpAction: () => dispatch(onDragIconMouseUpAction()),
-    addAsanaAction: (asanaId, gridId, e) =>
-      dispatch(addAsanaAction(asanaId, gridId, e)),
+    addAsanaAction: (asanaId, gridId, dynamicPanel, e) =>
+      dispatch(addAsanaAction(asanaId, gridId, dynamicPanel, e)),
     closeCardAction: (cardIndex, gridId) =>
       dispatch(closeCardAction(cardIndex, gridId)),
     closeGridAction: gridId => dispatch(closeGridAction(gridId)),
