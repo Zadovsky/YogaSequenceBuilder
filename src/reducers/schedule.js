@@ -187,22 +187,22 @@ export function scheduleReducer(state = initialState, action) {
           action.payload.gridId === state.lastDragEnterGrid
         )
       ) {
-        let newDragOver = action.payload.cardPlace;
+        let newDragOverCard = action.payload.cardPlace;
 
         if (
           (state.dragOverGrid === action.payload.gridId &&
-            state.dragOverCard === newDragOver &&
+            state.dragOverCard === newDragOverCard &&
             state.onPlaceHolder) ||
           (state.dragSourceGrid === action.payload.gridId &&
-            state.dragOverCard < newDragOver - 1 &&
+            state.dragOverCard < newDragOverCard - 1 &&
             state.dragOverCard != null)
         ) {
-          newDragOver += 1;
+          newDragOverCard += 1;
         }
 
         return {
           ...state,
-          dragOverCard: newDragOver,
+          dragOverCard: newDragOverCard,
           dragOverGrid: action.payload.gridId,
           lastDragEnterCard: action.payload.cardPlace,
           lastDragEnterGrid: action.payload.gridId,
@@ -267,7 +267,12 @@ export function scheduleReducer(state = initialState, action) {
       cards = JSON.parse(JSON.stringify(state.cards));
 
       if (state.draggingGrid === null) {
-        var { dragOverCard, dragOverGrid, draggingCard, dragSourceGrid } = state;
+        var {
+          dragOverCard,
+          dragOverGrid,
+          draggingCard,
+          dragSourceGrid
+        } = state;
         var newNextCardKey = state.nextCardKey;
         if (dragSourceGrid === "ASANAS") {
           var dragCard = {
