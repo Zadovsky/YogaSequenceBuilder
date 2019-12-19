@@ -18,8 +18,8 @@ function createGridArr(props) {
         gridId={props.removableCards ? i : "ASANAS"}
         language={props.language}
         asanas={asanas}
-        dragging={props.dragging}
-        dragOver={props.dragOver}
+        draggingCard={props.draggingCard}
+        dragOverCard={props.dragOverCard}
         dragOverGrid={props.dragOverGrid}
         isDragging={
           props.draggingGrid === null || !props.removableCards
@@ -35,7 +35,7 @@ function createGridArr(props) {
         dragEnterAction={props.dragEnterAction}
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         onDragEnterHolder={props.onDragEnterHolder}
-        dragSource={props.dragSource}
+        dragSourceGrid={props.dragSourceGrid}
         removableCards={props.removableCards}
         closeCardAction={props.closeCardAction}
         closeGridAction={() => props.closeGridAction(i)}
@@ -48,7 +48,7 @@ function createGridArr(props) {
 
 function createGridHolderArr(gridArr, props) {
   const {
-    dragGridOverGrid,
+    dragOverGrid,
     gridHeight,
     fastTransition,
     draggingGrid,
@@ -59,7 +59,7 @@ function createGridHolderArr(gridArr, props) {
     return (
       <GridPlaceHolder
         key={"ph" + i}
-        height={i === dragGridOverGrid ? gridHeight : 0}
+        height={i === dragOverGrid ? gridHeight : 0}
         fastTransition={fastTransition}
         isDragEnd={draggingGrid == null}
         onDragEnterGridPhAction={onDragEnterGridPhAction}

@@ -20,20 +20,16 @@ const initialState = {
   cards: [{ gridCards: [], gridKey: 0 }],
   nextCardKey: 0,
   nextGridKey: 1,
-  dragSource: null,
-  dragging: null,
-  dragOver: null,
+  dragSourceGrid: null,
+  draggingCard: null,
+  draggingGrid: null,
+  dragOverCard: null,
   dragOverGrid: null,
   lastDragEnterCard: null,
-  lastDragEnterCardGrid: null,
+  lastDragEnterGrid: null,
   fastTransition: false,
   onPlaceHolder: false,
-  dndGridFlags: {
-    draggingGrid: null,
-    gridHeight: null,
-    dragGridOverGrid: null,
-    lastDragEnterGrid: null
-  }
+  gridHeight: null
 };
 
 function addEmptyGrid(cards, nextGridKey) {
@@ -51,35 +47,26 @@ export function scheduleReducer(state = initialState, action) {
     case DRAG_ICON_MOUSE_DOWN:
       return {
         ...state,
-        dndGridFlags: {
-          ...state.dndGridFlags,
-          draggingGrid: true
-        }
+        draggingGrid: true
       };
 
     case DRAG_ICON_MOUSE_UP:
       return {
         ...state,
-        dndGridFlags: {
-          ...state.dndGridFlags,
-          draggingGrid: null
-        }
+        draggingGrid: null
       };
 
     case START_DRAG_GRID:
-      if (state.dndGridFlags.draggingGrid) {
+      if (state.draggingGrid) {
         return {
           ...state,
           fastTransition: true,
           onPlaceHolder: true,
-          dndGridFlags: {
-            ...state.dndGridFlags,
-            draggingGrid: action.payload.gridId,
-            gridHeight: action.payload.height,
-            dragGridOverGrid: action.payload.gridId + 1
-          }
+          gridHeight: action.payload.height,
+          draggingGrid: action.payload.gridId,
+          dragOverGrid: action.payload.gridId + 1
         };
-      } else if (state.dragging !== null) {
+      } else if (state.draggingCard !== null) {
         return state;
       } else {
         action.payload.e.preventDefault();
@@ -87,14 +74,14 @@ export function scheduleReducer(state = initialState, action) {
       }
 
     case DRAG_ENTER_GRID:
-      if (action.payload !== state.dndGridFlags.lastDragEnterGrid) {
+      if (
+        action.payload !== state.lastDragEnterGrid &&
+        state.draggingGrid !== null
+      ) {
         let newDragOverGrid;
 
-        if (
-          state.onPlaceHolder &&
-          state.dndGridFlags.dragGridOverGrid === action.payload
-        ) {
-          if (action.payload + 1 === state.dndGridFlags.draggingGrid) {
+        if (state.onPlaceHolder && state.dragOverGrid === action.payload) {
+          if (action.payload + 1 === state.draggingGrid) {
             newDragOverGrid = action.payload + 2;
           } else {
             newDragOverGrid = action.payload + 1;
@@ -107,11 +94,8 @@ export function scheduleReducer(state = initialState, action) {
           ...state,
           fastTransition: false,
           onPlaceHolder: false,
-          dndGridFlags: {
-            ...state.dndGridFlags,
-            dragGridOverGrid: newDragOverGrid,
-            lastDragEnterGrid: action.payload
-          }
+          dragOverGrid: newDragOverGrid,
+          lastDragEnterGrid: action.payload
         };
       } else {
         return {
@@ -124,10 +108,7 @@ export function scheduleReducer(state = initialState, action) {
         ...state,
         onPlaceHolder: true,
         fastTransition: false,
-        dndGridFlags: {
-          ...state.dndGridFlags,
-          lastDragEnterGrid: null
-        }
+        lastDragEnterGrid: null
       };
 
     case CLOSE_GRID:
@@ -178,9 +159,9 @@ export function scheduleReducer(state = initialState, action) {
       if (action.payload.source === "ASANAS") {
         return {
           ...state,
-          dragSource: action.payload.source,
-          dragging: action.payload.card,
-          dragOver: null,
+          dragSourceGrid: action.payload.source,
+          draggingCard: action.payload.card,
+          dragOverCard: null,
           dragOverGrid: null,
           fastTransition: false,
           onPlaceHolder: false
@@ -188,9 +169,9 @@ export function scheduleReducer(state = initialState, action) {
       } else {
         return {
           ...state,
-          dragSource: action.payload.source,
-          dragging: action.payload.card,
-          dragOver: action.payload.card + 1,
+          dragSourceGrid: action.payload.source,
+          draggingCard: action.payload.card,
+          dragOverCard: action.payload.card + 1,
           dragOverGrid: action.payload.source,
           fastTransition: true,
           onPlaceHolder: true
@@ -199,32 +180,32 @@ export function scheduleReducer(state = initialState, action) {
 
     case DRAG_ENTER_CARD:
       if (
-        state.dndGridFlags.draggingGrid === null &&
+        state.draggingGrid === null &&
         action.payload.gridId !== "ASANAS" &&
         !(
           action.payload.cardPlace === state.lastDragEnterCard &&
-          action.payload.gridId === state.lastDragEnterCardGrid
+          action.payload.gridId === state.lastDragEnterGrid
         )
       ) {
         let newDragOver = action.payload.cardPlace;
 
         if (
           (state.dragOverGrid === action.payload.gridId &&
-            state.dragOver === newDragOver &&
+            state.dragOverCard === newDragOver &&
             state.onPlaceHolder) ||
-          (state.dragSource === action.payload.gridId &&
-            state.dragOver < newDragOver - 1 &&
-            state.dragOver != null)
+          (state.dragSourceGrid === action.payload.gridId &&
+            state.dragOverCard < newDragOver - 1 &&
+            state.dragOverCard != null)
         ) {
           newDragOver += 1;
         }
 
         return {
           ...state,
-          dragOver: newDragOver,
+          dragOverCard: newDragOver,
           dragOverGrid: action.payload.gridId,
           lastDragEnterCard: action.payload.cardPlace,
-          lastDragEnterCardGrid: action.payload.gridId,
+          lastDragEnterGrid: action.payload.gridId,
           fastTransition: false,
           onPlaceHolder: false
         };
@@ -235,16 +216,13 @@ export function scheduleReducer(state = initialState, action) {
       }
 
     case DRAG_ENTER_EMPTY_SPACE:
-      if (
-        state.dndGridFlags.draggingGrid === null &&
-        action.payload !== "ASANAS"
-      ) {
+      if (state.draggingGrid === null && action.payload !== "ASANAS") {
         return {
           ...state,
-          dragOver: state.cards[action.payload].gridCards.length,
+          dragOverCard: state.cards[action.payload].gridCards.length,
           dragOverGrid: action.payload,
           lastDragEnterCard: null,
-          lastDragEnterCardGrid: null,
+          lastDragEnterGrid: null,
           fastTransition: false,
           onPlaceHolder: false
         };
@@ -258,37 +236,28 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         lastDragEnterCard: null,
-        lastDragEnterCardGrid: null,
+        lastDragEnterGrid: null,
         onPlaceHolder: true
       };
 
     case DRAG_ENTER_DND_CONTEXT:
-      if (
-        action.payload.outOfAsanasGrid &&
-        state.dndGridFlags.draggingGrid === null
-      ) {
+      if (action.payload.outOfAsanasGrid && state.draggingGrid === null) {
         return {
           ...state,
-          dragOver: null,
+          dragOverCard: null,
           dragOverGrid: null,
           lastDragEnterCard: null,
-          lastDragEnterCardGrid: null,
+          lastDragEnterGrid: null,
           fastTransition: false,
           onPlaceHolder: false
         };
-      } else if (
-        action.payload.outOfPanel &&
-        state.dndGridFlags.draggingGrid !== null
-      ) {
+      } else if (action.payload.outOfPanel && state.draggingGrid !== null) {
         return {
           ...state,
           fastTransition: false,
           onPlaceHolder: false,
-          dndGridFlags: {
-            ...state.dndGridFlags,
-            dragGridOverGrid: null,
-            lastDragEnterGrid: null
-          }
+          dragOverGrid: null,
+          lastDragEnterGrid: null
         };
       } else {
         return state;
@@ -297,28 +266,28 @@ export function scheduleReducer(state = initialState, action) {
     case END_DRAG:
       cards = JSON.parse(JSON.stringify(state.cards));
 
-      if (state.dndGridFlags.draggingGrid === null) {
-        var { dragOver, dragOverGrid, dragging, dragSource } = state;
+      if (state.draggingGrid === null) {
+        var { dragOverCard, dragOverGrid, draggingCard, dragSourceGrid } = state;
         var newNextCardKey = state.nextCardKey;
-        if (dragSource === "ASANAS") {
+        if (dragSourceGrid === "ASANAS") {
           var dragCard = {
             cardKey: newNextCardKey,
-            asanaIndex: dragging
+            asanaIndex: draggingCard
           };
           newNextCardKey += 1;
         } else {
-          dragCard = cards[dragSource].gridCards[dragging];
-          cards[dragSource].gridCards.splice(dragging, 1);
+          dragCard = cards[dragSourceGrid].gridCards[draggingCard];
+          cards[dragSourceGrid].gridCards.splice(draggingCard, 1);
         }
 
-        if (dragOver !== null) {
-          if (dragOver > dragging && dragSource === dragOverGrid) {
-            dragOver -= 1;
+        if (dragOverCard !== null) {
+          if (dragOverCard > draggingCard && dragSourceGrid === dragOverGrid) {
+            dragOverCard -= 1;
           }
           cards[dragOverGrid].gridCards = [
-            ...cards[dragOverGrid].gridCards.slice(0, dragOver),
+            ...cards[dragOverGrid].gridCards.slice(0, dragOverCard),
             dragCard,
-            ...cards[dragOverGrid].gridCards.slice(dragOver)
+            ...cards[dragOverGrid].gridCards.slice(dragOverCard)
           ];
         }
 
@@ -328,29 +297,30 @@ export function scheduleReducer(state = initialState, action) {
           ...state,
           cards: newCardsGridKey.cards,
           nextGridKey: newCardsGridKey.nextGridKey,
-          dragOver: null,
+          dragOverCard: null,
           dragOverGrid: null,
-          dragging: null,
+          draggingCard: null,
           lastDragEnterCard: null,
-          lastDragEnterCardGrid: null,
+          lastDragEnterGrid: null,
           fastTransition: true,
           nextCardKey: newNextCardKey
         };
       } else {
-        var { draggingGrid, dragGridOverGrid } = state.dndGridFlags;
+        var draggingGrid = state.draggingGrid;
         var dragGrid = cards[draggingGrid];
+        dragOverGrid = state.dragOverGrid;
 
         cards.splice(draggingGrid, 1);
 
-        if (dragGridOverGrid > draggingGrid) {
-          dragGridOverGrid--;
+        if (dragOverGrid > draggingGrid) {
+          dragOverGrid--;
         }
 
-        if (dragGridOverGrid !== null) {
+        if (dragOverGrid !== null) {
           cards = [
-            ...cards.slice(0, dragGridOverGrid),
+            ...cards.slice(0, dragOverGrid),
             dragGrid,
-            ...cards.slice(dragGridOverGrid)
+            ...cards.slice(dragOverGrid)
           ];
         }
 
@@ -361,13 +331,10 @@ export function scheduleReducer(state = initialState, action) {
           cards: newCardsGridKey.cards,
           nextGridKey: newCardsGridKey.nextGridKey,
           fastTransition: true,
-          dndGridFlags: {
-            ...state.dndGridFlags,
-            draggingGrid: null,
-            gridHeight: null,
-            dragGridOverGrid: null,
-            lastDragEnterGrid: null
-          }
+          gridHeight: null,
+          draggingGrid: null,
+          dragOverGrid: null,
+          lastDragEnterGrid: null
         };
       }
 

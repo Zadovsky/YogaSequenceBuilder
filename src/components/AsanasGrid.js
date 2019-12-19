@@ -28,9 +28,9 @@ function makeCardsArr(props) {
     addAsanaAction,
     closeCardAction,
     gridId,
-    dragging,
+    draggingCard,
     dragEnterAction,
-    dragSource,
+    dragSourceGrid,
     removableCards
   } = props;
   return asanas.map((asana, i) => {
@@ -42,9 +42,9 @@ function makeCardsArr(props) {
         img={asana.asanaImg}
         key={asana.cardKey}
         isDragging={
-          dragging === null || dragSource !== gridId || !removableCards
+          draggingCard === null || dragSourceGrid !== gridId || !removableCards
             ? false
-            : i === dragging
+            : i === draggingCard
         }
         removableCards={removableCards}
         startCardDragAction={() => {
@@ -66,12 +66,12 @@ function makeCardsArr(props) {
 
 function makeCardsHoldersArr(cardsArr, props) {
   const {
-    dragOver,
+    dragOverCard,
     dragOverGrid,
     onDragEnterHolder,
     gridId,
     fastTransition,
-    dragging
+    draggingCard
   } = props;
 
   var cardsHoldersArr = [];
@@ -80,9 +80,9 @@ function makeCardsHoldersArr(cardsArr, props) {
     const placeHolder = (
       <CardPlaceHolder
         key={"ph" + i}
-        fat={dragOver === i && dragOverGrid === gridId}
+        fat={dragOverCard === i && dragOverGrid === gridId}
         fastTransition={fastTransition}
-        isDragEnd={dragging == null}
+        isDragEnd={draggingCard == null}
         onDragEnterHolder={() => onDragEnterHolder(i, gridId)}
       />
     );

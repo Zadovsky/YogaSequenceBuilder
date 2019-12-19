@@ -46,11 +46,11 @@ function AsanasPanel(props) {
       <Paper className={classes.root}>
         <AsanasGridBlock
           cards={cards}
-          dragging={null}
-          dragOver={null}
+          draggingCard={null}
+          dragOverCard={null}
           dragOverGrid={null}
           fastTransition={false}
-          dragSource={null}
+          dragSourceGrid={null}
           language={props.language}
           asanas={props.asanas.arr}
           removableCards={false}
@@ -64,7 +64,6 @@ function AsanasPanel(props) {
           onDragEnterHolder={props.onDragEnterHolder}
           closeCardAction={props.closeCardAction}
           draggingGrid={null}
-          dragGridOverGrid={null}
           gridHeight={null}
           dragEnterGridAction={() => {}}
         />

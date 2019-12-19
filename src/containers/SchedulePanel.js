@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 function SchedulePanel(props) {
   const classes = useStyles();
   const onDragOverFunc =
-    props.schedule.dndGridFlags.draggingGrid !== null
+    props.schedule.draggingGrid !== null
       ? e => {
           e.preventDefault();
         }
@@ -40,11 +40,11 @@ function SchedulePanel(props) {
       <Paper className={classes.root}>
         <AsanasGridBlock
           cards={props.schedule.cards}
-          dragging={props.schedule.dragging}
-          dragOver={props.schedule.dragOver}
+          draggingCard={props.schedule.draggingCard}
+          dragOverCard={props.schedule.dragOverCard}
           dragOverGrid={props.schedule.dragOverGrid}
           fastTransition={props.schedule.fastTransition}
-          dragSource={props.schedule.dragSource}
+          dragSourceGrid={props.schedule.dragSourceGrid}
           language={props.language}
           asanas={props.asanas.arr}
           removableCards={true}
@@ -58,9 +58,8 @@ function SchedulePanel(props) {
           onDragEnterHolder={props.onDragEnterHolder}
           closeCardAction={props.closeCardAction}
           closeGridAction={props.closeGridAction}
-          draggingGrid={props.schedule.dndGridFlags.draggingGrid}
-          dragGridOverGrid={props.schedule.dndGridFlags.dragGridOverGrid}
-          gridHeight={props.schedule.dndGridFlags.gridHeight}
+          draggingGrid={props.schedule.draggingGrid}
+          gridHeight={props.schedule.gridHeight}
           dragEnterGridAction={props.dragEnterGridAction}
           onDragEnterGridPhAction={props.onDragEnterGridPhAction}
         />
