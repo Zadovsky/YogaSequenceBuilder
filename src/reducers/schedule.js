@@ -36,19 +36,14 @@ const initialState = {
   }
 };
 
-function checkCards(cards, nextGridKey) {
-  var newCards = cards.slice();
-
+function addEmptyGrid(cards, nextGridKey) {
   var newGridKey = nextGridKey;
-  if (
-    newCards.length === 0 ||
-    newCards[newCards.length - 1].gridCards.length !== 0
-  ) {
-    newCards.push({ gridCards: [], gridKey: newGridKey });
+  if (cards.length === 0 || cards[cards.length - 1].gridCards.length !== 0) {
+    cards.push({ gridCards: [], gridKey: newGridKey });
     newGridKey += 1;
   }
 
-  return { cards: newCards, nextGridKey: newGridKey };
+  return { cards: cards, nextGridKey: newGridKey };
 }
 
 export function scheduleReducer(state = initialState, action) {
@@ -154,7 +149,7 @@ export function scheduleReducer(state = initialState, action) {
           asanaIndex: action.payload.asanaId
         });
 
-        let newCardsGridKey = checkCards(cards, state.nextGridKey);
+        let newCardsGridKey = addEmptyGrid(cards, state.nextGridKey);
 
         newState = {
           cards: newCardsGridKey.cards,
@@ -175,12 +170,9 @@ export function scheduleReducer(state = initialState, action) {
         1
       );
 
-      var newCardsGridKey = checkCards(cards, state.nextGridKey);
-
       return {
         ...state,
-        cards: newCardsGridKey.cards,
-        nextGridKey: newCardsGridKey.nextGridKey
+        cards: cards
       };
 
     case START_DRAG_CARD:
@@ -340,7 +332,7 @@ export function scheduleReducer(state = initialState, action) {
           ];
         }
 
-        newCardsGridKey = checkCards(cards, state.nextGridKey);
+        var newCardsGridKey = addEmptyGrid(cards, state.nextGridKey);
 
         return {
           ...state,
@@ -371,7 +363,7 @@ export function scheduleReducer(state = initialState, action) {
           cardsEnd = cards.slice(dragGridOverGrid);
           cards = [...cardsBegin, dragGrid, ...cardsEnd];
         }
-        newCardsGridKey = checkCards(cards, state.nextGridKey);
+        newCardsGridKey = addEmptyGrid(cards, state.nextGridKey);
         return {
           ...state,
           cards: newCardsGridKey.cards,
