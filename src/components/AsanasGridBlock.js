@@ -15,14 +15,14 @@ function createGridArr(props) {
     return (
       <AsanasGrid
         key={cards.gridKey}
-        gridId={props.dynamicPanel ? i : "ASANAS"}
+        gridId={props.ItIsSchedulePanel ? i : "ASANAS"}
         language={props.language}
         asanas={asanas}
         draggingCard={props.draggingCard}
         dragOverCard={props.dragOverCard}
         dragOverGrid={props.dragOverGrid}
         isDragging={
-          props.draggingGrid === null || !props.dynamicPanel
+          props.draggingGrid === null || !props.ItIsSchedulePanel
             ? false
             : i === props.draggingGrid
         }
@@ -36,7 +36,7 @@ function createGridArr(props) {
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         onDragEnterHolder={props.onDragEnterHolder}
         dragSourceGrid={props.dragSourceGrid}
-        dynamicPanel={props.dynamicPanel}
+        ItIsSchedulePanel={props.ItIsSchedulePanel}
         closeCardAction={props.closeCardAction}
         closeGridAction={() => props.closeGridAction(i)}
         enableCloseIcon={i === cardsArr.length - 1 ? false : true}

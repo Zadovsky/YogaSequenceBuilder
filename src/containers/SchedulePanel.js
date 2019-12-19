@@ -47,7 +47,7 @@ function SchedulePanel(props) {
           dragSourceGrid={props.schedule.dragSourceGrid}
           language={props.language}
           asanas={props.asanas.arr}
-          dynamicPanel={true}
+          ItIsSchedulePanel={true}
           startCardDragAction={props.startCardDragAction}
           startGridDragAction={props.startGridDragAction}
           onDragIconMouseDownAction={props.onDragIconMouseDownAction}
@@ -84,8 +84,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(startGridDragAction(gridId, e)),
     onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),
     onDragIconMouseUpAction: () => dispatch(onDragIconMouseUpAction()),
-    addAsanaAction: (asanaId, gridId, dynamicPanel, e) =>
-      dispatch(addAsanaAction(asanaId, gridId, dynamicPanel, e)),
+    addAsanaAction: (asanaId, gridId, ItIsSchedulePanel, e) =>
+      dispatch(addAsanaAction(asanaId, gridId, ItIsSchedulePanel, e)),
     closeCardAction: (cardIndex, gridId) =>
       dispatch(closeCardAction(cardIndex, gridId)),
     closeGridAction: gridId => dispatch(closeGridAction(gridId)),

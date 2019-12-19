@@ -28,7 +28,7 @@ export default function AsanaCard(props) {
       draggable="true"
     >
       <div className="AsanaCardInnerDiv">
-        {props.dynamicPanel ? (
+        {props.ItIsSchedulePanel ? (
           <IconButton
             className={classes.button}
             onClick={props.closeCardAction}

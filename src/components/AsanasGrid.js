@@ -31,10 +31,10 @@ function makeCardsArr(props) {
     draggingCard,
     dragEnterAction,
     dragSourceGrid,
-    dynamicPanel
+    ItIsSchedulePanel
   } = props;
   return asanas.map((asana, i) => {
-    const asanaIndex = dynamicPanel ? i : asana.asanaIndex;
+    const asanaIndex = ItIsSchedulePanel ? i : asana.asanaIndex;
 
     return (
       <AsanaCard
@@ -42,11 +42,11 @@ function makeCardsArr(props) {
         img={asana.asanaImg}
         key={asana.cardKey}
         isDragging={
-          draggingCard === null || dragSourceGrid !== gridId || !dynamicPanel
+          draggingCard === null || dragSourceGrid !== gridId || !ItIsSchedulePanel
             ? false
             : i === draggingCard
         }
-        dynamicPanel={dynamicPanel}
+        ItIsSchedulePanel={ItIsSchedulePanel}
         startCardDragAction={() => {
           startCardDragAction(asanaIndex, gridId);
         }}
@@ -54,7 +54,7 @@ function makeCardsArr(props) {
           dragEnterAction(asanaIndex, gridId);
         }}
         addAsanaAction={e => {
-          addAsanaAction(asanaIndex, gridId, dynamicPanel, e);
+          addAsanaAction(asanaIndex, gridId, ItIsSchedulePanel, e);
         }}
         closeCardAction={() => {
           closeCardAction(asanaIndex, gridId);
@@ -97,7 +97,7 @@ export default function AsanasGrid(props) {
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
-  const onDragOverFunc = props.dynamicPanel
+  const onDragOverFunc = props.ItIsSchedulePanel
     ? e => {
         e.preventDefault();
       }
@@ -124,7 +124,7 @@ export default function AsanasGrid(props) {
               props.onDragEnterEmptySpace(props.gridId)
             }
           />
-          {props.dynamicPanel ? (
+          {props.ItIsSchedulePanel ? (
             <div
               className="AsanasGridDragIcon"
               onMouseDown={props.onDragIconMouseDownAction}
@@ -135,7 +135,7 @@ export default function AsanasGrid(props) {
           ) : (
             ""
           )}
-          {props.dynamicPanel && props.enableCloseIcon ? (
+          {props.ItIsSchedulePanel && props.enableCloseIcon ? (
             <div className="closeGridIconDiv">
               <IconButton
                 className={classes.button}
