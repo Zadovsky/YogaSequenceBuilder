@@ -303,6 +303,7 @@ export function scheduleReducer(state = initialState, action) {
 
     case END_DRAG:
       cards = JSON.parse(JSON.stringify(state.cards));
+
       if (state.dndGridFlags.draggingGrid === null) {
         var { dragOver, dragOverGrid, dragging, dragSource } = state;
         var newNextCardKey = state.nextCardKey;
@@ -314,21 +315,17 @@ export function scheduleReducer(state = initialState, action) {
           newNextCardKey += 1;
         } else {
           dragCard = cards[dragSource].gridCards[dragging];
-          var cardsBegin = cards[dragSource].gridCards.slice(0, dragging);
-          var cardsEnd = cards[dragSource].gridCards.slice(dragging + 1);
-          cards[dragSource].gridCards = [...cardsBegin, ...cardsEnd];
+          cards[dragSource].gridCards.splice(dragging, 1);
         }
 
         if (dragOver !== null) {
           if (dragOver > dragging && dragSource === dragOverGrid) {
             dragOver -= 1;
           }
-          cardsBegin = cards[dragOverGrid].gridCards.slice(0, dragOver);
-          cardsEnd = cards[dragOverGrid].gridCards.slice(dragOver);
           cards[dragOverGrid].gridCards = [
-            ...cardsBegin,
+            ...cards[dragOverGrid].gridCards.slice(0, dragOver),
             dragCard,
-            ...cardsEnd
+            ...cards[dragOverGrid].gridCards.slice(dragOver)
           ];
         }
 
@@ -350,20 +347,22 @@ export function scheduleReducer(state = initialState, action) {
         var { draggingGrid, dragGridOverGrid } = state.dndGridFlags;
         var dragGrid = cards[draggingGrid];
 
-        cardsBegin = cards.slice(0, draggingGrid);
-        cardsEnd = cards.slice(draggingGrid + 1);
-        cards = [...cardsBegin, ...cardsEnd];
+        cards.splice(draggingGrid, 1);
 
         if (dragGridOverGrid > draggingGrid) {
           dragGridOverGrid--;
         }
 
         if (dragGridOverGrid !== null) {
-          cardsBegin = cards.slice(0, dragGridOverGrid);
-          cardsEnd = cards.slice(dragGridOverGrid);
-          cards = [...cardsBegin, dragGrid, ...cardsEnd];
+          cards = [
+            ...cards.slice(0, dragGridOverGrid),
+            dragGrid,
+            ...cards.slice(dragGridOverGrid)
+          ];
         }
+
         newCardsGridKey = addEmptyGrid(cards, state.nextGridKey);
+
         return {
           ...state,
           cards: newCardsGridKey.cards,
