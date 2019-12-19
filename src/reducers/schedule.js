@@ -129,13 +129,13 @@ export function scheduleReducer(state = initialState, action) {
           asanaIndex: action.payload.asanaId
         });
 
-        let newCardsGridKey = addEmptyGrid(cards, state.nextGridKey);
+        let cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
 
         return {
           ...state,
-          cards: newCardsGridKey.cards,
+          cards: cardsWithEmptyGrid.cards,
           nextCardKey: state.nextCardKey + 1,
-          nextGridKey: newCardsGridKey.nextGridKey
+          nextGridKey: cardsWithEmptyGrid.nextGridKey
         };
       } else {
         return {
@@ -296,12 +296,12 @@ export function scheduleReducer(state = initialState, action) {
           ];
         }
 
-        var newCardsGridKey = addEmptyGrid(cards, state.nextGridKey);
+        let cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
 
         return {
           ...state,
-          cards: newCardsGridKey.cards,
-          nextGridKey: newCardsGridKey.nextGridKey,
+          cards: cardsWithEmptyGrid.cards,
+          nextGridKey: cardsWithEmptyGrid.nextGridKey,
           dragOverCard: null,
           dragOverGrid: null,
           draggingCard: null,
@@ -329,12 +329,12 @@ export function scheduleReducer(state = initialState, action) {
           ];
         }
 
-        newCardsGridKey = addEmptyGrid(cards, state.nextGridKey);
+        let cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
 
         return {
           ...state,
-          cards: newCardsGridKey.cards,
-          nextGridKey: newCardsGridKey.nextGridKey,
+          cards: cardsWithEmptyGrid.cards,
+          nextGridKey: cardsWithEmptyGrid.nextGridKey,
           fastTransition: true,
           gridHeight: null,
           draggingGrid: null,
