@@ -40,7 +40,10 @@ function checkCards(cards, nextGridKey) {
   var newCards = cards.slice();
 
   var newGridKey = nextGridKey;
-  if (newCards[newCards.length - 1].gridCards.length !== 0) {
+  if (
+    newCards.length === 0 ||
+    newCards[newCards.length - 1].gridCards.length !== 0
+  ) {
     newCards.push({ gridCards: [], gridKey: newGridKey });
     newGridKey += 1;
   }
