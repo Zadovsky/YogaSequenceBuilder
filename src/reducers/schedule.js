@@ -283,15 +283,15 @@ export function scheduleReducer(state = initialState, action) {
 
         var newNextCardKey = state.nextCardKey;
 
-        if (!dragSourcePanelIsSchedule) {
-          var dragCard = {
+        if (dragSourcePanelIsSchedule) {
+          var dragCard = cards[dragSourceGrid].gridCards[draggingCard];
+          cards[dragSourceGrid].gridCards.splice(draggingCard, 1);
+        } else {
+          dragCard = {
             cardKey: newNextCardKey,
             asanaIndex: draggingCard
           };
           newNextCardKey += 1;
-        } else {
-          dragCard = cards[dragSourceGrid].gridCards[draggingCard];
-          cards[dragSourceGrid].gridCards.splice(draggingCard, 1);
         }
 
         if (dragOverCard !== null) {
