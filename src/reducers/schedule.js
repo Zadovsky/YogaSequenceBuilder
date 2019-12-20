@@ -37,7 +37,7 @@ function addEmptyGrid(cards, nextGridKey) {
   var newGridKey = nextGridKey;
   if (cards.length === 0 || cards[cards.length - 1].gridCards.length !== 0) {
     cards.push({ gridCards: [], gridKey: newGridKey });
-    newGridKey += 1;
+    newGridKey++;
   }
 
   return { cards: cards, nextGridKey: newGridKey };
@@ -200,7 +200,7 @@ export function scheduleReducer(state = initialState, action) {
             state.dragOverCard < newDragOverCard - 1 &&
             state.dragOverCard != null)
         ) {
-          newDragOverCard += 1;
+          newDragOverCard++;
         }
 
         return {
@@ -291,12 +291,12 @@ export function scheduleReducer(state = initialState, action) {
             cardKey: newNextCardKey,
             asanaIndex: draggingCard
           };
-          newNextCardKey += 1;
+          newNextCardKey++;
         }
 
         if (dragOverCard !== null) {
           if (dragOverCard > draggingCard && dragSourceGrid === dragOverGrid) {
-            dragOverCard -= 1;
+            dragOverCard--;
           }
           cards[dragOverGrid].gridCards = [
             ...cards[dragOverGrid].gridCards.slice(0, dragOverCard),
