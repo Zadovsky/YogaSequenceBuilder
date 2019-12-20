@@ -15,7 +15,7 @@ function createGridArr(props) {
     return (
       <AsanasGrid
         key={cards.gridKey}
-        gridId={props.ItIsSchedulePanel ? i : "ASANAS"}
+        gridId={i}
         language={props.language}
         asanas={asanas}
         draggingCard={props.draggingCard}
@@ -36,6 +36,7 @@ function createGridArr(props) {
         onDragEnterEmptySpace={props.onDragEnterEmptySpace}
         onDragEnterHolder={props.onDragEnterHolder}
         dragSourceGrid={props.dragSourceGrid}
+        dragSourcePanelIsSchedule={props.dragSourcePanelIsSchedule}
         ItIsSchedulePanel={props.ItIsSchedulePanel}
         closeCardAction={props.closeCardAction}
         closeGridAction={() => props.closeGridAction(i)}

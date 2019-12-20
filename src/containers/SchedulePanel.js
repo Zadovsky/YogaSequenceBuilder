@@ -45,6 +45,7 @@ function SchedulePanel(props) {
           dragOverGrid={props.schedule.dragOverGrid}
           fastTransition={props.schedule.fastTransition}
           dragSourceGrid={props.schedule.dragSourceGrid}
+          dragSourcePanelIsSchedule={props.schedule.dragSourcePanelIsSchedule}
           language={props.language}
           asanas={props.asanas.arr}
           ItIsSchedulePanel={true}
@@ -78,8 +79,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startCardDragAction: (asanaId, gridId) =>
-      dispatch(startCardDragAction(asanaId, gridId)),
+    startCardDragAction: (asanaId, gridId, ItIsSchedulePanel) =>
+      dispatch(startCardDragAction(asanaId, gridId, ItIsSchedulePanel)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
     onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),

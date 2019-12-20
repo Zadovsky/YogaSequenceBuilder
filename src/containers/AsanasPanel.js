@@ -51,6 +51,7 @@ function AsanasPanel(props) {
           dragOverGrid={null}
           fastTransition={false}
           dragSourceGrid={null}
+          dragSourcePanelIsSchedule={null}
           language={props.language}
           asanas={props.asanas.arr}
           ItIsSchedulePanel={false}
@@ -81,8 +82,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startCardDragAction: (asanaId, gridId) =>
-      dispatch(startCardDragAction(asanaId, gridId)),
+    startCardDragAction: (asanaId, gridId, ItIsSchedulePanel) =>
+      dispatch(startCardDragAction(asanaId, gridId, ItIsSchedulePanel)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
     addAsanaAction: (asanaId, gridId, ItIsSchedulePanel, e) =>

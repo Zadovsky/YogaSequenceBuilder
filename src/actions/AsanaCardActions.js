@@ -41,12 +41,13 @@ export function dragEnterAction(cardPlace, gridId, ItIsSchedulePanel) {
   };
 }
 
-export function startCardDragAction(cardPlace, gridId) {
+export function startCardDragAction(cardPlace, gridId, ItIsSchedulePanel) {
   return {
     type: START_DRAG_CARD,
     payload: {
       card: cardPlace,
-      source: gridId
+      gridId: gridId,
+      ItIsSchedulePanel: ItIsSchedulePanel
     }
   };
 }

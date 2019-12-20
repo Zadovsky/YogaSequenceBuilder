@@ -21,6 +21,7 @@ const initialState = {
   nextCardKey: 0,
   nextGridKey: 1,
   dragSourceGrid: null,
+  dragSourcePanelIsSchedule: null,
   draggingCard: null,
   draggingGrid: null,
   dragOverCard: null,
@@ -156,10 +157,11 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case START_DRAG_CARD:
-      if (action.payload.source === "ASANAS") {
+      if (!action.payload.ItIsSchedulePanel) {
         return {
           ...state,
-          dragSourceGrid: action.payload.source,
+          dragSourceGrid: action.payload.gridId,
+          dragSourcePanelIsSchedule: action.payload.ItIsSchedulePanel,
           draggingCard: action.payload.card,
           dragOverCard: null,
           dragOverGrid: null,
@@ -169,10 +171,11 @@ export function scheduleReducer(state = initialState, action) {
       } else {
         return {
           ...state,
-          dragSourceGrid: action.payload.source,
+          dragSourceGrid: action.payload.gridId,
+          dragSourcePanelIsSchedule: action.payload.ItIsSchedulePanel,
           draggingCard: action.payload.card,
           dragOverCard: action.payload.card + 1,
-          dragOverGrid: action.payload.source,
+          dragOverGrid: action.payload.gridId,
           fastTransition: true,
           onPlaceHolder: true
         };
@@ -271,10 +274,13 @@ export function scheduleReducer(state = initialState, action) {
           dragOverCard,
           dragOverGrid,
           draggingCard,
-          dragSourceGrid
+          dragSourceGrid,
+          dragSourcePanelIsSchedule
         } = state;
+
         var newNextCardKey = state.nextCardKey;
-        if (dragSourceGrid === "ASANAS") {
+        
+        if (!dragSourcePanelIsSchedule) {
           var dragCard = {
             cardKey: newNextCardKey,
             asanaIndex: draggingCard
