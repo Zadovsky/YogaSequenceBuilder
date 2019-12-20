@@ -93,7 +93,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(dragEnterAction(enterIndex, gridId, ItIsSchedulePanel)),
     onDragEnterHolder: (index, gridId) =>
       dispatch(onDragEnterHolder(index, gridId)),
-    onDragEnterEmptySpace: gridId => dispatch(onDragEnterEmptySpace(gridId)),
+    onDragEnterEmptySpace: (gridId, ItIsSchedulePanel) =>
+      dispatch(onDragEnterEmptySpace(gridId, ItIsSchedulePanel)),
     dragEnterGridAction: gridId => dispatch(dragEnterGridAction(gridId)),
     onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction())
   };

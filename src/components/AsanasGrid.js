@@ -121,7 +121,7 @@ export default function AsanasGrid(props) {
           {cardsHoldersArr}
           <EmptySpaceAtTheEnd
             onDragEnterEmptySpace={() =>
-              props.onDragEnterEmptySpace(props.gridId)
+              props.onDragEnterEmptySpace(props.gridId, props.ItIsSchedulePanel)
             }
           />
           {props.ItIsSchedulePanel ? (

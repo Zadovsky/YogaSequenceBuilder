@@ -216,11 +216,11 @@ export function scheduleReducer(state = initialState, action) {
       }
 
     case DRAG_ENTER_EMPTY_SPACE:
-      if (state.draggingGrid === null && action.payload !== "ASANAS") {
+      if (state.draggingGrid === null && action.payload.ItIsSchedulePanel) {
         return {
           ...state,
-          dragOverCard: state.cards[action.payload].gridCards.length,
-          dragOverGrid: action.payload,
+          dragOverCard: state.cards[action.payload.gridId].gridCards.length,
+          dragOverGrid: action.payload.gridId,
           lastDragEnterCard: null,
           lastDragEnterGrid: null,
           fastTransition: false,
