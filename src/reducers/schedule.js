@@ -183,7 +183,7 @@ export function scheduleReducer(state = initialState, action) {
 
     case DRAG_ENTER_CARD:
       if (
-        state.draggingGrid === null &&
+        state.draggingCard !== null &&
         action.payload.ItIsSchedulePanel &&
         !(
           action.payload.cardPlace === state.lastDragEnterCard &&
@@ -219,7 +219,7 @@ export function scheduleReducer(state = initialState, action) {
       }
 
     case DRAG_ENTER_EMPTY_SPACE:
-      if (state.draggingGrid === null && action.payload.ItIsSchedulePanel) {
+      if (state.draggingCard !== null && action.payload.ItIsSchedulePanel) {
         return {
           ...state,
           dragOverCard: state.cards[action.payload.gridId].gridCards.length,
@@ -246,7 +246,7 @@ export function scheduleReducer(state = initialState, action) {
     case DRAG_ENTER_DND_CONTEXT:
       if (
         (action.payload.outOfAsanasGrid || action.payload.outOfPanel) &&
-        state.draggingGrid === null
+        state.draggingCard !== null
       ) {
         return {
           ...state,
@@ -272,7 +272,7 @@ export function scheduleReducer(state = initialState, action) {
     case END_DRAG:
       cards = JSON.parse(JSON.stringify(state.cards));
 
-      if (state.draggingGrid === null) {
+      if (state.draggingCard !== null) {
         var {
           dragOverCard,
           dragOverGrid,
@@ -319,7 +319,7 @@ export function scheduleReducer(state = initialState, action) {
           fastTransition: true,
           nextCardKey: newNextCardKey
         };
-      } else {
+      } else if (state.draggingGrid !== null) {
         var draggingGrid = state.draggingGrid;
         var dragGrid = cards[draggingGrid];
         dragOverGrid = state.dragOverGrid;
@@ -350,6 +350,8 @@ export function scheduleReducer(state = initialState, action) {
           dragOverGrid: null,
           lastDragEnterGrid: null
         };
+      } else {
+        return state;
       }
 
     default:
