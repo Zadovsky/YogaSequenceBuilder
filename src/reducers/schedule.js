@@ -244,7 +244,10 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case DRAG_ENTER_DND_CONTEXT:
-      if (action.payload.outOfAsanasGrid && state.draggingGrid === null) {
+      if (
+        (action.payload.outOfAsanasGrid || action.payload.outOfPanel) &&
+        state.draggingGrid === null
+      ) {
         return {
           ...state,
           dragOverCard: null,
@@ -279,7 +282,7 @@ export function scheduleReducer(state = initialState, action) {
         } = state;
 
         var newNextCardKey = state.nextCardKey;
-        
+
         if (!dragSourcePanelIsSchedule) {
           var dragCard = {
             cardKey: newNextCardKey,
