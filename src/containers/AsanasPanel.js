@@ -87,8 +87,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(startGridDragAction(gridId, e)),
     addAsanaAction: (asanaId, gridId, ItIsSchedulePanel, e) =>
       dispatch(addAsanaAction(asanaId, gridId, ItIsSchedulePanel, e)),
-    dragEnterAction: (enterIndex, gridId) =>
-      dispatch(dragEnterAction(enterIndex, gridId)),
+    dragEnterAction: (enterIndex, gridId, ItIsSchedulePanel) =>
+      dispatch(dragEnterAction(enterIndex, gridId, ItIsSchedulePanel)),
     onDragEnterHolder: (index, gridId) =>
       dispatch(onDragEnterHolder(index, gridId)),
     onDragEnterEmptySpace: gridId => dispatch(onDragEnterEmptySpace(gridId))

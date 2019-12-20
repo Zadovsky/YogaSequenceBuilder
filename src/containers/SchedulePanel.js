@@ -89,8 +89,8 @@ const mapDispatchToProps = dispatch => {
     closeCardAction: (cardIndex, gridId) =>
       dispatch(closeCardAction(cardIndex, gridId)),
     closeGridAction: gridId => dispatch(closeGridAction(gridId)),
-    dragEnterAction: (enterIndex, gridId) =>
-      dispatch(dragEnterAction(enterIndex, gridId)),
+    dragEnterAction: (enterIndex, gridId, ItIsSchedulePanel) =>
+      dispatch(dragEnterAction(enterIndex, gridId, ItIsSchedulePanel)),
     onDragEnterHolder: (index, gridId) =>
       dispatch(onDragEnterHolder(index, gridId)),
     onDragEnterEmptySpace: gridId => dispatch(onDragEnterEmptySpace(gridId)),
