@@ -58,7 +58,7 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case START_DRAG_GRID:
-      if (state.draggingGrid) {
+      if (state.draggingGrid === true) {
         return {
           ...state,
           fastTransition: true,
@@ -157,18 +157,7 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case START_DRAG_CARD:
-      if (!action.payload.ItIsSchedulePanel) {
-        return {
-          ...state,
-          dragSourceGrid: action.payload.gridId,
-          dragSourcePanelIsSchedule: action.payload.ItIsSchedulePanel,
-          draggingCard: action.payload.card,
-          dragOverCard: null,
-          dragOverGrid: null,
-          fastTransition: false,
-          onPlaceHolder: false
-        };
-      } else {
+      if (action.payload.ItIsSchedulePanel) {
         return {
           ...state,
           dragSourceGrid: action.payload.gridId,
@@ -179,6 +168,17 @@ export function scheduleReducer(state = initialState, action) {
           fastTransition: true,
           onPlaceHolder: true
         };
+      } else {
+          return {
+            ...state,
+            dragSourceGrid: action.payload.gridId,
+            dragSourcePanelIsSchedule: action.payload.ItIsSchedulePanel,
+            draggingCard: action.payload.card,
+            dragOverCard: null,
+            dragOverGrid: null,
+            fastTransition: false,
+            onPlaceHolder: false
+          };
       }
 
     case DRAG_ENTER_CARD:
