@@ -139,17 +139,13 @@ export default function AsanasGrid(props) {
       onDragEnter={() => dragEnterGridAction(gridId)}
     >
       <Paper className={classes.root}>
-        {!ItIsSchedulePanel ? (
-          <TextField
-            className={classes.textField}
-            defaultValue={name[language]}
-            InputProps={{
-              readOnly: true
-            }}
-          />
-        ) : (
-          ""
-        )}
+        <TextField
+          className={classes.textField}
+          defaultValue={ItIsSchedulePanel ? "Noname" : name[language]}
+          InputProps={{
+            readOnly: ItIsSchedulePanel ? false : true
+          }}
+        />
         <div className="AsanasGrid" onDragOver={onDragOverFunc}>
           {cardsHoldersArr}
           <EmptySpaceAtTheEnd
@@ -170,10 +166,7 @@ export default function AsanasGrid(props) {
           )}
           {ItIsSchedulePanel && enableCloseIcon ? (
             <div className="closeGridIconDiv">
-              <IconButton
-                className={classes.button}
-                onClick={closeGridAction}
-              >
+              <IconButton className={classes.button} onClick={closeGridAction}>
                 <CloseIcon />
               </IconButton>
             </div>
