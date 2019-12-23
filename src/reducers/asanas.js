@@ -1,47 +1,47 @@
 const initialState = {
-  groupOrder: ["stand", "balance"],
+  groups: ["stand", "balance"],
   arr: [
     {
       asanaName: {
         ru: "Тадасана"
       },
       asanaImg: "/img/tadasana.jpg",
-      group: "stand"
+      groupId: "stand"
     },
     {
       asanaName: {
         ru: "Уттхита Триконасана"
       },
       asanaImg: "/img/utrikonasana.jpg",
-      group: "stand"
+      groupId: "stand"
     },
     {
       asanaName: {
         ru: "Вирабхадрасана 3"
       },
       asanaImg: "/img/vira3.jpg",
-      group: "balance"
+      groupId: "balance"
     },
     {
       asanaName: {
         ru: "Вирабхадрасана 2"
       },
       asanaImg: "/img/vira2.jpg",
-      group: "stand"
+      groupId: "stand"
     },
     {
       asanaName: {
         ru: "Прасарита Падоттанасана"
       },
       asanaImg: "/img/prasarita.jpg",
-      group: "stand"
+      groupId: "stand"
     },
     {
       asanaName: {
         ru: "Врикшасана"
       },
       asanaImg: "/img/vrikshasana.jpg",
-      group: "balance"
+      groupId: "balance"
     }
   ]
 };

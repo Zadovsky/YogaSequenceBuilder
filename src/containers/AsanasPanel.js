@@ -20,10 +20,10 @@ const useStyles = makeStyles(theme => ({
 
 function createCardsArr(asanas) {
   var cards = [];
-  asanas.groupOrder.forEach(group => {
+  asanas.groups.forEach(group => {
     let gridCards = [];
     asanas.arr.forEach((asana, i) => {
-      if (asana.group === group) {
+      if (asana.groupId === group) {
         gridCards.push({ asanaIndex: i, cardKey: i });
       }
     });
