@@ -15,6 +15,7 @@ function createGridArr(props) {
     return (
       <AsanasGrid
         key={cards.gridKey}
+        name={cards.gridName}
         gridId={i}
         language={props.language}
         asanas={asanas}

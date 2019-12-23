@@ -1,6 +1,7 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
+import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import AsanaCard from "./AsanaCard";
 import CardPlaceHolder from "./CardPlaceHolder";
@@ -17,6 +18,9 @@ const useStyles = makeStyles(theme => ({
     position: "absolute",
     right: 0,
     top: 0
+  },
+  textField: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -98,17 +102,31 @@ function makeCardsHoldersArr(cardsArr, props) {
 
 export default function AsanasGrid(props) {
   const classes = useStyles();
+  const {
+    gridId,
+    name,
+    language,
+    isDragging,
+    ItIsSchedulePanel,
+    startGridDragAction,
+    dragEnterGridAction,
+    onDragEnterEmptySpace,
+    onDragIconMouseUpAction,
+    onDragIconMouseDownAction,
+    enableCloseIcon,
+    closeGridAction
+  } = props;
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
-  const onDragOverFunc = props.ItIsSchedulePanel
+  const onDragOverFunc = ItIsSchedulePanel
     ? e => {
         e.preventDefault();
       }
     : () => {};
 
   var classArr = ["AsanasGridDraggable"];
-  if (props.isDragging) classArr.push("AsanaGridDragging");
+  if (isDragging) classArr.push("AsanaGridDragging");
   const classStr = classArr.join(" ");
 
   return (
@@ -116,34 +134,45 @@ export default function AsanasGrid(props) {
       className={classStr}
       draggable="true"
       onDragStart={e => {
-        props.startGridDragAction(props.gridId, e);
+        startGridDragAction(gridId, e);
       }}
-      onDragEnter={() => props.dragEnterGridAction(props.gridId)}
+      onDragEnter={() => dragEnterGridAction(gridId)}
     >
       <Paper className={classes.root}>
+        {!ItIsSchedulePanel ? (
+          <TextField
+            className={classes.textField}
+            defaultValue={name[language]}
+            InputProps={{
+              readOnly: true
+            }}
+          />
+        ) : (
+          ""
+        )}
         <div className="AsanasGrid" onDragOver={onDragOverFunc}>
           {cardsHoldersArr}
           <EmptySpaceAtTheEnd
             onDragEnterEmptySpace={() =>
-              props.onDragEnterEmptySpace(props.gridId, props.ItIsSchedulePanel)
+              onDragEnterEmptySpace(gridId, ItIsSchedulePanel)
             }
           />
-          {props.ItIsSchedulePanel ? (
+          {ItIsSchedulePanel ? (
             <div
               className="AsanasGridDragIcon"
-              onMouseDown={props.onDragIconMouseDownAction}
-              onMouseUp={props.onDragIconMouseUpAction}
+              onMouseDown={onDragIconMouseDownAction}
+              onMouseUp={onDragIconMouseUpAction}
             >
               <DragIndicatorIcon fontSize="large" />
             </div>
           ) : (
             ""
           )}
-          {props.ItIsSchedulePanel && props.enableCloseIcon ? (
+          {ItIsSchedulePanel && enableCloseIcon ? (
             <div className="closeGridIconDiv">
               <IconButton
                 className={classes.button}
-                onClick={props.closeGridAction}
+                onClick={closeGridAction}
               >
                 <CloseIcon />
               </IconButton>

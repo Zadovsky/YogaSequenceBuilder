@@ -30,6 +30,7 @@ function createCardsArr(asanas) {
 
     cards.push({
       gridKey: group.id,
+      gridName: group.name,
       gridCards: gridCards
     });
   });
