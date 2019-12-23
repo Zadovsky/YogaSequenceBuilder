@@ -23,13 +23,13 @@ function createCardsArr(asanas) {
   asanas.groups.forEach(group => {
     let gridCards = [];
     asanas.arr.forEach((asana, i) => {
-      if (asana.groupId === group) {
+      if (asana.groupId === group.id) {
         gridCards.push({ asanaIndex: i, cardKey: i });
       }
     });
 
     cards.push({
-      gridKey: group,
+      gridKey: group.id,
       gridCards: gridCards
     });
   });

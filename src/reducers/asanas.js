@@ -1,5 +1,8 @@
 const initialState = {
-  groups: ["stand", "balance"],
+  groups: [
+    { id: "stand", name: { ru: "Асаны стоя" } },
+    { id: "balance", name: { ru: "Балансы" } }
+  ],
   arr: [
     {
       asanaName: {
