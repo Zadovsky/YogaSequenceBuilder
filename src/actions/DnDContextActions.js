@@ -11,7 +11,7 @@ export function dragEnter(e) {
   return {
     type: DRAG_ENTER_DND_CONTEXT,
     payload: {
-      outOfAsanasGrid: e.target.closest(".AsanasGrid") === null,
+      outOfAsanasGrid: e.target.closest(".AsanasGridDraggable") === null,
       outOfPanel: e.target.closest(".SchedulePanel") === null
     }
   };

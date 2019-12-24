@@ -138,6 +138,7 @@ export default function AsanasGrid(props) {
         startGridDragAction(gridId, e);
       }}
       onDragEnter={() => dragEnterGridAction(gridId)}
+      onDragOver={onDragOverFunc}
     >
       <Paper className={classes.root}>
         <TextField
@@ -147,7 +148,7 @@ export default function AsanasGrid(props) {
             readOnly: ItIsSchedulePanel ? false : true
           }}
         />
-        <div className="AsanasGrid" onDragOver={onDragOverFunc}>
+        <div className="AsanasGrid">
           {cardsHoldersArr}
           <EmptySpaceAtTheEnd
             onDragEnterEmptySpace={() =>
