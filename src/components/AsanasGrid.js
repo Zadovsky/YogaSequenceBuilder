@@ -12,7 +12,8 @@ import "./AsanasGrid.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing(3, 2)
+    margin: theme.spacing(3, 2),
+    position: "relative"
   },
   button: {
     position: "absolute",
@@ -141,7 +142,7 @@ export default function AsanasGrid(props) {
       <Paper className={classes.root}>
         <TextField
           className={classes.textField}
-          defaultValue={ItIsSchedulePanel ? "Noname" : name[language]}
+          defaultValue={ItIsSchedulePanel ? "Без названия" : name[language]}
           InputProps={{
             readOnly: ItIsSchedulePanel ? false : true
           }}
@@ -153,27 +154,27 @@ export default function AsanasGrid(props) {
               onDragEnterEmptySpace(gridId, ItIsSchedulePanel)
             }
           />
-          {ItIsSchedulePanel ? (
-            <div
-              className="AsanasGridDragIcon"
-              onMouseDown={onDragIconMouseDownAction}
-              onMouseUp={onDragIconMouseUpAction}
-            >
-              <DragIndicatorIcon fontSize="large" />
-            </div>
-          ) : (
-            ""
-          )}
-          {ItIsSchedulePanel && enableCloseIcon ? (
-            <div className="closeGridIconDiv">
-              <IconButton className={classes.button} onClick={closeGridAction}>
-                <CloseIcon />
-              </IconButton>
-            </div>
-          ) : (
-            ""
-          )}
         </div>
+        {ItIsSchedulePanel && enableCloseIcon ? (
+          <div className="closeGridIconDiv">
+            <IconButton className={classes.button} onClick={closeGridAction}>
+              <CloseIcon />
+            </IconButton>
+          </div>
+        ) : (
+          ""
+        )}
+        {ItIsSchedulePanel ? (
+          <div
+            className="AsanasGridDragIcon"
+            onMouseDown={onDragIconMouseDownAction}
+            onMouseUp={onDragIconMouseUpAction}
+          >
+            <DragIndicatorIcon fontSize="large" />
+          </div>
+        ) : (
+          ""
+        )}
       </Paper>
     </div>
   );
