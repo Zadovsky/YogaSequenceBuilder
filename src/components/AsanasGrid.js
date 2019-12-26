@@ -106,7 +106,6 @@ export default function AsanasGrid(props) {
   const {
     gridId,
     name,
-    language,
     isDragging,
     itIsSchedulePanel,
     startGridDragAction,
@@ -144,7 +143,7 @@ export default function AsanasGrid(props) {
       <Paper className={classes.root}>
         <TextField
           className={classes.textField}
-          defaultValue={itIsSchedulePanel ? "Без названия" : name[language]}
+          value={name}
           inputProps={{
             readOnly: itIsSchedulePanel ? false : true,
             onChange: e => onChangeGridNameAction(gridId, e)

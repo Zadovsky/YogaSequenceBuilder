@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function createCardsArr(asanas) {
+function createCardsArr(asanas, language) {
   var cards = [];
   asanas.groups.forEach(group => {
     let gridCards = [];
@@ -30,7 +30,7 @@ function createCardsArr(asanas) {
 
     cards.push({
       gridKey: group.id,
-      gridName: group.name,
+      gridName: group.name[language],
       gridCards: gridCards
     });
   });
@@ -40,7 +40,7 @@ function createCardsArr(asanas) {
 
 function AsanasPanel(props) {
   const classes = useStyles();
-  const cards = createCardsArr(props.asanas);
+  const cards = createCardsArr(props.asanas, props.language);
 
   return (
     <div className="AsanasPanel">
