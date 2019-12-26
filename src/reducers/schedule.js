@@ -13,11 +13,12 @@ import {
   DRAG_ICON_MOUSE_UP,
   START_DRAG_GRID,
   DRAG_ENTER_GRID,
-  CLOSE_GRID
+  CLOSE_GRID,
+  CHANGE_GRID_NAME
 } from "../actions/AsanasGridActions";
 
 const initialState = {
-  cards: [{ gridCards: [], gridKey: 0 }],
+  cards: [{ gridCards: [], gridKey: 0, gridName: "" }],
   nextCardKey: 0,
   nextGridKey: 1,
   dragSourceGrid: null,
@@ -36,7 +37,7 @@ const initialState = {
 function addEmptyGrid(cards, nextGridKey) {
   var newGridKey = nextGridKey;
   if (cards.length === 0 || cards[cards.length - 1].gridCards.length !== 0) {
-    cards.push({ gridCards: [], gridKey: newGridKey });
+    cards.push({ gridCards: [], gridKey: newGridKey, gridName: "" });
     newGridKey++;
   }
 
@@ -45,6 +46,14 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_GRID_NAME:
+      var cards = JSON.parse(JSON.stringify(state.cards));
+      cards[action.payload.gridId].gridName = action.payload.value;
+      return {
+        ...state,
+        cards: cards
+      };
+
     case DRAG_ICON_MOUSE_DOWN:
       return {
         ...state,
@@ -119,7 +128,7 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case CLOSE_GRID:
-      var cards = JSON.parse(JSON.stringify(state.cards));
+      cards = JSON.parse(JSON.stringify(state.cards));
       cards.splice(action.payload, 1);
 
       return {

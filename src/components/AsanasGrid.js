@@ -115,7 +115,8 @@ export default function AsanasGrid(props) {
     onDragIconMouseUpAction,
     onDragIconMouseDownAction,
     enableCloseIcon,
-    closeGridAction
+    closeGridAction,
+    onChangeGridNameAction
   } = props;
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
@@ -144,8 +145,9 @@ export default function AsanasGrid(props) {
         <TextField
           className={classes.textField}
           defaultValue={itIsSchedulePanel ? "Без названия" : name[language]}
-          InputProps={{
-            readOnly: itIsSchedulePanel ? false : true
+          inputProps={{
+            readOnly: itIsSchedulePanel ? false : true,
+            onChange: e => onChangeGridNameAction(gridId, e)
           }}
         />
         <div className="AsanasGrid">

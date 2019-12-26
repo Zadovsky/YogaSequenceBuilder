@@ -43,6 +43,7 @@ function createGridArr(props) {
         closeGridAction={() => props.closeGridAction(i)}
         enableCloseIcon={i === cardsArr.length - 1 ? false : true}
         dragEnterGridAction={props.dragEnterGridAction}
+        onChangeGridNameAction={props.onChangeGridNameAction}
       />
     );
   });

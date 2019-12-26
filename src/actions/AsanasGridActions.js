@@ -3,6 +3,7 @@ export const DRAG_ICON_MOUSE_DOWN = "DRAG_ICON_MOUSE_DOWN";
 export const DRAG_ICON_MOUSE_UP = "DRAG_ICON_MOUSE_UP";
 export const DRAG_ENTER_GRID = "DRAG_ENTER_GRID";
 export const CLOSE_GRID = "CLOSE_GRID";
+export const CHANGE_GRID_NAME = "CHANGE_GRID_NAME";
 
 export function startGridDragAction(gridId, e) {
   return {
@@ -34,5 +35,12 @@ export function closeGridAction(gridId) {
   return {
     type: CLOSE_GRID,
     payload: gridId
+  };
+}
+
+export function onChangeGridNameAction(gridId, e) {
+  return {
+    type: CHANGE_GRID_NAME,
+    payload: { gridId: gridId, value: e.target.value }
   };
 }

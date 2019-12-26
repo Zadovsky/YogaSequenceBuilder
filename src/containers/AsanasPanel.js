@@ -68,6 +68,7 @@ function AsanasPanel(props) {
           draggingGrid={null}
           gridHeight={null}
           dragEnterGridAction={() => {}}
+          onChangeGridNameAction={() => {}}
         />
       </Paper>
     </div>
