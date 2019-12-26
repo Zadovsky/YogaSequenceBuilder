@@ -128,7 +128,7 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case ADD_ASANA:
-      if (!action.payload.ItIsSchedulePanel) {
+      if (!action.payload.itIsSchedulePanel) {
         cards = JSON.parse(JSON.stringify(state.cards));
         const gridToAdd = cards.length === 1 ? 0 : cards.length - 2;
         cards[gridToAdd].gridCards.push({
@@ -163,11 +163,11 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case START_DRAG_CARD:
-      if (action.payload.ItIsSchedulePanel) {
+      if (action.payload.itIsSchedulePanel) {
         return {
           ...state,
           dragSourceGrid: action.payload.gridId,
-          dragSourcePanelIsSchedule: action.payload.ItIsSchedulePanel,
+          dragSourcePanelIsSchedule: action.payload.itIsSchedulePanel,
           draggingCard: action.payload.card,
           dragOverCard: action.payload.card + 1,
           dragOverGrid: action.payload.gridId,
@@ -178,7 +178,7 @@ export function scheduleReducer(state = initialState, action) {
         return {
           ...state,
           dragSourceGrid: action.payload.gridId,
-          dragSourcePanelIsSchedule: action.payload.ItIsSchedulePanel,
+          dragSourcePanelIsSchedule: action.payload.itIsSchedulePanel,
           draggingCard: action.payload.card,
           dragOverCard: null,
           dragOverGrid: null,
@@ -190,7 +190,7 @@ export function scheduleReducer(state = initialState, action) {
     case DRAG_ENTER_CARD:
       if (
         state.draggingCard !== null &&
-        action.payload.ItIsSchedulePanel &&
+        action.payload.itIsSchedulePanel &&
         !(
           action.payload.cardPlace === state.lastDragEnterCard &&
           action.payload.gridId === state.lastDragEnterGrid
@@ -225,7 +225,7 @@ export function scheduleReducer(state = initialState, action) {
       }
 
     case DRAG_ENTER_EMPTY_SPACE:
-      if (state.draggingCard !== null && action.payload.ItIsSchedulePanel) {
+      if (state.draggingCard !== null && action.payload.itIsSchedulePanel) {
         return {
           ...state,
           dragOverCard: state.cards[action.payload.gridId].gridCards.length,

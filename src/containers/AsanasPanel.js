@@ -55,7 +55,7 @@ function AsanasPanel(props) {
           dragSourcePanelIsSchedule={null}
           language={props.language}
           asanas={props.asanas.arr}
-          ItIsSchedulePanel={false}
+          itIsSchedulePanel={false}
           startCardDragAction={props.startCardDragAction}
           startGridDragAction={props.startGridDragAction}
           onDragIconMouseDownAction={() => {}}
@@ -83,18 +83,18 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startCardDragAction: (asanaId, gridId, ItIsSchedulePanel) =>
-      dispatch(startCardDragAction(asanaId, gridId, ItIsSchedulePanel)),
+    startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
+      dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
-    addAsanaAction: (asanaId, gridId, ItIsSchedulePanel, e) =>
-      dispatch(addAsanaAction(asanaId, gridId, ItIsSchedulePanel, e)),
-    dragEnterAction: (enterIndex, gridId, ItIsSchedulePanel) =>
-      dispatch(dragEnterAction(enterIndex, gridId, ItIsSchedulePanel)),
+    addAsanaAction: (asanaId, gridId, itIsSchedulePanel, e) =>
+      dispatch(addAsanaAction(asanaId, gridId, itIsSchedulePanel, e)),
+    dragEnterAction: (enterIndex, gridId, itIsSchedulePanel) =>
+      dispatch(dragEnterAction(enterIndex, gridId, itIsSchedulePanel)),
     onDragEnterHolder: (index, gridId) =>
       dispatch(onDragEnterHolder(index, gridId)),
-    onDragEnterEmptySpace: (gridId, ItIsSchedulePanel) =>
-      dispatch(onDragEnterEmptySpace(gridId, ItIsSchedulePanel))
+    onDragEnterEmptySpace: (gridId, itIsSchedulePanel) =>
+      dispatch(onDragEnterEmptySpace(gridId, itIsSchedulePanel))
   };
 };
 

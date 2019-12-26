@@ -48,7 +48,7 @@ function SchedulePanel(props) {
           dragSourcePanelIsSchedule={props.schedule.dragSourcePanelIsSchedule}
           language={props.language}
           asanas={props.asanas.arr}
-          ItIsSchedulePanel={true}
+          itIsSchedulePanel={true}
           startCardDragAction={props.startCardDragAction}
           startGridDragAction={props.startGridDragAction}
           onDragIconMouseDownAction={props.onDragIconMouseDownAction}
@@ -79,23 +79,23 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startCardDragAction: (asanaId, gridId, ItIsSchedulePanel) =>
-      dispatch(startCardDragAction(asanaId, gridId, ItIsSchedulePanel)),
+    startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
+      dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
     onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),
     onDragIconMouseUpAction: () => dispatch(onDragIconMouseUpAction()),
-    addAsanaAction: (asanaId, gridId, ItIsSchedulePanel, e) =>
-      dispatch(addAsanaAction(asanaId, gridId, ItIsSchedulePanel, e)),
+    addAsanaAction: (asanaId, gridId, itIsSchedulePanel, e) =>
+      dispatch(addAsanaAction(asanaId, gridId, itIsSchedulePanel, e)),
     closeCardAction: (cardIndex, gridId) =>
       dispatch(closeCardAction(cardIndex, gridId)),
     closeGridAction: gridId => dispatch(closeGridAction(gridId)),
-    dragEnterAction: (enterIndex, gridId, ItIsSchedulePanel) =>
-      dispatch(dragEnterAction(enterIndex, gridId, ItIsSchedulePanel)),
+    dragEnterAction: (enterIndex, gridId, itIsSchedulePanel) =>
+      dispatch(dragEnterAction(enterIndex, gridId, itIsSchedulePanel)),
     onDragEnterHolder: (index, gridId) =>
       dispatch(onDragEnterHolder(index, gridId)),
-    onDragEnterEmptySpace: (gridId, ItIsSchedulePanel) =>
-      dispatch(onDragEnterEmptySpace(gridId, ItIsSchedulePanel)),
+    onDragEnterEmptySpace: (gridId, itIsSchedulePanel) =>
+      dispatch(onDragEnterEmptySpace(gridId, itIsSchedulePanel)),
     dragEnterGridAction: gridId => dispatch(dragEnterGridAction(gridId)),
     onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction())
   };

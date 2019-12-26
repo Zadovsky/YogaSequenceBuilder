@@ -23,7 +23,7 @@ function createGridArr(props) {
         dragOverCard={props.dragOverCard}
         dragOverGrid={props.dragOverGrid}
         isDragging={
-          props.draggingGrid === null || !props.ItIsSchedulePanel
+          props.draggingGrid === null || !props.itIsSchedulePanel
             ? false
             : i === props.draggingGrid
         }
@@ -38,7 +38,7 @@ function createGridArr(props) {
         onDragEnterHolder={props.onDragEnterHolder}
         dragSourceGrid={props.dragSourceGrid}
         dragSourcePanelIsSchedule={props.dragSourcePanelIsSchedule}
-        ItIsSchedulePanel={props.ItIsSchedulePanel}
+        itIsSchedulePanel={props.itIsSchedulePanel}
         closeCardAction={props.closeCardAction}
         closeGridAction={() => props.closeGridAction(i)}
         enableCloseIcon={i === cardsArr.length - 1 ? false : true}

@@ -37,10 +37,10 @@ function makeCardsArr(props) {
     dragEnterAction,
     dragSourceGrid,
     dragSourcePanelIsSchedule,
-    ItIsSchedulePanel
+    itIsSchedulePanel
   } = props;
   return asanas.map((asana, i) => {
-    const asanaIndex = ItIsSchedulePanel ? i : asana.asanaIndex;
+    const asanaIndex = itIsSchedulePanel ? i : asana.asanaIndex;
 
     return (
       <AsanaCard
@@ -50,20 +50,20 @@ function makeCardsArr(props) {
         isDragging={
           draggingCard === null ||
           dragSourceGrid !== gridId ||
-          !ItIsSchedulePanel ||
+          !itIsSchedulePanel ||
           !dragSourcePanelIsSchedule
             ? false
             : i === draggingCard
         }
-        ItIsSchedulePanel={ItIsSchedulePanel}
+        itIsSchedulePanel={itIsSchedulePanel}
         startCardDragAction={() => {
-          startCardDragAction(asanaIndex, gridId, ItIsSchedulePanel);
+          startCardDragAction(asanaIndex, gridId, itIsSchedulePanel);
         }}
         dragEnterAction={() => {
-          dragEnterAction(asanaIndex, gridId, ItIsSchedulePanel);
+          dragEnterAction(asanaIndex, gridId, itIsSchedulePanel);
         }}
         addAsanaAction={e => {
-          addAsanaAction(asanaIndex, gridId, ItIsSchedulePanel, e);
+          addAsanaAction(asanaIndex, gridId, itIsSchedulePanel, e);
         }}
         closeCardAction={() => {
           closeCardAction(asanaIndex, gridId);
@@ -108,7 +108,7 @@ export default function AsanasGrid(props) {
     name,
     language,
     isDragging,
-    ItIsSchedulePanel,
+    itIsSchedulePanel,
     startGridDragAction,
     dragEnterGridAction,
     onDragEnterEmptySpace,
@@ -120,7 +120,7 @@ export default function AsanasGrid(props) {
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
-  const onDragOverFunc = ItIsSchedulePanel
+  const onDragOverFunc = itIsSchedulePanel
     ? e => {
         e.preventDefault();
       }
@@ -143,20 +143,20 @@ export default function AsanasGrid(props) {
       <Paper className={classes.root}>
         <TextField
           className={classes.textField}
-          defaultValue={ItIsSchedulePanel ? "Без названия" : name[language]}
+          defaultValue={itIsSchedulePanel ? "Без названия" : name[language]}
           InputProps={{
-            readOnly: ItIsSchedulePanel ? false : true
+            readOnly: itIsSchedulePanel ? false : true
           }}
         />
         <div className="AsanasGrid">
           {cardsHoldersArr}
           <EmptySpaceAtTheEnd
             onDragEnterEmptySpace={() =>
-              onDragEnterEmptySpace(gridId, ItIsSchedulePanel)
+              onDragEnterEmptySpace(gridId, itIsSchedulePanel)
             }
           />
         </div>
-        {ItIsSchedulePanel && enableCloseIcon ? (
+        {itIsSchedulePanel && enableCloseIcon ? (
           <div className="closeGridIconDiv">
             <IconButton className={classes.button} onClick={closeGridAction}>
               <CloseIcon />
@@ -165,7 +165,7 @@ export default function AsanasGrid(props) {
         ) : (
           ""
         )}
-        {ItIsSchedulePanel ? (
+        {itIsSchedulePanel ? (
           <div
             className="AsanasGridDragIcon"
             onMouseDown={onDragIconMouseDownAction}
