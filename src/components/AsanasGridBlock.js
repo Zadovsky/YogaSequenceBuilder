@@ -15,7 +15,11 @@ function createGridArr(props) {
     return (
       <AsanasGrid
         key={cards.gridKey}
-        name={cards.gridName}
+        name={
+          cards.defaultName
+            ? props.gridDefaultName
+            : cards.gridName
+        }
         gridId={i}
         asanas={asanas}
         draggingCard={props.draggingCard}

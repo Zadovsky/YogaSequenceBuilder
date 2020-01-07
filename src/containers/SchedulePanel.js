@@ -70,6 +70,7 @@ function SchedulePanel(props) {
           dragEnterGridAction={props.dragEnterGridAction}
           onDragEnterGridPhAction={props.onDragEnterGridPhAction}
           onChangeGridNameAction={props.onChangeGridNameAction}
+          gridDefaultName={props.schedule.gridDefaultName[props.language]}
         />
       </Paper>
     </div>

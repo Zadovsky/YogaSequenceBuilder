@@ -18,7 +18,10 @@ import {
 } from "../actions/AsanasGridActions";
 
 const initialState = {
-  cards: [{ gridCards: [], gridKey: 0, gridName: "" }],
+  cards: [{ gridCards: [], gridKey: 0, gridName: "", defaultName: true }],
+  gridDefaultName: {
+    ru: "Без названия"
+  },
   nextCardKey: 0,
   nextGridKey: 1,
   dragSourceGrid: null,
@@ -37,7 +40,12 @@ const initialState = {
 function addEmptyGrid(cards, nextGridKey) {
   var newGridKey = nextGridKey;
   if (cards.length === 0 || cards[cards.length - 1].gridCards.length !== 0) {
-    cards.push({ gridCards: [], gridKey: newGridKey, gridName: "" });
+    cards.push({
+      gridCards: [],
+      gridKey: newGridKey,
+      gridName: "",
+      defaultName: true
+    });
     newGridKey++;
   }
 
@@ -49,6 +57,7 @@ export function scheduleReducer(state = initialState, action) {
     case CHANGE_GRID_NAME:
       var cards = JSON.parse(JSON.stringify(state.cards));
       cards[action.payload.gridId].gridName = action.payload.value;
+      cards[action.payload.gridId].defaultName = false;
       return {
         ...state,
         cards: cards
