@@ -35,6 +35,12 @@ function SchedulePanel(props) {
           e.preventDefault();
         }
       : () => {};
+  const asanas = props.asanas.arr.map(asana => {
+    return {
+      ...asana,
+      asanaName: asana.asanaName[props.language]
+    };
+  });
 
   return (
     <div className="SchedulePanel" onDragOver={onDragOverFunc}>
@@ -47,8 +53,7 @@ function SchedulePanel(props) {
           fastTransition={props.schedule.fastTransition}
           dragSourceGrid={props.schedule.dragSourceGrid}
           dragSourcePanelIsSchedule={props.schedule.dragSourcePanelIsSchedule}
-          language={props.language}
-          asanas={props.asanas.arr}
+          asanas={asanas}
           itIsSchedulePanel={true}
           startCardDragAction={props.startCardDragAction}
           startGridDragAction={props.startGridDragAction}
@@ -100,7 +105,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(onDragEnterEmptySpace(gridId, itIsSchedulePanel)),
     dragEnterGridAction: gridId => dispatch(dragEnterGridAction(gridId)),
     onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction()),
-    onChangeGridNameAction: (gridId, e) => dispatch(onChangeGridNameAction(gridId, e))
+    onChangeGridNameAction: (gridId, e) =>
+      dispatch(onChangeGridNameAction(gridId, e))
   };
 };
 

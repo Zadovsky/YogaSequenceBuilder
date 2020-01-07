@@ -41,6 +41,12 @@ function createCardsArr(asanas, language) {
 function AsanasPanel(props) {
   const classes = useStyles();
   const cards = createCardsArr(props.asanas, props.language);
+  const asanas = props.asanas.arr.map(asana => {
+    return {
+      ...asana,
+      asanaName: asana.asanaName[props.language]
+    };
+  });
 
   return (
     <div className="AsanasPanel">
@@ -53,8 +59,7 @@ function AsanasPanel(props) {
           fastTransition={false}
           dragSourceGrid={null}
           dragSourcePanelIsSchedule={null}
-          language={props.language}
-          asanas={props.asanas.arr}
+          asanas={asanas}
           itIsSchedulePanel={false}
           startCardDragAction={props.startCardDragAction}
           startGridDragAction={props.startGridDragAction}

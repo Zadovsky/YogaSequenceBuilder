@@ -27,7 +27,6 @@ const useStyles = makeStyles(theme => ({
 
 function makeCardsArr(props) {
   const {
-    language,
     asanas,
     startCardDragAction,
     addAsanaAction,
@@ -44,7 +43,7 @@ function makeCardsArr(props) {
 
     return (
       <AsanaCard
-        name={asana.asanaName[language]}
+        name={asana.asanaName}
         img={asana.asanaImg}
         key={asana.cardKey}
         isDragging={

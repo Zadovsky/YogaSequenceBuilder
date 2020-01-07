@@ -17,7 +17,6 @@ function createGridArr(props) {
         key={cards.gridKey}
         name={cards.gridName}
         gridId={i}
-        language={props.language}
         asanas={asanas}
         draggingCard={props.draggingCard}
         dragOverCard={props.dragOverCard}
