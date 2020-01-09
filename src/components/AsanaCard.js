@@ -8,7 +8,8 @@ import CloseIcon from "@material-ui/icons/Close";
 const useStyles = makeStyles(theme => ({
   button: {
     position: "absolute",
-    right: 0
+    right: 0,
+    top: 0
   }
 }));
 
@@ -28,6 +29,15 @@ export default function AsanaCard(props) {
       draggable="true"
     >
       <div className="AsanaCardInnerDiv">
+        <div className="AsanaCardImgWrapper">
+          <div
+            className="AsanaCardImg"
+            style={{
+              backgroundImage: "url(" + props.img + ")",
+              backgroundSize: "cover"
+            }}
+          ></div>
+        </div>
         {props.itIsSchedulePanel ? (
           <IconButton
             className={classes.button}
@@ -38,13 +48,12 @@ export default function AsanaCard(props) {
         ) : (
           ""
         )}
-        <div
-          style={{
-            backgroundImage: "url(" + props.img + ")",
-            height: "200px"
-          }}
-        ></div>
-        <Typography variant="subtitle2" color="textPrimary" component="p">
+        <Typography
+          variant="subtitle2"
+          color="textPrimary"
+          component="p"
+          className="CardTypography"
+        >
           {props.name}
         </Typography>
       </div>
