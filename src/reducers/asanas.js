@@ -1,7 +1,9 @@
 const initialState = {
   groups: [
     { id: "stand", name: { ru: "Асаны стоя" } },
-    { id: "balance", name: { ru: "Балансы" } }
+    { id: "balance", name: { ru: "Балансы" } },
+    { id: "handbalance", name: { ru: "Балансы на руках" } },
+    { id: "forwardbend", name: { ru: "Наклоны" } }
   ],
   arr: [
     {
@@ -45,6 +47,41 @@ const initialState = {
       },
       asanaImg: "/img/vrikshasana.jpg",
       groupId: "balance"
+    },
+    {
+      asanaName: {
+        ru: "Вирабхадрасана 1"
+      },
+      asanaImg: "/img/vira1.jpg",
+      groupId: "stand"
+    },
+    {
+      asanaName: {
+        ru: "Лоласана"
+      },
+      asanaImg: "/img/lola.jpg",
+      groupId: "handbalance"
+    },
+    {
+      asanaName: {
+        ru: "Бакасана"
+      },
+      asanaImg: "/img/bak.jpg",
+      groupId: "handbalance"
+    },
+    {
+      asanaName: {
+        ru: "Бхуджапидасана"
+      },
+      asanaImg: "/img/bhudzh.jpg",
+      groupId: "handbalance"
+    },
+    {
+      asanaName: {
+        ru: "Пашчимоттанасана"
+      },
+      asanaImg: "/img/paschimot.jpg",
+      groupId: "forwardbend"
     }
   ]
 };
