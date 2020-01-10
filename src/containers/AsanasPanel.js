@@ -11,10 +11,12 @@ import {
 import { startGridDragAction } from "../actions/AsanasGridActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
+import "./AsanasPanel.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2)
+    padding: theme.spacing(3, 2),
+    height: "100%"
   }
 }));
 

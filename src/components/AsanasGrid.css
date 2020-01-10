@@ -17,6 +17,10 @@
   cursor: grabbing;
 }
 
+.AsanasGridDraggableWrapper {
+  height: auto;
+}
+
 .AsanasGridDraggable {
   height: 100%;
   overflow: hidden;

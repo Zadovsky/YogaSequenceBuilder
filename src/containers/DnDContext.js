@@ -1,10 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { endDrag, dragEnter } from "../actions/DnDContextActions";
+import "./DnDContext.css";
 
 function DnDContext(props) {
   return (
-    <div onDragEnd={props.endDragAction} onDragEnter={props.onDragEnterAction}>
+    <div
+      className="DnDContext"
+      onDragEnd={props.endDragAction}
+      onDragEnter={props.onDragEnterAction}
+    >
       {props.children}
     </div>
   );

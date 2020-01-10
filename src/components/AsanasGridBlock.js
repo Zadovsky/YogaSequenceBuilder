@@ -1,6 +1,7 @@
 import React from "react";
 import AsanasGrid from "../components/AsanasGrid";
 import GridPlaceHolder from "../components/GridPlaceHolder";
+import "./AsanasGridBlock.css";
 
 function createGridArr(props) {
   return props.cards.map((cards, i, cardsArr) => {
@@ -15,11 +16,7 @@ function createGridArr(props) {
     return (
       <AsanasGrid
         key={cards.gridKey}
-        name={
-          cards.defaultName
-            ? props.gridDefaultName
-            : cards.gridName
-        }
+        name={cards.defaultName ? props.gridDefaultName : cards.gridName}
         gridId={i}
         asanas={asanas}
         draggingCard={props.draggingCard}
@@ -87,5 +84,5 @@ export default function AsanasGridBlock(props) {
   const gridArr = createGridArr(props);
   const gridHoldersArr = createGridHolderArr(gridArr, props);
 
-  return <div className="AsanaGridBlock">{gridHoldersArr}</div>;
+  return <div className="AsanasGridBlock">{gridHoldersArr}</div>;
 }

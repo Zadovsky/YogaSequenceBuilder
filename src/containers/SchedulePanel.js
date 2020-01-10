@@ -20,10 +20,12 @@ import {
 import { onDragEnterGridPhAction } from "../actions/GridPlaceHolderActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
+import "./SchedulePanel.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2)
+    padding: theme.spacing(3, 2),
+    height: "100%"
   }
 }));
 

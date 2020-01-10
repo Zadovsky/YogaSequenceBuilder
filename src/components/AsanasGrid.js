@@ -130,53 +130,55 @@ export default function AsanasGrid(props) {
   const classStr = classArr.join(" ");
 
   return (
-    <div
-      className={classStr}
-      draggable="true"
-      onDragStart={e => {
-        startGridDragAction(gridId, e);
-      }}
-      onDragEnter={() => dragEnterGridAction(gridId)}
-      onDragOver={onDragOverFunc}
-    >
-      <Paper className={classes.root}>
-        <TextField
-          className={classes.textField}
-          value={name}
-          inputProps={{
-            readOnly: itIsSchedulePanel ? false : true,
-            onChange: e => onChangeGridNameAction(gridId, e)
-          }}
-        />
-        <div className="AsanasGrid">
-          {cardsHoldersArr}
-          <EmptySpaceAtTheEnd
-            onDragEnterEmptySpace={() =>
-              onDragEnterEmptySpace(gridId, itIsSchedulePanel)
-            }
+    <div className="AsanasGridDraggableWrapper">
+      <div
+        className={classStr}
+        draggable="true"
+        onDragStart={e => {
+          startGridDragAction(gridId, e);
+        }}
+        onDragEnter={() => dragEnterGridAction(gridId)}
+        onDragOver={onDragOverFunc}
+      >
+        <Paper className={classes.root}>
+          <TextField
+            className={classes.textField}
+            value={name}
+            inputProps={{
+              readOnly: itIsSchedulePanel ? false : true,
+              onChange: e => onChangeGridNameAction(gridId, e)
+            }}
           />
-        </div>
-        {itIsSchedulePanel && enableCloseIcon ? (
-          <div className="closeGridIconDiv">
-            <IconButton className={classes.button} onClick={closeGridAction}>
-              <CloseIcon />
-            </IconButton>
+          <div className="AsanasGrid">
+            {cardsHoldersArr}
+            <EmptySpaceAtTheEnd
+              onDragEnterEmptySpace={() =>
+                onDragEnterEmptySpace(gridId, itIsSchedulePanel)
+              }
+            />
           </div>
-        ) : (
-          ""
-        )}
-        {itIsSchedulePanel ? (
-          <div
-            className="AsanasGridDragIcon"
-            onMouseDown={onDragIconMouseDownAction}
-            onMouseUp={onDragIconMouseUpAction}
-          >
-            <DragIndicatorIcon fontSize="large" />
-          </div>
-        ) : (
-          ""
-        )}
-      </Paper>
+          {itIsSchedulePanel && enableCloseIcon ? (
+            <div className="closeGridIconDiv">
+              <IconButton className={classes.button} onClick={closeGridAction}>
+                <CloseIcon />
+              </IconButton>
+            </div>
+          ) : (
+            ""
+          )}
+          {itIsSchedulePanel ? (
+            <div
+              className="AsanasGridDragIcon"
+              onMouseDown={onDragIconMouseDownAction}
+              onMouseUp={onDragIconMouseUpAction}
+            >
+              <DragIndicatorIcon fontSize="large" />
+            </div>
+          ) : (
+            ""
+          )}
+        </Paper>
+      </div>
     </div>
   );
 }
