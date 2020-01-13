@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import AsanasNavigation from "../components/AsanasNavigation";
 import AsanasGridBlock from "../components/AsanasGridBlock";
 import {
   addAsanaAction,
@@ -49,10 +50,17 @@ function AsanasPanel(props) {
       asanaName: asana.asanaName[props.language]
     };
   });
+  const groups = props.asanas.groups.map(group => {
+    return {
+      ...group,
+      name: group.name[props.language]
+    };
+  });
 
   return (
     <div className="AsanasPanel">
       <Paper className={classes.root}>
+        <AsanasNavigation groups={groups} />
         <AsanasGridBlock
           cards={cards}
           draggingCard={null}
