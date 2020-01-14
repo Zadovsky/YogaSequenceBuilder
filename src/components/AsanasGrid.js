@@ -1,4 +1,5 @@
 import React from "react";
+import AsanasGridWrapper from "../components/AsanasGridWrapper";
 import Paper from "@material-ui/core/Paper";
 import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import TextField from "@material-ui/core/TextField";
@@ -130,7 +131,7 @@ export default function AsanasGrid(props) {
   const classStr = classArr.join(" ");
 
   return (
-    <div className="AsanasGridDraggableWrapper">
+    <AsanasGridWrapper>
       <div
         className={classStr}
         draggable="true"
@@ -179,6 +180,6 @@ export default function AsanasGrid(props) {
           )}
         </Paper>
       </div>
-    </div>
+    </AsanasGridWrapper>
   );
 }
