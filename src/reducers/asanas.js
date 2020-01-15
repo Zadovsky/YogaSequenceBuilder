@@ -1,10 +1,13 @@
+import { ON_CLICK_ASANAS_NAVIGATION } from "../actions/AsanasNavigationActions";
+
 const initialState = {
   groups: [
     { id: "stand", name: { ru: "Асаны стоя" } },
     { id: "balance", name: { ru: "Балансы" } },
     { id: "handbalance", name: { ru: "Балансы на руках" } },
-    { id: "forwardbend", name: { ru: "Наклоны" } }
+    { id: "forwardfold", name: { ru: "Наклоны" } }
   ],
+  selectedGroupId: null,
   arr: [
     {
       asanaName: {
@@ -81,11 +84,17 @@ const initialState = {
         ru: "Пашчимоттанасана"
       },
       asanaImg: "/img/paschimot.jpg",
-      groupId: "forwardbend"
+      groupId: "forwardfold"
     }
   ]
 };
 
 export function asanasReducer(state = initialState, action) {
-  return state;
+  switch (action.type) {
+    case ON_CLICK_ASANAS_NAVIGATION:
+      return { ...state, selectedGroupId: action.payload };
+
+    default:
+      return state;
+  }
 }

@@ -9,7 +9,9 @@ export default function AsanasNavigation(props) {
         variant="outlined"
         key={group.id}
         label={group.name}
-        onClick={() => {}}
+        onClick={() => {
+          props.onClick(group.id);
+        }}
       />
     );
   });

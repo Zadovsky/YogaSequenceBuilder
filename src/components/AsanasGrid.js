@@ -115,7 +115,8 @@ export default function AsanasGrid(props) {
     onDragIconMouseDownAction,
     enableCloseIcon,
     closeGridAction,
-    onChangeGridNameAction
+    onChangeGridNameAction,
+    scrollIntoView
   } = props;
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
@@ -131,7 +132,7 @@ export default function AsanasGrid(props) {
   const classStr = classArr.join(" ");
 
   return (
-    <AsanasGridWrapper>
+    <AsanasGridWrapper scrollIntoView={scrollIntoView}>
       <div
         className={classStr}
         draggable="true"

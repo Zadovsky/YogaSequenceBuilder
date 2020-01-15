@@ -12,6 +12,7 @@ import {
 import { startGridDragAction } from "../actions/AsanasGridActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
+import { onClickAsanasNavigation } from "../actions/AsanasNavigationActions";
 import "./AsanasPanel.css";
 
 const useStyles = makeStyles(theme => ({
@@ -60,7 +61,10 @@ function AsanasPanel(props) {
   return (
     <div className="AsanasPanel">
       <Paper className={classes.root}>
-        <AsanasNavigation groups={groups} />
+        <AsanasNavigation
+          groups={groups}
+          onClick={props.onClickAsanasNavigation}
+        />
         <AsanasGridBlock
           cards={cards}
           draggingCard={null}
@@ -84,6 +88,7 @@ function AsanasPanel(props) {
           gridHeight={null}
           dragEnterGridAction={() => {}}
           onChangeGridNameAction={() => {}}
+          selectedGroupId={props.asanas.selectedGroupId}
         />
       </Paper>
     </div>
@@ -99,6 +104,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onClickAsanasNavigation: groupId =>
+      dispatch(onClickAsanasNavigation(groupId)),
     startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
       dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
     startGridDragAction: (gridId, e) =>
