@@ -74,6 +74,7 @@ function SchedulePanel(props) {
           onChangeGridNameAction={props.onChangeGridNameAction}
           gridDefaultName={props.schedule.gridDefaultName[props.language]}
           selectedGroupId={null}
+          onGridBlockScroll={() => {}}
         />
       </Paper>
     </div>
