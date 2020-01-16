@@ -3,8 +3,10 @@ import { asanasArrReducer } from "./asanasArr";
 import { scheduleReducer } from "./schedule";
 import { languageReducer } from "./language";
 import { asanasReducer } from "./asanas";
+import { pageTopReducer } from "./pageTop";
 
 export const rootReducer = combineReducers({
+  pageTop: pageTopReducer,
   language: languageReducer,
   schedule: scheduleReducer,
   asanasArr: asanasArrReducer,

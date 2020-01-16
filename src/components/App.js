@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AsanasPanel from "../containers/AsanasPanel";
 import SchedulePanel from "../containers/SchedulePanel";
 import DnDContext from "../containers/DnDContext";
+import PageTop from "../containers/PageTop";
 import "./App.css";
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +24,11 @@ export default function App(props) {
         <CssBaseline />
         <DnDContext>
           <Container maxWidth="lg" className={classes.root}>
+            <Grid container spacing={3}>
+              <Grid item xs>
+                <PageTop />
+              </Grid>
+            </Grid>
             <Grid container spacing={3} className={classes.root}>
               <Grid item xs={6} className={classes.root}>
                 <AsanasPanel />
