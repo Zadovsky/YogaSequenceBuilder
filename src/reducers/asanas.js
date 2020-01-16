@@ -5,7 +5,7 @@ const initialState = {
   selectedGroupId: null
 };
 
-export function asanasPanelReducer(state = initialState, action) {
+export function asanasReducer(state = initialState, action) {
   switch (action.type) {
     case ON_CLICK_ASANAS_NAVIGATION:
       return { ...state, selectedGroupId: action.payload };

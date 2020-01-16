@@ -89,7 +89,7 @@ function AsanasPanel(props) {
           gridHeight={null}
           dragEnterGridAction={() => {}}
           onChangeGridNameAction={() => {}}
-          selectedGroupId={props.asanasPanel.selectedGroupId}
+          selectedGroupId={props.asanas.selectedGroupId}
           onGridBlockScroll={props.onGridBlockScroll}
         />
       </Paper>
@@ -101,7 +101,7 @@ const mapStateToProps = store => {
   return {
     language: store.language,
     asanasArr: store.asanasArr,
-    asanasPanel: store.asanasPanel
+    asanas: store.asanas
   };
 };
 
