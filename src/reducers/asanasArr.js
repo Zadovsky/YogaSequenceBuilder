@@ -86,6 +86,6 @@ const initialState = {
   ]
 };
 
-export function asanasReducer(state = initialState, action) {
+export function asanasArrReducer(state = initialState, action) {
   return state;
 }

@@ -45,14 +45,14 @@ function createCardsArr(asanas, language) {
 
 function AsanasPanel(props) {
   const classes = useStyles();
-  const cards = createCardsArr(props.asanas, props.language);
-  const asanas = props.asanas.arr.map(asana => {
+  const cards = createCardsArr(props.asanasArr, props.language);
+  const asanas = props.asanasArr.arr.map(asana => {
     return {
       ...asana,
       asanaName: asana.asanaName[props.language]
     };
   });
-  const groups = props.asanas.groups.map(group => {
+  const groups = props.asanasArr.groups.map(group => {
     return {
       ...group,
       name: group.name[props.language]
@@ -100,7 +100,7 @@ function AsanasPanel(props) {
 const mapStateToProps = store => {
   return {
     language: store.language,
-    asanas: store.asanas,
+    asanasArr: store.asanasArr,
     asanasPanel: store.asanasPanel
   };
 };

@@ -37,7 +37,7 @@ function SchedulePanel(props) {
           e.preventDefault();
         }
       : () => {};
-  const asanas = props.asanas.arr.map(asana => {
+  const asanas = props.asanasArr.arr.map(asana => {
     return {
       ...asana,
       asanaName: asana.asanaName[props.language]
@@ -84,7 +84,7 @@ function SchedulePanel(props) {
 const mapStateToProps = store => {
   return {
     language: store.language,
-    asanas: store.asanas,
+    asanasArr: store.asanasArr,
     schedule: store.schedule
   };
 };
