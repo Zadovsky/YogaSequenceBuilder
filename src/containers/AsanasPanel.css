@@ -1,3 +1,14 @@
 .AsanasPanel {
   height: 100%;
 }
+
+.AsanasPanelFlexBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.AsanasPanelFlexElement {
+  overflow: auto;
+  flex-grow: 3;
+}

@@ -62,36 +62,40 @@ function AsanasPanel(props) {
   return (
     <div className="AsanasPanel">
       <Paper className={classes.root}>
-        <AsanasNavigation
-          groups={groups}
-          onClick={props.onClickAsanasNavigation}
-        />
-        <AsanasGridBlock
-          cards={cards}
-          draggingCard={null}
-          dragOverCard={null}
-          dragOverGrid={null}
-          fastTransition={false}
-          dragSourceGrid={null}
-          dragSourcePanelIsSchedule={null}
-          asanas={asanas}
-          itIsSchedulePanel={false}
-          startCardDragAction={props.startCardDragAction}
-          startGridDragAction={props.startGridDragAction}
-          onDragIconMouseDownAction={() => {}}
-          onDragIconMouseUpAction={() => {}}
-          addAsanaAction={props.addAsanaAction}
-          dragEnterAction={props.dragEnterAction}
-          onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-          onDragEnterHolder={props.onDragEnterHolder}
-          closeCardAction={props.closeCardAction}
-          draggingGrid={null}
-          gridHeight={null}
-          dragEnterGridAction={() => {}}
-          onChangeGridNameAction={() => {}}
-          selectedGroupId={props.asanas.selectedGroupId}
-          onGridBlockScroll={props.onGridBlockScroll}
-        />
+        <div className="AsanasPanelFlexBox">
+          <AsanasNavigation
+            groups={groups}
+            onClick={props.onClickAsanasNavigation}
+          />
+          <div className="AsanasPanelFlexElement">
+            <AsanasGridBlock
+              cards={cards}
+              draggingCard={null}
+              dragOverCard={null}
+              dragOverGrid={null}
+              fastTransition={false}
+              dragSourceGrid={null}
+              dragSourcePanelIsSchedule={null}
+              asanas={asanas}
+              itIsSchedulePanel={false}
+              startCardDragAction={props.startCardDragAction}
+              startGridDragAction={props.startGridDragAction}
+              onDragIconMouseDownAction={() => {}}
+              onDragIconMouseUpAction={() => {}}
+              addAsanaAction={props.addAsanaAction}
+              dragEnterAction={props.dragEnterAction}
+              onDragEnterEmptySpace={props.onDragEnterEmptySpace}
+              onDragEnterHolder={props.onDragEnterHolder}
+              closeCardAction={props.closeCardAction}
+              draggingGrid={null}
+              gridHeight={null}
+              dragEnterGridAction={() => {}}
+              onChangeGridNameAction={() => {}}
+              selectedGroupId={props.asanas.selectedGroupId}
+              onGridBlockScroll={props.onGridBlockScroll}
+            />
+          </div>
+        </div>
       </Paper>
     </div>
   );
