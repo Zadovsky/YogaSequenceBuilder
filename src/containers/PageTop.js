@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import "./PageTop.css";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {}
@@ -13,7 +14,9 @@ function PageTop(props) {
 
   return (
     <Paper className={classes.root}>
-      <div>{props.pageTop.headerText[props.language]}</div>
+      <Typography variant="h4" component="h1" align="center">
+        {props.pageTop.headerText[props.language]}
+      </Typography>
     </Paper>
   );
 }
