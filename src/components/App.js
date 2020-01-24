@@ -12,6 +12,12 @@ import "./App.css";
 const useStyles = makeStyles(theme => ({
   root: {
     height: "100%"
+  },
+  navPanel: {
+    height: "10%"
+  },
+  gridPanel: {
+    height: "90%"
   }
 }));
 
@@ -24,16 +30,14 @@ export default function App(props) {
         <CssBaseline />
         <DnDContext>
           <Container maxWidth="lg" className={classes.root}>
-            <Grid container spacing={3}>
-              <Grid item xs>
+            <Grid container spacing={3} className={classes.root}>
+              <Grid item xs={12} className={classes.navPanel}>
                 <PageTop />
               </Grid>
-            </Grid>
-            <Grid container spacing={3} className={classes.root}>
-              <Grid item xs={6} className={classes.root}>
+              <Grid item xs={6} className={classes.gridPanel}>
                 <AsanasPanel />
               </Grid>
-              <Grid item xs={6} className={classes.root}>
+              <Grid item xs={6} className={classes.gridPanel}>
                 <SchedulePanel />
               </Grid>
             </Grid>
