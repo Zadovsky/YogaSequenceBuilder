@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
 import {
   addAsanaAction,
@@ -24,7 +25,7 @@ import "./SchedulePanel.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(1, 2, 3),
     height: "100%"
   }
 }));
@@ -47,35 +48,44 @@ function SchedulePanel(props) {
   return (
     <div className="SchedulePanel" onDragOver={onDragOverFunc}>
       <Paper className={classes.root}>
-        <AsanasGridBlock
-          cards={props.schedule.cards}
-          draggingCard={props.schedule.draggingCard}
-          dragOverCard={props.schedule.dragOverCard}
-          dragOverGrid={props.schedule.dragOverGrid}
-          fastTransition={props.schedule.fastTransition}
-          dragSourceGrid={props.schedule.dragSourceGrid}
-          dragSourcePanelIsSchedule={props.schedule.dragSourcePanelIsSchedule}
-          asanas={asanas}
-          itIsSchedulePanel={true}
-          startCardDragAction={props.startCardDragAction}
-          startGridDragAction={props.startGridDragAction}
-          onDragIconMouseDownAction={props.onDragIconMouseDownAction}
-          onDragIconMouseUpAction={props.onDragIconMouseUpAction}
-          addAsanaAction={props.addAsanaAction}
-          dragEnterAction={props.dragEnterAction}
-          onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-          onDragEnterHolder={props.onDragEnterHolder}
-          closeCardAction={props.closeCardAction}
-          closeGridAction={props.closeGridAction}
-          draggingGrid={props.schedule.draggingGrid}
-          gridHeight={props.schedule.gridHeight}
-          dragEnterGridAction={props.dragEnterGridAction}
-          onDragEnterGridPhAction={props.onDragEnterGridPhAction}
-          onChangeGridNameAction={props.onChangeGridNameAction}
-          gridDefaultName={props.schedule.gridDefaultName[props.language]}
-          selectedGroupId={null}
-          onGridBlockScroll={() => {}}
-        />
+        <div className="SchedulePanelFlexBox">
+          <div className="PanelNameWraper">
+            <PanelName name="Ваш комплекс" readOnly={false} />
+          </div>
+          <div className="SchedulePanelFlexElement">
+            <AsanasGridBlock
+              cards={props.schedule.cards}
+              draggingCard={props.schedule.draggingCard}
+              dragOverCard={props.schedule.dragOverCard}
+              dragOverGrid={props.schedule.dragOverGrid}
+              fastTransition={props.schedule.fastTransition}
+              dragSourceGrid={props.schedule.dragSourceGrid}
+              dragSourcePanelIsSchedule={
+                props.schedule.dragSourcePanelIsSchedule
+              }
+              asanas={asanas}
+              itIsSchedulePanel={true}
+              startCardDragAction={props.startCardDragAction}
+              startGridDragAction={props.startGridDragAction}
+              onDragIconMouseDownAction={props.onDragIconMouseDownAction}
+              onDragIconMouseUpAction={props.onDragIconMouseUpAction}
+              addAsanaAction={props.addAsanaAction}
+              dragEnterAction={props.dragEnterAction}
+              onDragEnterEmptySpace={props.onDragEnterEmptySpace}
+              onDragEnterHolder={props.onDragEnterHolder}
+              closeCardAction={props.closeCardAction}
+              closeGridAction={props.closeGridAction}
+              draggingGrid={props.schedule.draggingGrid}
+              gridHeight={props.schedule.gridHeight}
+              dragEnterGridAction={props.dragEnterGridAction}
+              onDragEnterGridPhAction={props.onDragEnterGridPhAction}
+              onChangeGridNameAction={props.onChangeGridNameAction}
+              gridDefaultName={props.schedule.gridDefaultName[props.language]}
+              selectedGroupId={null}
+              onGridBlockScroll={() => {}}
+            />
+          </div>
+        </div>
       </Paper>
     </div>
   );

@@ -64,10 +64,12 @@ function AsanasPanel(props) {
     <div className="AsanasPanel">
       <Paper className={classes.root}>
         <div className="AsanasPanelFlexBox">
-          <PanelName
-            name={props.asanas.panelName[props.language]}
-            readOnly={true}
-          />
+          <div className="PanelNameWraper">
+            <PanelName
+              name={props.asanas.panelName[props.language]}
+              readOnly={true}
+            />
+          </div>
           <AsanasNavigation
             groups={groups}
             onClick={props.onClickAsanasNavigation}
