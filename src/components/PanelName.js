@@ -1,24 +1,28 @@
 import React from "react";
 import "./PanelName.css";
-import { Typography } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing(0, 0, 1)
+    margin: theme.spacing(0, 0, 2)
   }
 }));
+
+const styles = {
+  resize: { fontSize: "1.5rem" }
+};
 
 export default function PanelName(props) {
   const classes = useStyles();
   return (
-    <Typography
-      variant="h6"
-      component="p"
-      align="center"
+    <TextField
       className={classes.root}
-    >
-      {props.name}
-    </Typography>
+      value={props.name}
+      inputProps={{
+        readOnly: props.readOnly,
+        style: styles.resize
+      }}
+    />
   );
 }
