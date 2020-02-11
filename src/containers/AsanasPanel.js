@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import PanelName from "../components/PanelName";
 import AsanasNavigation from "../components/AsanasNavigation";
 import AsanasGridBlock from "../components/AsanasGridBlock";
 import {
@@ -18,7 +19,7 @@ import "./AsanasPanel.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(1, 2, 3),
     height: "100%"
   }
 }));
@@ -63,6 +64,10 @@ function AsanasPanel(props) {
     <div className="AsanasPanel">
       <Paper className={classes.root}>
         <div className="AsanasPanelFlexBox">
+          <PanelName
+            name={props.asanas.panelName[props.language]}
+            readOnly={true}
+          />
           <AsanasNavigation
             groups={groups}
             onClick={props.onClickAsanasNavigation}

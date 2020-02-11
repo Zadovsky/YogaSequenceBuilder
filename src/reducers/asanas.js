@@ -2,7 +2,10 @@ import { ON_CLICK_ASANAS_NAVIGATION } from "../actions/AsanasNavigationActions";
 import { GRID_BLOCK_SCROLL } from "../actions/AsanasGridBlockActions";
 
 const initialState = {
-  selectedGroupId: null
+  selectedGroupId: null,
+  panelName: {
+    ru: "Каталог асан"
+  }
 };
 
 export function asanasReducer(state = initialState, action) {
