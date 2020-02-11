@@ -32,17 +32,52 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SchedulePanel(props) {
+  const {
+    draggingGrid,
+    isPanelNameDef,
+    panelDefaultName,
+    panelName,
+    cards,
+    draggingCard,
+    dragOverCard,
+    dragOverGrid,
+    fastTransition,
+    dragSourceGrid,
+    dragSourcePanelIsSchedule,
+    gridHeight,
+    gridDefaultName
+  } = props.schedule;
+
+  const {
+    asanasArr,
+    language,
+    onChangePanelNameAction,
+    startCardDragAction,
+    startGridDragAction,
+    onDragIconMouseDownAction,
+    onDragIconMouseUpAction,
+    addAsanaAction,
+    dragEnterAction,
+    onDragEnterEmptySpace,
+    onDragEnterHolder,
+    closeCardAction,
+    closeGridAction,
+    dragEnterGridAction,
+    onDragEnterGridPhAction,
+    onChangeGridNameAction
+  } = props;
+
   const classes = useStyles();
   const onDragOverFunc =
-    props.schedule.draggingGrid !== null
+    draggingGrid !== null
       ? e => {
           e.preventDefault();
         }
       : () => {};
-  const asanas = props.asanasArr.arr.map(asana => {
+  const asanas = asanasArr.arr.map(asana => {
     return {
       ...asana,
-      asanaName: asana.asanaName[props.language]
+      asanaName: asana.asanaName[language]
     };
   });
 
@@ -52,44 +87,38 @@ function SchedulePanel(props) {
         <div className="SchedulePanelFlexBox">
           <div className="PanelNameWraper">
             <PanelName
-              name={
-                props.schedule.isPanelNameDef
-                  ? props.schedule.panelDefaultName[props.language]
-                  : props.schedule.panelName
-              }
-              onChangePanelNameAction={props.onChangePanelNameAction}
+              name={isPanelNameDef ? panelDefaultName[language] : panelName}
+              onChangePanelNameAction={onChangePanelNameAction}
               readOnly={false}
             />
           </div>
           <div className="SchedulePanelFlexElement">
             <AsanasGridBlock
-              cards={props.schedule.cards}
-              draggingCard={props.schedule.draggingCard}
-              dragOverCard={props.schedule.dragOverCard}
-              dragOverGrid={props.schedule.dragOverGrid}
-              fastTransition={props.schedule.fastTransition}
-              dragSourceGrid={props.schedule.dragSourceGrid}
-              dragSourcePanelIsSchedule={
-                props.schedule.dragSourcePanelIsSchedule
-              }
+              cards={cards}
+              draggingCard={draggingCard}
+              dragOverCard={dragOverCard}
+              dragOverGrid={dragOverGrid}
+              fastTransition={fastTransition}
+              dragSourceGrid={dragSourceGrid}
+              dragSourcePanelIsSchedule={dragSourcePanelIsSchedule}
               asanas={asanas}
               itIsSchedulePanel={true}
-              startCardDragAction={props.startCardDragAction}
-              startGridDragAction={props.startGridDragAction}
-              onDragIconMouseDownAction={props.onDragIconMouseDownAction}
-              onDragIconMouseUpAction={props.onDragIconMouseUpAction}
-              addAsanaAction={props.addAsanaAction}
-              dragEnterAction={props.dragEnterAction}
-              onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-              onDragEnterHolder={props.onDragEnterHolder}
-              closeCardAction={props.closeCardAction}
-              closeGridAction={props.closeGridAction}
-              draggingGrid={props.schedule.draggingGrid}
-              gridHeight={props.schedule.gridHeight}
-              dragEnterGridAction={props.dragEnterGridAction}
-              onDragEnterGridPhAction={props.onDragEnterGridPhAction}
-              onChangeGridNameAction={props.onChangeGridNameAction}
-              gridDefaultName={props.schedule.gridDefaultName[props.language]}
+              startCardDragAction={startCardDragAction}
+              startGridDragAction={startGridDragAction}
+              onDragIconMouseDownAction={onDragIconMouseDownAction}
+              onDragIconMouseUpAction={onDragIconMouseUpAction}
+              addAsanaAction={addAsanaAction}
+              dragEnterAction={dragEnterAction}
+              onDragEnterEmptySpace={onDragEnterEmptySpace}
+              onDragEnterHolder={onDragEnterHolder}
+              closeCardAction={closeCardAction}
+              closeGridAction={closeGridAction}
+              draggingGrid={draggingGrid}
+              gridHeight={gridHeight}
+              dragEnterGridAction={dragEnterGridAction}
+              onDragEnterGridPhAction={onDragEnterGridPhAction}
+              onChangeGridNameAction={onChangeGridNameAction}
+              gridDefaultName={gridDefaultName[language]}
               selectedGroupId={null}
               onGridBlockScroll={() => {}}
             />
