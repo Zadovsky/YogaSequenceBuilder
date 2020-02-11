@@ -21,6 +21,7 @@ import {
 import { onDragEnterGridPhAction } from "../actions/GridPlaceHolderActions";
 import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
+import { onChangePanelNameAction } from "../actions/PanelNameActions";
 import "./SchedulePanel.css";
 
 const useStyles = makeStyles(theme => ({
@@ -50,7 +51,15 @@ function SchedulePanel(props) {
       <Paper className={classes.root}>
         <div className="SchedulePanelFlexBox">
           <div className="PanelNameWraper">
-            <PanelName name="Ваш комплекс" readOnly={false} />
+            <PanelName
+              name={
+                props.schedule.isPanelNameDef
+                  ? props.schedule.panelDefaultName[props.language]
+                  : props.schedule.panelName
+              }
+              onChangePanelNameAction={props.onChangePanelNameAction}
+              readOnly={false}
+            />
           </div>
           <div className="SchedulePanelFlexElement">
             <AsanasGridBlock
@@ -121,7 +130,8 @@ const mapDispatchToProps = dispatch => {
     dragEnterGridAction: gridId => dispatch(dragEnterGridAction(gridId)),
     onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction()),
     onChangeGridNameAction: (gridId, e) =>
-      dispatch(onChangeGridNameAction(gridId, e))
+      dispatch(onChangeGridNameAction(gridId, e)),
+    onChangePanelNameAction: e => dispatch(onChangePanelNameAction(e))
   };
 };
 

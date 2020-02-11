@@ -8,6 +8,7 @@ import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
 import { DRAG_ENTER_GRID_PH } from "../actions/GridPlaceHolderActions";
+import { CHANGE_PANEL_NAME } from "../actions/PanelNameActions";
 import {
   DRAG_ICON_MOUSE_DOWN,
   DRAG_ICON_MOUSE_UP,
@@ -18,6 +19,9 @@ import {
 } from "../actions/AsanasGridActions";
 
 const initialState = {
+  panelDefaultName: { ru: "Ваш комплекс" },
+  panelName: "",
+  isPanelNameDef: true,
   cards: [{ gridCards: [], gridKey: 0, gridName: "", defaultName: true }],
   gridDefaultName: {
     ru: "Без названия"
@@ -54,6 +58,13 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_PANEL_NAME:
+      return {
+        ...state,
+        panelName: action.payload,
+        isPanelNameDef: false
+      };
+
     case CHANGE_GRID_NAME:
       var cards = JSON.parse(JSON.stringify(state.cards));
       cards[action.payload.gridId].gridName = action.payload.value;

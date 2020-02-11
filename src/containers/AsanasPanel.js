@@ -66,7 +66,7 @@ function AsanasPanel(props) {
         <div className="AsanasPanelFlexBox">
           <div className="PanelNameWraper">
             <PanelName
-              name={props.asanas.panelName[props.language]}
+              name={props.asanas.panelDefaultName[props.language]}
               readOnly={true}
             />
           </div>

@@ -3,7 +3,7 @@ import { GRID_BLOCK_SCROLL } from "../actions/AsanasGridBlockActions";
 
 const initialState = {
   selectedGroupId: null,
-  panelName: {
+  panelDefaultName: {
     ru: "Каталог асан"
   }
 };

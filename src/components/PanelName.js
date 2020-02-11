@@ -21,6 +21,7 @@ export default function PanelName(props) {
       value={props.name}
       inputProps={{
         readOnly: props.readOnly,
+        onChange: e => props.onChangePanelNameAction(e),
         style: styles.resize
       }}
     />
