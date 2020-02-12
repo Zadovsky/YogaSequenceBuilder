@@ -1,0 +1,13 @@
+.langItemWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.langItemWrapper p {
+  margin: 0;
+}
+
+.langItemWrapper img {
+  width: 24px;
+  margin-right: 8px;
+}
