@@ -77,7 +77,7 @@ function SchedulePanel(props) {
   const asanas = asanasArr.arr.map(asana => {
     return {
       ...asana,
-      asanaName: asana.asanaName[language]
+      asanaName: asana.asanaName[language.curLang]
     };
   });
 
@@ -87,7 +87,9 @@ function SchedulePanel(props) {
         <div className="SchedulePanelFlexBox">
           <div className="PanelNameWraper">
             <PanelName
-              name={isPanelNameDef ? panelDefaultName[language] : panelName}
+              name={
+                isPanelNameDef ? panelDefaultName[language.curLang] : panelName
+              }
               onChangePanelNameAction={onChangePanelNameAction}
               readOnly={false}
             />
@@ -118,7 +120,7 @@ function SchedulePanel(props) {
               dragEnterGridAction={dragEnterGridAction}
               onDragEnterGridPhAction={onDragEnterGridPhAction}
               onChangeGridNameAction={onChangeGridNameAction}
-              gridDefaultName={gridDefaultName[language]}
+              gridDefaultName={gridDefaultName[language.curLang]}
               selectedGroupId={null}
               onGridBlockScroll={() => {}}
             />

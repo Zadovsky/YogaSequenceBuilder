@@ -46,17 +46,17 @@ function createCardsArr(asanas, language) {
 
 function AsanasPanel(props) {
   const classes = useStyles();
-  const cards = createCardsArr(props.asanasArr, props.language);
+  const cards = createCardsArr(props.asanasArr, props.language.curLang);
   const asanas = props.asanasArr.arr.map(asana => {
     return {
       ...asana,
-      asanaName: asana.asanaName[props.language]
+      asanaName: asana.asanaName[props.language.curLang]
     };
   });
   const groups = props.asanasArr.groups.map(group => {
     return {
       ...group,
-      name: group.name[props.language]
+      name: group.name[props.language.curLang]
     };
   });
 
@@ -66,7 +66,7 @@ function AsanasPanel(props) {
         <div className="AsanasPanelFlexBox">
           <div className="PanelNameWraper">
             <PanelName
-              name={props.asanas.panelDefaultName[props.language]}
+              name={props.asanas.panelDefaultName[props.language.curLang]}
               readOnly={true}
             />
           </div>

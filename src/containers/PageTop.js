@@ -22,10 +22,10 @@ function PageTop(props) {
       <LanguageChooser language="ru" />
       <Divider variant="middle" />
       <Typography variant="h4" component="h1" align="center">
-        {props.pageTop.headerText[props.language]}
+        {props.pageTop.headerText[props.language.curLang]}
       </Typography>
       <Typography variant="body1" className={classes.instruction}>
-        {props.pageTop.instructionText[props.language]}
+        {props.pageTop.instructionText[props.language.curLang]}
       </Typography>
     </Paper>
   );
