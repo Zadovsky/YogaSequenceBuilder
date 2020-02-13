@@ -19,12 +19,13 @@ import {
 } from "../actions/AsanasGridActions";
 
 const initialState = {
-  panelDefaultName: { ru: "Ваш комплекс" },
+  panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
   panelName: "",
   isPanelNameDef: true,
   cards: [{ gridCards: [], gridKey: 0, gridName: "", defaultName: true }],
   gridDefaultName: {
-    ru: "Без названия"
+    ru: "Без названия",
+    en: "noname"
   },
   nextCardKey: 0,
   nextGridKey: 1,
