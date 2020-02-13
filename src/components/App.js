@@ -16,13 +16,13 @@ export default function App(props) {
         <DnDContext>
           <Container maxWidth="lg" style={{ height: "100%" }}>
             <Grid container spacing={3} style={{ height: "100%" }}>
-              <Grid item xs={12} style={{ height: "15%" }}>
+              <Grid item xs={12} style={{ height: "17%" }}>
                 <PageTop />
               </Grid>
-              <Grid item xs={6} style={{ height: "85%" }}>
+              <Grid item xs={6} style={{ height: "83%" }}>
                 <AsanasPanel />
               </Grid>
-              <Grid item xs={6} style={{ height: "85%" }}>
+              <Grid item xs={6} style={{ height: "83%" }}>
                 <SchedulePanel />
               </Grid>
             </Grid>
