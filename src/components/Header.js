@@ -1,5 +1,6 @@
 import React from "react";
 import LanguageChooser from "../components/LanguageChooser";
+import SignInRegButtons from "../components/SignInRegButtons";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import "./Header.css";
@@ -23,7 +24,9 @@ export default function Header(props) {
           onChangeAction={props.onChangeAction}
         />
       </Grid>
-      <Grid item xs={4}></Grid>
+      <Grid item xs={4} style={{ textAlign: "center" }}>
+        <SignInRegButtons />
+      </Grid>
     </Grid>
   );
 }
