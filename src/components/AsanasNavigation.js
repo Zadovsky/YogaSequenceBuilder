@@ -1,8 +1,17 @@
 import React from "react";
 import Chip from "@material-ui/core/Chip";
 import "./AsanasNavigation.css";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+  asanasNavigation: {
+    margin: theme.spacing(0, 0, 1)
+  }
+}));
 
 export default function AsanasNavigation(props) {
+  const classes = useStyles();
+
   const menuItems = props.groups.map(group => {
     return (
       <Chip
@@ -15,5 +24,6 @@ export default function AsanasNavigation(props) {
       />
     );
   });
-  return <div className="AsanasNavigation">{menuItems}</div>;
+
+  return <div className={classes.asanasNavigation}>{menuItems}</div>;
 }
