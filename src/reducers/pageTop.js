@@ -5,7 +5,7 @@ const initialState = {
   },
   instructionText: {
     ru:
-      "Перетаскивай карточки из списка асан (слева) в панель конструктора комплекса (справа)",
+      "Перетаскивай карточки из списка асан (слева) в панель конструктора (справа)",
     en:
       "Just drug'n'drop asanas from asanas list (left) to sequence panel (right)"
   }

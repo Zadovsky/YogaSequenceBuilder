@@ -11,7 +11,7 @@ import "./PageTop.css";
 const useStyles = makeStyles(theme => ({
   root: {},
   instruction: {
-    margin: theme.spacing(0, 2)
+    padding: theme.spacing(1, 2)
   }
 }));
 
