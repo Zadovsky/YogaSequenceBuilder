@@ -9,7 +9,9 @@ import { onChangeLangChooser } from "../actions/LanguageChooserActions";
 import "./PageTop.css";
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {
+    margin: theme.spacing(1, 0)
+  },
   instruction: {
     padding: theme.spacing(1, 2)
   }
