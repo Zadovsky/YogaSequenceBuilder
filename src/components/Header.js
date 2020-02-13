@@ -17,12 +17,16 @@ export default function Header(props) {
   return (
     <Grid container className={classes.grid}>
       <Grid item xs={4}></Grid>
-      <Grid item xs={4} style={{ textAlign: "center" }}>
-        <LanguageChooser
-          language={props.language}
-          langList={props.langList}
-          onChangeAction={props.onChangeAction}
-        />
+      <Grid item xs={4}>
+        <div className="langChooserWrapper">
+          <div className="langChooserInnerWrap">
+            <LanguageChooser
+              language={props.language}
+              langList={props.langList}
+              onChangeAction={props.onChangeAction}
+            />
+          </div>
+        </div>
       </Grid>
       <Grid item xs={4} style={{ textAlign: "center" }}>
         <SignInRegButtons />
