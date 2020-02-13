@@ -3,21 +3,29 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import "./LanguageChooser.css";
 
+function makeMenuItemList(langList) {
+  var menuItemList = [];
+
+  for (let k in langList) {
+    menuItemList.push(
+      <MenuItem value={k}>
+        <div className="langItemWrapper">
+          <img src={langList[k].img} alt="flag"></img>
+          <p>{langList[k].name}</p>
+        </div>
+      </MenuItem>
+    );
+  }
+
+  return menuItemList;
+}
+
 export default function LanguageChooser(props) {
+  var menuItemList = makeMenuItemList(props.langList);
+
   return (
-    <Select value="ru">
-      <MenuItem value="ru">
-        <div className="langItemWrapper">
-          <img src="/img/rusflag.png" alt="flag"></img>
-          <p>Рус</p>
-        </div>
-      </MenuItem>
-      <MenuItem value="en">
-        <div className="langItemWrapper">
-          <img src="/img/engflag.png" alt="flag"></img>
-          <p>Eng</p>
-        </div>
-      </MenuItem>
+    <Select value={props.language} onChange={props.onChangeAction}>
+      {menuItemList}
     </Select>
   );
 }

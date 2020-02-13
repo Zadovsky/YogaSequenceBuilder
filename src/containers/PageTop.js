@@ -5,6 +5,7 @@ import { Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import LanguageChooser from "../components/LanguageChooser";
+import { onChangeLangChooser } from "../actions/LanguageChooserActions";
 import "./PageTop.css";
 
 const useStyles = makeStyles(theme => ({
@@ -19,7 +20,11 @@ function PageTop(props) {
 
   return (
     <Paper className={classes.root}>
-      <LanguageChooser language="ru" />
+      <LanguageChooser
+        language={props.language.curLang}
+        langList={props.language.langList}
+        onChangeAction={props.onChangeLangChooser}
+      />
       <Divider variant="middle" />
       <Typography variant="h4" component="h1" align="center">
         {props.pageTop.headerText[props.language.curLang]}
@@ -39,7 +44,9 @@ const mapStateToProps = store => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    onChangeLangChooser: e => dispatch(onChangeLangChooser(e))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PageTop);

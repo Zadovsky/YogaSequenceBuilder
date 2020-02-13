@@ -1,17 +1,25 @@
+import { CHANGE_LANG } from "../actions/LanguageChooserActions";
+
 const initialState = {
-  langs: {
+  langList: {
     ru: {
       name: "Рус",
-      flag: "/img/rusflag.png"
+      img: "/img/rusflag.png"
     },
     en: {
       name: "Eng",
-      flag: "/img/engflag.png"
+      img: "/img/engflag.png"
     }
   },
   curLang: "ru"
 };
 
 export function languageReducer(state = initialState, action) {
-  return state;
+  switch (action.type) {
+    case CHANGE_LANG:
+      return { ...state, curLang: action.payload };
+
+    default:
+      return state;
+  }
 }
