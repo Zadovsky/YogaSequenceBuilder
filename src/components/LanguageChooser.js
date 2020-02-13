@@ -8,7 +8,7 @@ function makeMenuItemList(langList) {
 
   for (let k in langList) {
     menuItemList.push(
-      <MenuItem value={k}>
+      <MenuItem key={k} value={k}>
         <div className="langItemWrapper">
           <img src={langList[k].img} alt="flag"></img>
           <p>{langList[k].name}</p>
