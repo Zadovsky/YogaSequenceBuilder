@@ -1,28 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
 import SaveLoadPdfButtons from "../components/SaveLoadPdfButtons";
-import {
-  addAsanaAction,
-  dragEnterAction,
-  startCardDragAction,
-  closeCardAction
-} from "../actions/AsanaCardActions";
-import {
-  startGridDragAction,
-  onDragIconMouseDownAction,
-  onDragIconMouseUpAction,
-  dragEnterGridAction,
-  closeGridAction,
-  onChangeGridNameAction
-} from "../actions/AsanasGridActions";
-import { onDragEnterGridPhAction } from "../actions/GridPlaceHolderActions";
-import { onDragEnterHolder } from "../actions/PlaceHolderActions";
-import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
-import { onChangePanelNameAction } from "../actions/PanelNameActions";
 import "./Panel.css";
 
 const useStyles = makeStyles(theme => ({
@@ -32,23 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SchedulePanel(props) {
-  const {
-    draggingGrid,
-    isPanelNameDef,
-    panelDefaultName,
-    panelName,
-    cards,
-    draggingCard,
-    dragOverCard,
-    dragOverGrid,
-    fastTransition,
-    dragSourceGrid,
-    dragSourcePanelIsSchedule,
-    gridHeight,
-    gridDefaultName
-  } = props.schedule;
-
+export default function Panel(props) {
   const {
     asanasArr,
     language,
@@ -65,7 +30,20 @@ function SchedulePanel(props) {
     closeGridAction,
     dragEnterGridAction,
     onDragEnterGridPhAction,
-    onChangeGridNameAction
+    onChangeGridNameAction,
+    draggingGrid,
+    isPanelNameDef,
+    panelDefaultName,
+    panelName,
+    cards,
+    draggingCard,
+    dragOverCard,
+    dragOverGrid,
+    fastTransition,
+    dragSourceGrid,
+    dragSourcePanelIsSchedule,
+    gridHeight,
+    gridDefaultName
   } = props;
 
   const classes = useStyles();
@@ -132,40 +110,3 @@ function SchedulePanel(props) {
     </div>
   );
 }
-
-const mapStateToProps = store => {
-  return {
-    language: store.language,
-    asanasArr: store.asanasArr,
-    schedule: store.schedule
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
-      dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
-    startGridDragAction: (gridId, e) =>
-      dispatch(startGridDragAction(gridId, e)),
-    onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),
-    onDragIconMouseUpAction: () => dispatch(onDragIconMouseUpAction()),
-    addAsanaAction: (asanaId, gridId, itIsSchedulePanel, e) =>
-      dispatch(addAsanaAction(asanaId, gridId, itIsSchedulePanel, e)),
-    closeCardAction: (cardIndex, gridId) =>
-      dispatch(closeCardAction(cardIndex, gridId)),
-    closeGridAction: gridId => dispatch(closeGridAction(gridId)),
-    dragEnterAction: (enterIndex, gridId, itIsSchedulePanel) =>
-      dispatch(dragEnterAction(enterIndex, gridId, itIsSchedulePanel)),
-    onDragEnterHolder: (index, gridId) =>
-      dispatch(onDragEnterHolder(index, gridId)),
-    onDragEnterEmptySpace: (gridId, itIsSchedulePanel) =>
-      dispatch(onDragEnterEmptySpace(gridId, itIsSchedulePanel)),
-    dragEnterGridAction: gridId => dispatch(dragEnterGridAction(gridId)),
-    onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction()),
-    onChangeGridNameAction: (gridId, e) =>
-      dispatch(onChangeGridNameAction(gridId, e)),
-    onChangePanelNameAction: e => dispatch(onChangePanelNameAction(e))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SchedulePanel);
