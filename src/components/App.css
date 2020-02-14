@@ -6,10 +6,13 @@
 .TopPanelsFlexBox {
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 100%;
 }
 
 .TopPanelsFlexElement {
   overflow: hidden;
+  width: 102%;
+  padding: 1%;
   flex-grow: 3;
 }
