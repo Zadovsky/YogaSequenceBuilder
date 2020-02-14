@@ -61,9 +61,9 @@ export default function Panel(props) {
   });
 
   return (
-    <div className="SchedulePanel" onDragOver={onDragOverFunc}>
+    <div className="Panel" onDragOver={onDragOverFunc}>
       <Paper className={classes.root}>
-        <div className="SchedulePanelFlexBox">
+        <div className="PanelFlexBox">
           <div className="PanelNameWraper">
             <PanelName
               name={
@@ -74,7 +74,7 @@ export default function Panel(props) {
             />
           </div>
           <SaveLoadPdfButtons />
-          <div className="SchedulePanelFlexElement">
+          <div className="PanelFlexElement">
             <AsanasGridBlock
               cards={cards}
               draggingCard={draggingCard}
