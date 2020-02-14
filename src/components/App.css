@@ -2,3 +2,14 @@
   height: 100vh;
   overflow: hidden;
 }
+
+.TopPanelsFlexBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.TopPanelsFlexElement {
+  overflow: hidden;
+  flex-grow: 3;
+}
