@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
+import SaveLoadPdfButtons from "../components/SaveLoadPdfButtons";
 import {
   addAsanaAction,
   dragEnterAction,
@@ -94,6 +95,7 @@ function SchedulePanel(props) {
               readOnly={false}
             />
           </div>
+          <SaveLoadPdfButtons />
           <div className="SchedulePanelFlexElement">
             <AsanasGridBlock
               cards={cards}
