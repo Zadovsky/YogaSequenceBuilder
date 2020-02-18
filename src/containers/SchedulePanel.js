@@ -68,6 +68,7 @@ function SchedulePanel(props) {
   return (
     <Panel
       asanas={asanas}
+      panelNameRO={false}
       onChangePanelNameAction={onChangePanelNameAction}
       startCardDragAction={startCardDragAction}
       startGridDragAction={startGridDragAction}

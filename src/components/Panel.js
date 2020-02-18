@@ -43,7 +43,8 @@ export default function Panel(props) {
     gridHeight,
     gridDefaultName,
     buttonsPanel,
-    wrapperClassName
+    wrapperClassName,
+    panelNameRO
   } = props;
 
   const classes = useStyles();
@@ -62,7 +63,7 @@ export default function Panel(props) {
             <PanelName
               name={isPanelNameDef ? panelDefaultName : panelName}
               onChangePanelNameAction={onChangePanelNameAction}
-              readOnly={false}
+              readOnly={panelNameRO}
             />
           </div>
           {buttonsPanel}
