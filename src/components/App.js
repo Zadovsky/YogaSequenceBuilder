@@ -12,6 +12,9 @@ import "./App.css";
 const useStyles = makeStyles(theme => ({
   grid: {
     height: "100%"
+  },
+  container: {
+    height: "100%"
   }
 }));
 
@@ -23,7 +26,7 @@ export default function App(props) {
       <div className="App">
         <CssBaseline />
         <DnDContext>
-          <Container maxWidth="lg" style={{ height: "100%" }}>
+          <Container maxWidth="lg" className={classes.container}>
             <div className="TopPanelsFlexBox">
               <Grid container spacing={3}>
                 <Grid item xs={12}>
