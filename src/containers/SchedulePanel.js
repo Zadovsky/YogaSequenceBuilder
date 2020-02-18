@@ -90,6 +90,7 @@ function SchedulePanel(props) {
       gridHeight={gridHeight}
       gridDefaultName={gridDefaultName}
       buttonsPanel={<SaveLoadPdfButtons />}
+      wrapperClassName={"SchedulePanel"}
     />
   );
 }

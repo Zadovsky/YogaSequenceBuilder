@@ -43,7 +43,8 @@ export default function Panel(props) {
     dragSourcePanelIsSchedule,
     gridHeight,
     gridDefaultName,
-    buttonsPanel
+    buttonsPanel,
+    wrapperClassName
   } = props;
 
   const classes = useStyles();
@@ -61,7 +62,7 @@ export default function Panel(props) {
   });
 
   return (
-    <div className="Panel" onDragOver={onDragOverFunc}>
+    <div className={"Panel " + wrapperClassName} onDragOver={onDragOverFunc}>
       <Paper className={classes.root}>
         <div className="PanelFlexBox">
           <div className="PanelNameWraper">
