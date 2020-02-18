@@ -99,6 +99,7 @@ function SchedulePanel(props) {
       buttonsPanel={<SaveLoadPdfButtons />}
       wrapperClassName={"SchedulePanel"}
       itIsSchedulePanel={true}
+      selectedGroupId={null}
     />
   );
 }
