@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Panel from "../components/Panel";
+import SaveLoadPdfButtons from "../components/SaveLoadPdfButtons";
 import {
   addAsanaAction,
   dragEnterAction,
@@ -88,6 +89,7 @@ function SchedulePanel(props) {
       dragSourcePanelIsSchedule={dragSourcePanelIsSchedule}
       gridHeight={gridHeight}
       gridDefaultName={gridDefaultName}
+      buttonsPanel={<SaveLoadPdfButtons />}
     />
   );
 }

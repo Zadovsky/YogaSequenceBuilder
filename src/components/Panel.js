@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
-import SaveLoadPdfButtons from "../components/SaveLoadPdfButtons";
 import "./Panel.css";
 
 const useStyles = makeStyles(theme => ({
@@ -43,7 +42,8 @@ export default function Panel(props) {
     dragSourceGrid,
     dragSourcePanelIsSchedule,
     gridHeight,
-    gridDefaultName
+    gridDefaultName,
+    buttonsPanel
   } = props;
 
   const classes = useStyles();
@@ -73,7 +73,7 @@ export default function Panel(props) {
               readOnly={false}
             />
           </div>
-          <SaveLoadPdfButtons />
+          {buttonsPanel}
           <div className="PanelFlexElement">
             <AsanasGridBlock
               cards={cards}
