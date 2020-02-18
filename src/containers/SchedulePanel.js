@@ -100,6 +100,7 @@ function SchedulePanel(props) {
       wrapperClassName={"SchedulePanel"}
       itIsSchedulePanel={true}
       selectedGroupId={null}
+      onGridBlockScroll={() => {}}
     />
   );
 }

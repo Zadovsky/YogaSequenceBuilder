@@ -46,7 +46,8 @@ export default function Panel(props) {
     wrapperClassName,
     panelNameRO,
     itIsSchedulePanel,
-    selectedGroupId
+    selectedGroupId,
+    onGridBlockScroll
   } = props;
 
   const classes = useStyles();
@@ -97,7 +98,7 @@ export default function Panel(props) {
               onChangeGridNameAction={onChangeGridNameAction}
               gridDefaultName={gridDefaultName}
               selectedGroupId={selectedGroupId}
-              onGridBlockScroll={() => {}}
+              onGridBlockScroll={onGridBlockScroll}
             />
           </div>
         </div>
