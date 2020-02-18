@@ -98,6 +98,7 @@ function SchedulePanel(props) {
       gridDefaultName={gridDefaultName[language.curLang]}
       buttonsPanel={<SaveLoadPdfButtons />}
       wrapperClassName={"SchedulePanel"}
+      itIsSchedulePanel={true}
     />
   );
 }

@@ -44,7 +44,8 @@ export default function Panel(props) {
     gridDefaultName,
     buttonsPanel,
     wrapperClassName,
-    panelNameRO
+    panelNameRO,
+    itIsSchedulePanel
   } = props;
 
   const classes = useStyles();
@@ -77,7 +78,7 @@ export default function Panel(props) {
               dragSourceGrid={dragSourceGrid}
               dragSourcePanelIsSchedule={dragSourcePanelIsSchedule}
               asanas={asanas}
-              itIsSchedulePanel={true}
+              itIsSchedulePanel={itIsSchedulePanel}
               startCardDragAction={startCardDragAction}
               startGridDragAction={startGridDragAction}
               onDragIconMouseDownAction={onDragIconMouseDownAction}
