@@ -1,10 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import PanelName from "../components/PanelName";
+import Panel from "../components/Panel";
 import AsanasNavigation from "../components/AsanasNavigation";
-import AsanasGridBlock from "../components/AsanasGridBlock";
 import {
   addAsanaAction,
   dragEnterAction,
@@ -16,13 +13,6 @@ import { onDragEnterHolder } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
 import { onClickAsanasNavigation } from "../actions/AsanasNavigationActions";
 import "./AsanasPanel.css";
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    padding: theme.spacing(1, 2, 3),
-    height: "100%"
-  }
-}));
 
 function createCardsArr(asanas, language) {
   var cards = [];
@@ -45,7 +35,6 @@ function createCardsArr(asanas, language) {
 }
 
 function AsanasPanel(props) {
-  const classes = useStyles();
   const cards = createCardsArr(props.asanasArr, props.language.curLang);
   const asanas = props.asanasArr.arr.map(asana => {
     return {
@@ -61,50 +50,47 @@ function AsanasPanel(props) {
   });
 
   return (
-    <div className="AsanasPanel">
-      <Paper className={classes.root}>
-        <div className="AsanasPanelFlexBox">
-          <div className="PanelNameWraper">
-            <PanelName
-              name={props.asanas.panelDefaultName[props.language.curLang]}
-              readOnly={true}
-            />
-          </div>
-          <AsanasNavigation
-            groups={groups}
-            onClick={props.onClickAsanasNavigation}
-          />
-          <div className="AsanasPanelFlexElement">
-            <AsanasGridBlock
-              cards={cards}
-              draggingCard={null}
-              dragOverCard={null}
-              dragOverGrid={null}
-              fastTransition={false}
-              dragSourceGrid={null}
-              dragSourcePanelIsSchedule={null}
-              asanas={asanas}
-              itIsSchedulePanel={false}
-              startCardDragAction={props.startCardDragAction}
-              startGridDragAction={props.startGridDragAction}
-              onDragIconMouseDownAction={() => {}}
-              onDragIconMouseUpAction={() => {}}
-              addAsanaAction={props.addAsanaAction}
-              dragEnterAction={props.dragEnterAction}
-              onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-              onDragEnterHolder={props.onDragEnterHolder}
-              closeCardAction={props.closeCardAction}
-              draggingGrid={null}
-              gridHeight={null}
-              dragEnterGridAction={() => {}}
-              onChangeGridNameAction={() => {}}
-              selectedGroupId={props.asanas.selectedGroupId}
-              onGridBlockScroll={props.onGridBlockScroll}
-            />
-          </div>
-        </div>
-      </Paper>
-    </div>
+    <Panel
+      asanas={asanas}
+      panelNameRO={true}
+      onChangePanelNameAction={() => {}}
+      startCardDragAction={props.startCardDragAction}
+      startGridDragAction={props.startGridDragAction}
+      onDragIconMouseDownAction={() => {}}
+      onDragIconMouseUpAction={() => {}}
+      addAsanaAction={props.addAsanaAction}
+      dragEnterAction={props.dragEnterAction}
+      onDragEnterEmptySpace={props.onDragEnterEmptySpace}
+      onDragEnterHolder={props.onDragEnterHolder}
+      closeCardAction={() => {}}
+      closeGridAction={() => {}}
+      dragEnterGridAction={() => {}}
+      onDragEnterGridPhAction={() => {}}
+      onChangeGridNameAction={() => {}}
+      draggingGrid={null}
+      isPanelNameDef={true}
+      panelDefaultName={props.asanas.panelDefaultName[props.language.curLang]}
+      panelName={""}
+      cards={cards}
+      draggingCard={null}
+      dragOverCard={null}
+      dragOverGrid={null}
+      fastTransition={false}
+      dragSourceGrid={null}
+      dragSourcePanelIsSchedule={null}
+      gridHeight={null}
+      gridDefaultName={""}
+      buttonsPanel={
+        <AsanasNavigation
+          groups={groups}
+          onClick={props.onClickAsanasNavigation}
+        />
+      }
+      wrapperClassName={"AsanasPanel"}
+      itIsSchedulePanel={false}
+      selectedGroupId={props.asanas.selectedGroupId}
+      onGridBlockScroll={props.onGridBlockScroll}
+    />
   );
 }
 
