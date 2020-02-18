@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme => ({
 export default function Panel(props) {
   const {
     asanas,
-    language,
     onChangePanelNameAction,
     startCardDragAction,
     startGridDragAction,
@@ -61,9 +60,7 @@ export default function Panel(props) {
         <div className="PanelFlexBox">
           <div className="PanelNameWraper">
             <PanelName
-              name={
-                isPanelNameDef ? panelDefaultName[language.curLang] : panelName
-              }
+              name={isPanelNameDef ? panelDefaultName : panelName}
               onChangePanelNameAction={onChangePanelNameAction}
               readOnly={false}
             />
@@ -95,7 +92,7 @@ export default function Panel(props) {
               dragEnterGridAction={dragEnterGridAction}
               onDragEnterGridPhAction={onDragEnterGridPhAction}
               onChangeGridNameAction={onChangeGridNameAction}
-              gridDefaultName={gridDefaultName[language.curLang]}
+              gridDefaultName={gridDefaultName}
               selectedGroupId={null}
               onGridBlockScroll={() => {}}
             />

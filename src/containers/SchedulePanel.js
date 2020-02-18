@@ -68,7 +68,6 @@ function SchedulePanel(props) {
   return (
     <Panel
       asanas={asanas}
-      language={language}
       onChangePanelNameAction={onChangePanelNameAction}
       startCardDragAction={startCardDragAction}
       startGridDragAction={startGridDragAction}
@@ -85,7 +84,7 @@ function SchedulePanel(props) {
       onChangeGridNameAction={onChangeGridNameAction}
       draggingGrid={draggingGrid}
       isPanelNameDef={isPanelNameDef}
-      panelDefaultName={panelDefaultName}
+      panelDefaultName={panelDefaultName[language.curLang]}
       panelName={panelName}
       cards={cards}
       draggingCard={draggingCard}
@@ -95,7 +94,7 @@ function SchedulePanel(props) {
       dragSourceGrid={dragSourceGrid}
       dragSourcePanelIsSchedule={dragSourcePanelIsSchedule}
       gridHeight={gridHeight}
-      gridDefaultName={gridDefaultName}
+      gridDefaultName={gridDefaultName[language.curLang]}
       buttonsPanel={<SaveLoadPdfButtons />}
       wrapperClassName={"SchedulePanel"}
     />
