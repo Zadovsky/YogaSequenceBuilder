@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Panel(props) {
   const {
-    asanasArr,
+    asanas,
     language,
     onChangePanelNameAction,
     startCardDragAction,
@@ -54,12 +54,6 @@ export default function Panel(props) {
           e.preventDefault();
         }
       : () => {};
-  const asanas = asanasArr.arr.map(asana => {
-    return {
-      ...asana,
-      asanaName: asana.asanaName[language.curLang]
-    };
-  });
 
   return (
     <div className={"Panel " + wrapperClassName} onDragOver={onDragOverFunc}>

@@ -58,9 +58,16 @@ function SchedulePanel(props) {
     onChangeGridNameAction
   } = props;
 
+  const asanas = asanasArr.arr.map(asana => {
+    return {
+      ...asana,
+      asanaName: asana.asanaName[language.curLang]
+    };
+  });
+
   return (
     <Panel
-      asanasArr={asanasArr}
+      asanas={asanas}
       language={language}
       onChangePanelNameAction={onChangePanelNameAction}
       startCardDragAction={startCardDragAction}
