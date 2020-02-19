@@ -21,7 +21,7 @@ export default function Header(props) {
         <div className="langChooserWrapper">
           <div className="langChooserInnerWrap">
             <LanguageChooser
-              language={props.language}
+              curLang={props.curLang}
               langList={props.langList}
               onChangeAction={props.onChangeAction}
             />

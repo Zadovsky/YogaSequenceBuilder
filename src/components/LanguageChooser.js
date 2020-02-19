@@ -24,7 +24,7 @@ export default function LanguageChooser(props) {
   var menuItemList = makeMenuItemList(props.langList);
 
   return (
-    <Select value={props.language} onChange={props.onChangeAction}>
+    <Select value={props.curLang} onChange={props.onChangeAction}>
       {menuItemList}
     </Select>
   );

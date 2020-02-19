@@ -27,7 +27,7 @@ function PageTop(props) {
   return (
     <Paper className={classes.paper}>
       <Header
-        language={props.language.curLang}
+        curLang={props.language.curLang}
         langList={props.language.langList}
         onChangeAction={props.onChangeLangChooser}
         signInButtonText={
