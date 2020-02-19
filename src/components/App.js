@@ -6,6 +6,7 @@ import AsanasPanel from "../containers/AsanasPanel";
 import SchedulePanel from "../containers/SchedulePanel";
 import DnDContext from "../containers/DnDContext";
 import PageTop from "../containers/PageTop";
+import UserPopUpWindows from "../containers/UserPopUpWindows";
 import { makeStyles } from "@material-ui/core/styles";
 import "./App.css";
 
@@ -46,6 +47,7 @@ export default function App(props) {
             </div>
           </Container>
         </DnDContext>
+        <UserPopUpWindows />
       </div>
     </React.Fragment>
   );
