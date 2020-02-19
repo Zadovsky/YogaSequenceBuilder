@@ -1,12 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
+import SignInPopUpWindow from "../components/SignInPopUpWindow";
 
 function UserPopUpWindows(props) {
-  return <div></div>;
+  if (props.user.signInWindowIsOpen) {
+    return <SignInPopUpWindow />;
+  } else return <div></div>;
 }
 
 const mapStateToProps = store => {
-  return {};
+  return {
+    user: store.user
+  };
 };
 
 const mapDispatchToProps = dispatch => {

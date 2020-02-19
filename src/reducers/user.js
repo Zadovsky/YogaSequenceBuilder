@@ -2,7 +2,8 @@ import { ON_CLICK_SIGN_IN } from "../actions/SignInRegButtonsActions";
 
 const initialState = {
   user: null,
-  passwordMd5: null
+  passwordMd5: null,
+  signInWindowIsOpen: false
 };
 
 export function userReducer(state = initialState, action) {
