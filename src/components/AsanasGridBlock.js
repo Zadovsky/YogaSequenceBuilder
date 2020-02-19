@@ -34,8 +34,8 @@ function createGridArr(props) {
         onDragIconMouseUpAction={props.onDragIconMouseUpAction}
         addAsanaAction={props.addAsanaAction}
         dragEnterAction={props.dragEnterAction}
-        onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-        onDragEnterHolder={props.onDragEnterHolder}
+        onDragEnterEmptySpaceAction={props.onDragEnterEmptySpaceAction}
+        onDragEnterHolderAction={props.onDragEnterHolderAction}
         dragSourceGrid={props.dragSourceGrid}
         dragSourcePanelIsSchedule={props.dragSourcePanelIsSchedule}
         itIsSchedulePanel={props.itIsSchedulePanel}

@@ -5,7 +5,7 @@ export default function EmptySpaceAtTheEnd(props) {
   return (
     <div
       className="EmptySpaceAtTheEnd"
-      onDragEnter={props.onDragEnterEmptySpace}
+      onDragEnter={props.onDragEnterEmptySpaceAction}
     ></div>
   );
 }

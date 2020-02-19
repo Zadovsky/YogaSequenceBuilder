@@ -22,8 +22,8 @@ export default function Panel(props) {
     onDragIconMouseUpAction,
     addAsanaAction,
     dragEnterAction,
-    onDragEnterEmptySpace,
-    onDragEnterHolder,
+    onDragEnterEmptySpaceAction,
+    onDragEnterHolderAction,
     closeCardAction,
     closeGridAction,
     dragEnterGridAction,
@@ -87,8 +87,8 @@ export default function Panel(props) {
               onDragIconMouseUpAction={onDragIconMouseUpAction}
               addAsanaAction={addAsanaAction}
               dragEnterAction={dragEnterAction}
-              onDragEnterEmptySpace={onDragEnterEmptySpace}
-              onDragEnterHolder={onDragEnterHolder}
+              onDragEnterEmptySpaceAction={onDragEnterEmptySpaceAction}
+              onDragEnterHolderAction={onDragEnterHolderAction}
               closeCardAction={closeCardAction}
               closeGridAction={closeGridAction}
               draggingGrid={draggingGrid}

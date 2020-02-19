@@ -9,8 +9,8 @@ import {
 } from "../actions/AsanaCardActions";
 import { startGridDragAction } from "../actions/AsanasGridActions";
 import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
-import { onDragEnterHolder } from "../actions/PlaceHolderActions";
-import { onDragEnterEmptySpace } from "../actions/EmptySpaceAtTheEndActions";
+import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
+import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndActions";
 import { onClickAsanasNavigation } from "../actions/AsanasNavigationActions";
 import "./AsanasPanel.css";
 
@@ -60,8 +60,8 @@ function AsanasPanel(props) {
       onDragIconMouseUpAction={() => {}}
       addAsanaAction={props.addAsanaAction}
       dragEnterAction={props.dragEnterAction}
-      onDragEnterEmptySpace={props.onDragEnterEmptySpace}
-      onDragEnterHolder={props.onDragEnterHolder}
+      onDragEnterEmptySpaceAction={props.onDragEnterEmptySpaceAction}
+      onDragEnterHolderAction={props.onDragEnterHolderAction}
       closeCardAction={() => {}}
       closeGridAction={() => {}}
       dragEnterGridAction={() => {}}
@@ -115,10 +115,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(addAsanaAction(asanaId, gridId, itIsSchedulePanel, e)),
     dragEnterAction: (enterIndex, gridId, itIsSchedulePanel) =>
       dispatch(dragEnterAction(enterIndex, gridId, itIsSchedulePanel)),
-    onDragEnterHolder: (index, gridId) =>
-      dispatch(onDragEnterHolder(index, gridId)),
-    onDragEnterEmptySpace: (gridId, itIsSchedulePanel) =>
-      dispatch(onDragEnterEmptySpace(gridId, itIsSchedulePanel))
+    onDragEnterHolderAction: (index, gridId) =>
+      dispatch(onDragEnterHolderAction(index, gridId)),
+    onDragEnterEmptySpaceAction: (gridId, itIsSchedulePanel) =>
+      dispatch(onDragEnterEmptySpaceAction(gridId, itIsSchedulePanel))
   };
 };
 

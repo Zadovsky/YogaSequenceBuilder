@@ -77,7 +77,7 @@ function makeCardsHoldersArr(cardsArr, props) {
   const {
     dragOverCard,
     dragOverGrid,
-    onDragEnterHolder,
+    onDragEnterHolderAction,
     gridId,
     fastTransition,
     draggingCard
@@ -92,7 +92,7 @@ function makeCardsHoldersArr(cardsArr, props) {
         fat={dragOverCard === i && dragOverGrid === gridId}
         fastTransition={fastTransition}
         isDragEnd={draggingCard == null}
-        onDragEnterHolder={() => onDragEnterHolder(i, gridId)}
+        onDragEnterHolderAction={() => onDragEnterHolderAction(i, gridId)}
       />
     );
     cardsHoldersArr.push(placeHolder, card);
@@ -110,7 +110,7 @@ export default function AsanasGrid(props) {
     itIsSchedulePanel,
     startGridDragAction,
     dragEnterGridAction,
-    onDragEnterEmptySpace,
+    onDragEnterEmptySpaceAction,
     onDragIconMouseUpAction,
     onDragIconMouseDownAction,
     enableCloseIcon,
@@ -154,8 +154,8 @@ export default function AsanasGrid(props) {
           <div className="AsanasGrid">
             {cardsHoldersArr}
             <EmptySpaceAtTheEnd
-              onDragEnterEmptySpace={() =>
-                onDragEnterEmptySpace(gridId, itIsSchedulePanel)
+              onDragEnterEmptySpaceAction={() =>
+                onDragEnterEmptySpaceAction(gridId, itIsSchedulePanel)
               }
             />
           </div>

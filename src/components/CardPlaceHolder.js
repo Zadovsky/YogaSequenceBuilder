@@ -26,7 +26,7 @@ export default function CardPlaceHolder(props) {
   return (
     <div
       className={classStr}
-      onDragEnter={props.onDragEnterHolder}
+      onDragEnter={props.onDragEnterHolderAction}
       style={transitionStyle}
     ></div>
   );
