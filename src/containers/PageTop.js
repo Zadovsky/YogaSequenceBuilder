@@ -29,6 +29,10 @@ function PageTop(props) {
         language={props.language.curLang}
         langList={props.language.langList}
         onChangeAction={props.onChangeLangChooser}
+        signInButtonText={
+          props.pageTop.signInButtonText[props.language.curLang]
+        }
+        regButtonText={props.pageTop.regButtonText[props.language.curLang]}
       />
       <Divider variant="middle" />
       <Typography

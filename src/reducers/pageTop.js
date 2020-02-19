@@ -8,6 +8,14 @@ const initialState = {
       "Перетаскивай карточки из списка асан (слева) в панель конструктора (справа)",
     en:
       "Just drug'n'drop asanas from asanas list (left) to sequence panel (right)"
+  },
+  signInButtonText: {
+    ru: "ВХОД",
+    en: "SIGN IN"
+  },
+  regButtonText: {
+    ru: "РЕГИСТРАЦИЯ",
+    en: "REGISTRATION"
   }
 };
 

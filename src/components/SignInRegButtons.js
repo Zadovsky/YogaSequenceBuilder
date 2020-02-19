@@ -14,10 +14,10 @@ export default function SignInRegButtons(props) {
   return (
     <div className="SignInRegButtons">
       <Button variant="contained" className={classes.button}>
-        Sign In
+        {props.signInButtonText}
       </Button>
       <Button variant="contained" className={classes.button}>
-        Registration
+        {props.regButtonText}
       </Button>
     </div>
   );

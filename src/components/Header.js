@@ -29,7 +29,10 @@ export default function Header(props) {
         </div>
       </Grid>
       <Grid item xs={4} style={{ textAlign: "center" }}>
-        <SignInRegButtons />
+        <SignInRegButtons
+          signInButtonText={props.signInButtonText}
+          regButtonText={props.regButtonText}
+        />
       </Grid>
     </Grid>
   );
