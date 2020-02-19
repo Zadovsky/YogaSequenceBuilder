@@ -6,6 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import Header from "../components/Header";
 import { onChangeLangChooser } from "../actions/LanguageChooserActions";
+import { onClickSignInAction } from "../actions/SignInRegButtonsActions";
 import "./PageTop.css";
 
 const useStyles = makeStyles(theme => ({
@@ -33,6 +34,7 @@ function PageTop(props) {
           props.pageTop.signInButtonText[props.language.curLang]
         }
         regButtonText={props.pageTop.regButtonText[props.language.curLang]}
+        onClickSignInAction={props.onClickSignInAction}
       />
       <Divider variant="middle" />
       <Typography
@@ -59,7 +61,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChangeLangChooser: e => dispatch(onChangeLangChooser(e))
+    onChangeLangChooser: e => dispatch(onChangeLangChooser(e)),
+    onClickSignInAction: () => dispatch(onClickSignInAction())
   };
 };
 

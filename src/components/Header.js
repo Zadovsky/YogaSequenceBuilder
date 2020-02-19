@@ -32,6 +32,7 @@ export default function Header(props) {
         <SignInRegButtons
           signInButtonText={props.signInButtonText}
           regButtonText={props.regButtonText}
+          onClickSignInAction={props.onClickSignInAction}
         />
       </Grid>
     </Grid>

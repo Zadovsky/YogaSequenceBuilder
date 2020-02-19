@@ -13,7 +13,11 @@ export default function SignInRegButtons(props) {
 
   return (
     <div className="SignInRegButtons">
-      <Button variant="contained" className={classes.button}>
+      <Button
+        variant="contained"
+        className={classes.button}
+        onClick={props.onClickSignInAction}
+      >
         {props.signInButtonText}
       </Button>
       <Button variant="contained" className={classes.button}>

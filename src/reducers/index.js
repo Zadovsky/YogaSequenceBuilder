@@ -4,11 +4,13 @@ import { scheduleReducer } from "./schedule";
 import { languageReducer } from "./language";
 import { asanasReducer } from "./asanas";
 import { pageTopReducer } from "./pageTop";
+import { userReducer } from "./user";
 
 export const rootReducer = combineReducers({
   pageTop: pageTopReducer,
   language: languageReducer,
   schedule: scheduleReducer,
   asanasArr: asanasArrReducer,
-  asanas: asanasReducer
+  asanas: asanasReducer,
+  user: userReducer
 });
