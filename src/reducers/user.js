@@ -1,5 +1,5 @@
 import { ON_CLICK_SIGN_IN } from "../actions/SignInRegButtonsActions";
-import { CANCEL_SIGN_IN } from "../actions/SignInPopUpWindowActions";
+import { CANCEL_SIGN_IN, SIGN_IN } from "../actions/SignInPopUpWindowActions";
 
 const initialState = {
   user: null,
@@ -31,6 +31,9 @@ export function userReducer(state = initialState, action) {
       return { ...state, signInWindowIsOpen: true };
     case CANCEL_SIGN_IN:
       return { ...state, signInWindowIsOpen: false };
+    case SIGN_IN:
+      console.log(SIGN_IN);
+      return state;
     default:
       return state;
   }
