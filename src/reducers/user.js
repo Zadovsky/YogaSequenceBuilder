@@ -9,8 +9,7 @@ const initialState = {
 export function userReducer(state = initialState, action) {
   switch (action.type) {
     case ON_CLICK_SIGN_IN:
-      console.log(ON_CLICK_SIGN_IN);
-      return state;
+      return { ...state, signInWindowIsOpen: true };
     default:
       return state;
   }
