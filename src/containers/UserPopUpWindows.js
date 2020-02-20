@@ -4,13 +4,14 @@ import SignInPopUpWindow from "../components/SignInPopUpWindow";
 import { onClickCancelSignInAction } from "../actions/SignInPopUpWindowActions";
 
 function UserPopUpWindows(props) {
-  if (props.user.signInWindowIsOpen) {
-    return (
+  return (
+    <div className="UserPopUpWindows">
       <SignInPopUpWindow
         onClickCancelSignInAction={props.onClickCancelSignInAction}
+        open={props.user.signInWindowIsOpen}
       />
-    );
-  } else return <div></div>;
+    </div>
+  );
 }
 
 const mapStateToProps = store => {

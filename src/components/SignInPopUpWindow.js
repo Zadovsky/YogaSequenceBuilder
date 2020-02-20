@@ -22,7 +22,7 @@ export default function SignInPopUpWindow(props) {
   const classes = useStyles();
 
   return (
-    <Dialog open={true} onClose={() => {}}>
+    <Dialog open={props.open} onClose={props.onClickCancelSignInAction}>
       <DialogTitle>Вход в аккаунт</DialogTitle>
       <DialogContent>
         <TextField
