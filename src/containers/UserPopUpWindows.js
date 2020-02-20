@@ -1,10 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import SignInPopUpWindow from "../components/SignInPopUpWindow";
+import { onClickCancelSignInAction } from "../actions/SignInPopUpWindowActions";
 
 function UserPopUpWindows(props) {
   if (props.user.signInWindowIsOpen) {
-    return <SignInPopUpWindow />;
+    return (
+      <SignInPopUpWindow
+        onClickCancelSignInAction={props.onClickCancelSignInAction}
+      />
+    );
   } else return <div></div>;
 }
 
@@ -15,7 +20,9 @@ const mapStateToProps = store => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    onClickCancelSignInAction: () => dispatch(onClickCancelSignInAction())
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPopUpWindows);

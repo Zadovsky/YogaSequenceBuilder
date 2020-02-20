@@ -43,7 +43,7 @@ export default function SignInPopUpWindow(props) {
         </Link>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => {}} color="primary">
+        <Button onClick={props.onClickCancelSignInAction} color="primary">
           Отмена
         </Button>
         <Button onClick={() => {}} color="primary">
