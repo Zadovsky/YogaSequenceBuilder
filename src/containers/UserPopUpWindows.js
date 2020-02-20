@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import SignInPopUpWindow from "../components/SignInPopUpWindow";
 import {
   onClickCancelSignInAction,
-  onClickSignInAction
+  onClickSignInAction,
+  onChangeEmailSignInAction,
+  onChangePwdSignInAction
 } from "../actions/SignInPopUpWindowActions";
 
 function UserPopUpWindows(props) {
@@ -14,6 +16,8 @@ function UserPopUpWindows(props) {
         onClickSignInAction={props.onClickSignInAction}
         open={props.user.signInWindowIsOpen}
         signInWindowTexts={props.user.signInWindowTexts[props.language.curLang]}
+        onChangeEmailSignInAction={props.onChangeEmailSignInAction}
+        onChangePwdSignInAction={props.onChangePwdSignInAction}
       />
     </div>
   );
@@ -29,7 +33,9 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     onClickCancelSignInAction: () => dispatch(onClickCancelSignInAction()),
-    onClickSignInAction: () => dispatch(onClickSignInAction())
+    onClickSignInAction: () => dispatch(onClickSignInAction()),
+    onChangeEmailSignInAction: e => dispatch(onChangeEmailSignInAction(e)),
+    onChangePwdSignInAction: e => dispatch(onChangePwdSignInAction(e))
   };
 };
 

@@ -31,12 +31,14 @@ export default function SignInPopUpWindow(props) {
           label={props.signInWindowTexts.emailFieldLabel}
           type="email"
           fullWidth
+          onChange={props.onChangeEmailSignInAction}
         />
         <TextField
           margin="dense"
           label={props.signInWindowTexts.passwordLabel}
           type="password"
           fullWidth
+          onChange={props.onChangePwdSignInAction}
         />
         <Link
           component="button"
