@@ -9,6 +9,7 @@ function UserPopUpWindows(props) {
       <SignInPopUpWindow
         onClickCancelSignInAction={props.onClickCancelSignInAction}
         open={props.user.signInWindowIsOpen}
+        signInWindowTexts={props.user.signInWindowTexts[props.language.curLang]}
       />
     </div>
   );
@@ -16,7 +17,8 @@ function UserPopUpWindows(props) {
 
 const mapStateToProps = store => {
   return {
-    user: store.user
+    user: store.user,
+    language: store.language
   };
 };
 

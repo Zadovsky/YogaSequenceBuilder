@@ -23,31 +23,36 @@ export default function SignInPopUpWindow(props) {
 
   return (
     <Dialog open={props.open} onClose={props.onClickCancelSignInAction}>
-      <DialogTitle>Вход в аккаунт</DialogTitle>
+      <DialogTitle>{props.signInWindowTexts.title}</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           margin="dense"
-          label="Ваш e-mail"
+          label={props.signInWindowTexts.emailFieldLabel}
           type="email"
           fullWidth
         />
-        <TextField margin="dense" label="Пароль" type="password" fullWidth />
+        <TextField
+          margin="dense"
+          label={props.signInWindowTexts.passwordLabel}
+          type="password"
+          fullWidth
+        />
         <Link
           component="button"
           variant="body2"
           onClick={() => {}}
           className={classes.link}
         >
-          Забыли пароль?
+          {props.signInWindowTexts.forgotPwdText}
         </Link>
       </DialogContent>
       <DialogActions>
         <Button onClick={props.onClickCancelSignInAction} color="primary">
-          Отмена
+          {props.signInWindowTexts.cancelText}
         </Button>
         <Button onClick={() => {}} color="primary">
-          Вход
+          {props.signInWindowTexts.signInText}
         </Button>
       </DialogActions>
     </Dialog>
