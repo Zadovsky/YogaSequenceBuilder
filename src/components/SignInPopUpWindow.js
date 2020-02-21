@@ -22,7 +22,10 @@ export default function SignInPopUpWindow(props) {
   const classes = useStyles();
 
   return (
-    <Dialog open={props.open} onClose={props.onClickCancelSignInAction}>
+    <Dialog
+      open={props.flags.windowIsOpen}
+      onClose={props.onClickCancelSignInAction}
+    >
       <DialogTitle>{props.signInWindowTexts.title}</DialogTitle>
       <DialogContent>
         <TextField
@@ -32,6 +35,12 @@ export default function SignInPopUpWindow(props) {
           type="email"
           fullWidth
           onChange={props.onChangeEmailSignInAction}
+          error={props.flags.emailIsEmpty}
+          helperText={
+            props.flags.emailIsEmpty
+              ? props.signInWindowTexts.emptyFieldMsg
+              : " "
+          }
         />
         <TextField
           margin="dense"
@@ -39,6 +48,10 @@ export default function SignInPopUpWindow(props) {
           type="password"
           fullWidth
           onChange={props.onChangePwdSignInAction}
+          error={props.flags.pwdIsEmpty}
+          helperText={
+            props.flags.pwdIsEmpty ? props.signInWindowTexts.emptyFieldMsg : " "
+          }
         />
         <Link
           component="button"

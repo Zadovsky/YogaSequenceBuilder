@@ -12,7 +12,9 @@ const initialState = {
   signIn: {
     windowIsOpen: false,
     email: "",
-    password: ""
+    password: "",
+    emailIsEmpty: false,
+    pwdIsEmpty: false
   },
   signInWindowTexts: {
     ru: {
@@ -21,7 +23,8 @@ const initialState = {
       passwordLabel: "Пароль",
       forgotPwdText: "Забыли пароль?",
       cancelText: "Отмена",
-      signInText: "Вход"
+      signInText: "Вход",
+      emptyFieldMsg: "Заполните это поле"
     },
     en: {
       title: "Sign in account",
@@ -29,7 +32,8 @@ const initialState = {
       passwordLabel: "Password",
       forgotPwdText: "Forgot password?",
       cancelText: "Cancel",
-      signInText: "Sign in"
+      signInText: "Sign in",
+      emptyFieldMsg: "Fill the field"
     }
   }
 };
@@ -53,7 +57,16 @@ export function userReducer(state = initialState, action) {
         }
       };
     case SIGN_IN:
-      return state;
+      if (state.signIn.email === "" || state.signIn.password === "") {
+        return {
+          ...state,
+          signIn: {
+            ...state.signIn,
+            emailIsEmpty: state.signIn.email === "",
+            pwdIsEmpty: state.signIn.password === ""
+          }
+        };
+      } else return state;
     case CHANGE_EMAIL_SIGN_IN:
       return {
         ...state,
