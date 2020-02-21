@@ -53,7 +53,11 @@ export function userReducer(state = initialState, action) {
         ...state,
         signIn: {
           ...state.signIn,
-          windowIsOpen: false
+          windowIsOpen: false,
+          email: "",
+          password: "",
+          emailIsEmpty: false,
+          pwdIsEmpty: false
         }
       };
     case SIGN_IN:
