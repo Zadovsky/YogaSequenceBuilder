@@ -13,7 +13,12 @@ function UserPopUpWindows(props) {
     <div className="UserPopUpWindows">
       <SignInPopUpWindow
         onClickCancelSignInAction={props.onClickCancelSignInAction}
-        onClickSignInAction={props.onClickSignInAction}
+        onClickSignInAction={() =>
+          props.onClickSignInAction(
+            props.user.signIn.email,
+            props.user.signIn.password
+          )
+        }
         flags={props.user.signIn}
         signInWindowTexts={props.user.signInWindowTexts[props.language.curLang]}
         onChangeEmailSignInAction={props.onChangeEmailSignInAction}
@@ -33,7 +38,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     onClickCancelSignInAction: () => dispatch(onClickCancelSignInAction()),
-    onClickSignInAction: () => dispatch(onClickSignInAction()),
+    onClickSignInAction: (email, password) =>
+      dispatch(onClickSignInAction(email, password)),
     onChangeEmailSignInAction: e => dispatch(onChangeEmailSignInAction(e)),
     onChangePwdSignInAction: e => dispatch(onChangePwdSignInAction(e))
   };

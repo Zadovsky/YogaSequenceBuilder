@@ -2,6 +2,7 @@ import { ON_CLICK_SIGN_IN } from "../actions/SignInRegButtonsActions";
 import {
   CANCEL_SIGN_IN,
   SIGN_IN,
+  SIGN_IN_EMPTY_FIELD,
   CHANGE_EMAIL_SIGN_IN,
   CHANGE_PWD_SIGN_IN
 } from "../actions/SignInPopUpWindowActions";
@@ -60,17 +61,18 @@ export function userReducer(state = initialState, action) {
           pwdIsEmpty: false
         }
       };
+    case SIGN_IN_EMPTY_FIELD:
+      return {
+        ...state,
+        signIn: {
+          ...state.signIn,
+          emailIsEmpty: state.signIn.email === "",
+          pwdIsEmpty: state.signIn.password === ""
+        }
+      };
     case SIGN_IN:
-      if (state.signIn.email === "" || state.signIn.password === "") {
-        return {
-          ...state,
-          signIn: {
-            ...state.signIn,
-            emailIsEmpty: state.signIn.email === "",
-            pwdIsEmpty: state.signIn.password === ""
-          }
-        };
-      } else return state;
+      console.log(SIGN_IN);
+      return state;
     case CHANGE_EMAIL_SIGN_IN:
       return {
         ...state,
