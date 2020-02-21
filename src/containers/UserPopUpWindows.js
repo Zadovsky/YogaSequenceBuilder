@@ -14,7 +14,7 @@ function UserPopUpWindows(props) {
       <SignInPopUpWindow
         onClickCancelSignInAction={props.onClickCancelSignInAction}
         onClickSignInAction={props.onClickSignInAction}
-        open={props.user.signInWindowIsOpen}
+        open={props.user.signIn.windowIsOpen}
         signInWindowTexts={props.user.signInWindowTexts[props.language.curLang]}
         onChangeEmailSignInAction={props.onChangeEmailSignInAction}
         onChangePwdSignInAction={props.onChangePwdSignInAction}

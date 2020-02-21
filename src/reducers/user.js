@@ -9,9 +9,11 @@ import {
 const initialState = {
   user: null,
   passwordMd5: null,
-  signInWindowIsOpen: false,
-  signInEmailField: "",
-  signInPwdField: "",
+  signIn: {
+    windowIsOpen: false,
+    email: "",
+    password: ""
+  },
   signInWindowTexts: {
     ru: {
       title: "Вход в аккаунт",
@@ -35,15 +37,39 @@ const initialState = {
 export function userReducer(state = initialState, action) {
   switch (action.type) {
     case ON_CLICK_SIGN_IN:
-      return { ...state, signInWindowIsOpen: true };
+      return {
+        ...state,
+        signIn: {
+          ...state.signIn,
+          windowIsOpen: true
+        }
+      };
     case CANCEL_SIGN_IN:
-      return { ...state, signInWindowIsOpen: false };
+      return {
+        ...state,
+        signIn: {
+          ...state.signIn,
+          windowIsOpen: false
+        }
+      };
     case SIGN_IN:
       return state;
     case CHANGE_EMAIL_SIGN_IN:
-      return { ...state, signInEmailField: action.payload };
+      return {
+        ...state,
+        signIn: {
+          ...state.signIn,
+          email: action.payload
+        }
+      };
     case CHANGE_PWD_SIGN_IN:
-      return { ...state, signInPwdField: action.payload };
+      return {
+        ...state,
+        signIn: {
+          ...state.signIn,
+          password: action.payload
+        }
+      };
     default:
       return state;
   }
