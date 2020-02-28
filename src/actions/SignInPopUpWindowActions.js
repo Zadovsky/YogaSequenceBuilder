@@ -1,8 +1,8 @@
 export const CANCEL_SIGN_IN = "CANCEL_SIGN_IN";
-export const SIGN_IN = "SIGN_IN";
 export const SIGN_IN_EMPTY_FIELD = "SIGN_IN_EMPTY_FIELD";
 export const CHANGE_EMAIL_SIGN_IN = "CHANGE_EMAIL_SIGN_IN";
 export const CHANGE_PWD_SIGN_IN = "CHANGE_PWD_SIGN_IN";
+export const LOGIN_CHECK = "LOGIN_CHECK";
 
 export function onClickCancelSignInAction() {
   return {
@@ -17,8 +17,22 @@ export function onClickSignInAction(email, password) {
     };
   }
 
-  return {
-    type: SIGN_IN
+  return dispatch => {
+    fetch("http://localhost/YSB/public/php/logincheck.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body: JSON.stringify({ email: email, password: password })
+    })
+      .then(response => response.json())
+      .then(result => {
+        dispatch({
+          type: LOGIN_CHECK,
+          payload: result
+        });
+      })
+      .catch(error => console.error(error));
   };
 }
 

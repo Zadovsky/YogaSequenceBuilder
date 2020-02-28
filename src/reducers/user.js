@@ -1,21 +1,22 @@
 import { ON_CLICK_SIGN_IN } from "../actions/SignInRegButtonsActions";
 import {
   CANCEL_SIGN_IN,
-  SIGN_IN,
   SIGN_IN_EMPTY_FIELD,
   CHANGE_EMAIL_SIGN_IN,
-  CHANGE_PWD_SIGN_IN
+  CHANGE_PWD_SIGN_IN,
+  LOGIN_CHECK
 } from "../actions/SignInPopUpWindowActions";
 
 const initialState = {
-  user: null,
-  passwordMd5: null,
+  login: null,
+  password: null,
   signIn: {
     windowIsOpen: false,
     email: "",
     password: "",
     emailIsEmpty: false,
-    pwdIsEmpty: false
+    pwdIsEmpty: false,
+    loginFailed: false
   },
   signInWindowTexts: {
     ru: {
@@ -41,6 +42,33 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGIN_CHECK:
+      if (action.payload === true) {
+        return {
+          ...state,
+          login: state.signIn.email,
+          password: state.signIn.password,
+          signIn: {
+            ...state.signIn,
+            windowIsOpen: false,
+            email: "",
+            password: "",
+            emailIsEmpty: false,
+            pwdIsEmpty: false
+          }
+        };
+      } else {
+        return {
+          ...state,
+          signIn: {
+            ...state.signIn,
+            loginFailed: true,
+            emailIsEmpty: false,
+            pwdIsEmpty: false
+          }
+        };
+      }
+
     case ON_CLICK_SIGN_IN:
       return {
         ...state,
@@ -49,6 +77,7 @@ export function userReducer(state = initialState, action) {
           windowIsOpen: true
         }
       };
+
     case CANCEL_SIGN_IN:
       return {
         ...state,
@@ -61,6 +90,7 @@ export function userReducer(state = initialState, action) {
           pwdIsEmpty: false
         }
       };
+
     case SIGN_IN_EMPTY_FIELD:
       return {
         ...state,
@@ -70,9 +100,7 @@ export function userReducer(state = initialState, action) {
           pwdIsEmpty: state.signIn.password === ""
         }
       };
-    case SIGN_IN:
-      console.log(SIGN_IN);
-      return state;
+
     case CHANGE_EMAIL_SIGN_IN:
       return {
         ...state,
@@ -81,6 +109,7 @@ export function userReducer(state = initialState, action) {
           email: action.payload
         }
       };
+
     case CHANGE_PWD_SIGN_IN:
       return {
         ...state,
@@ -89,6 +118,7 @@ export function userReducer(state = initialState, action) {
           password: action.payload
         }
       };
+
     default:
       return state;
   }
