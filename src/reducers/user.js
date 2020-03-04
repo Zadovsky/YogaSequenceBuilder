@@ -6,6 +6,7 @@ import {
   CHANGE_PWD_SIGN_IN,
   LOGIN_CHECK
 } from "../actions/SignInPopUpWindowActions";
+import { CLOSE_INFO } from "../actions/InfoPopUpWindowActions";
 
 const initialState = {
   login: null,
@@ -37,11 +38,30 @@ const initialState = {
       signInText: "Sign in",
       emptyFieldMsg: "Fill the field"
     }
+  },
+  loginFailedWindowTexts: {
+    ru: {
+      title: "Неверный логин или пароль!",
+      text: "Попробуйте ввести данные еще раз"
+    },
+    en: {
+      title: "Wrong login or password!",
+      text: "Please try to enter it once again"
+    }
   }
 };
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case CLOSE_INFO:
+      return {
+        ...state,
+        signIn: {
+          ...state.signIn,
+          loginFailed: false
+        }
+      };
+
     case LOGIN_CHECK:
       if (action.payload === true) {
         return {
