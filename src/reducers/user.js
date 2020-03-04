@@ -17,7 +17,8 @@ const initialState = {
     password: "",
     emailIsEmpty: false,
     pwdIsEmpty: false,
-    loginFailed: false
+    loginFailed: false,
+    loginSuccess: false
   },
   signInWindowTexts: {
     ru: {
@@ -48,6 +49,16 @@ const initialState = {
       title: "Wrong login or password!",
       text: "Please try to enter it once again"
     }
+  },
+  loginSuccessWindowTexts: {
+    ru: {
+      title: "Вы успешно авторизованы!",
+      text: ""
+    },
+    en: {
+      title: "You successfully signed in!",
+      text: ""
+    }
   }
 };
 
@@ -58,7 +69,8 @@ export function userReducer(state = initialState, action) {
         ...state,
         signIn: {
           ...state.signIn,
-          loginFailed: false
+          loginFailed: false,
+          loginSuccess: false
         }
       };
 
@@ -70,6 +82,7 @@ export function userReducer(state = initialState, action) {
           password: state.signIn.password,
           signIn: {
             ...state.signIn,
+            loginSuccess: true,
             windowIsOpen: false,
             email: "",
             password: "",

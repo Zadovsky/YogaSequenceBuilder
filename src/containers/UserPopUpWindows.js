@@ -31,6 +31,11 @@ function UserPopUpWindows(props) {
         open={props.user.signIn.loginFailed}
         onCloseAction={props.onCloseInfoAction}
       />
+      <InfoPopUpWindow
+        texts={props.user.loginSuccessWindowTexts[props.language.curLang]}
+        open={props.user.signIn.loginSuccess}
+        onCloseAction={props.onCloseInfoAction}
+      />
     </div>
   );
 }
