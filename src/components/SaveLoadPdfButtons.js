@@ -13,7 +13,7 @@ export default function SaveLoadPdfButtons(props) {
   const classes = useStyles();
 
   return (
-    <div className="SignInRegButtons">
+    <div className="SaveLoadPdfButtons">
       <Button variant="contained" className={classes.button}>
         Load
       </Button>
