@@ -1,6 +1,7 @@
 import React from "react";
 import LanguageChooser from "../components/LanguageChooser";
 import SignInRegButtons from "../components/SignInRegButtons";
+import UserMenu from "../components/UserMenu";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import "./Header.css";
@@ -29,11 +30,15 @@ export default function Header(props) {
         </div>
       </Grid>
       <Grid item xs={4} style={{ textAlign: "center" }}>
-        <SignInRegButtons
-          signInButtonText={props.signInButtonText}
-          regButtonText={props.regButtonText}
-          onClickSignInAction={props.onClickSignInAction}
-        />
+        {props.login === null ? (
+          <SignInRegButtons
+            signInButtonText={props.signInButtonText}
+            regButtonText={props.regButtonText}
+            onClickSignInAction={props.onClickSignInAction}
+          />
+        ) : (
+          <UserMenu login={props.login} />
+        )}
       </Grid>
     </Grid>
   );

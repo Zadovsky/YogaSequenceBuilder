@@ -35,6 +35,7 @@ function PageTop(props) {
         }
         regButtonText={props.pageTop.regButtonText[props.language.curLang]}
         onClickSignInAction={props.onClickSignInAction}
+        login={props.user.login}
       />
       <Divider variant="middle" />
       <Typography
@@ -55,7 +56,8 @@ function PageTop(props) {
 const mapStateToProps = store => {
   return {
     language: store.language,
-    pageTop: store.pageTop
+    pageTop: store.pageTop,
+    user: store.user
   };
 };
 
