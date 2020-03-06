@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import SignInPopUpWindow from "../components/SignInPopUpWindow";
 import InfoPopUpWindow from "../components/InfoPopUpWindow";
+import YesNoPopUpWindow from "../components/YesNoPopUpWindow";
 import {
   onClickCancelSignInAction,
   onClickSignInAction,
@@ -9,6 +10,7 @@ import {
   onChangePwdSignInAction
 } from "../actions/SignInPopUpWindowActions";
 import { onCloseInfoAction } from "../actions/InfoPopUpWindowActions";
+import { onYesAction, onNoAction } from "../actions/YesNoPopUpWindowActions";
 
 function UserPopUpWindows(props) {
   return (
@@ -36,6 +38,12 @@ function UserPopUpWindows(props) {
         open={props.user.signIn.loginSuccess}
         onCloseAction={props.onCloseInfoAction}
       />
+      <YesNoPopUpWindow
+        texts={props.user.sureToExitTexts[props.language.curLang]}
+        open={props.user.sureToExitIsOpen}
+        onYesAction={props.onYesAction}
+        onNoAction={props.onNoAction}
+      />
     </div>
   );
 }
@@ -54,7 +62,9 @@ const mapDispatchToProps = dispatch => {
       dispatch(onClickSignInAction(email, password)),
     onChangeEmailSignInAction: e => dispatch(onChangeEmailSignInAction(e)),
     onChangePwdSignInAction: e => dispatch(onChangePwdSignInAction(e)),
-    onCloseInfoAction: () => dispatch(onCloseInfoAction())
+    onCloseInfoAction: () => dispatch(onCloseInfoAction()),
+    onYesAction: () => dispatch(onYesAction()),
+    onNoAction: () => dispatch(onNoAction())
   };
 };
 

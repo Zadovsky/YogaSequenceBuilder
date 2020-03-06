@@ -7,6 +7,7 @@ import {
   LOGIN_CHECK
 } from "../actions/SignInPopUpWindowActions";
 import { CLOSE_INFO } from "../actions/InfoPopUpWindowActions";
+import { CLICK_YES, CLICK_NO } from "../actions/YesNoPopUpWindowActions";
 import {
   USER_MENU_CLOSE,
   USERNAME_CLICK,
@@ -47,6 +48,16 @@ const initialState = {
       emptyFieldMsg: "Fill the field"
     }
   },
+  sureToExitTexts: {
+    ru: {
+      title: "Вы уверены, что хотите выйти из аккаунта?",
+      text: ""
+    },
+    en: {
+      title: "Are you sure you want to exit the account?",
+      text: ""
+    }
+  },
   loginFailedWindowTexts: {
     ru: {
       title: "Неверный логин или пароль!",
@@ -71,6 +82,20 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case CLICK_YES:
+      return {
+        ...state,
+        login: null,
+        password: null,
+        sureToExitIsOpen: false
+      };
+
+    case CLICK_NO:
+      return {
+        ...state,
+        sureToExitIsOpen: false
+      };
+
     case USERNAME_CLICK:
       return {
         ...state,
