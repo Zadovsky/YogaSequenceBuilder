@@ -39,6 +39,10 @@ export default function Header(props) {
         ) : (
           <UserMenu
             login={props.login}
+            anchorEl={props.anchorEl}
+            isOpen={props.isOpen}
+            userMenuClose={props.userMenuClose}
+            usernameClickAction={props.usernameClickAction}
             exitItemClickAction={props.exitItemClickAction}
           />
         )}

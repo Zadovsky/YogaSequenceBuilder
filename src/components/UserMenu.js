@@ -4,35 +4,19 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 
 export default function UserMenu(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <div className="UserMenu">
-      <Button onClick={handleClick}>{props.login}</Button>
+      <Button onClick={props.usernameClickAction}>{props.login}</Button>
       <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
+        anchorEl={props.anchorEl}
+        open={props.isOpen}
         keepMounted
-        onClose={handleClose}
+        onClose={props.userMenuClose}
       >
-        <MenuItem key={0} onClick={handleClose}>
+        <MenuItem key={0} onClick={props.userMenuClose}>
           Сменить пароль
         </MenuItem>
-        <MenuItem
-          key={1}
-          onClick={() => {
-            handleClose();
-            props.exitItemClickAction();
-          }}
-        >
+        <MenuItem key={1} onClick={props.exitItemClickAction}>
           Выход
         </MenuItem>
       </Menu>

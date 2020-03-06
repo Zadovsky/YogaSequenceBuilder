@@ -7,11 +7,17 @@ import {
   LOGIN_CHECK
 } from "../actions/SignInPopUpWindowActions";
 import { CLOSE_INFO } from "../actions/InfoPopUpWindowActions";
-import { EXIT_ACCOUNT } from "../actions/UserMenuActions";
+import {
+  USER_MENU_CLOSE,
+  USERNAME_CLICK,
+  EXIT_ACCOUNT
+} from "../actions/UserMenuActions";
 
 const initialState = {
   login: null,
   password: null,
+  userMenu: { isOpen: false, anchorEl: null },
+  sureToExitIsOpen: false,
   signIn: {
     windowIsOpen: false,
     email: "",
@@ -65,9 +71,31 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case USERNAME_CLICK:
+      return {
+        ...state,
+        userMenu: {
+          ...state.userMenu,
+          isOpen: true,
+          anchorEl: action.payload
+        }
+      };
+
+    case USER_MENU_CLOSE:
+      return {
+        ...state,
+        userMenu: {
+          ...state.userMenu,
+          isOpen: false,
+          anchorEl: null
+        }
+      };
+
     case EXIT_ACCOUNT:
-      console.log(EXIT_ACCOUNT);
-      return state;
+      return {
+        ...state,
+        sureToExitIsOpen: true
+      };
 
     case CLOSE_INFO:
       return {
