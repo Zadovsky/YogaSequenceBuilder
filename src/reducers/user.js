@@ -94,6 +94,11 @@ export function userReducer(state = initialState, action) {
     case EXIT_ACCOUNT:
       return {
         ...state,
+        userMenu: {
+          ...state.userMenu,
+          isOpen: false,
+          anchorEl: null
+        },
         sureToExitIsOpen: true
       };
 
