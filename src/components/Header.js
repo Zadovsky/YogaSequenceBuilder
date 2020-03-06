@@ -37,7 +37,10 @@ export default function Header(props) {
             onClickSignInAction={props.onClickSignInAction}
           />
         ) : (
-          <UserMenu login={props.login} />
+          <UserMenu
+            login={props.login}
+            exitItemClickAction={props.exitItemClickAction}
+          />
         )}
       </Grid>
     </Grid>

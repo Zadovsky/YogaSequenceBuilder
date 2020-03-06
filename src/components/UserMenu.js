@@ -26,7 +26,13 @@ export default function UserMenu(props) {
         <MenuItem key={0} onClick={handleClose}>
           Сменить пароль
         </MenuItem>
-        <MenuItem key={1} onClick={handleClose}>
+        <MenuItem
+          key={1}
+          onClick={() => {
+            handleClose();
+            props.exitItemClickAction();
+          }}
+        >
           Выход
         </MenuItem>
       </Menu>

@@ -7,6 +7,7 @@ import {
   LOGIN_CHECK
 } from "../actions/SignInPopUpWindowActions";
 import { CLOSE_INFO } from "../actions/InfoPopUpWindowActions";
+import { EXIT_ACCOUNT } from "../actions/UserMenuActions";
 
 const initialState = {
   login: null,
@@ -64,6 +65,10 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case EXIT_ACCOUNT:
+      console.log(EXIT_ACCOUNT);
+      return state;
+
     case CLOSE_INFO:
       return {
         ...state,
