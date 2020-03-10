@@ -11,7 +11,7 @@ import {
   CLOSE_LOGIN_FAILED_INFO
 } from "../actions/InfoPopUpWindowActions";
 import {
-  ACCEPT_EXIT,
+  CONFIRM_EXIT,
   REFUSE_EXIT,
   CONFIRM_CHANGE_PASSWORD,
   REFUSE_CHANGE_PASSWORD
@@ -129,7 +129,7 @@ export function userReducer(state = initialState, action) {
     case REFUSE_CHANGE_PASSWORD:
       return { ...state, sureToChangePwdIsOpen: false };
 
-    case ACCEPT_EXIT:
+    case CONFIRM_EXIT:
       return {
         ...state,
         login: null,

@@ -14,7 +14,7 @@ import {
   onCloseLoginFailedInfoAction
 } from "../actions/InfoPopUpWindowActions";
 import {
-  onAcceptExitAction,
+  onConfirmExitAction,
   onRefuseExitAction,
   onConfirmChangePwdAction,
   onRefuseChangePwdAction
@@ -51,7 +51,7 @@ function UserPopUpWindows(props) {
       <YesNoPopUpWindow
         texts={props.user.sureToExitTexts[props.language.curLang]}
         open={props.user.sureToExitIsOpen}
-        onYesAction={props.onAcceptExitAction}
+        onYesAction={props.onConfirmExitAction}
         onNoAction={props.onRefuseExitAction}
         lang={props.language.curLang}
       />
@@ -84,7 +84,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(onCloseLoginSuccessInfoAction()),
     onCloseLoginFailedInfoAction: () =>
       dispatch(onCloseLoginFailedInfoAction()),
-    onAcceptExitAction: () => dispatch(onAcceptExitAction()),
+    onConfirmExitAction: () => dispatch(onConfirmExitAction()),
     onRefuseExitAction: () => dispatch(onRefuseExitAction()),
     onConfirmChangePwdAction: () => dispatch(onConfirmChangePwdAction()),
     onRefuseChangePwdAction: () => dispatch(onRefuseChangePwdAction())

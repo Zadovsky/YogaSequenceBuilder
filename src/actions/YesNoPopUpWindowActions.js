@@ -1,11 +1,11 @@
-export const ACCEPT_EXIT = "ACCEPT_EXIT";
+export const CONFIRM_EXIT = "CONFIRM_EXIT";
 export const REFUSE_EXIT = "REFUSE_EXIT";
 export const CONFIRM_CHANGE_PASSWORD = "CONFIRM_CHANGE_PASSWORD";
 export const REFUSE_CHANGE_PASSWORD = "REFUSE_CHANGE_PASSWORD";
 
-export function onAcceptExitAction() {
+export function onConfirmExitAction() {
   return {
-    type: ACCEPT_EXIT
+    type: CONFIRM_EXIT
   };
 }
 
