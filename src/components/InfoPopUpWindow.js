@@ -6,6 +6,13 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 
+const buttonText = {
+  ok: {
+    ru: "Ок",
+    en: "Ok"
+  }
+};
+
 export default function InfoPopUpWindow(props) {
   return (
     <Dialog open={props.open} onClose={props.onCloseAction}>
@@ -15,7 +22,7 @@ export default function InfoPopUpWindow(props) {
       </DialogContent>
       <DialogActions>
         <Button onClick={props.onCloseAction} color="primary">
-          Ok
+          {buttonText.ok[props.lang]}
         </Button>
       </DialogActions>
     </Dialog>

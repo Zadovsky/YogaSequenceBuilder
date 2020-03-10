@@ -32,11 +32,13 @@ function UserPopUpWindows(props) {
         texts={props.user.loginFailedWindowTexts[props.language.curLang]}
         open={props.user.signIn.loginFailed}
         onCloseAction={props.onCloseInfoAction}
+        lang={props.language.curLang}
       />
       <InfoPopUpWindow
         texts={props.user.loginSuccessWindowTexts[props.language.curLang]}
         open={props.user.signIn.loginSuccess}
         onCloseAction={props.onCloseInfoAction}
+        lang={props.language.curLang}
       />
       <YesNoPopUpWindow
         texts={props.user.sureToExitTexts[props.language.curLang]}
