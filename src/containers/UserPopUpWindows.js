@@ -58,7 +58,9 @@ function UserPopUpWindows(props) {
       <YesNoPopUpWindow
         texts={props.user.sureToChangePwdTexts[props.language.curLang]}
         open={props.user.sureToChangePwdIsOpen}
-        onYesAction={props.onConfirmChangePwdAction}
+        onYesAction={() =>
+          props.onConfirmChangePwdAction(props.user.login, props.user.password)
+        }
         onNoAction={props.onRefuseChangePwdAction}
         lang={props.language.curLang}
       />
@@ -86,7 +88,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(onCloseLoginFailedInfoAction()),
     onConfirmExitAction: () => dispatch(onConfirmExitAction()),
     onRefuseExitAction: () => dispatch(onRefuseExitAction()),
-    onConfirmChangePwdAction: () => dispatch(onConfirmChangePwdAction()),
+    onConfirmChangePwdAction: (email, password) =>
+      dispatch(onConfirmChangePwdAction(email, password)),
     onRefuseChangePwdAction: () => dispatch(onRefuseChangePwdAction())
   };
 };

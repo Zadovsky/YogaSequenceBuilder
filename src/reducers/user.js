@@ -124,6 +124,7 @@ export function userReducer(state = initialState, action) {
       };
 
     case CONFIRM_CHANGE_PASSWORD:
+      console.log(action.payload);
       return { ...state, sureToChangePwdIsOpen: false };
 
     case REFUSE_CHANGE_PASSWORD:

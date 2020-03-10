@@ -15,8 +15,24 @@ export function onRefuseExitAction() {
   };
 }
 
-export function onConfirmChangePwdAction() {
-  return { type: CONFIRM_CHANGE_PASSWORD };
+export function onConfirmChangePwdAction(email, password) {
+  return dispatch => {
+    fetch("http://localhost/YSB/public/php/changepwd.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body: JSON.stringify({ email: email, password: password })
+    })
+      .then(response => response.json())
+      .then(result => {
+        dispatch({
+          type: CONFIRM_CHANGE_PASSWORD,
+          payload: result
+        });
+      })
+      .catch(error => console.error(error));
+  };
 }
 
 export function onRefuseChangePwdAction() {
