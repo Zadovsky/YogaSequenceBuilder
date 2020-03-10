@@ -6,7 +6,10 @@ import {
   CHANGE_PWD_SIGN_IN,
   LOGIN_CHECK
 } from "../actions/SignInPopUpWindowActions";
-import { CLOSE_INFO } from "../actions/InfoPopUpWindowActions";
+import {
+  CLOSE_LOGIN_SUCCESS_INFO,
+  CLOSE_LOGIN_FAILED_INFO
+} from "../actions/InfoPopUpWindowActions";
 import { ACCEPT_EXIT, REFUSE_EXIT } from "../actions/YesNoPopUpWindowActions";
 import {
   USER_MENU_CLOSE,
@@ -127,13 +130,21 @@ export function userReducer(state = initialState, action) {
         sureToExitIsOpen: true
       };
 
-    case CLOSE_INFO:
+    case CLOSE_LOGIN_SUCCESS_INFO:
       return {
         ...state,
         signIn: {
           ...state.signIn,
-          loginFailed: false,
           loginSuccess: false
+        }
+      };
+
+    case CLOSE_LOGIN_FAILED_INFO:
+      return {
+        ...state,
+        signIn: {
+          ...state.signIn,
+          loginFailed: false
         }
       };
 

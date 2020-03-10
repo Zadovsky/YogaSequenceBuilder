@@ -9,7 +9,10 @@ import {
   onChangeEmailSignInAction,
   onChangePwdSignInAction
 } from "../actions/SignInPopUpWindowActions";
-import { onCloseInfoAction } from "../actions/InfoPopUpWindowActions";
+import {
+  onCloseLoginSuccessInfoAction,
+  onCloseLoginFailedInfoAction
+} from "../actions/InfoPopUpWindowActions";
 import {
   onAcceptExitAction,
   onRefuseExitAction
@@ -34,13 +37,13 @@ function UserPopUpWindows(props) {
       <InfoPopUpWindow
         texts={props.user.loginFailedWindowTexts[props.language.curLang]}
         open={props.user.signIn.loginFailed}
-        onCloseAction={props.onCloseInfoAction}
+        onCloseAction={props.onCloseLoginFailedInfoAction}
         lang={props.language.curLang}
       />
       <InfoPopUpWindow
         texts={props.user.loginSuccessWindowTexts[props.language.curLang]}
         open={props.user.signIn.loginSuccess}
-        onCloseAction={props.onCloseInfoAction}
+        onCloseAction={props.onCloseLoginSuccessInfoAction}
         lang={props.language.curLang}
       />
       <YesNoPopUpWindow
@@ -68,7 +71,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(onClickSignInAction(email, password)),
     onChangeEmailSignInAction: e => dispatch(onChangeEmailSignInAction(e)),
     onChangePwdSignInAction: e => dispatch(onChangePwdSignInAction(e)),
-    onCloseInfoAction: () => dispatch(onCloseInfoAction()),
+    onCloseLoginSuccessInfoAction: () =>
+      dispatch(onCloseLoginSuccessInfoAction()),
+    onCloseLoginFailedInfoAction: () =>
+      dispatch(onCloseLoginFailedInfoAction()),
     onAcceptExitAction: () => dispatch(onAcceptExitAction()),
     onRefuseExitAction: () => dispatch(onRefuseExitAction())
   };
