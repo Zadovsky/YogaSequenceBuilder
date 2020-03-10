@@ -8,7 +8,8 @@ import {
 } from "../actions/SignInPopUpWindowActions";
 import {
   CLOSE_LOGIN_SUCCESS_INFO,
-  CLOSE_LOGIN_FAILED_INFO
+  CLOSE_LOGIN_FAILED_INFO,
+  CLOSE_PASSWORD_CHANGED_INFO
 } from "../actions/InfoPopUpWindowActions";
 import {
   CONFIRM_EXIT,
@@ -29,6 +30,7 @@ const initialState = {
   userMenu: { isOpen: false, anchorEl: null },
   sureToExitIsOpen: false,
   sureToChangePwdIsOpen: false,
+  pwdChangedInfoIsOpen: false,
   signIn: {
     windowIsOpen: false,
     email: "",
@@ -107,6 +109,16 @@ const initialState = {
       cnangePwd: "Change password",
       exit: "Exit"
     }
+  },
+  pwdChangedTexts: {
+    ru: {
+      title: "Пароль успешно изменен!",
+      text: "Мы отправили новый пароль на ваш e-mail"
+    },
+    en: {
+      title: "Password successfuly changed!",
+      text: "We've sent new password on the e-mail"
+    }
   }
 };
 
@@ -124,11 +136,17 @@ export function userReducer(state = initialState, action) {
       };
 
     case CONFIRM_CHANGE_PASSWORD:
-      console.log(action.payload);
-      return { ...state, sureToChangePwdIsOpen: false };
+      return {
+        ...state,
+        sureToChangePwdIsOpen: false,
+        pwdChangedInfoIsOpen: true
+      };
 
     case REFUSE_CHANGE_PASSWORD:
       return { ...state, sureToChangePwdIsOpen: false };
+
+    case CLOSE_PASSWORD_CHANGED_INFO:
+      return { ...state, pwdChangedInfoIsOpen: false };
 
     case CONFIRM_EXIT:
       return {
