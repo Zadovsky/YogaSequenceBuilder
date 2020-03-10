@@ -14,10 +14,10 @@ export default function UserMenu(props) {
         onClose={props.userMenuClose}
       >
         <MenuItem key={0} onClick={props.userMenuClose}>
-          Сменить пароль
+          {props.texts.cnangePwd}
         </MenuItem>
         <MenuItem key={1} onClick={props.exitItemClickAction}>
-          Выход
+          {props.texts.exit}
         </MenuItem>
       </Menu>
     </div>

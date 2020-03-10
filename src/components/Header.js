@@ -44,6 +44,7 @@ export default function Header(props) {
             userMenuClose={props.userMenuClose}
             usernameClickAction={props.usernameClickAction}
             exitItemClickAction={props.exitItemClickAction}
+            texts={props.userMenuTexts}
           />
         )}
       </Grid>

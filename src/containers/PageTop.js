@@ -46,6 +46,7 @@ function PageTop(props) {
         userMenuClose={props.userMenuClose}
         usernameClickAction={props.usernameClickAction}
         exitItemClickAction={props.exitItemClickAction}
+        userMenuTexts={props.user.userMenuTexts[props.language.curLang]}
       />
       <Divider variant="middle" />
       <Typography

@@ -80,6 +80,16 @@ const initialState = {
       title: "You successfully signed in!",
       text: ""
     }
+  },
+  userMenuTexts: {
+    ru: {
+      cnangePwd: "Сменить пароль",
+      exit: "Выход"
+    },
+    en: {
+      cnangePwd: "Change password",
+      exit: "Exit"
+    }
   }
 };
 
