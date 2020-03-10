@@ -6,6 +6,17 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 
+const buttonText = {
+  yes: {
+    ru: "Да",
+    en: "Yes"
+  },
+  no: {
+    ru: "Нет",
+    en: "No"
+  }
+};
+
 export default function YesNoPopUpWindow(props) {
   return (
     <Dialog open={props.open} onClose={props.onNoAction}>
@@ -15,10 +26,10 @@ export default function YesNoPopUpWindow(props) {
       </DialogContent>
       <DialogActions>
         <Button onClick={props.onNoAction} color="primary">
-          No
+          {buttonText.no[props.lang]}
         </Button>
         <Button onClick={props.onYesAction} color="primary">
-          Yes
+          {buttonText.yes[props.lang]}
         </Button>
       </DialogActions>
     </Dialog>

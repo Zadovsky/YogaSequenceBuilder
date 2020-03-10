@@ -43,6 +43,7 @@ function UserPopUpWindows(props) {
         open={props.user.sureToExitIsOpen}
         onYesAction={props.onYesAction}
         onNoAction={props.onNoAction}
+        lang={props.language.curLang}
       />
     </div>
   );
