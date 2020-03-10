@@ -1,14 +1,14 @@
-export const CLICK_YES = "CLICK_YES";
-export const CLICK_NO = "CLICK_NO";
+export const ACCEPT_EXIT = "ACCEPT_EXIT";
+export const REFUSE_EXIT = "REFUSE_EXIT";
 
-export function onYesAction() {
+export function onAcceptExitAction() {
   return {
-    type: CLICK_YES
+    type: ACCEPT_EXIT
   };
 }
 
-export function onNoAction() {
+export function onRefuseExitAction() {
   return {
-    type: CLICK_NO
+    type: REFUSE_EXIT
   };
 }

@@ -19,16 +19,16 @@ const buttonText = {
 
 export default function YesNoPopUpWindow(props) {
   return (
-    <Dialog open={props.open} onClose={props.onNoAction}>
+    <Dialog open={props.open} onClose={props.onRefuseExitAction}>
       <DialogTitle>{props.texts.title}</DialogTitle>
       <DialogContent>
         <DialogContentText>{props.texts.text}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onNoAction} color="primary">
+        <Button onClick={props.onRefuseExitAction} color="primary">
           {buttonText.no[props.lang]}
         </Button>
-        <Button onClick={props.onYesAction} color="primary">
+        <Button onClick={props.onAcceptExitAction} color="primary">
           {buttonText.yes[props.lang]}
         </Button>
       </DialogActions>

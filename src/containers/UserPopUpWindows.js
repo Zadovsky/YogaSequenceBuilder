@@ -10,7 +10,10 @@ import {
   onChangePwdSignInAction
 } from "../actions/SignInPopUpWindowActions";
 import { onCloseInfoAction } from "../actions/InfoPopUpWindowActions";
-import { onYesAction, onNoAction } from "../actions/YesNoPopUpWindowActions";
+import {
+  onAcceptExitAction,
+  onRefuseExitAction
+} from "../actions/YesNoPopUpWindowActions";
 
 function UserPopUpWindows(props) {
   return (
@@ -43,8 +46,8 @@ function UserPopUpWindows(props) {
       <YesNoPopUpWindow
         texts={props.user.sureToExitTexts[props.language.curLang]}
         open={props.user.sureToExitIsOpen}
-        onYesAction={props.onYesAction}
-        onNoAction={props.onNoAction}
+        onAcceptExitAction={props.onAcceptExitAction}
+        onRefuseExitAction={props.onRefuseExitAction}
         lang={props.language.curLang}
       />
     </div>
@@ -66,8 +69,8 @@ const mapDispatchToProps = dispatch => {
     onChangeEmailSignInAction: e => dispatch(onChangeEmailSignInAction(e)),
     onChangePwdSignInAction: e => dispatch(onChangePwdSignInAction(e)),
     onCloseInfoAction: () => dispatch(onCloseInfoAction()),
-    onYesAction: () => dispatch(onYesAction()),
-    onNoAction: () => dispatch(onNoAction())
+    onAcceptExitAction: () => dispatch(onAcceptExitAction()),
+    onRefuseExitAction: () => dispatch(onRefuseExitAction())
   };
 };
 

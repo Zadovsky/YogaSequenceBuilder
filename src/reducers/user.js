@@ -7,7 +7,7 @@ import {
   LOGIN_CHECK
 } from "../actions/SignInPopUpWindowActions";
 import { CLOSE_INFO } from "../actions/InfoPopUpWindowActions";
-import { CLICK_YES, CLICK_NO } from "../actions/YesNoPopUpWindowActions";
+import { ACCEPT_EXIT, REFUSE_EXIT } from "../actions/YesNoPopUpWindowActions";
 import {
   USER_MENU_CLOSE,
   USERNAME_CLICK,
@@ -82,7 +82,7 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
-    case CLICK_YES:
+    case ACCEPT_EXIT:
       return {
         ...state,
         login: null,
@@ -90,7 +90,7 @@ export function userReducer(state = initialState, action) {
         sureToExitIsOpen: false
       };
 
-    case CLICK_NO:
+    case REFUSE_EXIT:
       return {
         ...state,
         sureToExitIsOpen: false
