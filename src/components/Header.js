@@ -44,6 +44,7 @@ export default function Header(props) {
             userMenuClose={props.userMenuClose}
             usernameClickAction={props.usernameClickAction}
             exitItemClickAction={props.exitItemClickAction}
+            changePwdItemClickAction={props.changePwdItemClickAction}
             texts={props.userMenuTexts}
           />
         )}

@@ -10,11 +10,17 @@ import {
   CLOSE_LOGIN_SUCCESS_INFO,
   CLOSE_LOGIN_FAILED_INFO
 } from "../actions/InfoPopUpWindowActions";
-import { ACCEPT_EXIT, REFUSE_EXIT } from "../actions/YesNoPopUpWindowActions";
+import {
+  ACCEPT_EXIT,
+  REFUSE_EXIT,
+  CONFIRM_CHANGE_PASSWORD,
+  REFUSE_CHANGE_PASSWORD
+} from "../actions/YesNoPopUpWindowActions";
 import {
   USER_MENU_CLOSE,
   USERNAME_CLICK,
-  EXIT_ACCOUNT
+  EXIT_ACCOUNT,
+  CHANGE_PASSWORD
 } from "../actions/UserMenuActions";
 
 const initialState = {
@@ -22,6 +28,7 @@ const initialState = {
   password: null,
   userMenu: { isOpen: false, anchorEl: null },
   sureToExitIsOpen: false,
+  sureToChangePwdIsOpen: false,
   signIn: {
     windowIsOpen: false,
     email: "",
@@ -57,7 +64,7 @@ const initialState = {
       text: ""
     },
     en: {
-      title: "Are you sure you want to exit the account?",
+      title: "Are you sure to exit the account?",
       text: ""
     }
   },
@@ -81,6 +88,16 @@ const initialState = {
       text: ""
     }
   },
+  sureToChangePwdTexts: {
+    ru: {
+      title: "Вы уверены, что хотите сменить пароль?",
+      text: ""
+    },
+    en: {
+      title: "Are you sure to change the password?",
+      text: ""
+    }
+  },
   userMenuTexts: {
     ru: {
       cnangePwd: "Сменить пароль",
@@ -95,6 +112,23 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_PASSWORD:
+      return {
+        ...state,
+        userMenu: {
+          ...state.userMenu,
+          isOpen: false,
+          anchorEl: null
+        },
+        sureToChangePwdIsOpen: true
+      };
+
+    case CONFIRM_CHANGE_PASSWORD:
+      return { ...state, sureToChangePwdIsOpen: false };
+
+    case REFUSE_CHANGE_PASSWORD:
+      return { ...state, sureToChangePwdIsOpen: false };
+
     case ACCEPT_EXIT:
       return {
         ...state,

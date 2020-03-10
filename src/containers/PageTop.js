@@ -10,7 +10,8 @@ import { onClickSignInAction } from "../actions/SignInRegButtonsActions";
 import {
   userMenuClose,
   usernameClickAction,
-  exitItemClickAction
+  exitItemClickAction,
+  changePwdItemClickAction
 } from "../actions/UserMenuActions";
 import "./PageTop.css";
 
@@ -46,6 +47,7 @@ function PageTop(props) {
         userMenuClose={props.userMenuClose}
         usernameClickAction={props.usernameClickAction}
         exitItemClickAction={props.exitItemClickAction}
+        changePwdItemClickAction={props.changePwdItemClickAction}
         userMenuTexts={props.user.userMenuTexts[props.language.curLang]}
       />
       <Divider variant="middle" />
@@ -78,7 +80,8 @@ const mapDispatchToProps = dispatch => {
     onClickSignInAction: () => dispatch(onClickSignInAction()),
     userMenuClose: () => dispatch(userMenuClose()),
     usernameClickAction: e => dispatch(usernameClickAction(e)),
-    exitItemClickAction: () => dispatch(exitItemClickAction())
+    exitItemClickAction: () => dispatch(exitItemClickAction()),
+    changePwdItemClickAction: () => dispatch(changePwdItemClickAction())
   };
 };
 

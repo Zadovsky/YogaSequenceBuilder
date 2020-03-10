@@ -15,7 +15,9 @@ import {
 } from "../actions/InfoPopUpWindowActions";
 import {
   onAcceptExitAction,
-  onRefuseExitAction
+  onRefuseExitAction,
+  onConfirmChangePwdAction,
+  onRefuseChangePwdAction
 } from "../actions/YesNoPopUpWindowActions";
 
 function UserPopUpWindows(props) {
@@ -49,8 +51,15 @@ function UserPopUpWindows(props) {
       <YesNoPopUpWindow
         texts={props.user.sureToExitTexts[props.language.curLang]}
         open={props.user.sureToExitIsOpen}
-        onAcceptExitAction={props.onAcceptExitAction}
-        onRefuseExitAction={props.onRefuseExitAction}
+        onYesAction={props.onAcceptExitAction}
+        onNoAction={props.onRefuseExitAction}
+        lang={props.language.curLang}
+      />
+      <YesNoPopUpWindow
+        texts={props.user.sureToChangePwdTexts[props.language.curLang]}
+        open={props.user.sureToChangePwdIsOpen}
+        onYesAction={props.onConfirmChangePwdAction}
+        onNoAction={props.onRefuseChangePwdAction}
         lang={props.language.curLang}
       />
     </div>
@@ -76,7 +85,9 @@ const mapDispatchToProps = dispatch => {
     onCloseLoginFailedInfoAction: () =>
       dispatch(onCloseLoginFailedInfoAction()),
     onAcceptExitAction: () => dispatch(onAcceptExitAction()),
-    onRefuseExitAction: () => dispatch(onRefuseExitAction())
+    onRefuseExitAction: () => dispatch(onRefuseExitAction()),
+    onConfirmChangePwdAction: () => dispatch(onConfirmChangePwdAction()),
+    onRefuseChangePwdAction: () => dispatch(onRefuseChangePwdAction())
   };
 };
 

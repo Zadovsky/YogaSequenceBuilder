@@ -13,7 +13,7 @@ export default function UserMenu(props) {
         keepMounted
         onClose={props.userMenuClose}
       >
-        <MenuItem key={0} onClick={props.userMenuClose}>
+        <MenuItem key={0} onClick={props.changePwdItemClickAction}>
           {props.texts.cnangePwd}
         </MenuItem>
         <MenuItem key={1} onClick={props.exitItemClickAction}>

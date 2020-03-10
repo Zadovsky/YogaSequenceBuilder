@@ -25,10 +25,10 @@ export default function YesNoPopUpWindow(props) {
         <DialogContentText>{props.texts.text}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onRefuseExitAction} color="primary">
+        <Button onClick={props.onNoAction} color="primary">
           {buttonText.no[props.lang]}
         </Button>
-        <Button onClick={props.onAcceptExitAction} color="primary">
+        <Button onClick={props.onYesAction} color="primary">
           {buttonText.yes[props.lang]}
         </Button>
       </DialogActions>
