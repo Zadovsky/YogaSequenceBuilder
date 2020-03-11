@@ -138,6 +138,7 @@ export function userReducer(state = initialState, action) {
     case CONFIRM_CHANGE_PASSWORD:
       return {
         ...state,
+        password: action.payload,
         sureToChangePwdIsOpen: false,
         pwdChangedInfoIsOpen: true
       };
