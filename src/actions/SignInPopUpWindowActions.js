@@ -3,6 +3,7 @@ export const SIGN_IN_EMPTY_FIELD = "SIGN_IN_EMPTY_FIELD";
 export const CHANGE_EMAIL_SIGN_IN = "CHANGE_EMAIL_SIGN_IN";
 export const CHANGE_PWD_SIGN_IN = "CHANGE_PWD_SIGN_IN";
 export const LOGIN_CHECK = "LOGIN_CHECK";
+export const FORGOT_PWD = "FORGOT_PWD";
 
 export function onClickCancelSignInAction() {
   return {
@@ -47,5 +48,11 @@ export function onChangePwdSignInAction(e) {
   return {
     type: CHANGE_PWD_SIGN_IN,
     payload: e.target.value
+  };
+}
+
+export function onClickForgotPwdAction() {
+  return {
+    type: FORGOT_PWD
   };
 }

@@ -4,12 +4,22 @@ import {
   SIGN_IN_EMPTY_FIELD,
   CHANGE_EMAIL_SIGN_IN,
   CHANGE_PWD_SIGN_IN,
-  LOGIN_CHECK
+  LOGIN_CHECK,
+  FORGOT_PWD
 } from "../actions/SignInPopUpWindowActions";
+import {
+  CANCEL_FORGOT_PWD,
+  PWD_SENT_TO_EMAIL,
+  NO_SUCH_LOGIN,
+  CHANGE_EMAIL_FORGOT_PWD,
+  FORGOT_PWD_EMPTY_FIELD
+} from "../actions/ForgotPwdPopUpWindowActions";
 import {
   CLOSE_LOGIN_SUCCESS_INFO,
   CLOSE_LOGIN_FAILED_INFO,
-  CLOSE_PASSWORD_CHANGED_INFO
+  CLOSE_PASSWORD_CHANGED_INFO,
+  CLOSE_PASSWORD_SENT_INFO,
+  CLOSE_NO_LOGIN_INFO
 } from "../actions/InfoPopUpWindowActions";
 import {
   CONFIRM_EXIT,
@@ -39,6 +49,13 @@ const initialState = {
     pwdIsEmpty: false,
     loginFailed: false,
     loginSuccess: false
+  },
+  forgotPwd: {
+    isOpen: false,
+    email: "",
+    emailIsEmpty: false,
+    pwdSent: false,
+    noLogin: false
   },
   signInWindowTexts: {
     ru: {
@@ -119,11 +136,129 @@ const initialState = {
       title: "Password successfuly changed!",
       text: "We've sent new password on the e-mail"
     }
+  },
+  forgotPwdTexts: {
+    ru: {
+      title: "Восстановление пароля",
+      emailFieldLabel: "Ваш e-mail",
+      cancelText: "Отмена",
+      confirmText: "Восстановить",
+      emptyFieldMsg: "Заполните это поле",
+      pwdSent: {
+        title: "Пароль отправлен на указанный e-mail",
+        text: ""
+      },
+      noLogin: {
+        title: "Такого аккаунта нет",
+        text: "Проверьте указанный e-mail"
+      }
+    },
+    en: {
+      title: "Password recovery",
+      emailFieldLabel: "Your e-mail",
+      cancelText: "Cancel",
+      confirmText: "Recover",
+      emptyFieldMsg: "Fill the field",
+      pwdSent: {
+        title: "Password sent to the e-mail",
+        text: ""
+      },
+      noLogin: {
+        title: "There is no such account",
+        text: "Check the e-mail"
+      }
+    }
   }
 };
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case FORGOT_PWD:
+      return {
+        ...state,
+        forgotPwd: {
+          ...state.forgotPwd,
+          isOpen: true
+        },
+        signIn: {
+          ...state.signIn,
+          windowIsOpen: false,
+          email: "",
+          password: "",
+          emailIsEmpty: false,
+          pwdIsEmpty: false
+        }
+      };
+
+    case CANCEL_FORGOT_PWD:
+      return {
+        ...state,
+        forgotPwd: {
+          ...state.forgotPwd,
+          isOpen: false,
+          email: "",
+          emailIsEmpty: false
+        }
+      };
+
+    case PWD_SENT_TO_EMAIL:
+      return {
+        ...state,
+        forgotPwd: {
+          ...state.forgotPwd,
+          isOpen: false,
+          email: "",
+          emailIsEmpty: false,
+          pwdSent: true
+        }
+      };
+
+    case CLOSE_PASSWORD_SENT_INFO:
+      return {
+        ...state,
+        forgotPwd: {
+          ...state.forgotPwd,
+          pwdSent: false
+        }
+      };
+
+    case CLOSE_NO_LOGIN_INFO:
+      return {
+        ...state,
+        forgotPwd: {
+          ...state.forgotPwd,
+          noLogin: false
+        }
+      };
+
+    case NO_SUCH_LOGIN:
+      return {
+        ...state,
+        forgotPwd: {
+          ...state.forgotPwd,
+          emailIsEmpty: false,
+          noLogin: true
+        }
+      };
+
+    case CHANGE_EMAIL_FORGOT_PWD:
+      return {
+        ...state,
+        forgotPwd: {
+          ...state.forgotPwd,
+          email: action.payload
+        }
+      };
+
+    case FORGOT_PWD_EMPTY_FIELD:
+      return {
+        ...state,
+        forgotPwd: {
+          ...state.forgotPwd,
+          emailIsEmpty: true
+        }
+      };
+
     case CHANGE_PASSWORD:
       return {
         ...state,

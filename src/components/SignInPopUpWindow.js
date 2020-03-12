@@ -56,7 +56,7 @@ export default function SignInPopUpWindow(props) {
         <Link
           component="button"
           variant="body2"
-          onClick={() => {}}
+          onClick={props.onClickForgotPwdAction}
           className={classes.link}
         >
           {props.signInWindowTexts.forgotPwdText}

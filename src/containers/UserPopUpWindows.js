@@ -3,16 +3,20 @@ import { connect } from "react-redux";
 import SignInPopUpWindow from "../components/SignInPopUpWindow";
 import InfoPopUpWindow from "../components/InfoPopUpWindow";
 import YesNoPopUpWindow from "../components/YesNoPopUpWindow";
+import ForgotPwdPopUpWindow from "../components/ForgotPwdPopUpWindow";
 import {
   onClickCancelSignInAction,
   onClickSignInAction,
   onChangeEmailSignInAction,
-  onChangePwdSignInAction
+  onChangePwdSignInAction,
+  onClickForgotPwdAction
 } from "../actions/SignInPopUpWindowActions";
 import {
   onCloseLoginSuccessInfoAction,
   onCloseLoginFailedInfoAction,
-  onClosePwdChangedInfoAction
+  onClosePwdChangedInfoAction,
+  onClosePwdSentInfoAction,
+  onCloseNoLoginInfoAction
 } from "../actions/InfoPopUpWindowActions";
 import {
   onConfirmExitAction,
@@ -20,6 +24,11 @@ import {
   onConfirmChangePwdAction,
   onRefuseChangePwdAction
 } from "../actions/YesNoPopUpWindowActions";
+import {
+  onClickCancelForgotPwdAction,
+  onClickConfirmForgotPwdAction,
+  onChangeEmailForgotPwdAction
+} from "../actions/ForgotPwdPopUpWindowActions";
 
 function UserPopUpWindows(props) {
   return (
@@ -32,10 +41,22 @@ function UserPopUpWindows(props) {
             props.user.signIn.password
           )
         }
+        onClickForgotPwdAction={props.onClickForgotPwdAction}
         flags={props.user.signIn}
         signInWindowTexts={props.user.signInWindowTexts[props.language.curLang]}
         onChangeEmailSignInAction={props.onChangeEmailSignInAction}
         onChangePwdSignInAction={props.onChangePwdSignInAction}
+      />
+      <ForgotPwdPopUpWindow
+        open={props.user.forgotPwd.isOpen}
+        lang={props.language.curLang}
+        texts={props.user.forgotPwdTexts[props.language.curLang]}
+        emailIsEmpty={props.user.forgotPwd.emailIsEmpty}
+        onClickCancelAction={props.onClickCancelForgotPwdAction}
+        onClickConfirmAction={() =>
+          props.onClickConfirmForgotPwdAction(props.user.forgotPwd.email)
+        }
+        onChangeEmailAction={props.onChangeEmailForgotPwdAction}
       />
       <InfoPopUpWindow
         texts={props.user.loginFailedWindowTexts[props.language.curLang]}
@@ -53,6 +74,18 @@ function UserPopUpWindows(props) {
         texts={props.user.pwdChangedTexts[props.language.curLang]}
         open={props.user.pwdChangedInfoIsOpen}
         onCloseAction={props.onClosePwdChangedInfoAction}
+        lang={props.language.curLang}
+      />
+      <InfoPopUpWindow
+        texts={props.user.forgotPwdTexts[props.language.curLang].pwdSent}
+        open={props.user.forgotPwd.pwdSent}
+        onCloseAction={props.onClosePwdSentInfoAction}
+        lang={props.language.curLang}
+      />
+      <InfoPopUpWindow
+        texts={props.user.forgotPwdTexts[props.language.curLang].noLogin}
+        open={props.user.forgotPwd.noLogin}
+        onCloseAction={props.onCloseNoLoginInfoAction}
         lang={props.language.curLang}
       />
       <YesNoPopUpWindow
@@ -98,7 +131,16 @@ const mapDispatchToProps = dispatch => {
     onConfirmChangePwdAction: (email, password) =>
       dispatch(onConfirmChangePwdAction(email, password)),
     onRefuseChangePwdAction: () => dispatch(onRefuseChangePwdAction()),
-    onClosePwdChangedInfoAction: () => dispatch(onClosePwdChangedInfoAction())
+    onClosePwdChangedInfoAction: () => dispatch(onClosePwdChangedInfoAction()),
+    onClickForgotPwdAction: () => dispatch(onClickForgotPwdAction()),
+    onClickCancelForgotPwdAction: () =>
+      dispatch(onClickCancelForgotPwdAction()),
+    onClickConfirmForgotPwdAction: email =>
+      dispatch(onClickConfirmForgotPwdAction(email)),
+    onChangeEmailForgotPwdAction: e =>
+      dispatch(onChangeEmailForgotPwdAction(e)),
+    onClosePwdSentInfoAction: () => dispatch(onClosePwdSentInfoAction()),
+    onCloseNoLoginInfoAction: () => dispatch(onCloseNoLoginInfoAction())
   };
 };
 
