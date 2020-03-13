@@ -11,10 +11,7 @@ import {
   onChangePwdSignInAction,
   onClickForgotPwdAction
 } from "../actions/SignInPopUpWindowActions";
-import {
-  onCloseNoLoginInfoAction,
-  onCloseInfoPopUpAction
-} from "../actions/InfoPopUpWindowActions";
+import { onCloseInfoPopUpAction } from "../actions/InfoPopUpWindowActions";
 import {
   onConfirmExitAction,
   onRefuseExitAction,
