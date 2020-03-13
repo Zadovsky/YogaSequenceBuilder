@@ -12,11 +12,8 @@ import {
   onClickForgotPwdAction
 } from "../actions/SignInPopUpWindowActions";
 import {
-  onCloseLoginSuccessInfoAction,
-  onCloseLoginFailedInfoAction,
-  onClosePwdChangedInfoAction,
-  onClosePwdSentInfoAction,
-  onCloseNoLoginInfoAction
+  onCloseNoLoginInfoAction,
+  onCloseInfoPopUpAction
 } from "../actions/InfoPopUpWindowActions";
 import {
   onConfirmExitAction,
@@ -59,33 +56,13 @@ function UserPopUpWindows(props) {
         onChangeEmailAction={props.onChangeEmailForgotPwdAction}
       />
       <InfoPopUpWindow
-        texts={props.user.loginFailedWindowTexts[props.language.curLang]}
-        open={props.user.signIn.loginFailed}
-        onCloseAction={props.onCloseLoginFailedInfoAction}
-        lang={props.language.curLang}
-      />
-      <InfoPopUpWindow
-        texts={props.user.loginSuccessWindowTexts[props.language.curLang]}
-        open={props.user.signIn.loginSuccess}
-        onCloseAction={props.onCloseLoginSuccessInfoAction}
-        lang={props.language.curLang}
-      />
-      <InfoPopUpWindow
-        texts={props.user.pwdChangedTexts[props.language.curLang]}
-        open={props.user.pwdChangedInfoIsOpen}
-        onCloseAction={props.onClosePwdChangedInfoAction}
-        lang={props.language.curLang}
-      />
-      <InfoPopUpWindow
-        texts={props.user.forgotPwdTexts[props.language.curLang].pwdSent}
-        open={props.user.forgotPwd.pwdSent}
-        onCloseAction={props.onClosePwdSentInfoAction}
-        lang={props.language.curLang}
-      />
-      <InfoPopUpWindow
-        texts={props.user.forgotPwdTexts[props.language.curLang].noLogin}
-        open={props.user.forgotPwd.noLogin}
-        onCloseAction={props.onCloseNoLoginInfoAction}
+        open={props.user.infoPopUp.isOpen}
+        texts={
+          props.user.infoPopUp.isOpen
+            ? props.user.infoPopUp.texts[props.language.curLang]
+            : {}
+        }
+        onCloseAction={props.onCloseInfoPopUpAction}
         lang={props.language.curLang}
       />
       <YesNoPopUpWindow
@@ -122,16 +99,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(onClickSignInAction(email, password)),
     onChangeEmailSignInAction: e => dispatch(onChangeEmailSignInAction(e)),
     onChangePwdSignInAction: e => dispatch(onChangePwdSignInAction(e)),
-    onCloseLoginSuccessInfoAction: () =>
-      dispatch(onCloseLoginSuccessInfoAction()),
-    onCloseLoginFailedInfoAction: () =>
-      dispatch(onCloseLoginFailedInfoAction()),
     onConfirmExitAction: () => dispatch(onConfirmExitAction()),
     onRefuseExitAction: () => dispatch(onRefuseExitAction()),
     onConfirmChangePwdAction: (email, password) =>
       dispatch(onConfirmChangePwdAction(email, password)),
     onRefuseChangePwdAction: () => dispatch(onRefuseChangePwdAction()),
-    onClosePwdChangedInfoAction: () => dispatch(onClosePwdChangedInfoAction()),
     onClickForgotPwdAction: () => dispatch(onClickForgotPwdAction()),
     onClickCancelForgotPwdAction: () =>
       dispatch(onClickCancelForgotPwdAction()),
@@ -139,8 +111,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(onClickConfirmForgotPwdAction(email)),
     onChangeEmailForgotPwdAction: e =>
       dispatch(onChangeEmailForgotPwdAction(e)),
-    onClosePwdSentInfoAction: () => dispatch(onClosePwdSentInfoAction()),
-    onCloseNoLoginInfoAction: () => dispatch(onCloseNoLoginInfoAction())
+    onCloseInfoPopUpAction: () => dispatch(onCloseInfoPopUpAction())
   };
 };
 
