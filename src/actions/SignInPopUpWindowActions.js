@@ -25,7 +25,7 @@ export function onClickSignInAction(email, password) {
       headers: {
         "Content-Type": "application/json;charset=utf-8"
       },
-      body: JSON.stringify({ email: email, password: password })
+      body: JSON.stringify({ login: email, password: password })
     })
       .then(response => response.json())
       .then(result => {

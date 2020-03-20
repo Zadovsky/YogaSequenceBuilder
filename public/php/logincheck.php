@@ -8,7 +8,7 @@ if ($mysqli->connect_errno) {
     echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-$res = $mysqli->query("SELECT * FROM users WHERE login = '" . $data['email'] . "' AND password = '" . $data['password'] . "'");
+$res = $mysqli->query("SELECT * FROM users WHERE login = '" . $data['login'] . "' AND password = '" . $data['password'] . "'");
 
 if (!$res) {
     echo "Ошибка: (" . $mysqli->errno . ") " . $mysqli->error;

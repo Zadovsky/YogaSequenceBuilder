@@ -17,7 +17,7 @@ export function onAppConstruction() {
       headers: {
         "Content-Type": "application/json;charset=utf-8"
       },
-      body: JSON.stringify({ email: login, password: password })
+      body: JSON.stringify({ login: login, password: password })
     })
       .then(response => response.json())
       .then(result => {
