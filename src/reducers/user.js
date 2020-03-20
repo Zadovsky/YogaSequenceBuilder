@@ -1,4 +1,5 @@
 import { ON_CLICK_SIGN_IN } from "../actions/SignInRegButtonsActions";
+import { GET_LOGIN_COOKIES } from "../actions/AppActions";
 import {
   CANCEL_SIGN_IN,
   SIGN_IN_EMPTY_FIELD,
@@ -158,6 +159,13 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_LOGIN_COOKIES:
+      return {
+        ...state,
+        login: action.payload.login,
+        password: action.payload.password
+      };
+
     case CLOSE_INFO_POPUP:
       return {
         ...state,

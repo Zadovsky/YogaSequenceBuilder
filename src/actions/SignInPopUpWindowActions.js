@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 export const CANCEL_SIGN_IN = "CANCEL_SIGN_IN";
 export const SIGN_IN_EMPTY_FIELD = "SIGN_IN_EMPTY_FIELD";
 export const CHANGE_EMAIL_SIGN_IN = "CHANGE_EMAIL_SIGN_IN";
@@ -28,7 +29,11 @@ export function onClickSignInAction(email, password) {
     })
       .then(response => response.json())
       .then(result => {
-        dispatch({
+        if (result) {
+          Cookies.set("login", email);
+          Cookies.set("password", password);
+        }
+        return dispatch({
           type: LOGIN_CHECK,
           payload: result
         });
