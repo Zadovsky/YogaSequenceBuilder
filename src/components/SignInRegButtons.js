@@ -20,7 +20,11 @@ export default function SignInRegButtons(props) {
       >
         {props.signInButtonText}
       </Button>
-      <Button variant="contained" className={classes.button}>
+      <Button
+        variant="contained"
+        className={classes.button}
+        onClick={props.onClickRegAction}
+      >
         {props.regButtonText}
       </Button>
     </div>

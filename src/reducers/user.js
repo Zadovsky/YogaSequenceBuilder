@@ -1,4 +1,7 @@
-import { ON_CLICK_SIGN_IN } from "../actions/SignInRegButtonsActions";
+import {
+  ON_CLICK_SIGN_IN,
+  ON_CLICK_REG
+} from "../actions/SignInRegButtonsActions";
 import { GET_LOGIN_COOKIES } from "../actions/ReadCookiesActions";
 import {
   CANCEL_SIGN_IN,
@@ -159,6 +162,10 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case ON_CLICK_REG:
+      console.log(ON_CLICK_REG);
+      return state;
+
     case GET_LOGIN_COOKIES:
       return {
         ...state,

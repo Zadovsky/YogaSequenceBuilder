@@ -35,6 +35,7 @@ export default function Header(props) {
             signInButtonText={props.signInButtonText}
             regButtonText={props.regButtonText}
             onClickSignInAction={props.onClickSignInAction}
+            onClickRegAction={props.onClickRegAction}
           />
         ) : (
           <UserMenu

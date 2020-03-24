@@ -6,7 +6,10 @@ import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import Header from "../components/Header";
 import { onChangeLangChooser } from "../actions/LanguageChooserActions";
-import { onClickSignInAction } from "../actions/SignInRegButtonsActions";
+import {
+  onClickSignInAction,
+  onClickRegAction
+} from "../actions/SignInRegButtonsActions";
 import {
   userMenuClose,
   usernameClickAction,
@@ -41,6 +44,7 @@ function PageTop(props) {
         }
         regButtonText={props.pageTop.regButtonText[props.language.curLang]}
         onClickSignInAction={props.onClickSignInAction}
+        onClickRegAction={props.onClickRegAction}
         login={props.user.login}
         anchorEl={props.user.userMenu.anchorEl}
         isOpen={props.user.userMenu.isOpen}
@@ -78,6 +82,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onChangeLangChooser: e => dispatch(onChangeLangChooser(e)),
     onClickSignInAction: () => dispatch(onClickSignInAction()),
+    onClickRegAction: () => dispatch(onClickRegAction()),
     userMenuClose: () => dispatch(userMenuClose()),
     usernameClickAction: e => dispatch(usernameClickAction(e)),
     exitItemClickAction: () => dispatch(exitItemClickAction()),
