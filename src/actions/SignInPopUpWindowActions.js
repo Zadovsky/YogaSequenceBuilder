@@ -30,8 +30,8 @@ export function onClickSignInAction(email, password) {
       .then(response => response.json())
       .then(result => {
         if (result) {
-          Cookies.set("login", email);
-          Cookies.set("password", password);
+          Cookies.set("login", email, { expires: 365 });
+          Cookies.set("password", password, { expires: 365 });
         }
         return dispatch({
           type: LOGIN_CHECK,

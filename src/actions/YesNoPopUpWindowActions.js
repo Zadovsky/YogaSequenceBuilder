@@ -29,7 +29,7 @@ export function onConfirmChangePwdAction(email, password) {
     })
       .then(response => response.json())
       .then(result => {
-        Cookies.set("password", result);
+        Cookies.set("password", result, { expires: 365 });
         return dispatch({
           type: CONFIRM_CHANGE_PASSWORD,
           payload: result
