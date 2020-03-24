@@ -57,7 +57,7 @@ function UserPopUpWindows(props) {
         texts={
           props.user.infoPopUp.isOpen
             ? props.user.infoPopUp.texts[props.language.curLang]
-            : {}
+            : { title: "", text: "" }
         }
         onCloseAction={props.onCloseInfoPopUpAction}
         lang={props.language.curLang}
