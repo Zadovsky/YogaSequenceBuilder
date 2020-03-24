@@ -54,6 +54,11 @@ const initialState = {
     email: "",
     emailIsEmpty: false
   },
+  registration: {
+    isOpen: false,
+    email: "",
+    notEmail: false
+  },
   signInWindowTexts: {
     ru: {
       title: "Вход в аккаунт",
@@ -157,14 +162,39 @@ const initialState = {
       confirmText: "Recover",
       emptyFieldMsg: "Fill the field"
     }
+  },
+  regTexts: {
+    ru: {
+      title: "Регистрация",
+      text:
+        "Для регистрации нужен только e-mail. Мы отправим на него пароль для входа в аккаунт.",
+      emailFieldLabel: "Ваш e-mail",
+      cancelText: "Отмена",
+      confirmText: "Регистрация",
+      noEmailMsg: "Это не e-mail"
+    },
+    en: {
+      title: "Registration",
+      text:
+        "To registration you have to enter e-mail only. We'll send you password to enter account.",
+      emailFieldLabel: "Your e-mail",
+      cancelText: "Cancel",
+      confirmText: "Registration",
+      emptyFieldMsg: "that's not e-mail"
+    }
   }
 };
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
     case ON_CLICK_REG:
-      console.log(ON_CLICK_REG);
-      return state;
+      return {
+        ...state,
+        registration: {
+          ...state.registration,
+          isOpen: true
+        }
+      };
 
     case GET_LOGIN_COOKIES:
       return {

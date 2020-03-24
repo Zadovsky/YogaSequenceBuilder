@@ -4,6 +4,7 @@ import SignInPopUpWindow from "../components/SignInPopUpWindow";
 import InfoPopUpWindow from "../components/InfoPopUpWindow";
 import YesNoPopUpWindow from "../components/YesNoPopUpWindow";
 import ForgotPwdPopUpWindow from "../components/ForgotPwdPopUpWindow";
+import RegPopUpWindow from "../components/RegPopUpWindow";
 import {
   onClickCancelSignInAction,
   onClickSignInAction,
@@ -51,6 +52,14 @@ function UserPopUpWindows(props) {
           props.onClickConfirmForgotPwdAction(props.user.forgotPwd.email)
         }
         onChangeEmailAction={props.onChangeEmailForgotPwdAction}
+      />
+      <RegPopUpWindow
+        open={props.user.registration.isOpen}
+        lang={props.language.curLang}
+        texts={props.user.regTexts[props.language.curLang]}
+        onClickCancelRegAction={() => {}}
+        onChangeEmailRegAction={() => {}}
+        onClickConfirmRegAction={() => {}}
       />
       <InfoPopUpWindow
         open={props.user.infoPopUp.isOpen}
