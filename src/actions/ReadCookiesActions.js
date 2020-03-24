@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 export const GET_LOGIN_COOKIES = "GET_LOGIN_COOKIES";
 
-export function onAppConstruction() {
+export function onReadCookiesAction() {
   var login = Cookies.get("login");
   var password = Cookies.get("password");
 

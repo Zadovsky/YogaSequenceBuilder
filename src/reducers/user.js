@@ -1,5 +1,5 @@
 import { ON_CLICK_SIGN_IN } from "../actions/SignInRegButtonsActions";
-import { GET_LOGIN_COOKIES } from "../actions/AppActions";
+import { GET_LOGIN_COOKIES } from "../actions/ReadCookiesActions";
 import {
   CANCEL_SIGN_IN,
   SIGN_IN_EMPTY_FIELD,
