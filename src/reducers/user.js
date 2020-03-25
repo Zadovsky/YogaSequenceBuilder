@@ -31,7 +31,13 @@ import {
   EXIT_ACCOUNT,
   CHANGE_PASSWORD
 } from "../actions/UserMenuActions";
-import { CANCEL_REG, CHANGE_EMAIL_REG } from "../actions/RegPopUpWindowActions";
+import {
+  CANCEL_REG,
+  CHANGE_EMAIL_REG,
+  NOT_EMAIL_REG,
+  LOGIN_REGED,
+  LOGIN_ALREADY_EXIST
+} from "../actions/RegPopUpWindowActions";
 
 const initialState = {
   login: null,
@@ -172,7 +178,7 @@ const initialState = {
       emailFieldLabel: "Ваш e-mail",
       cancelText: "Отмена",
       confirmText: "Регистрация",
-      noEmailMsg: "Это не e-mail"
+      notEmailMsg: "Это не e-mail"
     },
     en: {
       title: "Registration",
@@ -181,13 +187,65 @@ const initialState = {
       emailFieldLabel: "Your e-mail",
       cancelText: "Cancel",
       confirmText: "Registration",
-      emptyFieldMsg: "that's not e-mail"
+      notEmailMsg: "that's not e-mail"
     }
+  },
+  loginRegedTexts: {
+    ru: {
+      title: "Вы успешно зарегистрированы",
+      text:
+        "Мы отправили пароль на указанный e-mail. Используйте его для входа в аккаунт."
+    },
+    en: {
+      title: "You've been successfully registered",
+      text: "We've sent password on the e-mail. Use it to enter the account."
+    }
+  },
+  loginExistTexts: {
+    ru: { title: "Этот e-mail уже зарегистрирован", text: "" },
+    en: { title: "That e-mail is registered already", text: "" }
   }
 };
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGIN_ALREADY_EXIST:
+      return {
+        ...state,
+        registration: {
+          ...state.registration,
+          notEmail: false
+        },
+        infoPopUp: {
+          isOpen: true,
+          texts: state.loginExistTexts
+        }
+      };
+
+    case LOGIN_REGED:
+      return {
+        ...state,
+        registration: {
+          ...state.registration,
+          isOpen: false,
+          email: "",
+          notEmail: false
+        },
+        infoPopUp: {
+          isOpen: true,
+          texts: state.loginRegedTexts
+        }
+      };
+
+    case NOT_EMAIL_REG:
+      return {
+        ...state,
+        registration: {
+          ...state.registration,
+          notEmail: true
+        }
+      };
+
     case CHANGE_EMAIL_REG:
       return {
         ...state,
