@@ -24,7 +24,10 @@ import {
   onClickConfirmForgotPwdAction,
   onChangeEmailForgotPwdAction
 } from "../actions/ForgotPwdPopUpWindowActions";
-import { onClickCancelRegAction } from "../actions/RegPopUpWindowActions";
+import {
+  onClickCancelRegAction,
+  onChangeEmailRegAction
+} from "../actions/RegPopUpWindowActions";
 
 function UserPopUpWindows(props) {
   return (
@@ -59,7 +62,7 @@ function UserPopUpWindows(props) {
         lang={props.language.curLang}
         texts={props.user.regTexts[props.language.curLang]}
         onClickCancelRegAction={props.onClickCancelRegAction}
-        onChangeEmailRegAction={() => {}}
+        onChangeEmailRegAction={props.onChangeEmailRegAction}
         onClickConfirmRegAction={() => {}}
       />
       <InfoPopUpWindow
@@ -118,6 +121,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(onClickConfirmForgotPwdAction(email)),
     onChangeEmailForgotPwdAction: e =>
       dispatch(onChangeEmailForgotPwdAction(e)),
+    onChangeEmailRegAction: e => dispatch(onChangeEmailRegAction(e)),
     onCloseInfoPopUpAction: () => dispatch(onCloseInfoPopUpAction()),
     onClickCancelRegAction: () => dispatch(onClickCancelRegAction())
   };

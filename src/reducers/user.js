@@ -31,7 +31,7 @@ import {
   EXIT_ACCOUNT,
   CHANGE_PASSWORD
 } from "../actions/UserMenuActions";
-import { CANCEL_REG } from "../actions/RegPopUpWindowActions";
+import { CANCEL_REG, CHANGE_EMAIL_REG } from "../actions/RegPopUpWindowActions";
 
 const initialState = {
   login: null,
@@ -188,6 +188,15 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_EMAIL_REG:
+      return {
+        ...state,
+        registration: {
+          ...state.registration,
+          email: action.payload
+        }
+      };
+
     case CANCEL_REG:
       return {
         ...state,
