@@ -39,7 +39,19 @@ const initialState = {
   lastDragEnterGrid: null,
   fastTransition: false,
   onPlaceHolder: false,
-  gridHeight: null
+  gridHeight: null,
+  saveLoadPdfText: {
+    ru: {
+      save: "Сохранить",
+      load: "Загрузить",
+      pdf: "в PDF"
+    },
+    en: {
+      save: "Save",
+      load: "Load",
+      pdf: "to PDF"
+    }
+  }
 };
 
 function addEmptyGrid(cards, nextGridKey) {

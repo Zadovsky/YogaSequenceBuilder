@@ -36,7 +36,8 @@ function SchedulePanel(props) {
     dragSourceGrid,
     dragSourcePanelIsSchedule,
     gridHeight,
-    gridDefaultName
+    gridDefaultName,
+    saveLoadPdfText
   } = props.schedule;
 
   const {
@@ -96,7 +97,9 @@ function SchedulePanel(props) {
       dragSourcePanelIsSchedule={dragSourcePanelIsSchedule}
       gridHeight={gridHeight}
       gridDefaultName={gridDefaultName[language.curLang]}
-      buttonsPanel={<SaveLoadPdfButtons />}
+      buttonsPanel={
+        <SaveLoadPdfButtons texts={saveLoadPdfText[language.curLang]} />
+      }
       wrapperClassName={"SchedulePanel"}
       itIsSchedulePanel={true}
       selectedGroupId={null}

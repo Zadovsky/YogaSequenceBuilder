@@ -15,13 +15,13 @@ export default function SaveLoadPdfButtons(props) {
   return (
     <div className="SaveLoadPdfButtons">
       <Button variant="contained" className={classes.button}>
-        Load
+        {props.texts.load}
       </Button>
       <Button variant="contained" className={classes.button}>
-        Save
+        {props.texts.save}
       </Button>
       <Button variant="contained" className={classes.button}>
-        Save to PDF
+        {props.texts.pdf}
       </Button>
     </div>
   );
