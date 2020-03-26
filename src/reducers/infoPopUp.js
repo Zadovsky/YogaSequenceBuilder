@@ -12,6 +12,7 @@ import {
   NO_SUCH_LOGIN
 } from "../actions/ForgotPwdPopUpWindowActions";
 import { CONFIRM_CHANGE_PASSWORD } from "../actions/YesNoPopUpWindowActions";
+import { NO_AUTHORIZATION } from "../actions/SaveLoadPdfButtonsActions";
 
 const initialState = {
   isOpen: false,
@@ -68,11 +69,25 @@ const initialState = {
       title: "You successfully signed in!",
       text: ""
     }
+  },
+  noAuthorizationTexts: {
+    ru: {
+      title: "Войдите в аккаунт",
+      text:
+        "Чтобы сохранить комплекс асан, войдите в свой аккаунт или зарегистрируйте новый"
+    },
+    en: {
+      title: "Sign in to your account",
+      text: "Sign in to your account or register new one to save the sequence"
+    }
   }
 };
 
 export function infoPopUpReducer(state = initialState, action) {
   switch (action.type) {
+    case NO_AUTHORIZATION:
+      return { ...state, isOpen: true, texts: state.noAuthorizationTexts };
+
     case LOGIN_ALREADY_EXIST:
       return { ...state, isOpen: true, texts: state.loginExistTexts };
 
