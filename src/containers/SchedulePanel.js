@@ -44,6 +44,7 @@ function SchedulePanel(props) {
   const {
     asanasArr,
     language,
+    user,
     onChangePanelNameAction,
     startCardDragAction,
     startGridDragAction,
@@ -102,7 +103,7 @@ function SchedulePanel(props) {
       buttonsPanel={
         <SaveLoadPdfButtons
           texts={saveLoadPdfText[language.curLang]}
-          onClickSave={onClickSave}
+          onClickSave={() => onClickSave(user.login, user.password)}
         />
       }
       wrapperClassName={"SchedulePanel"}
@@ -117,7 +118,8 @@ const mapStateToProps = store => {
   return {
     language: store.language,
     asanasArr: store.asanasArr,
-    schedule: store.schedule
+    schedule: store.schedule,
+    user: store.user
   };
 };
 
@@ -145,7 +147,7 @@ const mapDispatchToProps = dispatch => {
     onChangeGridNameAction: (gridId, e) =>
       dispatch(onChangeGridNameAction(gridId, e)),
     onChangePanelNameAction: e => dispatch(onChangePanelNameAction(e)),
-    onClickSave: () => dispatch(onClickSave())
+    onClickSave: (login, password) => dispatch(onClickSave(login, password))
   };
 };
 

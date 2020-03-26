@@ -9,7 +9,10 @@ import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
 import { DRAG_ENTER_GRID_PH } from "../actions/GridPlaceHolderActions";
 import { CHANGE_PANEL_NAME } from "../actions/PanelNameActions";
-import { CLICK_SAVE } from "../actions/SaveLoadPdfButtonsActions";
+import {
+  CLICK_SAVE,
+  NO_AUTHORIZATION
+} from "../actions/SaveLoadPdfButtonsActions";
 import {
   DRAG_ICON_MOUSE_DOWN,
   DRAG_ICON_MOUSE_UP,
@@ -74,6 +77,10 @@ export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
     case CLICK_SAVE:
       console.log(CLICK_SAVE);
+      return state;
+
+    case NO_AUTHORIZATION:
+      console.log(NO_AUTHORIZATION);
       return state;
 
     case CHANGE_PANEL_NAME:
