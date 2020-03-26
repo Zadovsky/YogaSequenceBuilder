@@ -70,10 +70,10 @@ function UserPopUpWindows(props) {
         }
       />
       <InfoPopUpWindow
-        open={props.user.infoPopUp.isOpen}
+        open={props.infoPopUp.isOpen}
         texts={
-          props.user.infoPopUp.isOpen
-            ? props.user.infoPopUp.texts[props.language.curLang]
+          props.infoPopUp.isOpen
+            ? props.infoPopUp.texts[props.language.curLang]
             : { title: "", text: "" }
         }
         onCloseAction={props.onCloseInfoPopUpAction}
@@ -102,7 +102,8 @@ function UserPopUpWindows(props) {
 const mapStateToProps = store => {
   return {
     user: store.user,
-    language: store.language
+    language: store.language,
+    infoPopUp: store.infoPopUp
   };
 };
 

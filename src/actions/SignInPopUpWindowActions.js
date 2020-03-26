@@ -3,7 +3,8 @@ export const CANCEL_SIGN_IN = "CANCEL_SIGN_IN";
 export const SIGN_IN_EMPTY_FIELD = "SIGN_IN_EMPTY_FIELD";
 export const CHANGE_EMAIL_SIGN_IN = "CHANGE_EMAIL_SIGN_IN";
 export const CHANGE_PWD_SIGN_IN = "CHANGE_PWD_SIGN_IN";
-export const LOGIN_CHECK = "LOGIN_CHECK";
+export const LOGIN_CHECK_SUCCESS = "LOGIN_CHECK_SUCCESS";
+export const LOGIN_CHECK_FAIL = "LOGIN_CHECK_FAIL";
 export const FORGOT_PWD = "FORGOT_PWD";
 
 export function onClickCancelSignInAction() {
@@ -32,11 +33,13 @@ export function onClickSignInAction(email, password) {
         if (result) {
           Cookies.set("login", email, { expires: 365 });
           Cookies.set("password", password, { expires: 365 });
-        }
-        return dispatch({
-          type: LOGIN_CHECK,
-          payload: result
-        });
+          return dispatch({
+            type: LOGIN_CHECK_SUCCESS
+          });
+        } else
+          return dispatch({
+            type: LOGIN_CHECK_FAIL
+          });
       })
       .catch(error => console.error(error));
   };

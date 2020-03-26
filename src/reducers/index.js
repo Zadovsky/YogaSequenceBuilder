@@ -5,6 +5,7 @@ import { languageReducer } from "./language";
 import { asanasReducer } from "./asanas";
 import { pageTopReducer } from "./pageTop";
 import { userReducer } from "./user";
+import { infoPopUpReducer } from "./infoPopUp";
 
 export const rootReducer = combineReducers({
   pageTop: pageTopReducer,
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
   schedule: scheduleReducer,
   asanasArr: asanasArrReducer,
   asanas: asanasReducer,
-  user: userReducer
+  user: userReducer,
+  infoPopUp: infoPopUpReducer
 });

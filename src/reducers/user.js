@@ -8,7 +8,8 @@ import {
   SIGN_IN_EMPTY_FIELD,
   CHANGE_EMAIL_SIGN_IN,
   CHANGE_PWD_SIGN_IN,
-  LOGIN_CHECK,
+  LOGIN_CHECK_SUCCESS,
+  LOGIN_CHECK_FAIL,
   FORGOT_PWD
 } from "../actions/SignInPopUpWindowActions";
 import {
@@ -18,7 +19,6 @@ import {
   CHANGE_EMAIL_FORGOT_PWD,
   FORGOT_PWD_EMPTY_FIELD
 } from "../actions/ForgotPwdPopUpWindowActions";
-import { CLOSE_INFO_POPUP } from "../actions/InfoPopUpWindowActions";
 import {
   CONFIRM_EXIT,
   REFUSE_EXIT,
@@ -45,10 +45,6 @@ const initialState = {
   userMenu: { isOpen: false, anchorEl: null },
   sureToExitIsOpen: false,
   sureToChangePwdIsOpen: false,
-  infoPopUp: {
-    isOpen: false,
-    texts: null
-  },
   signIn: {
     windowIsOpen: false,
     email: "",
@@ -96,26 +92,6 @@ const initialState = {
       text: ""
     }
   },
-  loginFailedWindowTexts: {
-    ru: {
-      title: "Неверный логин или пароль!",
-      text: "Попробуйте ввести данные еще раз"
-    },
-    en: {
-      title: "Wrong login or password!",
-      text: "Please try to enter it once again"
-    }
-  },
-  loginSuccessWindowTexts: {
-    ru: {
-      title: "Вы успешно авторизованы!",
-      text: ""
-    },
-    en: {
-      title: "You successfully signed in!",
-      text: ""
-    }
-  },
   sureToChangePwdTexts: {
     ru: {
       title: "Вы уверены, что хотите сменить пароль?",
@@ -135,24 +111,6 @@ const initialState = {
       cnangePwd: "Change password",
       exit: "Exit"
     }
-  },
-  pwdChangedTexts: {
-    ru: {
-      title: "Пароль успешно изменен!",
-      text: "Мы отправили новый пароль на ваш e-mail"
-    },
-    en: {
-      title: "Password successfuly changed!",
-      text: "We've sent new password on the e-mail"
-    }
-  },
-  pwdSentTexts: {
-    ru: { title: "Пароль отправлен на указанный e-mail", text: "" },
-    en: { title: "Password sent to the e-mail", text: "" }
-  },
-  noLoginTexts: {
-    ru: { title: "Такого аккаунта нет", text: "Проверьте указанный e-mail" },
-    en: { title: "There is no such account", text: "Check the e-mail" }
   },
   forgotPwdTexts: {
     ru: {
@@ -189,21 +147,6 @@ const initialState = {
       confirmText: "Registration",
       notEmailMsg: "that's not e-mail"
     }
-  },
-  loginRegedTexts: {
-    ru: {
-      title: "Вы успешно зарегистрированы",
-      text:
-        "Мы отправили пароль на указанный e-mail. Используйте его для входа в аккаунт."
-    },
-    en: {
-      title: "You've been successfully registered",
-      text: "We've sent password on the e-mail. Use it to enter the account."
-    }
-  },
-  loginExistTexts: {
-    ru: { title: "Этот e-mail уже зарегистрирован", text: "" },
-    en: { title: "That e-mail is registered already", text: "" }
   }
 };
 
@@ -215,10 +158,6 @@ export function userReducer(state = initialState, action) {
         registration: {
           ...state.registration,
           notEmail: false
-        },
-        infoPopUp: {
-          isOpen: true,
-          texts: state.loginExistTexts
         }
       };
 
@@ -230,10 +169,6 @@ export function userReducer(state = initialState, action) {
           isOpen: false,
           email: "",
           notEmail: false
-        },
-        infoPopUp: {
-          isOpen: true,
-          texts: state.loginRegedTexts
         }
       };
 
@@ -282,15 +217,6 @@ export function userReducer(state = initialState, action) {
         password: action.payload.password
       };
 
-    case CLOSE_INFO_POPUP:
-      return {
-        ...state,
-        infoPopUp: {
-          isOpen: false,
-          texts: null
-        }
-      };
-
     case FORGOT_PWD:
       return {
         ...state,
@@ -327,10 +253,6 @@ export function userReducer(state = initialState, action) {
           isOpen: false,
           email: "",
           emailIsEmpty: false
-        },
-        infoPopUp: {
-          isOpen: true,
-          texts: state.pwdSentTexts
         }
       };
 
@@ -340,10 +262,6 @@ export function userReducer(state = initialState, action) {
         forgotPwd: {
           ...state.forgotPwd,
           emailIsEmpty: false
-        },
-        infoPopUp: {
-          isOpen: true,
-          texts: state.noLoginTexts
         }
       };
 
@@ -380,11 +298,7 @@ export function userReducer(state = initialState, action) {
       return {
         ...state,
         password: action.payload,
-        sureToChangePwdIsOpen: false,
-        infoPopUp: {
-          isOpen: true,
-          texts: state.pwdChangedTexts
-        }
+        sureToChangePwdIsOpen: false
       };
 
     case REFUSE_CHANGE_PASSWORD:
@@ -435,39 +349,30 @@ export function userReducer(state = initialState, action) {
         sureToExitIsOpen: true
       };
 
-    case LOGIN_CHECK:
-      if (action.payload === true) {
-        return {
-          ...state,
-          login: state.signIn.email,
-          password: state.signIn.password,
-          signIn: {
-            ...state.signIn,
-            windowIsOpen: false,
-            email: "",
-            password: "",
-            emailIsEmpty: false,
-            pwdIsEmpty: false
-          },
-          infoPopUp: {
-            isOpen: true,
-            texts: state.loginSuccessWindowTexts
-          }
-        };
-      } else {
-        return {
-          ...state,
-          signIn: {
-            ...state.signIn,
-            emailIsEmpty: false,
-            pwdIsEmpty: false
-          },
-          infoPopUp: {
-            isOpen: true,
-            texts: state.loginFailedWindowTexts
-          }
-        };
-      }
+    case LOGIN_CHECK_SUCCESS:
+      return {
+        ...state,
+        login: state.signIn.email,
+        password: state.signIn.password,
+        signIn: {
+          ...state.signIn,
+          windowIsOpen: false,
+          email: "",
+          password: "",
+          emailIsEmpty: false,
+          pwdIsEmpty: false
+        }
+      };
+
+    case LOGIN_CHECK_FAIL:
+      return {
+        ...state,
+        signIn: {
+          ...state.signIn,
+          emailIsEmpty: false,
+          pwdIsEmpty: false
+        }
+      };
 
     case ON_CLICK_SIGN_IN:
       return {
