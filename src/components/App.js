@@ -4,6 +4,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import AsanasPanel from "../containers/AsanasPanel";
 import SchedulePanel from "../containers/SchedulePanel";
+import SequencesList from "../containers/SequencesList";
 import DnDContext from "../containers/DnDContext";
 import PageTop from "../containers/PageTop";
 import UserPopUpWindows from "../containers/UserPopUpWindows";
@@ -40,6 +41,7 @@ export default function App(props) {
                 <Grid container spacing={3} className={classes.grid}>
                   <Grid item xs={6} className={classes.grid}>
                     <AsanasPanel />
+                    <SequencesList />
                   </Grid>
                   <Grid item xs={6} className={classes.grid}>
                     <SchedulePanel />
