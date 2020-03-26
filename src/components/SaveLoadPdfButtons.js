@@ -17,7 +17,11 @@ export default function SaveLoadPdfButtons(props) {
       <Button variant="contained" className={classes.button}>
         {props.texts.load}
       </Button>
-      <Button variant="contained" className={classes.button}>
+      <Button
+        variant="contained"
+        className={classes.button}
+        onClick={props.onClickSave}
+      >
         {props.texts.save}
       </Button>
       <Button variant="contained" className={classes.button}>

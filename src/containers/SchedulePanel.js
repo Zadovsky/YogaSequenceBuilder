@@ -20,6 +20,7 @@ import { onDragEnterGridPhAction } from "../actions/GridPlaceHolderActions";
 import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndActions";
 import { onChangePanelNameAction } from "../actions/PanelNameActions";
+import { onClickSave } from "../actions/SaveLoadPdfButtonsActions";
 import "./SchedulePanel.css";
 
 function SchedulePanel(props) {
@@ -56,7 +57,8 @@ function SchedulePanel(props) {
     closeGridAction,
     dragEnterGridAction,
     onDragEnterGridPhAction,
-    onChangeGridNameAction
+    onChangeGridNameAction,
+    onClickSave
   } = props;
 
   const asanas = asanasArr.arr.map(asana => {
@@ -98,7 +100,10 @@ function SchedulePanel(props) {
       gridHeight={gridHeight}
       gridDefaultName={gridDefaultName[language.curLang]}
       buttonsPanel={
-        <SaveLoadPdfButtons texts={saveLoadPdfText[language.curLang]} />
+        <SaveLoadPdfButtons
+          texts={saveLoadPdfText[language.curLang]}
+          onClickSave={onClickSave}
+        />
       }
       wrapperClassName={"SchedulePanel"}
       itIsSchedulePanel={true}
@@ -139,7 +144,8 @@ const mapDispatchToProps = dispatch => {
     onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction()),
     onChangeGridNameAction: (gridId, e) =>
       dispatch(onChangeGridNameAction(gridId, e)),
-    onChangePanelNameAction: e => dispatch(onChangePanelNameAction(e))
+    onChangePanelNameAction: e => dispatch(onChangePanelNameAction(e)),
+    onClickSave: () => dispatch(onClickSave())
   };
 };
 
