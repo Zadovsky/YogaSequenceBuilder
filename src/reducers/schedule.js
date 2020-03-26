@@ -73,7 +73,7 @@ function addEmptyGrid(cards, nextGridKey) {
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
     case CLICK_SAVE:
-      console.log(CLICK_SAVE);
+      console.log(action.payload);
       return state;
 
     case CHANGE_PANEL_NAME:
