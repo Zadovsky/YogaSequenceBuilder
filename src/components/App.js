@@ -40,8 +40,10 @@ export default function App(props) {
               <div className="TopPanelsFlexElement">
                 <Grid container spacing={3} className={classes.grid}>
                   <Grid item xs={6} className={classes.grid}>
-                    <AsanasPanel />
-                    <SequencesList />
+                    <div className="PanelListWrapper">
+                      <AsanasPanel />
+                      <SequencesList />
+                    </div>
                   </Grid>
                   <Grid item xs={6} className={classes.grid}>
                     <SchedulePanel />

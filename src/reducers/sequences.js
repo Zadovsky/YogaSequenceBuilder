@@ -1,12 +1,14 @@
 import { CLICK_SAVE } from "../actions/SaveLoadPdfButtonsActions";
 
-const initialState = {};
+const initialState = {
+  isOpen: false,
+  sequences: null
+};
 
 export function sequencesReducer(state = initialState, action) {
   switch (action.type) {
     case CLICK_SAVE:
-      console.log(CLICK_SAVE);
-      return state;
+      return { ...state, isOpen: true, sequences: action.payload };
 
     default:
       return state;
