@@ -4,6 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import { closeSeqListAction } from "../actions/SequencesListActions";
 
 const useStyles = makeStyles(theme => ({
@@ -21,12 +24,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function createListItemArr(sequences) {
+  if (sequences !== null) {
+    return sequences.map(item => (
+      <ListItem key={item.id}>
+        <ListItemText primary={item.name} />
+      </ListItem>
+    ));
+  } else return "";
+}
+
 function SequencesList(props) {
   const classes = useStyles();
+  const listItemArr = createListItemArr(props.sequences.sequences);
 
   if (props.sequences.isOpen) {
     return (
       <Paper className={classes.paper} elevation={2}>
+        <List>{listItemArr}</List>
         <IconButton
           className={classes.button}
           onClick={props.closeSeqListAction}
