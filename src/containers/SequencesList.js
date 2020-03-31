@@ -2,12 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import { Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import { closeSeqListAction } from "../actions/SequencesListActions";
+import "./SequencesList.css";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -15,12 +19,27 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     height: "100%",
-    width: "100%"
+    width: "100%",
+    padding: theme.spacing(1, 2, 3)
   },
-  button: {
+  closeList: {
     position: "absolute",
     right: 0,
     top: 0
+  },
+  button: {
+    margin: theme.spacing(0, 0, 0, 1)
+  },
+  h3: {
+    padding: "6px 0 7px"
+  },
+  list: {
+    "& button": {
+      opacity: 0
+    },
+    "& :hover button": {
+      opacity: "100%"
+    }
   }
 }));
 
@@ -29,6 +48,10 @@ function createListItemArr(sequences) {
     return sequences.map(item => (
       <ListItem key={item.id}>
         <ListItemText primary={item.name} />
+        <ListItemText secondary={item.time} />
+        <IconButton>
+          <CloseIcon />
+        </IconButton>
       </ListItem>
     ));
   } else return "";
@@ -41,9 +64,27 @@ function SequencesList(props) {
   if (props.sequences.isOpen) {
     return (
       <Paper className={classes.paper} elevation={2}>
-        <List>{listItemArr}</List>
+        <Typography variant="h5" component="h3" className={classes.h3}>
+          Сохранить
+        </Typography>
+        <div className="TextFieldButtonWrapper">
+          <TextField
+            fullWidth
+            autoFocus
+            value={props.sequences.saveName}
+            // inputProps={{
+            //   onChange: e => props.onChangePanelNameAction(e),
+            // }}
+          />
+          <div className="ButtonWrapper">
+            <Button variant="contained" className={classes.button}>
+              Сохранить
+            </Button>
+          </div>
+        </div>
+        <List className={classes.list}>{listItemArr}</List>
         <IconButton
-          className={classes.button}
+          className={classes.closeList}
           onClick={props.closeSeqListAction}
         >
           <CloseIcon />
@@ -58,7 +99,8 @@ function SequencesList(props) {
 const mapStateToProps = store => {
   return {
     language: store.language,
-    sequences: store.sequences
+    sequences: store.sequences,
+    schedule: store.schedule
   };
 };
 

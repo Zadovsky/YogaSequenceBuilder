@@ -1,7 +1,7 @@
 export const CLICK_SAVE = "CLICK_SAVE";
 export const NO_AUTHORIZATION = "NO_AUTHORIZATION";
 
-export function onClickSave(login, password) {
+export function onClickSave(login, password, saveName) {
   if (login === null) {
     return {
       type: NO_AUTHORIZATION
@@ -19,7 +19,10 @@ export function onClickSave(login, password) {
       .then(result => {
         return dispatch({
           type: CLICK_SAVE,
-          payload: result
+          payload: {
+            saveName: saveName,
+            sequences: result
+          }
         });
       })
       .catch(error => console.error(error));

@@ -8,7 +8,7 @@ if ($mysqli->connect_errno) {
     echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-$res = $mysqli->query("SELECT id, name FROM sequences WHERE user_id IN
+$res = $mysqli->query("SELECT id, name, time FROM sequences WHERE user_id IN
     ( SELECT id FROM users WHERE login = '" . $data['login'] . "' AND password = '" . $data['password'] . "')");
 
 if (!$res) {

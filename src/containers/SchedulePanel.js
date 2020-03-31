@@ -103,7 +103,13 @@ function SchedulePanel(props) {
       buttonsPanel={
         <SaveLoadPdfButtons
           texts={saveLoadPdfText[language.curLang]}
-          onClickSave={() => onClickSave(user.login, user.password)}
+          onClickSave={() =>
+            onClickSave(
+              user.login,
+              user.password,
+              isPanelNameDef ? panelDefaultName[language.curLang] : panelName
+            )
+          }
         />
       }
       wrapperClassName={"SchedulePanel"}
@@ -147,7 +153,8 @@ const mapDispatchToProps = dispatch => {
     onChangeGridNameAction: (gridId, e) =>
       dispatch(onChangeGridNameAction(gridId, e)),
     onChangePanelNameAction: e => dispatch(onChangePanelNameAction(e)),
-    onClickSave: (login, password) => dispatch(onClickSave(login, password))
+    onClickSave: (login, password, saveName) =>
+      dispatch(onClickSave(login, password, saveName))
   };
 };
 
