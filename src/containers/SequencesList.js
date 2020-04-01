@@ -11,7 +11,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import { closeSeqListAction } from "../actions/SequencesListActions";
+import {
+  closeSeqListAction,
+  onChangeSaveNameAction
+} from "../actions/SequencesListActions";
 import "./SequencesList.css";
 
 const useStyles = makeStyles(theme => ({
@@ -81,9 +84,9 @@ function SequencesList(props) {
               fullWidth
               autoFocus
               value={props.sequences.saveName}
-              // inputProps={{
-              //   onChange: e => props.onChangePanelNameAction(e),
-              // }}
+              inputProps={{
+                onChange: e => props.onChangeSaveNameAction(e)
+              }}
             />
             <div className="ButtonWrapper">
               <Button variant="contained" className={classes.button}>
@@ -113,7 +116,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeSeqListAction: () => dispatch(closeSeqListAction())
+    closeSeqListAction: () => dispatch(closeSeqListAction()),
+    onChangeSaveNameAction: e => dispatch(onChangeSaveNameAction(e))
   };
 };
 
