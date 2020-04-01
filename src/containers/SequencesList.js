@@ -13,7 +13,8 @@ import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import {
   closeSeqListAction,
-  onChangeSaveNameAction
+  onChangeSaveNameAction,
+  deleteSequenceAction
 } from "../actions/SequencesListActions";
 import "./SequencesList.css";
 
@@ -50,13 +51,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function createListItemArr(sequences) {
+function createListItemArr(sequences, deleteSequenceAction) {
   if (sequences !== null) {
     return sequences.map(item => (
       <ListItem key={item.id}>
         <ListItemText primary={item.name} />
         <ListItemText secondary={item.time} />
-        <IconButton>
+        <IconButton onClick={() => deleteSequenceAction(item.id, item.name)}>
           <CloseIcon />
         </IconButton>
       </ListItem>
@@ -66,7 +67,10 @@ function createListItemArr(sequences) {
 
 function SequencesList(props) {
   const classes = useStyles();
-  const listItemArr = createListItemArr(props.sequences.sequences);
+  const listItemArr = createListItemArr(
+    props.sequences.sequences,
+    props.deleteSequenceAction
+  );
   const texts = props.sequences.texts[props.language.curLang];
 
   return (
@@ -118,7 +122,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     closeSeqListAction: () => dispatch(closeSeqListAction()),
-    onChangeSaveNameAction: e => dispatch(onChangeSaveNameAction(e))
+    onChangeSaveNameAction: e => dispatch(onChangeSaveNameAction(e)),
+    deleteSequenceAction: (id, name) => dispatch(deleteSequenceAction(id, name))
   };
 };
 
