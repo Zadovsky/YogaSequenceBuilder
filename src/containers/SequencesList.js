@@ -67,6 +67,7 @@ function createListItemArr(sequences) {
 function SequencesList(props) {
   const classes = useStyles();
   const listItemArr = createListItemArr(props.sequences.sequences);
+  const texts = props.sequences.texts[props.language.curLang];
 
   return (
     <div
@@ -77,7 +78,7 @@ function SequencesList(props) {
       <ClickAwayListener onClickAway={props.closeSeqListAction}>
         <Paper className={classes.paper} elevation={2}>
           <Typography variant="h5" component="h3" className={classes.h3}>
-            Сохранить
+            {texts.saveHeader}
           </Typography>
           <div className="TextFieldButtonWrapper">
             <TextField
@@ -90,7 +91,7 @@ function SequencesList(props) {
             />
             <div className="ButtonWrapper">
               <Button variant="contained" className={classes.button}>
-                Сохранить
+                {texts.saveButton}
               </Button>
             </div>
           </div>

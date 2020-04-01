@@ -7,7 +7,17 @@ import {
 const initialState = {
   isOpen: false,
   sequences: null,
-  saveName: ""
+  saveName: "",
+  texts: {
+    ru: {
+      saveHeader: "Сохранить",
+      saveButton: "Сохранить"
+    },
+    en: {
+      saveHeader: "Save",
+      saveButton: "Save"
+    }
+  }
 };
 
 export function sequencesReducer(state = initialState, action) {
