@@ -41,6 +41,9 @@ const useStyles = makeStyles(theme => ({
     "& :hover button": {
       opacity: "100%"
     }
+  },
+  displayNone: {
+    display: "none"
   }
 }));
 
@@ -62,8 +65,12 @@ function SequencesList(props) {
   const classes = useStyles();
   const listItemArr = createListItemArr(props.sequences.sequences);
 
-  if (props.sequences.isOpen) {
-    return (
+  return (
+    <div
+      className={
+        props.sequences.isOpen ? "sequencesListWrapper" : classes.displayNone
+      }
+    >
       <ClickAwayListener onClickAway={props.closeSeqListAction}>
         <Paper className={classes.paper} elevation={2}>
           <Typography variant="h5" component="h3" className={classes.h3}>
@@ -93,10 +100,8 @@ function SequencesList(props) {
           </IconButton>
         </Paper>
       </ClickAwayListener>
-    );
-  } else {
-    return "";
-  }
+    </div>
+  );
 }
 
 const mapStateToProps = store => {
