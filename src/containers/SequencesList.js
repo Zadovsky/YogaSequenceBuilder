@@ -10,6 +10,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import { closeSeqListAction } from "../actions/SequencesListActions";
 import "./SequencesList.css";
 
@@ -63,33 +64,35 @@ function SequencesList(props) {
 
   if (props.sequences.isOpen) {
     return (
-      <Paper className={classes.paper} elevation={2}>
-        <Typography variant="h5" component="h3" className={classes.h3}>
-          Сохранить
-        </Typography>
-        <div className="TextFieldButtonWrapper">
-          <TextField
-            fullWidth
-            autoFocus
-            value={props.sequences.saveName}
-            // inputProps={{
-            //   onChange: e => props.onChangePanelNameAction(e),
-            // }}
-          />
-          <div className="ButtonWrapper">
-            <Button variant="contained" className={classes.button}>
-              Сохранить
-            </Button>
+      <ClickAwayListener onClickAway={props.closeSeqListAction}>
+        <Paper className={classes.paper} elevation={2}>
+          <Typography variant="h5" component="h3" className={classes.h3}>
+            Сохранить
+          </Typography>
+          <div className="TextFieldButtonWrapper">
+            <TextField
+              fullWidth
+              autoFocus
+              value={props.sequences.saveName}
+              // inputProps={{
+              //   onChange: e => props.onChangePanelNameAction(e),
+              // }}
+            />
+            <div className="ButtonWrapper">
+              <Button variant="contained" className={classes.button}>
+                Сохранить
+              </Button>
+            </div>
           </div>
-        </div>
-        <List className={classes.list}>{listItemArr}</List>
-        <IconButton
-          className={classes.closeList}
-          onClick={props.closeSeqListAction}
-        >
-          <CloseIcon />
-        </IconButton>
-      </Paper>
+          <List className={classes.list}>{listItemArr}</List>
+          <IconButton
+            className={classes.closeList}
+            onClick={props.closeSeqListAction}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Paper>
+      </ClickAwayListener>
     );
   } else {
     return "";
@@ -99,8 +102,7 @@ function SequencesList(props) {
 const mapStateToProps = store => {
   return {
     language: store.language,
-    sequences: store.sequences,
-    schedule: store.schedule
+    sequences: store.sequences
   };
 };
 
