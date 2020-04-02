@@ -9,6 +9,7 @@ import DnDContext from "../containers/DnDContext";
 import PageTop from "../containers/PageTop";
 import UserPopUpWindows from "../containers/UserPopUpWindows";
 import ReadCookies from "../containers/ReadCookies";
+import InfoPopUpWindow from "../containers/InfoPopUpWindow";
 import { makeStyles } from "@material-ui/core/styles";
 import "./App.css";
 
@@ -54,6 +55,7 @@ export default function App(props) {
           </Container>
         </DnDContext>
         <UserPopUpWindows />
+        <InfoPopUpWindow />
       </div>
     </React.Fragment>
   );

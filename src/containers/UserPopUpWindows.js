@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import SignInPopUpWindow from "../components/SignInPopUpWindow";
-import InfoPopUpWindow from "../components/InfoPopUpWindow";
 import YesNoPopUpWindow from "../components/YesNoPopUpWindow";
 import ForgotPwdPopUpWindow from "../components/ForgotPwdPopUpWindow";
 import RegPopUpWindow from "../components/RegPopUpWindow";
@@ -12,7 +11,6 @@ import {
   onChangePwdSignInAction,
   onClickForgotPwdAction
 } from "../actions/SignInPopUpWindowActions";
-import { onCloseInfoPopUpAction } from "../actions/InfoPopUpWindowActions";
 import {
   onConfirmExitAction,
   onRefuseExitAction,
@@ -69,16 +67,6 @@ function UserPopUpWindows(props) {
           props.onClickConfirmRegAction(props.user.registration.email)
         }
       />
-      <InfoPopUpWindow
-        open={props.infoPopUp.isOpen}
-        texts={
-          props.infoPopUp.isOpen
-            ? props.infoPopUp.texts[props.language.curLang]
-            : { title: "", text: "" }
-        }
-        onCloseAction={props.onCloseInfoPopUpAction}
-        lang={props.language.curLang}
-      />
       <YesNoPopUpWindow
         texts={props.user.sureToExitTexts[props.language.curLang]}
         open={props.user.sureToExitIsOpen}
@@ -127,7 +115,6 @@ const mapDispatchToProps = dispatch => {
     onChangeEmailForgotPwdAction: e =>
       dispatch(onChangeEmailForgotPwdAction(e)),
     onChangeEmailRegAction: e => dispatch(onChangeEmailRegAction(e)),
-    onCloseInfoPopUpAction: () => dispatch(onCloseInfoPopUpAction()),
     onClickCancelRegAction: () => dispatch(onClickCancelRegAction()),
     onClickConfirmRegAction: email => dispatch(onClickConfirmRegAction(email))
   };
