@@ -10,6 +10,7 @@ import PageTop from "../containers/PageTop";
 import UserPopUpWindows from "../containers/UserPopUpWindows";
 import ReadCookies from "../containers/ReadCookies";
 import InfoPopUpWindow from "../containers/InfoPopUpWindow";
+import YesNoPopUpWindow from "../containers/YesNoPopUpWindow";
 import { makeStyles } from "@material-ui/core/styles";
 import "./App.css";
 
@@ -56,6 +57,7 @@ export default function App(props) {
         </DnDContext>
         <UserPopUpWindows />
         <InfoPopUpWindow />
+        <YesNoPopUpWindow />
       </div>
     </React.Fragment>
   );

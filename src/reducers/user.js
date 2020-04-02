@@ -21,9 +21,7 @@ import {
 } from "../actions/ForgotPwdPopUpWindowActions";
 import {
   CONFIRM_EXIT,
-  REFUSE_EXIT,
-  CONFIRM_CHANGE_PASSWORD,
-  REFUSE_CHANGE_PASSWORD
+  CONFIRM_CHANGE_PASSWORD
 } from "../actions/YesNoPopUpWindowActions";
 import {
   USER_MENU_CLOSE,
@@ -43,8 +41,6 @@ const initialState = {
   login: null,
   password: null,
   userMenu: { isOpen: false, anchorEl: null },
-  sureToExitIsOpen: false,
-  sureToChangePwdIsOpen: false,
   signIn: {
     windowIsOpen: false,
     email: "",
@@ -80,26 +76,6 @@ const initialState = {
       cancelText: "Cancel",
       signInText: "Sign in",
       emptyFieldMsg: "Fill the field"
-    }
-  },
-  sureToExitTexts: {
-    ru: {
-      title: "Вы уверены, что хотите выйти из аккаунта?",
-      text: ""
-    },
-    en: {
-      title: "Are you sure to exit the account?",
-      text: ""
-    }
-  },
-  sureToChangePwdTexts: {
-    ru: {
-      title: "Вы уверены, что хотите сменить пароль?",
-      text: ""
-    },
-    en: {
-      title: "Are you sure to change the password?",
-      text: ""
     }
   },
   userMenuTexts: {
@@ -290,32 +266,20 @@ export function userReducer(state = initialState, action) {
           ...state.userMenu,
           isOpen: false,
           anchorEl: null
-        },
-        sureToChangePwdIsOpen: true
+        }
       };
 
     case CONFIRM_CHANGE_PASSWORD:
       return {
         ...state,
-        password: action.payload,
-        sureToChangePwdIsOpen: false
+        password: action.payload
       };
-
-    case REFUSE_CHANGE_PASSWORD:
-      return { ...state, sureToChangePwdIsOpen: false };
 
     case CONFIRM_EXIT:
       return {
         ...state,
         login: null,
-        password: null,
-        sureToExitIsOpen: false
-      };
-
-    case REFUSE_EXIT:
-      return {
-        ...state,
-        sureToExitIsOpen: false
+        password: null
       };
 
     case USERNAME_CLICK:
@@ -345,8 +309,7 @@ export function userReducer(state = initialState, action) {
           ...state.userMenu,
           isOpen: false,
           anchorEl: null
-        },
-        sureToExitIsOpen: true
+        }
       };
 
     case LOGIN_CHECK_SUCCESS:

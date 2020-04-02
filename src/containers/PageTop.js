@@ -17,6 +17,10 @@ import {
   changePwdItemClickAction
 } from "../actions/UserMenuActions";
 import "./PageTop.css";
+import {
+  onConfirmExitAction,
+  onConfirmChangePwdAction
+} from "../actions/YesNoPopUpWindowActions";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -51,7 +55,9 @@ function PageTop(props) {
         userMenuClose={props.userMenuClose}
         usernameClickAction={props.usernameClickAction}
         exitItemClickAction={props.exitItemClickAction}
-        changePwdItemClickAction={props.changePwdItemClickAction}
+        changePwdItemClickAction={() =>
+          props.changePwdItemClickAction(props.user.login, props.user.password)
+        }
         userMenuTexts={props.user.userMenuTexts[props.language.curLang]}
       />
       <Divider variant="middle" />
@@ -85,8 +91,14 @@ const mapDispatchToProps = dispatch => {
     onClickRegAction: () => dispatch(onClickRegAction()),
     userMenuClose: () => dispatch(userMenuClose()),
     usernameClickAction: e => dispatch(usernameClickAction(e)),
-    exitItemClickAction: () => dispatch(exitItemClickAction()),
-    changePwdItemClickAction: () => dispatch(changePwdItemClickAction())
+    exitItemClickAction: () =>
+      dispatch(exitItemClickAction(() => dispatch(onConfirmExitAction()))),
+    changePwdItemClickAction: (email, password) =>
+      dispatch(
+        changePwdItemClickAction(() =>
+          dispatch(onConfirmChangePwdAction(email, password))
+        )
+      )
   };
 };
 

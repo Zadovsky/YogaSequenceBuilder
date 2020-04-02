@@ -11,10 +11,10 @@ export function userMenuClose() {
   return { type: USER_MENU_CLOSE };
 }
 
-export function exitItemClickAction() {
-  return { type: EXIT_ACCOUNT };
+export function exitItemClickAction(onConfirmExitAction) {
+  return { type: EXIT_ACCOUNT, payload: onConfirmExitAction };
 }
 
-export function changePwdItemClickAction() {
-  return { type: CHANGE_PASSWORD };
+export function changePwdItemClickAction(onConfirmChangePwdAction) {
+  return { type: CHANGE_PASSWORD, payload: onConfirmChangePwdAction };
 }

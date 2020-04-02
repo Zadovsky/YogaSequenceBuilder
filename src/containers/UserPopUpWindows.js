@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import SignInPopUpWindow from "../components/SignInPopUpWindow";
-import YesNoPopUpWindow from "../components/YesNoPopUpWindow";
 import ForgotPwdPopUpWindow from "../components/ForgotPwdPopUpWindow";
 import RegPopUpWindow from "../components/RegPopUpWindow";
 import {
@@ -11,12 +10,6 @@ import {
   onChangePwdSignInAction,
   onClickForgotPwdAction
 } from "../actions/SignInPopUpWindowActions";
-import {
-  onConfirmExitAction,
-  onRefuseExitAction,
-  onConfirmChangePwdAction,
-  onRefuseChangePwdAction
-} from "../actions/YesNoPopUpWindowActions";
 import {
   onClickCancelForgotPwdAction,
   onClickConfirmForgotPwdAction,
@@ -67,22 +60,6 @@ function UserPopUpWindows(props) {
           props.onClickConfirmRegAction(props.user.registration.email)
         }
       />
-      <YesNoPopUpWindow
-        texts={props.user.sureToExitTexts[props.language.curLang]}
-        open={props.user.sureToExitIsOpen}
-        onYesAction={props.onConfirmExitAction}
-        onNoAction={props.onRefuseExitAction}
-        lang={props.language.curLang}
-      />
-      <YesNoPopUpWindow
-        texts={props.user.sureToChangePwdTexts[props.language.curLang]}
-        open={props.user.sureToChangePwdIsOpen}
-        onYesAction={() =>
-          props.onConfirmChangePwdAction(props.user.login, props.user.password)
-        }
-        onNoAction={props.onRefuseChangePwdAction}
-        lang={props.language.curLang}
-      />
     </div>
   );
 }
@@ -102,11 +79,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(onClickSignInAction(email, password)),
     onChangeEmailSignInAction: e => dispatch(onChangeEmailSignInAction(e)),
     onChangePwdSignInAction: e => dispatch(onChangePwdSignInAction(e)),
-    onConfirmExitAction: () => dispatch(onConfirmExitAction()),
-    onRefuseExitAction: () => dispatch(onRefuseExitAction()),
-    onConfirmChangePwdAction: (email, password) =>
-      dispatch(onConfirmChangePwdAction(email, password)),
-    onRefuseChangePwdAction: () => dispatch(onRefuseChangePwdAction()),
     onClickForgotPwdAction: () => dispatch(onClickForgotPwdAction()),
     onClickCancelForgotPwdAction: () =>
       dispatch(onClickCancelForgotPwdAction()),

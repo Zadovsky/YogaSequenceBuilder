@@ -6,6 +6,7 @@ import { asanasReducer } from "./asanas";
 import { pageTopReducer } from "./pageTop";
 import { userReducer } from "./user";
 import { infoPopUpReducer } from "./infoPopUp";
+import { yesNoPopUpReducer } from "./yesNoPopUp";
 import { sequencesReducer } from "./sequences";
 
 export const rootReducer = combineReducers({
@@ -16,5 +17,6 @@ export const rootReducer = combineReducers({
   asanas: asanasReducer,
   user: userReducer,
   infoPopUp: infoPopUpReducer,
+  yesNoPopUp: yesNoPopUpReducer,
   sequences: sequencesReducer
 });
