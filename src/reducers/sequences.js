@@ -2,7 +2,8 @@ import { CLICK_SAVE } from "../actions/SaveLoadPdfButtonsActions";
 import {
   CLOSE_SEQ_LIST,
   CHANGE_SAVE_NAME,
-  DELETE_SEQ
+  DELETE_SEQ,
+  SAVE_SUCCESS
 } from "../actions/SequencesListActions";
 
 const initialState = {
@@ -23,6 +24,12 @@ const initialState = {
 
 export function sequencesReducer(state = initialState, action) {
   switch (action.type) {
+    case SAVE_SUCCESS:
+      return {
+        ...state,
+        isOpen: false
+      };
+
     case DELETE_SEQ:
       console.log(action.payload.id);
       console.log(action.payload.name);

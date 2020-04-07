@@ -13,6 +13,7 @@ import {
 } from "../actions/ForgotPwdPopUpWindowActions";
 import { CONFIRM_CHANGE_PASSWORD } from "../actions/YesNoPopUpWindowActions";
 import { NO_AUTHORIZATION } from "../actions/SaveLoadPdfButtonsActions";
+import { SAVE_SUCCESS } from "../actions/SequencesListActions";
 
 const initialState = {
   isOpen: false,
@@ -80,11 +81,24 @@ const initialState = {
       title: "Sign in to your account",
       text: "Sign in to your account or register new one to save the sequence"
     }
+  },
+  saveSuccessTexts: {
+    ru: {
+      title: "Последовательность успешно сохранена",
+      text: ""
+    },
+    en: {
+      title: "Sequence successfully saved",
+      text: ""
+    }
   }
 };
 
 export function infoPopUpReducer(state = initialState, action) {
   switch (action.type) {
+    case SAVE_SUCCESS:
+      return { ...state, isOpen: true, texts: state.saveSuccessTexts };
+
     case NO_AUTHORIZATION:
       return { ...state, isOpen: true, texts: state.noAuthorizationTexts };
 
