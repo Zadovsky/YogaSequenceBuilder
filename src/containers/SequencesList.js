@@ -14,7 +14,8 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import {
   closeSeqListAction,
   onChangeSaveNameAction,
-  deleteSequenceAction
+  deleteSequenceAction,
+  onClickSaveButton
 } from "../actions/SequencesListActions";
 import "./SequencesList.css";
 
@@ -94,7 +95,18 @@ function SequencesList(props) {
               }}
             />
             <div className="ButtonWrapper">
-              <Button variant="contained" className={classes.button}>
+              <Button
+                variant="contained"
+                className={classes.button}
+                onClick={() =>
+                  props.onClickSaveButton(
+                    props.user.login,
+                    props.user.password,
+                    props.sequences.saveName,
+                    props.schedule.cards
+                  )
+                }
+              >
                 {texts.saveButton}
               </Button>
             </div>
@@ -115,7 +127,9 @@ function SequencesList(props) {
 const mapStateToProps = store => {
   return {
     language: store.language,
-    sequences: store.sequences
+    sequences: store.sequences,
+    user: store.user,
+    schedule: store.schedule
   };
 };
 
@@ -123,7 +137,10 @@ const mapDispatchToProps = dispatch => {
   return {
     closeSeqListAction: () => dispatch(closeSeqListAction()),
     onChangeSaveNameAction: e => dispatch(onChangeSaveNameAction(e)),
-    deleteSequenceAction: (id, name) => dispatch(deleteSequenceAction(id, name))
+    deleteSequenceAction: (id, name) =>
+      dispatch(deleteSequenceAction(id, name)),
+    onClickSaveButton: (login, password, saveName, sequence) =>
+      dispatch(onClickSaveButton(login, password, saveName, sequence))
   };
 };
 
