@@ -14,51 +14,59 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import {
   closeSeqListAction,
   onChangeSaveNameAction,
+  clickDeleteSequenceAction,
   deleteSequenceAction,
-  onClickSaveButton
+  onClickSaveButton,
 } from "../actions/SequencesListActions";
 import "./SequencesList.css";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
     top: 0,
     left: 0,
     height: "100%",
     width: "100%",
-    padding: theme.spacing(1, 2, 3)
+    padding: theme.spacing(1, 2, 3),
   },
   closeList: {
     position: "absolute",
     right: 0,
-    top: 0
+    top: 0,
   },
   button: {
-    margin: theme.spacing(0, 0, 0, 1)
+    margin: theme.spacing(0, 0, 0, 1),
   },
   h3: {
-    padding: "6px 0 7px"
+    padding: "6px 0 7px",
   },
   list: {
     "& button": {
-      opacity: 0
+      opacity: 0,
     },
     "& :hover button": {
-      opacity: "100%"
-    }
+      opacity: "100%",
+    },
   },
   displayNone: {
-    display: "none"
-  }
+    display: "none",
+  },
 }));
 
-function createListItemArr(sequences, deleteSequenceAction) {
+function createListItemArr(
+  sequences,
+  clickDeleteSequenceAction,
+  login,
+  password
+) {
   if (sequences !== null) {
-    return sequences.map(item => (
+    return sequences.map((item) => (
       <ListItem key={item.id}>
         <ListItemText primary={item.name} />
         <ListItemText secondary={item.time} />
-        <IconButton onClick={() => deleteSequenceAction(item.id, item.name)}>
+        <IconButton
+          onClick={() => clickDeleteSequenceAction(login, password, item.id)}
+        >
           <CloseIcon />
         </IconButton>
       </ListItem>
@@ -70,7 +78,9 @@ function SequencesList(props) {
   const classes = useStyles();
   const listItemArr = createListItemArr(
     props.sequences.sequences,
-    props.deleteSequenceAction
+    props.clickDeleteSequenceAction,
+    props.user.login,
+    props.user.password
   );
   const texts = props.sequences.texts[props.language.curLang];
 
@@ -91,7 +101,7 @@ function SequencesList(props) {
               autoFocus
               value={props.sequences.saveName}
               inputProps={{
-                onChange: e => props.onChangeSaveNameAction(e)
+                onChange: (e) => props.onChangeSaveNameAction(e),
               }}
             />
             <div className="ButtonWrapper">
@@ -124,23 +134,27 @@ function SequencesList(props) {
   );
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {
     language: store.language,
     sequences: store.sequences,
     user: store.user,
-    schedule: store.schedule
+    schedule: store.schedule,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     closeSeqListAction: () => dispatch(closeSeqListAction()),
-    onChangeSaveNameAction: e => dispatch(onChangeSaveNameAction(e)),
-    deleteSequenceAction: (id, name) =>
-      dispatch(deleteSequenceAction(id, name)),
+    onChangeSaveNameAction: (e) => dispatch(onChangeSaveNameAction(e)),
+    clickDeleteSequenceAction: (login, password, id) =>
+      dispatch(
+        clickDeleteSequenceAction(() =>
+          dispatch(deleteSequenceAction(login, password, id))
+        )
+      ),
     onClickSaveButton: (login, password, saveName, sequence) =>
-      dispatch(onClickSaveButton(login, password, saveName, sequence))
+      dispatch(onClickSaveButton(login, password, saveName, sequence)),
   };
 };
 

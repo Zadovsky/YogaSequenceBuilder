@@ -2,24 +2,25 @@ import { CLICK_SAVE } from "../actions/SaveLoadPdfButtonsActions";
 import {
   CLOSE_SEQ_LIST,
   CHANGE_SAVE_NAME,
-  DELETE_SEQ,
-  SAVE_SUCCESS
+  SAVE_SUCCESS,
 } from "../actions/SequencesListActions";
+import { CLICK_DELETE_SEQ } from "../actions/SequencesListActions";
 
 const initialState = {
   isOpen: false,
+  skipClickAway: false,
   sequences: null,
   saveName: "",
   texts: {
     ru: {
       saveHeader: "Сохранить",
-      saveButton: "Сохранить"
+      saveButton: "Сохранить",
     },
     en: {
       saveHeader: "Save",
-      saveButton: "Save"
-    }
-  }
+      saveButton: "Save",
+    },
+  },
 };
 
 export function sequencesReducer(state = initialState, action) {
@@ -27,18 +28,13 @@ export function sequencesReducer(state = initialState, action) {
     case SAVE_SUCCESS:
       return {
         ...state,
-        isOpen: false
+        isOpen: false,
       };
-
-    case DELETE_SEQ:
-      console.log(action.payload.id);
-      console.log(action.payload.name);
-      return state;
 
     case CHANGE_SAVE_NAME:
       return {
         ...state,
-        saveName: action.payload
+        saveName: action.payload,
       };
 
     case CLICK_SAVE:
@@ -46,11 +42,24 @@ export function sequencesReducer(state = initialState, action) {
         ...state,
         isOpen: true,
         sequences: action.payload.sequences,
-        saveName: action.payload.saveName
+        saveName: action.payload.saveName,
       };
 
     case CLOSE_SEQ_LIST:
-      return { ...state, isOpen: false };
+      if (state.skipClickAway) {
+        return {
+          ...state,
+          skipClickAway: false,
+        };
+      } else {
+        return {
+          ...state,
+          isOpen: false,
+        };
+      }
+
+    case CLICK_DELETE_SEQ:
+      return { ...state, skipClickAway: true };
 
     default:
       return state;
