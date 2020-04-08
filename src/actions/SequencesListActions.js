@@ -25,7 +25,6 @@ export function clickDeleteSequenceAction(deleteAction) {
 }
 
 export function deleteSequenceAction(login, password, id) {
-  console.log(id);
   return (dispatch) => {
     fetch("http://localhost/YSB/public/php/deletesequence.php", {
       method: "POST",
@@ -42,7 +41,7 @@ export function deleteSequenceAction(login, password, id) {
       .then((result) => {
         return dispatch({
           type: DELETE_SEQ,
-          payload: result,
+          payload: id,
         });
       })
       .catch((error) => console.error(error));
