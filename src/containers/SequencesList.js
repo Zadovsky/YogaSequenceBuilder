@@ -14,9 +14,10 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import {
   closeSeqListAction,
   onChangeSaveNameAction,
-  clickDeleteSequenceAction,
+  onClickDeleteSequenceAction,
   deleteSequenceAction,
-  onClickSaveButton,
+  onClickSaveSequenceAction,
+  rewriteSequenceAction,
 } from "../actions/SequencesListActions";
 import "./SequencesList.css";
 
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 function createListItemArr(
   sequences,
-  clickDeleteSequenceAction,
+  onClickDeleteSequenceAction,
   login,
   password
 ) {
@@ -65,7 +66,7 @@ function createListItemArr(
         <ListItemText primary={item.name} />
         <ListItemText secondary={item.time} />
         <IconButton
-          onClick={() => clickDeleteSequenceAction(login, password, item.id)}
+          onClick={() => onClickDeleteSequenceAction(login, password, item.id)}
         >
           <CloseIcon />
         </IconButton>
@@ -78,7 +79,7 @@ function SequencesList(props) {
   const classes = useStyles();
   const listItemArr = createListItemArr(
     props.sequences.sequences,
-    props.clickDeleteSequenceAction,
+    props.onClickDeleteSequenceAction,
     props.user.login,
     props.user.password
   );
@@ -109,11 +110,13 @@ function SequencesList(props) {
                 variant="contained"
                 className={classes.button}
                 onClick={() =>
-                  props.onClickSaveButton(
+                  props.onClickSaveSequenceAction(
                     props.user.login,
                     props.user.password,
                     props.sequences.saveName,
-                    props.schedule.cards
+                    props.sequences.sequences,
+                    props.schedule.cards,
+                    props.rewriteSequenceAction
                   )
                 }
               >
@@ -147,14 +150,34 @@ const mapDispatchToProps = (dispatch) => {
   return {
     closeSeqListAction: () => dispatch(closeSeqListAction()),
     onChangeSaveNameAction: (e) => dispatch(onChangeSaveNameAction(e)),
-    clickDeleteSequenceAction: (login, password, id) =>
+    onClickDeleteSequenceAction: (login, password, id) =>
       dispatch(
-        clickDeleteSequenceAction(() =>
+        onClickDeleteSequenceAction(() =>
           dispatch(deleteSequenceAction(login, password, id))
         )
       ),
-    onClickSaveButton: (login, password, saveName, sequence) =>
-      dispatch(onClickSaveButton(login, password, saveName, sequence)),
+    rewriteSequenceAction: (login, password, saveName, cards, deleteId) =>
+      dispatch(
+        rewriteSequenceAction(login, password, saveName, cards, deleteId)
+      ),
+    onClickSaveSequenceAction: (
+      login,
+      password,
+      saveName,
+      sequences,
+      cards,
+      rewriteSequenceAction
+    ) =>
+      dispatch(
+        onClickSaveSequenceAction(
+          login,
+          password,
+          saveName,
+          sequences,
+          cards,
+          rewriteSequenceAction
+        )
+      ),
   };
 };
 

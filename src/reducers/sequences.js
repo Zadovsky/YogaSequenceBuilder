@@ -3,8 +3,13 @@ import {
   CLOSE_SEQ_LIST,
   CHANGE_SAVE_NAME,
   SAVE_SUCCESS,
+  REWRITE_SUCCESS,
 } from "../actions/SequencesListActions";
-import { CLICK_DELETE_SEQ, DELETE_SEQ } from "../actions/SequencesListActions";
+import {
+  CLICK_DELETE_SEQ,
+  DELETE_SEQ,
+  SEQ_NAME_NOT_UNIQ,
+} from "../actions/SequencesListActions";
 
 const initialState = {
   isOpen: false,
@@ -25,7 +30,19 @@ const initialState = {
 
 export function sequencesReducer(state = initialState, action) {
   switch (action.type) {
+    case SEQ_NAME_NOT_UNIQ:
+      return {
+        ...state,
+        skipClickAway: true,
+      };
+
     case SAVE_SUCCESS:
+      return {
+        ...state,
+        isOpen: false,
+      };
+
+    case REWRITE_SUCCESS:
       return {
         ...state,
         isOpen: false,
