@@ -2,7 +2,7 @@ import {
   ADD_ASANA,
   DRAG_ENTER_CARD,
   START_DRAG_CARD,
-  CLOSE_CARD
+  CLOSE_CARD,
 } from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
@@ -15,8 +15,9 @@ import {
   START_DRAG_GRID,
   DRAG_ENTER_GRID,
   CLOSE_GRID,
-  CHANGE_GRID_NAME
+  CHANGE_GRID_NAME,
 } from "../actions/AsanasGridActions";
+import { SAVE_SUCCESS, REWRITE_SUCCESS } from "../actions/SequencesListActions";
 
 const initialState = {
   panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
@@ -25,7 +26,7 @@ const initialState = {
   cards: [{ gridCards: [], gridKey: 0, gridName: "", defaultName: true }],
   gridDefaultName: {
     ru: "Без названия",
-    en: "noname"
+    en: "noname",
   },
   nextCardKey: 0,
   nextGridKey: 1,
@@ -44,14 +45,14 @@ const initialState = {
     ru: {
       save: "Сохранить",
       load: "Загрузить",
-      pdf: "в PDF"
+      pdf: "в PDF",
     },
     en: {
       save: "Save",
       load: "Load",
-      pdf: "to PDF"
-    }
-  }
+      pdf: "to PDF",
+    },
+  },
 };
 
 function addEmptyGrid(cards, nextGridKey) {
@@ -61,7 +62,7 @@ function addEmptyGrid(cards, nextGridKey) {
       gridCards: [],
       gridKey: newGridKey,
       gridName: "",
-      defaultName: true
+      defaultName: true,
     });
     newGridKey++;
   }
@@ -71,11 +72,25 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case REWRITE_SUCCESS:
+      return {
+        ...state,
+        panelName: action.payload,
+        isPanelNameDef: false,
+      };
+
+    case SAVE_SUCCESS:
+      return {
+        ...state,
+        panelName: action.payload,
+        isPanelNameDef: false,
+      };
+
     case CHANGE_PANEL_NAME:
       return {
         ...state,
         panelName: action.payload,
-        isPanelNameDef: false
+        isPanelNameDef: false,
       };
 
     case CHANGE_GRID_NAME:
@@ -84,19 +99,19 @@ export function scheduleReducer(state = initialState, action) {
       cards[action.payload.gridId].defaultName = false;
       return {
         ...state,
-        cards: cards
+        cards: cards,
       };
 
     case DRAG_ICON_MOUSE_DOWN:
       return {
         ...state,
-        draggingGrid: true
+        draggingGrid: true,
       };
 
     case DRAG_ICON_MOUSE_UP:
       return {
         ...state,
-        draggingGrid: null
+        draggingGrid: null,
       };
 
     case START_DRAG_GRID:
@@ -107,7 +122,7 @@ export function scheduleReducer(state = initialState, action) {
           onPlaceHolder: true,
           gridHeight: action.payload.height,
           draggingGrid: action.payload.gridId,
-          dragOverGrid: action.payload.gridId + 1
+          dragOverGrid: action.payload.gridId + 1,
         };
       } else if (state.draggingCard !== null) {
         return state;
@@ -136,14 +151,14 @@ export function scheduleReducer(state = initialState, action) {
             fastTransition: false,
             onPlaceHolder: false,
             dragOverGrid: newDragOverGrid,
-            lastDragEnterGrid: action.payload
+            lastDragEnterGrid: action.payload,
           };
         } else if (state.draggingCard !== null) {
           return {
             ...state,
             dragOverGrid: action.payload,
             dragOverCard: state.cards[action.payload].gridCards.length,
-            lastDragEnterGrid: action.payload
+            lastDragEnterGrid: action.payload,
           };
         } else {
           return state;
@@ -157,7 +172,7 @@ export function scheduleReducer(state = initialState, action) {
         ...state,
         onPlaceHolder: true,
         fastTransition: false,
-        lastDragEnterGrid: null
+        lastDragEnterGrid: null,
       };
 
     case CLOSE_GRID:
@@ -166,7 +181,7 @@ export function scheduleReducer(state = initialState, action) {
 
       return {
         ...state,
-        cards: cards
+        cards: cards,
       };
 
     case ADD_ASANA:
@@ -175,7 +190,7 @@ export function scheduleReducer(state = initialState, action) {
         const gridToAdd = cards.length === 1 ? 0 : cards.length - 2;
         cards[gridToAdd].gridCards.push({
           cardKey: state.nextCardKey,
-          asanaIndex: action.payload.asanaId
+          asanaIndex: action.payload.asanaId,
         });
 
         let cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
@@ -184,11 +199,11 @@ export function scheduleReducer(state = initialState, action) {
           ...state,
           cards: cardsWithEmptyGrid.cards,
           nextCardKey: state.nextCardKey + 1,
-          nextGridKey: cardsWithEmptyGrid.nextGridKey
+          nextGridKey: cardsWithEmptyGrid.nextGridKey,
         };
       } else {
         return {
-          ...state
+          ...state,
         };
       }
 
@@ -201,7 +216,7 @@ export function scheduleReducer(state = initialState, action) {
 
       return {
         ...state,
-        cards: cards
+        cards: cards,
       };
 
     case START_DRAG_CARD:
@@ -214,7 +229,7 @@ export function scheduleReducer(state = initialState, action) {
           dragOverCard: action.payload.card + 1,
           dragOverGrid: action.payload.gridId,
           fastTransition: true,
-          onPlaceHolder: true
+          onPlaceHolder: true,
         };
       } else {
         return {
@@ -225,7 +240,7 @@ export function scheduleReducer(state = initialState, action) {
           dragOverCard: null,
           dragOverGrid: null,
           fastTransition: false,
-          onPlaceHolder: false
+          onPlaceHolder: false,
         };
       }
 
@@ -258,11 +273,11 @@ export function scheduleReducer(state = initialState, action) {
           lastDragEnterCard: action.payload.cardPlace,
           lastDragEnterGrid: action.payload.gridId,
           fastTransition: false,
-          onPlaceHolder: false
+          onPlaceHolder: false,
         };
       } else {
         return {
-          ...state
+          ...state,
         };
       }
 
@@ -274,11 +289,11 @@ export function scheduleReducer(state = initialState, action) {
           dragOverGrid: action.payload.gridId,
           lastDragEnterCard: null,
           fastTransition: false,
-          onPlaceHolder: false
+          onPlaceHolder: false,
         };
       } else {
         return {
-          ...state
+          ...state,
         };
       }
 
@@ -286,7 +301,7 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         lastDragEnterCard: null,
-        onPlaceHolder: true
+        onPlaceHolder: true,
       };
 
     case DRAG_ENTER_DND_CONTEXT:
@@ -301,7 +316,7 @@ export function scheduleReducer(state = initialState, action) {
           lastDragEnterCard: null,
           lastDragEnterGrid: null,
           fastTransition: false,
-          onPlaceHolder: false
+          onPlaceHolder: false,
         };
       } else if (action.payload.outOfPanel && state.draggingGrid !== null) {
         return {
@@ -309,7 +324,7 @@ export function scheduleReducer(state = initialState, action) {
           fastTransition: false,
           onPlaceHolder: false,
           dragOverGrid: null,
-          lastDragEnterGrid: null
+          lastDragEnterGrid: null,
         };
       } else {
         return state;
@@ -324,7 +339,7 @@ export function scheduleReducer(state = initialState, action) {
           dragOverGrid,
           draggingCard,
           dragSourceGrid,
-          dragSourcePanelIsSchedule
+          dragSourcePanelIsSchedule,
         } = state;
 
         var newNextCardKey = state.nextCardKey;
@@ -335,7 +350,7 @@ export function scheduleReducer(state = initialState, action) {
         } else {
           dragCard = {
             cardKey: newNextCardKey,
-            asanaIndex: draggingCard
+            asanaIndex: draggingCard,
           };
           newNextCardKey++;
         }
@@ -347,7 +362,7 @@ export function scheduleReducer(state = initialState, action) {
           cards[dragOverGrid].gridCards = [
             ...cards[dragOverGrid].gridCards.slice(0, dragOverCard),
             dragCard,
-            ...cards[dragOverGrid].gridCards.slice(dragOverCard)
+            ...cards[dragOverGrid].gridCards.slice(dragOverCard),
           ];
         }
 
@@ -363,7 +378,7 @@ export function scheduleReducer(state = initialState, action) {
           lastDragEnterCard: null,
           lastDragEnterGrid: null,
           fastTransition: true,
-          nextCardKey: newNextCardKey
+          nextCardKey: newNextCardKey,
         };
       } else if (state.draggingGrid !== null) {
         var draggingGrid = state.draggingGrid;
@@ -380,7 +395,7 @@ export function scheduleReducer(state = initialState, action) {
           cards = [
             ...cards.slice(0, dragOverGrid),
             dragGrid,
-            ...cards.slice(dragOverGrid)
+            ...cards.slice(dragOverGrid),
           ];
         }
 
@@ -394,7 +409,7 @@ export function scheduleReducer(state = initialState, action) {
           gridHeight: null,
           draggingGrid: null,
           dragOverGrid: null,
-          lastDragEnterGrid: null
+          lastDragEnterGrid: null,
         };
       } else {
         return state;

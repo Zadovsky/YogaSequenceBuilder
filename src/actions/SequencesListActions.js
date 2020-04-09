@@ -95,7 +95,7 @@ export function onClickSaveSequenceAction(
         .then((result) => {
           return dispatch({
             type: SAVE_SUCCESS,
-            payload: result,
+            payload: saveName,
           });
         })
         .catch((error) => console.error(error));
@@ -155,7 +155,7 @@ export function rewriteSequenceAction(
       .then((result) => {
         return dispatch({
           type: REWRITE_SUCCESS,
-          payload: result,
+          payload: saveName,
         });
       })
       .catch((error) => console.error(error));
