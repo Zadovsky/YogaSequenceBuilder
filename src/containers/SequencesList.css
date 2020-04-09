@@ -1,3 +1,14 @@
 .TextFieldButtonWrapper {
   display: flex;
 }
+
+.SeqListFlexBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.SeqListFlexElement {
+  overflow: auto;
+  flex-grow: 3;
+}

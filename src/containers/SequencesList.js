@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
   },
   button: {
-    margin: theme.spacing(0, 0, 0, 1),
+    margin: theme.spacing(0, 0, 1, 1),
   },
   h3: {
     padding: "6px 0 7px",
@@ -93,44 +93,48 @@ function SequencesList(props) {
     >
       <ClickAwayListener onClickAway={props.closeSeqListAction}>
         <Paper className={classes.paper} elevation={2}>
-          <Typography variant="h5" component="h3" className={classes.h3}>
-            {texts.saveHeader}
-          </Typography>
-          <div className="TextFieldButtonWrapper">
-            <TextField
-              fullWidth
-              autoFocus
-              value={props.sequences.saveName}
-              inputProps={{
-                onChange: (e) => props.onChangeSaveNameAction(e),
-              }}
-            />
-            <div className="ButtonWrapper">
-              <Button
-                variant="contained"
-                className={classes.button}
-                onClick={() =>
-                  props.onClickSaveSequenceAction(
-                    props.user.login,
-                    props.user.password,
-                    props.sequences.saveName,
-                    props.sequences.sequences,
-                    props.schedule.cards,
-                    props.rewriteSequenceAction
-                  )
-                }
-              >
-                {texts.saveButton}
-              </Button>
+          <div className="SeqListFlexBox">
+            <Typography variant="h5" component="h3" className={classes.h3}>
+              {texts.saveHeader}
+            </Typography>
+            <div className="TextFieldButtonWrapper">
+              <TextField
+                fullWidth
+                autoFocus
+                value={props.sequences.saveName}
+                inputProps={{
+                  onChange: (e) => props.onChangeSaveNameAction(e),
+                }}
+              />
+              <div className="ButtonWrapper">
+                <Button
+                  variant="contained"
+                  className={classes.button}
+                  onClick={() =>
+                    props.onClickSaveSequenceAction(
+                      props.user.login,
+                      props.user.password,
+                      props.sequences.saveName,
+                      props.sequences.sequences,
+                      props.schedule.cards,
+                      props.rewriteSequenceAction
+                    )
+                  }
+                >
+                  {texts.saveButton}
+                </Button>
+              </div>
             </div>
+            <div className="SeqListFlexElement">
+              <List className={classes.list}>{listItemArr}</List>
+            </div>
+            <IconButton
+              className={classes.closeList}
+              onClick={props.closeSeqListAction}
+            >
+              <CloseIcon />
+            </IconButton>
           </div>
-          <List className={classes.list}>{listItemArr}</List>
-          <IconButton
-            className={classes.closeList}
-            onClick={props.closeSeqListAction}
-          >
-            <CloseIcon />
-          </IconButton>
         </Paper>
       </ClickAwayListener>
     </div>
