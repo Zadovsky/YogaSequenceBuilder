@@ -20,14 +20,14 @@ const initialState = {
   skipClickAway: false,
   sequences: null,
   saveName: "",
-  texts: {
+  textsSave: {
     ru: {
-      saveHeader: "Сохранить",
-      saveButton: "Сохранить",
+      header: "Сохранить",
+      button: "Сохранить",
     },
     en: {
-      saveHeader: "Save",
-      saveButton: "Save",
+      header: "Save",
+      button: "Save",
     },
   },
 };
