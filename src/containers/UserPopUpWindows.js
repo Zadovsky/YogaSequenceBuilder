@@ -8,17 +8,17 @@ import {
   onClickSignInAction,
   onChangeEmailSignInAction,
   onChangePwdSignInAction,
-  onClickForgotPwdAction
+  onClickForgotPwdAction,
 } from "../actions/SignInPopUpWindowActions";
 import {
   onClickCancelForgotPwdAction,
   onClickConfirmForgotPwdAction,
-  onChangeEmailForgotPwdAction
+  onChangeEmailForgotPwdAction,
 } from "../actions/ForgotPwdPopUpWindowActions";
 import {
   onClickCancelRegAction,
   onChangeEmailRegAction,
-  onClickConfirmRegAction
+  onClickConfirmRegAction,
 } from "../actions/RegPopUpWindowActions";
 
 function UserPopUpWindows(props) {
@@ -28,67 +28,70 @@ function UserPopUpWindows(props) {
         onClickCancelSignInAction={props.onClickCancelSignInAction}
         onClickSignInAction={() =>
           props.onClickSignInAction(
-            props.user.signIn.email,
-            props.user.signIn.password
+            props.pageTop.signIn.email,
+            props.pageTop.signIn.password
           )
         }
         onClickForgotPwdAction={props.onClickForgotPwdAction}
-        flags={props.user.signIn}
-        signInWindowTexts={props.user.signInWindowTexts[props.language.curLang]}
+        flags={props.pageTop.signIn}
+        signInWindowTexts={
+          props.pageTop.signInWindowTexts[props.language.curLang]
+        }
         onChangeEmailSignInAction={props.onChangeEmailSignInAction}
         onChangePwdSignInAction={props.onChangePwdSignInAction}
       />
       <ForgotPwdPopUpWindow
-        open={props.user.forgotPwd.isOpen}
+        open={props.pageTop.forgotPwd.isOpen}
         lang={props.language.curLang}
-        texts={props.user.forgotPwdTexts[props.language.curLang]}
-        emailIsEmpty={props.user.forgotPwd.emailIsEmpty}
+        texts={props.pageTop.forgotPwdTexts[props.language.curLang]}
+        emailIsEmpty={props.pageTop.forgotPwd.emailIsEmpty}
         onClickCancelAction={props.onClickCancelForgotPwdAction}
         onClickConfirmAction={() =>
-          props.onClickConfirmForgotPwdAction(props.user.forgotPwd.email)
+          props.onClickConfirmForgotPwdAction(props.pageTop.forgotPwd.email)
         }
         onChangeEmailAction={props.onChangeEmailForgotPwdAction}
       />
       <RegPopUpWindow
-        open={props.user.registration.isOpen}
+        open={props.pageTop.registration.isOpen}
         lang={props.language.curLang}
-        texts={props.user.regTexts[props.language.curLang]}
-        notEmail={props.user.registration.notEmail}
+        texts={props.pageTop.regTexts[props.language.curLang]}
+        notEmail={props.pageTop.registration.notEmail}
         onClickCancelRegAction={props.onClickCancelRegAction}
         onChangeEmailRegAction={props.onChangeEmailRegAction}
         onClickConfirmRegAction={() =>
-          props.onClickConfirmRegAction(props.user.registration.email)
+          props.onClickConfirmRegAction(props.pageTop.registration.email)
         }
       />
     </div>
   );
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {
-    user: store.user,
+    pageTop: store.pageTop,
     language: store.language,
-    infoPopUp: store.infoPopUp
+    infoPopUp: store.infoPopUp,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onClickCancelSignInAction: () => dispatch(onClickCancelSignInAction()),
     onClickSignInAction: (email, password) =>
       dispatch(onClickSignInAction(email, password)),
-    onChangeEmailSignInAction: e => dispatch(onChangeEmailSignInAction(e)),
-    onChangePwdSignInAction: e => dispatch(onChangePwdSignInAction(e)),
+    onChangeEmailSignInAction: (e) => dispatch(onChangeEmailSignInAction(e)),
+    onChangePwdSignInAction: (e) => dispatch(onChangePwdSignInAction(e)),
     onClickForgotPwdAction: () => dispatch(onClickForgotPwdAction()),
     onClickCancelForgotPwdAction: () =>
       dispatch(onClickCancelForgotPwdAction()),
-    onClickConfirmForgotPwdAction: email =>
+    onClickConfirmForgotPwdAction: (email) =>
       dispatch(onClickConfirmForgotPwdAction(email)),
-    onChangeEmailForgotPwdAction: e =>
+    onChangeEmailForgotPwdAction: (e) =>
       dispatch(onChangeEmailForgotPwdAction(e)),
-    onChangeEmailRegAction: e => dispatch(onChangeEmailRegAction(e)),
+    onChangeEmailRegAction: (e) => dispatch(onChangeEmailRegAction(e)),
     onClickCancelRegAction: () => dispatch(onClickCancelRegAction()),
-    onClickConfirmRegAction: email => dispatch(onClickConfirmRegAction(email))
+    onClickConfirmRegAction: (email) =>
+      dispatch(onClickConfirmRegAction(email)),
   };
 };
 

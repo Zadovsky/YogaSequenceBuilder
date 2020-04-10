@@ -8,30 +8,30 @@ import Header from "../components/Header";
 import { onChangeLangChooser } from "../actions/LanguageChooserActions";
 import {
   onClickSignInAction,
-  onClickRegAction
+  onClickRegAction,
 } from "../actions/SignInRegButtonsActions";
 import {
   userMenuClose,
   usernameClickAction,
   exitItemClickAction,
-  changePwdItemClickAction
+  changePwdItemClickAction,
 } from "../actions/UserMenuActions";
 import "./PageTop.css";
 import {
   onConfirmExitAction,
-  onConfirmChangePwdAction
+  onConfirmChangePwdAction,
 } from "../actions/YesNoPopUpWindowActions";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
-    margin: theme.spacing(1, 0)
+    margin: theme.spacing(1, 0),
   },
   h1: {
-    padding: theme.spacing(1, 2, 0)
+    padding: theme.spacing(1, 2, 0),
   },
   instruction: {
-    padding: theme.spacing(1, 2)
-  }
+    padding: theme.spacing(1, 2),
+  },
 }));
 
 function PageTop(props) {
@@ -50,15 +50,15 @@ function PageTop(props) {
         onClickSignInAction={props.onClickSignInAction}
         onClickRegAction={props.onClickRegAction}
         login={props.user.login}
-        anchorEl={props.user.userMenu.anchorEl}
-        isOpen={props.user.userMenu.isOpen}
+        anchorEl={props.pageTop.userMenu.anchorEl}
+        isOpen={props.pageTop.userMenu.isOpen}
         userMenuClose={props.userMenuClose}
         usernameClickAction={props.usernameClickAction}
         exitItemClickAction={props.exitItemClickAction}
         changePwdItemClickAction={() =>
           props.changePwdItemClickAction(props.user.login, props.user.password)
         }
-        userMenuTexts={props.user.userMenuTexts[props.language.curLang]}
+        userMenuTexts={props.pageTop.userMenuTexts[props.language.curLang]}
       />
       <Divider variant="middle" />
       <Typography
@@ -76,21 +76,21 @@ function PageTop(props) {
   );
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {
     language: store.language,
     pageTop: store.pageTop,
-    user: store.user
+    user: store.user,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onChangeLangChooser: e => dispatch(onChangeLangChooser(e)),
+    onChangeLangChooser: (e) => dispatch(onChangeLangChooser(e)),
     onClickSignInAction: () => dispatch(onClickSignInAction()),
     onClickRegAction: () => dispatch(onClickRegAction()),
     userMenuClose: () => dispatch(userMenuClose()),
-    usernameClickAction: e => dispatch(usernameClickAction(e)),
+    usernameClickAction: (e) => dispatch(usernameClickAction(e)),
     exitItemClickAction: () =>
       dispatch(exitItemClickAction(() => dispatch(onConfirmExitAction()))),
     changePwdItemClickAction: (email, password) =>
@@ -98,7 +98,7 @@ const mapDispatchToProps = dispatch => {
         changePwdItemClickAction(() =>
           dispatch(onConfirmChangePwdAction(email, password))
         )
-      )
+      ),
   };
 };
 
