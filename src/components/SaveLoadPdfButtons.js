@@ -3,10 +3,10 @@ import "./SaveLoadPdfButtons.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 export default function SaveLoadPdfButtons(props) {
@@ -14,7 +14,11 @@ export default function SaveLoadPdfButtons(props) {
 
   return (
     <div className="SaveLoadPdfButtons">
-      <Button variant="contained" className={classes.button}>
+      <Button
+        variant="contained"
+        className={classes.button}
+        onClick={props.onClickLoad}
+      >
         {props.texts.load}
       </Button>
       <Button

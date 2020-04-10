@@ -12,7 +12,10 @@ import {
   NO_SUCH_LOGIN,
 } from "../actions/ForgotPwdPopUpWindowActions";
 import { CONFIRM_CHANGE_PASSWORD } from "../actions/YesNoPopUpWindowActions";
-import { NO_AUTHORIZATION } from "../actions/SaveLoadPdfButtonsActions";
+import {
+  NO_AUTHORIZATION_SAVE,
+  NO_AUTHORIZATION_LOAD,
+} from "../actions/SaveLoadPdfButtonsActions";
 import { SAVE_SUCCESS, REWRITE_SUCCESS } from "../actions/SequencesListActions";
 
 const initialState = {
@@ -71,15 +74,25 @@ const initialState = {
       text: "",
     },
   },
-  noAuthorizationTexts: {
+  noAuthorizationSaveTexts: {
     ru: {
       title: "Войдите в аккаунт",
       text:
-        "Чтобы сохранить комплекс асан, войдите в свой аккаунт или зарегистрируйте новый",
+        "Чтобы сохранить последовательность асан, войдите в свой аккаунт или зарегистрируйте новый",
     },
     en: {
       title: "Sign in to your account",
       text: "Sign in to your account or register new one to save the sequence",
+    },
+  },
+  noAuthorizationLoadTexts: {
+    ru: {
+      title: "Войдите в аккаунт",
+      text: "Чтобы загрузить последовательность асан, войдите в свой аккаунт",
+    },
+    en: {
+      title: "Sign in to your account",
+      text: "Sign in to your account to load the sequence",
     },
   },
   saveSuccessTexts: {
@@ -102,8 +115,11 @@ export function infoPopUpReducer(state = initialState, action) {
     case REWRITE_SUCCESS:
       return { ...state, isOpen: true, texts: state.saveSuccessTexts };
 
-    case NO_AUTHORIZATION:
-      return { ...state, isOpen: true, texts: state.noAuthorizationTexts };
+    case NO_AUTHORIZATION_SAVE:
+      return { ...state, isOpen: true, texts: state.noAuthorizationSaveTexts };
+
+    case NO_AUTHORIZATION_LOAD:
+      return { ...state, isOpen: true, texts: state.noAuthorizationLoadTexts };
 
     case LOGIN_ALREADY_EXIST:
       return { ...state, isOpen: true, texts: state.loginExistTexts };

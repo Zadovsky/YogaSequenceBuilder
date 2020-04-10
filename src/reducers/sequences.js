@@ -1,4 +1,4 @@
-import { CLICK_SAVE } from "../actions/SaveLoadPdfButtonsActions";
+import { CLICK_SAVE, CLICK_LOAD } from "../actions/SaveLoadPdfButtonsActions";
 import {
   CLOSE_SEQ_LIST,
   CHANGE_SAVE_NAME,
@@ -11,8 +11,12 @@ import {
   SEQ_NAME_NOT_UNIQ,
 } from "../actions/SequencesListActions";
 
+export const MODE_SAVE = "MODE_SAVE";
+export const MODE_LOAD = "MODE_LOAD";
+
 const initialState = {
   isOpen: false,
+  mode: null,
   skipClickAway: false,
   sequences: null,
   saveName: "",
@@ -58,8 +62,18 @@ export function sequencesReducer(state = initialState, action) {
       return {
         ...state,
         isOpen: true,
+        mode: MODE_SAVE,
         sequences: action.payload.sequences,
         saveName: action.payload.saveName,
+      };
+
+    case CLICK_LOAD:
+      return {
+        ...state,
+        isOpen: true,
+        mode: MODE_LOAD,
+        sequences: action.payload,
+        saveName: "",
       };
 
     case CLOSE_SEQ_LIST:

@@ -6,7 +6,7 @@ import {
   addAsanaAction,
   dragEnterAction,
   startCardDragAction,
-  closeCardAction
+  closeCardAction,
 } from "../actions/AsanaCardActions";
 import {
   startGridDragAction,
@@ -14,13 +14,13 @@ import {
   onDragIconMouseUpAction,
   dragEnterGridAction,
   closeGridAction,
-  onChangeGridNameAction
+  onChangeGridNameAction,
 } from "../actions/AsanasGridActions";
 import { onDragEnterGridPhAction } from "../actions/GridPlaceHolderActions";
 import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndActions";
 import { onChangePanelNameAction } from "../actions/PanelNameActions";
-import { onClickSave } from "../actions/SaveLoadPdfButtonsActions";
+import { onClickSave, onClickLoad } from "../actions/SaveLoadPdfButtonsActions";
 import "./SchedulePanel.css";
 
 function SchedulePanel(props) {
@@ -38,7 +38,7 @@ function SchedulePanel(props) {
     dragSourcePanelIsSchedule,
     gridHeight,
     gridDefaultName,
-    saveLoadPdfText
+    saveLoadPdfText,
   } = props.schedule;
 
   const {
@@ -59,13 +59,13 @@ function SchedulePanel(props) {
     dragEnterGridAction,
     onDragEnterGridPhAction,
     onChangeGridNameAction,
-    onClickSave
+    onClickSave,
   } = props;
 
-  const asanas = asanasArr.arr.map(asana => {
+  const asanas = asanasArr.arr.map((asana) => {
     return {
       ...asana,
-      asanaName: asana.asanaName[language.curLang]
+      asanaName: asana.asanaName[language.curLang],
     };
   });
 
@@ -110,6 +110,7 @@ function SchedulePanel(props) {
               isPanelNameDef ? panelDefaultName[language.curLang] : panelName
             )
           }
+          onClickLoad={() => props.onClickLoad(user.login, user.password)}
         />
       }
       wrapperClassName={"SchedulePanel"}
@@ -120,16 +121,16 @@ function SchedulePanel(props) {
   );
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {
     language: store.language,
     asanasArr: store.asanasArr,
     schedule: store.schedule,
-    user: store.user
+    user: store.user,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
       dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
@@ -141,20 +142,21 @@ const mapDispatchToProps = dispatch => {
       dispatch(addAsanaAction(asanaId, gridId, itIsSchedulePanel, e)),
     closeCardAction: (cardIndex, gridId) =>
       dispatch(closeCardAction(cardIndex, gridId)),
-    closeGridAction: gridId => dispatch(closeGridAction(gridId)),
+    closeGridAction: (gridId) => dispatch(closeGridAction(gridId)),
     dragEnterAction: (enterIndex, gridId, itIsSchedulePanel) =>
       dispatch(dragEnterAction(enterIndex, gridId, itIsSchedulePanel)),
     onDragEnterHolderAction: (index, gridId) =>
       dispatch(onDragEnterHolderAction(index, gridId)),
     onDragEnterEmptySpaceAction: (gridId, itIsSchedulePanel) =>
       dispatch(onDragEnterEmptySpaceAction(gridId, itIsSchedulePanel)),
-    dragEnterGridAction: gridId => dispatch(dragEnterGridAction(gridId)),
+    dragEnterGridAction: (gridId) => dispatch(dragEnterGridAction(gridId)),
     onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction()),
     onChangeGridNameAction: (gridId, e) =>
       dispatch(onChangeGridNameAction(gridId, e)),
-    onChangePanelNameAction: e => dispatch(onChangePanelNameAction(e)),
+    onChangePanelNameAction: (e) => dispatch(onChangePanelNameAction(e)),
     onClickSave: (login, password, saveName) =>
-      dispatch(onClickSave(login, password, saveName))
+      dispatch(onClickSave(login, password, saveName)),
+    onClickLoad: (login, password) => dispatch(onClickLoad(login, password)),
   };
 };
 
