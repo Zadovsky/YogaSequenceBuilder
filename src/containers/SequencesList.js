@@ -52,19 +52,29 @@ const useStyles = makeStyles((theme) => ({
   displayNone: {
     display: "none",
   },
+  listItemText: {
+    padding: theme.spacing(0, 1, 0, 0),
+  },
 }));
 
 function createListItemArr(
   sequences,
   onClickDeleteSequenceAction,
   login,
-  password
+  password,
+  classListItemText
 ) {
   if (sequences !== null) {
     return sequences.map((item) => (
       <ListItem key={item.id}>
         <ListItemText primary={item.name} />
-        <ListItemText secondary={item.time} />
+        <ListItemText
+          secondary={item.time}
+          secondaryTypographyProps={{
+            align: "right",
+          }}
+          className={classListItemText}
+        />
         <IconButton
           onClick={() => onClickDeleteSequenceAction(login, password, item.id)}
         >
@@ -77,11 +87,13 @@ function createListItemArr(
 
 function SequencesList(props) {
   const classes = useStyles();
+  const classListItemText = classes.listItemText;
   const listItemArr = createListItemArr(
     props.sequences.sequences,
     props.onClickDeleteSequenceAction,
     props.user.login,
-    props.user.password
+    props.user.password,
+    classListItemText
   );
   const texts = props.sequences.texts[props.language.curLang];
 
