@@ -9,15 +9,25 @@ import {
   rewriteSequenceAction,
 } from "../actions/SequencesListActions";
 import SequencesListSpace from "../components/SequencesListSpace";
+import { MODE_SAVE, MODE_LOAD } from "../reducers/sequences";
 
 function SequencesList(props) {
+  var texts;
+  if (props.sequences.mode === MODE_SAVE) {
+    texts = props.sequences.textsSave[props.language.curLang];
+  } else if (props.sequences.mode === MODE_LOAD) {
+    texts = props.sequences.textsLoad[props.language.curLang];
+  } else {
+    texts = { header: "", button: "" };
+  }
+
   return (
     <SequencesListSpace
       login={props.user.login}
       password={props.user.password}
       sequences={props.sequences.sequences}
       isOpen={props.sequences.isOpen}
-      texts={props.sequences.textsSave[props.language.curLang]}
+      texts={texts}
       saveName={props.sequences.saveName}
       onChangeSaveNameAction={props.onChangeSaveNameAction}
       closeSeqListAction={props.closeSeqListAction}

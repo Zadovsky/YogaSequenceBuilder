@@ -30,6 +30,16 @@ const initialState = {
       button: "Save",
     },
   },
+  textsLoad: {
+    ru: {
+      header: "Загрузить",
+      button: "Загрузить",
+    },
+    en: {
+      header: "Load",
+      button: "Load",
+    },
+  },
 };
 
 export function sequencesReducer(state = initialState, action) {
