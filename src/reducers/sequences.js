@@ -8,6 +8,7 @@ import {
 import {
   CLICK_DELETE_SEQ,
   DELETE_SEQ,
+  CLICK_SEQ,
   SEQ_NAME_NOT_UNIQ,
 } from "../actions/SequencesListActions";
 
@@ -44,6 +45,12 @@ const initialState = {
 
 export function sequencesReducer(state = initialState, action) {
   switch (action.type) {
+    case CLICK_SEQ:
+      return {
+        ...state,
+        saveName: action.payload,
+      };
+
     case SEQ_NAME_NOT_UNIQ:
       return {
         ...state,

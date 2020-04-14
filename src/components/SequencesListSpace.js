@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 function createListItemArr(
   sequences,
+  onClickSequenceAction,
   onClickDeleteSequenceAction,
   login,
   password,
@@ -57,7 +58,11 @@ function createListItemArr(
 ) {
   if (sequences !== null) {
     return sequences.map((item) => (
-      <ListItem key={item.id}>
+      <ListItem
+        key={item.id}
+        button
+        onClick={() => onClickSequenceAction(item.name)}
+      >
         <ListItemText primary={item.name} />
         <ListItemText
           secondary={item.time}
@@ -81,6 +86,7 @@ export default function SequencesListSpace(props) {
   const classListItemText = classes.listItemText;
   const listItemArr = createListItemArr(
     props.sequences,
+    props.onClickSequenceAction,
     props.onClickDeleteSequenceAction,
     props.login,
     props.password,

@@ -5,6 +5,7 @@ export const DELETE_SEQ = "DELETE_SEQ";
 export const SAVE_SUCCESS = "SAVE_SUCCESS";
 export const REWRITE_SUCCESS = "REWRITE_SUCCESS";
 export const SEQ_NAME_NOT_UNIQ = "SEQ_NAME_NOT_UNIQ";
+export const CLICK_SEQ = "CLICK_SEQ";
 
 export function closeSeqListAction() {
   return {
@@ -16,6 +17,13 @@ export function onChangeSaveNameAction(e) {
   return {
     type: CHANGE_SAVE_NAME,
     payload: e.target.value,
+  };
+}
+
+export function onClickSequenceAction(name) {
+  return {
+    type: CLICK_SEQ,
+    payload: name,
   };
 }
 

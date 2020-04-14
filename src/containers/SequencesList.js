@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   closeSeqListAction,
   onChangeSaveNameAction,
+  onClickSequenceAction,
   onClickDeleteSequenceAction,
   deleteSequenceAction,
   onClickSaveSequenceAction,
@@ -31,6 +32,7 @@ function SequencesList(props) {
       saveName={props.sequences.saveName}
       onChangeSaveNameAction={props.onChangeSaveNameAction}
       closeSeqListAction={props.closeSeqListAction}
+      onClickSequenceAction={props.onClickSequenceAction}
       onClickDeleteSequenceAction={props.onClickDeleteSequenceAction}
       onClickSaveSequenceAction={() =>
         props.onClickSaveSequenceAction(
@@ -59,6 +61,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     closeSeqListAction: () => dispatch(closeSeqListAction()),
     onChangeSaveNameAction: (e) => dispatch(onChangeSaveNameAction(e)),
+    onClickSequenceAction: (name) => dispatch(onClickSequenceAction(name)),
     onClickDeleteSequenceAction: (login, password, id) =>
       dispatch(
         onClickDeleteSequenceAction(() =>
