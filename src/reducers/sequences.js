@@ -13,6 +13,7 @@ import {
   CLICK_SEQ_LOAD,
   SEQ_NAME_NOT_UNIQ,
   EMPTY_SEQ_NAME_LOAD,
+  EMPTY_SEQ_NAME_SAVE,
   NO_SEQ_NAME,
   LOAD_SEQ,
 } from "../actions/SequencesListActions";
@@ -57,6 +58,12 @@ export function sequencesReducer(state = initialState, action) {
       };
 
     case EMPTY_SEQ_NAME_LOAD:
+      return {
+        ...state,
+        skipClickAway: true,
+      };
+
+    case EMPTY_SEQ_NAME_SAVE:
       return {
         ...state,
         skipClickAway: true,

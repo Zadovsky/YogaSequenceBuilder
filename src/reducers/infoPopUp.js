@@ -21,6 +21,7 @@ import {
   REWRITE_SUCCESS,
   NO_SEQ_NAME,
   EMPTY_SEQ_NAME_LOAD,
+  EMPTY_SEQ_NAME_SAVE,
 } from "../actions/SequencesListActions";
 
 const initialState = {
@@ -130,6 +131,16 @@ const initialState = {
       text: "",
     },
   },
+  emptySeqNameSaveTexts: {
+    ru: {
+      title: "Введите имя последовательности для сохранения",
+      text: "",
+    },
+    en: {
+      title: "You should type sequence name to save",
+      text: "",
+    },
+  },
 };
 
 export function infoPopUpReducer(state = initialState, action) {
@@ -139,6 +150,9 @@ export function infoPopUpReducer(state = initialState, action) {
 
     case EMPTY_SEQ_NAME_LOAD:
       return { ...state, isOpen: true, texts: state.emptySeqNameLoadTexts };
+
+    case EMPTY_SEQ_NAME_SAVE:
+      return { ...state, isOpen: true, texts: state.emptySeqNameSaveTexts };
 
     case SAVE_SUCCESS:
       return { ...state, isOpen: true, texts: state.saveSuccessTexts };

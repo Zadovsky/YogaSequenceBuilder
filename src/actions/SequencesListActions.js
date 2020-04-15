@@ -10,6 +10,7 @@ export const CLICK_SEQ_SAVE = "CLICK_SEQ_SAVE";
 export const CLICK_SEQ_LOAD = "CLICK_SEQ_LOAD";
 export const NO_SEQ_NAME = "NO_SEQ_NAME";
 export const EMPTY_SEQ_NAME_LOAD = "EMPTY_SEQ_NAME_LOAD";
+export const EMPTY_SEQ_NAME_SAVE = "EMPTY_SEQ_NAME_SAVE";
 export const LOAD_SEQ = "LOAD_SEQ";
 
 export function closeSeqListAction(skip) {
@@ -147,6 +148,12 @@ export function onClickSaveSequenceAction(
   cards,
   rewriteSequenceAction
 ) {
+  if (saveName === "") {
+    return {
+      type: EMPTY_SEQ_NAME_SAVE,
+    };
+  }
+
   const sameNameIndex = sequences.findIndex((seq) => {
     return seq.name === saveName;
   });
