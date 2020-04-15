@@ -21,6 +21,7 @@ import {
   SAVE_SUCCESS,
   REWRITE_SUCCESS,
   CLICK_SEQ_LOAD,
+  CLOSE_SEQ_LIST,
 } from "../actions/SequencesListActions";
 
 const initialState = {
@@ -78,7 +79,22 @@ function addEmptyGrid(cards, nextGridKey) {
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
     case CLICK_SEQ_LOAD:
-      return { ...state, cardsBak: state.cards, cards: action.payload.cards };
+      if (state.cardsBak === null) {
+        return { ...state, cardsBak: state.cards, cards: action.payload.cards };
+      } else {
+        return { ...state, cards: action.payload.cards };
+      }
+
+    case CLOSE_SEQ_LIST:
+      if (state.cardsBak !== null) {
+        return {
+          ...state,
+          cardsBak: null,
+          cards: state.cardsBak,
+        };
+      } else {
+        return state;
+      }
 
     case REWRITE_SUCCESS:
       return {
