@@ -27,7 +27,7 @@ import {
 const initialState = {
   panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
   panelName: null,
-  cards: [{ gridCards: [], gridKey: 0, gridName: "", defaultName: true }],
+  cards: [{ gridCards: [], gridKey: 0, gridName: null }],
   cardsBak: null,
   panelNameBak: null,
   gridDefaultName: {
@@ -67,8 +67,7 @@ function addEmptyGrid(cards, nextGridKey) {
     cards.push({
       gridCards: [],
       gridKey: newGridKey,
-      gridName: "",
-      defaultName: true,
+      gridName: null,
     });
     newGridKey++;
   }
@@ -129,7 +128,6 @@ export function scheduleReducer(state = initialState, action) {
     case CHANGE_GRID_NAME:
       var cards = JSON.parse(JSON.stringify(state.cards));
       cards[action.payload.gridId].gridName = action.payload.value;
-      cards[action.payload.gridId].defaultName = false;
       return {
         ...state,
         cards: cards,

@@ -34,13 +34,7 @@ if ($check->num_rows == 0) {
 
         $cardItem['gridCards'] = $gridCards;
         $cardItem['gridKey'] = $gridKey;
-        if ($block['name'] == NULL) {
-            $cardItem['gridName'] = '';
-            $cardItem['defaultName'] = true;
-        } else {
-            $cardItem['gridName'] = $block['name'];
-            $cardItem['defaultName'] = false;
-        }
+        $cardItem['gridName'] = $block['name'];
         $cards[] = $cardItem;
         $gridKey++;
     }

@@ -5,18 +5,18 @@ import "./AsanasGridBlock.css";
 
 function createGridArr(props) {
   return props.cards.map((cards, i, cardsArr) => {
-    const asanas = cards.gridCards.map(card => {
+    const asanas = cards.gridCards.map((card) => {
       return {
         ...props.asanas[card.asanaIndex],
         asanaIndex: card.asanaIndex,
-        cardKey: card.cardKey
+        cardKey: card.cardKey,
       };
     });
 
     return (
       <AsanasGrid
         key={cards.gridKey}
-        name={cards.defaultName ? props.gridDefaultName : cards.gridName}
+        name={cards.gridName === null ? props.gridDefaultName : cards.gridName}
         gridId={i}
         asanas={asanas}
         draggingCard={props.draggingCard}
@@ -56,10 +56,10 @@ function createGridHolderArr(gridArr, props) {
     gridHeight,
     fastTransition,
     draggingGrid,
-    onDragEnterGridPhAction
+    onDragEnterGridPhAction,
   } = props;
 
-  const gridPlaceHolder = function(i) {
+  const gridPlaceHolder = function (i) {
     return (
       <GridPlaceHolder
         key={"ph" + i}

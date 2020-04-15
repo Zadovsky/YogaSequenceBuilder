@@ -32,7 +32,7 @@ if ($res->num_rows == 0) {
     $blocksnum = count($data['sequence']);
 
     for ($i = 0; $i < $blocksnum; $i++) {
-        $blockname = ($data['sequence'][$i]['defaultName'] == true ? 'NULL' : "'" . $data['sequence'][$i]['gridName'] . "'");
+        $blockname = ($data['sequence'][$i]['gridName'] == null ? 'NULL' : "'" . $data['sequence'][$i]['gridName'] . "'");
         $mysqli->query("INSERT INTO blocks(sequence_id, name) VALUES (" . $seqid . ", " . $blockname . ")");
 
         $blockid = $mysqli->insert_id;
