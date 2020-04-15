@@ -5,11 +5,11 @@ import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
 import "./Panel.css";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(1, 2, 3),
-    height: "100%"
-  }
+    height: "100%",
+  },
 }));
 
 export default function Panel(props) {
@@ -30,7 +30,6 @@ export default function Panel(props) {
     onDragEnterGridPhAction,
     onChangeGridNameAction,
     draggingGrid,
-    isPanelNameDef,
     panelDefaultName,
     panelName,
     cards,
@@ -47,13 +46,13 @@ export default function Panel(props) {
     panelNameRO,
     itIsSchedulePanel,
     selectedGroupId,
-    onGridBlockScroll
+    onGridBlockScroll,
   } = props;
 
   const classes = useStyles();
   const onDragOverFunc =
     draggingGrid !== null
-      ? e => {
+      ? (e) => {
           e.preventDefault();
         }
       : () => {};
@@ -64,7 +63,7 @@ export default function Panel(props) {
         <div className="PanelFlexBox">
           <div className="PanelNameWraper">
             <PanelName
-              name={isPanelNameDef ? panelDefaultName : panelName}
+              name={panelName === null ? panelDefaultName : panelName}
               onChangePanelNameAction={onChangePanelNameAction}
               readOnly={panelNameRO}
             />

@@ -26,10 +26,10 @@ import {
 
 const initialState = {
   panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
-  panelName: "",
-  isPanelNameDef: true,
+  panelName: null,
   cards: [{ gridCards: [], gridKey: 0, gridName: "", defaultName: true }],
   cardsBak: null,
+  panelNameBak: null,
   gridDefaultName: {
     ru: "Без названия",
     en: "noname",
@@ -80,9 +80,19 @@ export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
     case CLICK_SEQ_LOAD:
       if (state.cardsBak === null) {
-        return { ...state, cardsBak: state.cards, cards: action.payload.cards };
+        return {
+          ...state,
+          panelNameBak: state.panelName,
+          cardsBak: state.cards,
+          panelName: action.payload.name,
+          cards: action.payload.cards,
+        };
       } else {
-        return { ...state, cards: action.payload.cards };
+        return {
+          ...state,
+          panelName: action.payload.name,
+          cards: action.payload.cards,
+        };
       }
 
     case CLOSE_SEQ_LIST:
@@ -90,7 +100,9 @@ export function scheduleReducer(state = initialState, action) {
         return {
           ...state,
           cardsBak: null,
+          panelNameBak: null,
           cards: state.cardsBak,
+          panelName: state.panelNameBak,
         };
       } else {
         return state;
@@ -100,21 +112,18 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         panelName: action.payload,
-        isPanelNameDef: false,
       };
 
     case SAVE_SUCCESS:
       return {
         ...state,
         panelName: action.payload,
-        isPanelNameDef: false,
       };
 
     case CHANGE_PANEL_NAME:
       return {
         ...state,
         panelName: action.payload,
-        isPanelNameDef: false,
       };
 
     case CHANGE_GRID_NAME:

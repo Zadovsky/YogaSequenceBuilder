@@ -5,7 +5,7 @@ import AsanasNavigation from "../components/AsanasNavigation";
 import {
   addAsanaAction,
   dragEnterAction,
-  startCardDragAction
+  startCardDragAction,
 } from "../actions/AsanaCardActions";
 import { startGridDragAction } from "../actions/AsanasGridActions";
 import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
@@ -16,7 +16,7 @@ import "./AsanasPanel.css";
 
 function createCardsArr(asanas, language) {
   var cards = [];
-  asanas.groups.forEach(group => {
+  asanas.groups.forEach((group) => {
     let gridCards = [];
     asanas.arr.forEach((asana, i) => {
       if (asana.groupId === group.id) {
@@ -27,7 +27,7 @@ function createCardsArr(asanas, language) {
     cards.push({
       gridKey: group.id,
       gridName: group.name[language],
-      gridCards: gridCards
+      gridCards: gridCards,
     });
   });
 
@@ -36,16 +36,16 @@ function createCardsArr(asanas, language) {
 
 function AsanasPanel(props) {
   const cards = createCardsArr(props.asanasArr, props.language.curLang);
-  const asanas = props.asanasArr.arr.map(asana => {
+  const asanas = props.asanasArr.arr.map((asana) => {
     return {
       ...asana,
-      asanaName: asana.asanaName[props.language.curLang]
+      asanaName: asana.asanaName[props.language.curLang],
     };
   });
-  const groups = props.asanasArr.groups.map(group => {
+  const groups = props.asanasArr.groups.map((group) => {
     return {
       ...group,
-      name: group.name[props.language.curLang]
+      name: group.name[props.language.curLang],
     };
   });
 
@@ -68,9 +68,8 @@ function AsanasPanel(props) {
       onDragEnterGridPhAction={() => {}}
       onChangeGridNameAction={() => {}}
       draggingGrid={null}
-      isPanelNameDef={true}
       panelDefaultName={props.asanas.panelDefaultName[props.language.curLang]}
-      panelName={""}
+      panelName={null}
       cards={cards}
       draggingCard={null}
       dragOverCard={null}
@@ -94,18 +93,18 @@ function AsanasPanel(props) {
   );
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {
     language: store.language,
     asanasArr: store.asanasArr,
-    asanas: store.asanas
+    asanas: store.asanas,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onGridBlockScroll: () => dispatch(onGridBlockScroll()),
-    onClickAsanasNavigation: groupId =>
+    onClickAsanasNavigation: (groupId) =>
       dispatch(onClickAsanasNavigation(groupId)),
     startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
       dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
@@ -118,7 +117,7 @@ const mapDispatchToProps = dispatch => {
     onDragEnterHolderAction: (index, gridId) =>
       dispatch(onDragEnterHolderAction(index, gridId)),
     onDragEnterEmptySpaceAction: (gridId, itIsSchedulePanel) =>
-      dispatch(onDragEnterEmptySpaceAction(gridId, itIsSchedulePanel))
+      dispatch(onDragEnterEmptySpaceAction(gridId, itIsSchedulePanel)),
   };
 };
 

@@ -26,7 +26,6 @@ import "./SchedulePanel.css";
 function SchedulePanel(props) {
   const {
     draggingGrid,
-    isPanelNameDef,
     panelDefaultName,
     panelName,
     cards,
@@ -88,7 +87,6 @@ function SchedulePanel(props) {
       onDragEnterGridPhAction={onDragEnterGridPhAction}
       onChangeGridNameAction={onChangeGridNameAction}
       draggingGrid={draggingGrid}
-      isPanelNameDef={isPanelNameDef}
       panelDefaultName={panelDefaultName[language.curLang]}
       panelName={panelName}
       cards={cards}
@@ -107,7 +105,9 @@ function SchedulePanel(props) {
             onClickSave(
               user.login,
               user.password,
-              isPanelNameDef ? panelDefaultName[language.curLang] : panelName
+              panelName === null
+                ? panelDefaultName[language.curLang]
+                : panelName
             )
           }
           onClickLoad={() => props.onClickLoad(user.login, user.password)}
