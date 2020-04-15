@@ -111,14 +111,14 @@ export default function SequencesListSpace(props) {
                 autoFocus
                 value={props.seqName}
                 inputProps={{
-                  onChange: (e) => props.onChangeSaveNameAction(e),
+                  onChange: (e) => props.onChangeSeqNameAction(e),
                 }}
               />
               <div className="ButtonWrapper">
                 <Button
                   variant="contained"
                   className={classes.button}
-                  onClick={props.onClickSaveSequenceAction}
+                  onClick={props.onClickMainButtonSeqListAction}
                 >
                   {props.texts.button}
                 </Button>

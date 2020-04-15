@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   closeSeqListAction,
-  onChangeSaveNameAction,
+  onChangeSeqNameAction,
   onClickSequenceSaveAction,
   onClickSequenceLoadAction,
   onClickDeleteSequenceAction,
@@ -15,11 +15,11 @@ import SequencesListSpace from "../components/SequencesListSpace";
 import { MODE_SAVE, MODE_LOAD } from "../reducers/sequences";
 
 function SequencesList(props) {
-  var texts, onClickSequenceAction, onClickMainButtonAction;
+  var texts, onClickSequenceAction, onClickMainButtonSeqListAction;
   if (props.sequences.mode === MODE_SAVE) {
     texts = props.sequences.textsSave[props.language.curLang];
     onClickSequenceAction = props.onClickSequenceSaveAction;
-    onClickMainButtonAction = () => {
+    onClickMainButtonSeqListAction = () => {
       props.onClickSaveSequenceAction(
         props.user.login,
         props.user.password,
@@ -32,7 +32,7 @@ function SequencesList(props) {
   } else if (props.sequences.mode === MODE_LOAD) {
     texts = props.sequences.textsLoad[props.language.curLang];
     onClickSequenceAction = props.onClickSequenceLoadAction;
-    onClickMainButtonAction = () => {
+    onClickMainButtonSeqListAction = () => {
       props.onClickLoadSequenceAction(
         props.user.login,
         props.user.password,
@@ -43,7 +43,7 @@ function SequencesList(props) {
   } else {
     texts = { header: "", button: "" };
     onClickSequenceAction = () => {};
-    onClickMainButtonAction = () => {};
+    onClickMainButtonSeqListAction = () => {};
   }
 
   return (
@@ -54,13 +54,13 @@ function SequencesList(props) {
       isOpen={props.sequences.isOpen}
       texts={texts}
       seqName={props.sequences.seqName}
-      onChangeSaveNameAction={props.onChangeSaveNameAction}
+      onChangeSeqNameAction={props.onChangeSeqNameAction}
       closeSeqListAction={() =>
         props.closeSeqListAction(props.sequences.skipClickAway)
       }
       onClickSequenceAction={onClickSequenceAction}
       onClickDeleteSequenceAction={props.onClickDeleteSequenceAction}
-      onClickSaveSequenceAction={onClickMainButtonAction}
+      onClickMainButtonSeqListAction={onClickMainButtonSeqListAction}
     />
   );
 }
@@ -77,7 +77,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     closeSeqListAction: (skip) => dispatch(closeSeqListAction(skip)),
-    onChangeSaveNameAction: (e) => dispatch(onChangeSaveNameAction(e)),
+    onChangeSeqNameAction: (e) => dispatch(onChangeSeqNameAction(e)),
     onClickSequenceSaveAction: (name) =>
       dispatch(onClickSequenceSaveAction(name)),
     onClickSequenceLoadAction: (name, id, login, password) =>

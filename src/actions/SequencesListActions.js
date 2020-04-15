@@ -25,7 +25,7 @@ export function closeSeqListAction(skip) {
   }
 }
 
-export function onChangeSaveNameAction(e) {
+export function onChangeSeqNameAction(e) {
   return {
     type: CHANGE_SAVE_NAME,
     payload: e.target.value,
