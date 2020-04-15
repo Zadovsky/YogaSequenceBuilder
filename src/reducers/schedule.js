@@ -17,6 +17,7 @@ import {
   CLOSE_GRID,
   CHANGE_GRID_NAME,
 } from "../actions/AsanasGridActions";
+import { CLICK_LOAD, CLICK_SAVE } from "../actions/SaveLoadPdfButtonsActions";
 import {
   SAVE_SUCCESS,
   REWRITE_SUCCESS,
@@ -25,15 +26,11 @@ import {
 } from "../actions/SequencesListActions";
 
 const initialState = {
-  panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
+  readOnly: false,
   panelName: null,
+  panelNameBak: null,
   cards: [{ gridCards: [], gridKey: 0, gridName: null }],
   cardsBak: null,
-  panelNameBak: null,
-  gridDefaultName: {
-    ru: "Без названия",
-    en: "noname",
-  },
   nextCardKey: 0,
   nextGridKey: 1,
   dragSourceGrid: null,
@@ -47,6 +44,11 @@ const initialState = {
   fastTransition: false,
   onPlaceHolder: false,
   gridHeight: null,
+  panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
+  gridDefaultName: {
+    ru: "Без названия",
+    en: "noname",
+  },
   saveLoadPdfText: {
     ru: {
       save: "Сохранить",
@@ -77,6 +79,18 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case CLICK_LOAD:
+      return {
+        ...state,
+        readOnly: true,
+      };
+
+    case CLICK_SAVE:
+      return {
+        ...state,
+        readOnly: true,
+      };
+
     case CLICK_SEQ_LOAD:
       if (state.cardsBak === null) {
         return {
@@ -98,24 +112,27 @@ export function scheduleReducer(state = initialState, action) {
       if (state.cardsBak !== null) {
         return {
           ...state,
+          readOnly: false,
           cardsBak: null,
           panelNameBak: null,
           cards: state.cardsBak,
           panelName: state.panelNameBak,
         };
       } else {
-        return state;
+        return { ...state, readOnly: false };
       }
 
     case REWRITE_SUCCESS:
       return {
         ...state,
+        readOnly: false,
         panelName: action.payload,
       };
 
     case SAVE_SUCCESS:
       return {
         ...state,
+        readOnly: false,
         panelName: action.payload,
       };
 

@@ -25,6 +25,7 @@ import "./SchedulePanel.css";
 
 function SchedulePanel(props) {
   const {
+    readOnly,
     draggingGrid,
     panelDefaultName,
     panelName,
@@ -73,11 +74,11 @@ function SchedulePanel(props) {
       asanas={asanas}
       panelNameRO={false}
       onChangePanelNameAction={onChangePanelNameAction}
-      startCardDragAction={startCardDragAction}
+      startCardDragAction={readOnly ? () => {} : startCardDragAction}
       startGridDragAction={startGridDragAction}
       onDragIconMouseDownAction={onDragIconMouseDownAction}
       onDragIconMouseUpAction={onDragIconMouseUpAction}
-      addAsanaAction={addAsanaAction}
+      addAsanaAction={readOnly ? () => {} : addAsanaAction}
       dragEnterAction={dragEnterAction}
       onDragEnterEmptySpaceAction={onDragEnterEmptySpaceAction}
       onDragEnterHolderAction={onDragEnterHolderAction}
@@ -114,7 +115,7 @@ function SchedulePanel(props) {
         />
       }
       wrapperClassName={"SchedulePanel"}
-      itIsSchedulePanel={true}
+      itIsSchedulePanel={!readOnly}
       selectedGroupId={null}
       onGridBlockScroll={() => {}}
     />
