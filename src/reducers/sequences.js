@@ -12,6 +12,9 @@ import {
   CLICK_SEQ_SAVE,
   CLICK_SEQ_LOAD,
   SEQ_NAME_NOT_UNIQ,
+  EMPTY_SEQ_NAME_LOAD,
+  NO_SEQ_NAME,
+  LOAD_SEQ,
 } from "../actions/SequencesListActions";
 
 export const MODE_SAVE = "MODE_SAVE";
@@ -47,6 +50,18 @@ const initialState = {
 
 export function sequencesReducer(state = initialState, action) {
   switch (action.type) {
+    case NO_SEQ_NAME:
+      return {
+        ...state,
+        skipClickAway: true,
+      };
+
+    case EMPTY_SEQ_NAME_LOAD:
+      return {
+        ...state,
+        skipClickAway: true,
+      };
+
     case CLICK_SEQ_SAVE:
       return {
         ...state,
@@ -66,6 +81,12 @@ export function sequencesReducer(state = initialState, action) {
       };
 
     case SAVE_SUCCESS:
+      return {
+        ...state,
+        isOpen: false,
+      };
+
+    case LOAD_SEQ:
       return {
         ...state,
         isOpen: false,

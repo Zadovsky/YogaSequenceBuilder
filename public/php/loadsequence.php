@@ -20,9 +20,9 @@ if ($check->num_rows == 0) {
     $answer = false;
 } else {
     $gridKey = 0;
+    $cardKey = 0;
     $blocks = $mysqli->query("SELECT id, name FROM blocks WHERE sequence_id = " . $data['id'] . " ORDER BY id");
     while (($block = $blocks->fetch_assoc()) != NULL) {
-        $cardKey = 0;
         $gridCards = array();
         $asanas = $mysqli->query("SELECT asana_id FROM asanas WHERE block_id = " . $block['id'] . " ORDER BY id");
         while (($asana = $asanas->fetch_assoc()) != NULL) {
@@ -38,7 +38,9 @@ if ($check->num_rows == 0) {
         $cards[] = $cardItem;
         $gridKey++;
     }
-    $answer = $cards;
+    $answer['cards'] = $cards;
+    $answer['gridKey'] = $gridKey;
+    $answer['cardKey'] = $cardKey;
 }
 
 echo (json_encode($answer));

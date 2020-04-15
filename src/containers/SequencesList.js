@@ -8,23 +8,42 @@ import {
   onClickDeleteSequenceAction,
   deleteSequenceAction,
   onClickSaveSequenceAction,
+  onClickLoadSequenceAction,
   rewriteSequenceAction,
 } from "../actions/SequencesListActions";
 import SequencesListSpace from "../components/SequencesListSpace";
 import { MODE_SAVE, MODE_LOAD } from "../reducers/sequences";
 
 function SequencesList(props) {
-  var texts;
-  var onClickSequenceAction;
+  var texts, onClickSequenceAction, onClickMainButtonAction;
   if (props.sequences.mode === MODE_SAVE) {
     texts = props.sequences.textsSave[props.language.curLang];
     onClickSequenceAction = props.onClickSequenceSaveAction;
+    onClickMainButtonAction = () => {
+      props.onClickSaveSequenceAction(
+        props.user.login,
+        props.user.password,
+        props.sequences.saveName,
+        props.sequences.sequences,
+        props.schedule.cards,
+        props.rewriteSequenceAction
+      );
+    };
   } else if (props.sequences.mode === MODE_LOAD) {
     texts = props.sequences.textsLoad[props.language.curLang];
     onClickSequenceAction = props.onClickSequenceLoadAction;
+    onClickMainButtonAction = () => {
+      props.onClickLoadSequenceAction(
+        props.user.login,
+        props.user.password,
+        props.sequences.saveName,
+        props.sequences.sequences
+      );
+    };
   } else {
     texts = { header: "", button: "" };
     onClickSequenceAction = () => {};
+    onClickMainButtonAction = () => {};
   }
 
   return (
@@ -41,16 +60,7 @@ function SequencesList(props) {
       }
       onClickSequenceAction={onClickSequenceAction}
       onClickDeleteSequenceAction={props.onClickDeleteSequenceAction}
-      onClickSaveSequenceAction={() =>
-        props.onClickSaveSequenceAction(
-          props.user.login,
-          props.user.password,
-          props.sequences.saveName,
-          props.sequences.sequences,
-          props.schedule.cards,
-          props.rewriteSequenceAction
-        )
-      }
+      onClickSaveSequenceAction={onClickMainButtonAction}
     />
   );
 }
@@ -100,6 +110,8 @@ const mapDispatchToProps = (dispatch) => {
           rewriteSequenceAction
         )
       ),
+    onClickLoadSequenceAction: (login, password, seqName, sequences) =>
+      dispatch(onClickLoadSequenceAction(login, password, seqName, sequences)),
   };
 };
 

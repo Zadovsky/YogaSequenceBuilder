@@ -16,7 +16,12 @@ import {
   NO_AUTHORIZATION_SAVE,
   NO_AUTHORIZATION_LOAD,
 } from "../actions/SaveLoadPdfButtonsActions";
-import { SAVE_SUCCESS, REWRITE_SUCCESS } from "../actions/SequencesListActions";
+import {
+  SAVE_SUCCESS,
+  REWRITE_SUCCESS,
+  NO_SEQ_NAME,
+  EMPTY_SEQ_NAME_LOAD,
+} from "../actions/SequencesListActions";
 
 const initialState = {
   isOpen: false,
@@ -105,10 +110,36 @@ const initialState = {
       text: "",
     },
   },
+  noSeqNameTexts: {
+    ru: {
+      title: "Последовательности с таким именем нет",
+      text: "",
+    },
+    en: {
+      title: "There is no such sequence name",
+      text: "",
+    },
+  },
+  emptySeqNameLoadTexts: {
+    ru: {
+      title: "Выберите последовательность для загрузки",
+      text: "",
+    },
+    en: {
+      title: "You should choose sequence to load",
+      text: "",
+    },
+  },
 };
 
 export function infoPopUpReducer(state = initialState, action) {
   switch (action.type) {
+    case NO_SEQ_NAME:
+      return { ...state, isOpen: true, texts: state.noSeqNameTexts };
+
+    case EMPTY_SEQ_NAME_LOAD:
+      return { ...state, isOpen: true, texts: state.emptySeqNameLoadTexts };
+
     case SAVE_SUCCESS:
       return { ...state, isOpen: true, texts: state.saveSuccessTexts };
 

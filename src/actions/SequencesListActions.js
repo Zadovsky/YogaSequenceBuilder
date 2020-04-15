@@ -8,6 +8,9 @@ export const REWRITE_SUCCESS = "REWRITE_SUCCESS";
 export const SEQ_NAME_NOT_UNIQ = "SEQ_NAME_NOT_UNIQ";
 export const CLICK_SEQ_SAVE = "CLICK_SEQ_SAVE";
 export const CLICK_SEQ_LOAD = "CLICK_SEQ_LOAD";
+export const NO_SEQ_NAME = "NO_SEQ_NAME";
+export const EMPTY_SEQ_NAME_LOAD = "EMPTY_SEQ_NAME_LOAD";
+export const LOAD_SEQ = "LOAD_SEQ";
 
 export function closeSeqListAction(skip) {
   if (skip) {
@@ -46,7 +49,7 @@ export function onClickSequenceLoadAction(name, id, login, password) {
         console.log(result);
         return dispatch({
           type: CLICK_SEQ_LOAD,
-          payload: { name: name, cards: result },
+          payload: { name: name, cards: result.cards },
         });
       })
       .catch((error) => console.error(error));
@@ -89,6 +92,51 @@ export function deleteSequenceAction(login, password, id) {
       })
       .catch((error) => console.error(error));
   };
+}
+
+export function onClickLoadSequenceAction(login, password, seqName, sequences) {
+  if (seqName === "") {
+    return {
+      type: EMPTY_SEQ_NAME_LOAD,
+    };
+  }
+
+  const nameIndex = sequences.findIndex((seq) => {
+    return seq.name === seqName;
+  });
+
+  if (nameIndex === -1) {
+    return {
+      type: NO_SEQ_NAME,
+    };
+  } else {
+    return (dispatch) => {
+      fetch("http://localhost/YSB/public/php/loadsequence.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({
+          login: login,
+          password: password,
+          id: sequences[nameIndex].id,
+        }),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          return dispatch({
+            type: LOAD_SEQ,
+            payload: {
+              cards: result.cards,
+              name: seqName,
+              nextCardKey: result.cardKey,
+              nextGridKey: result.gridKey,
+            },
+          });
+        })
+        .catch((error) => console.error(error));
+    };
+  }
 }
 
 export function onClickSaveSequenceAction(
