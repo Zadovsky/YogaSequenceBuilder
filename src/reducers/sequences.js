@@ -26,7 +26,7 @@ const initialState = {
   mode: null,
   skipClickAway: false,
   sequences: null,
-  saveName: "",
+  seqName: "",
   textsSave: {
     ru: {
       header: "Сохранить",
@@ -72,13 +72,13 @@ export function sequencesReducer(state = initialState, action) {
     case CLICK_SEQ_SAVE:
       return {
         ...state,
-        saveName: action.payload,
+        seqName: action.payload,
       };
 
     case CLICK_SEQ_LOAD:
       return {
         ...state,
-        saveName: action.payload.name,
+        seqName: action.payload.name,
       };
 
     case SEQ_NAME_NOT_UNIQ:
@@ -108,7 +108,7 @@ export function sequencesReducer(state = initialState, action) {
     case CHANGE_SAVE_NAME:
       return {
         ...state,
-        saveName: action.payload,
+        seqName: action.payload,
       };
 
     case CLICK_SAVE:
@@ -117,7 +117,7 @@ export function sequencesReducer(state = initialState, action) {
         isOpen: true,
         mode: MODE_SAVE,
         sequences: action.payload.sequences,
-        saveName: action.payload.saveName,
+        seqName: action.payload.seqName,
       };
 
     case CLICK_LOAD:
@@ -126,7 +126,7 @@ export function sequencesReducer(state = initialState, action) {
         isOpen: true,
         mode: MODE_LOAD,
         sequences: action.payload,
-        saveName: "",
+        seqName: "",
       };
 
     case SKIP_CLOSE_SEQ_LIST:

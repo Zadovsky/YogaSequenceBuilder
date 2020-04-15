@@ -109,7 +109,7 @@ export default function SequencesListSpace(props) {
               <TextField
                 fullWidth
                 autoFocus
-                value={props.saveName}
+                value={props.seqName}
                 inputProps={{
                   onChange: (e) => props.onChangeSaveNameAction(e),
                 }}

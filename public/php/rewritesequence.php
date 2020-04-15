@@ -26,7 +26,7 @@ if ($res->num_rows == 0) {
     $mysqli->query("DELETE FROM sequences WHERE id = " . $data['id']);
 
     //insert
-    $mysqli->query("INSERT INTO sequences(user_id, name, time) SELECT id AS user_id, '" . $data['saveName'] . "', '" . $data['dateTime'] . "' FROM users WHERE login = '" . $data['login'] . "' AND password = '" . $data['password'] . "'");
+    $mysqli->query("INSERT INTO sequences(user_id, name, time) SELECT id AS user_id, '" . $data['seqName'] . "', '" . $data['dateTime'] . "' FROM users WHERE login = '" . $data['login'] . "' AND password = '" . $data['password'] . "'");
 
     $seqid = $mysqli->insert_id;
     $blocksnum = count($data['sequence']);

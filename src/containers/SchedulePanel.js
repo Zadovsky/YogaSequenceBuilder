@@ -155,8 +155,8 @@ const mapDispatchToProps = (dispatch) => {
     onChangeGridNameAction: (gridId, e) =>
       dispatch(onChangeGridNameAction(gridId, e)),
     onChangePanelNameAction: (e) => dispatch(onChangePanelNameAction(e)),
-    onClickSave: (login, password, saveName) =>
-      dispatch(onClickSave(login, password, saveName)),
+    onClickSave: (login, password, seqName) =>
+      dispatch(onClickSave(login, password, seqName)),
     onClickLoad: (login, password) => dispatch(onClickLoad(login, password)),
   };
 };

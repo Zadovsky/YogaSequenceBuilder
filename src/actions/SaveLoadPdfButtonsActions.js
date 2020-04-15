@@ -28,7 +28,7 @@ export function onClickLoad(login, password) {
   };
 }
 
-export function onClickSave(login, password, saveName) {
+export function onClickSave(login, password, seqName) {
   if (login === null) {
     return {
       type: NO_AUTHORIZATION_SAVE,
@@ -47,7 +47,7 @@ export function onClickSave(login, password, saveName) {
         return dispatch({
           type: CLICK_SAVE,
           payload: {
-            saveName: saveName,
+            seqName: seqName,
             sequences: result,
           },
         });

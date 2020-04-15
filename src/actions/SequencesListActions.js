@@ -143,19 +143,19 @@ export function onClickLoadSequenceAction(login, password, seqName, sequences) {
 export function onClickSaveSequenceAction(
   login,
   password,
-  saveName,
+  seqName,
   sequences,
   cards,
   rewriteSequenceAction
 ) {
-  if (saveName === "") {
+  if (seqName === "") {
     return {
       type: EMPTY_SEQ_NAME_SAVE,
     };
   }
 
   const sameNameIndex = sequences.findIndex((seq) => {
-    return seq.name === saveName;
+    return seq.name === seqName;
   });
 
   if (sameNameIndex === -1) {
@@ -182,7 +182,7 @@ export function onClickSaveSequenceAction(
         body: JSON.stringify({
           login: login,
           password: password,
-          saveName: saveName,
+          seqName: seqName,
           dateTime: dateTime,
           sequence: cards,
         }),
@@ -191,7 +191,7 @@ export function onClickSaveSequenceAction(
         .then((result) => {
           return dispatch({
             type: SAVE_SUCCESS,
-            payload: saveName,
+            payload: seqName,
           });
         })
         .catch((error) => console.error(error));
@@ -203,7 +203,7 @@ export function onClickSaveSequenceAction(
         rewriteSequenceAction(
           login,
           password,
-          saveName,
+          seqName,
           cards,
           sequences[sameNameIndex].id
         ),
@@ -214,7 +214,7 @@ export function onClickSaveSequenceAction(
 export function rewriteSequenceAction(
   login,
   password,
-  saveName,
+  seqName,
   cards,
   deleteId
 ) {
@@ -241,7 +241,7 @@ export function rewriteSequenceAction(
       body: JSON.stringify({
         login: login,
         password: password,
-        saveName: saveName,
+        seqName: seqName,
         dateTime: dateTime,
         sequence: cards,
         id: deleteId,
@@ -251,7 +251,7 @@ export function rewriteSequenceAction(
       .then((result) => {
         return dispatch({
           type: REWRITE_SUCCESS,
-          payload: saveName,
+          payload: seqName,
         });
       })
       .catch((error) => console.error(error));

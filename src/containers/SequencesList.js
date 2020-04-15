@@ -23,7 +23,7 @@ function SequencesList(props) {
       props.onClickSaveSequenceAction(
         props.user.login,
         props.user.password,
-        props.sequences.saveName,
+        props.sequences.seqName,
         props.sequences.sequences,
         props.schedule.cards,
         props.rewriteSequenceAction
@@ -36,7 +36,7 @@ function SequencesList(props) {
       props.onClickLoadSequenceAction(
         props.user.login,
         props.user.password,
-        props.sequences.saveName,
+        props.sequences.seqName,
         props.sequences.sequences
       );
     };
@@ -53,7 +53,7 @@ function SequencesList(props) {
       sequences={props.sequences.sequences}
       isOpen={props.sequences.isOpen}
       texts={texts}
-      saveName={props.sequences.saveName}
+      seqName={props.sequences.seqName}
       onChangeSaveNameAction={props.onChangeSaveNameAction}
       closeSeqListAction={() =>
         props.closeSeqListAction(props.sequences.skipClickAway)
@@ -88,14 +88,14 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(deleteSequenceAction(login, password, id))
         )
       ),
-    rewriteSequenceAction: (login, password, saveName, cards, deleteId) =>
+    rewriteSequenceAction: (login, password, seqName, cards, deleteId) =>
       dispatch(
-        rewriteSequenceAction(login, password, saveName, cards, deleteId)
+        rewriteSequenceAction(login, password, seqName, cards, deleteId)
       ),
     onClickSaveSequenceAction: (
       login,
       password,
-      saveName,
+      seqName,
       sequences,
       cards,
       rewriteSequenceAction
@@ -104,7 +104,7 @@ const mapDispatchToProps = (dispatch) => {
         onClickSaveSequenceAction(
           login,
           password,
-          saveName,
+          seqName,
           sequences,
           cards,
           rewriteSequenceAction

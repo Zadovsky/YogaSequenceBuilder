@@ -8,7 +8,7 @@ if ($mysqli->connect_errno) {
     echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-$mysqli->query("INSERT INTO sequences(user_id, name, time) SELECT id AS user_id, '" . $data['saveName'] . "', '" . $data['dateTime'] . "' FROM users WHERE login = '" . $data['login'] . "' AND password = '" . $data['password'] . "'");
+$mysqli->query("INSERT INTO sequences(user_id, name, time) SELECT id AS user_id, '" . $data['seqName'] . "', '" . $data['dateTime'] . "' FROM users WHERE login = '" . $data['login'] . "' AND password = '" . $data['password'] . "'");
 
 $seqid = $mysqli->insert_id;
 $blocksnum = count($data['sequence']);
