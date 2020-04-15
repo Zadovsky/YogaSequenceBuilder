@@ -61,7 +61,9 @@ function createListItemArr(
       <ListItem
         key={item.id}
         button
-        onClick={() => onClickSequenceAction(item.name)}
+        onClick={() =>
+          onClickSequenceAction(item.name, item.id, login, password)
+        }
       >
         <ListItemText primary={item.name} />
         <ListItemText

@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import {
   closeSeqListAction,
   onChangeSaveNameAction,
-  onClickSequenceAction,
+  onClickSequenceSaveAction,
+  onClickSequenceLoadAction,
   onClickDeleteSequenceAction,
   deleteSequenceAction,
   onClickSaveSequenceAction,
@@ -14,12 +15,16 @@ import { MODE_SAVE, MODE_LOAD } from "../reducers/sequences";
 
 function SequencesList(props) {
   var texts;
+  var onClickSequenceAction;
   if (props.sequences.mode === MODE_SAVE) {
     texts = props.sequences.textsSave[props.language.curLang];
+    onClickSequenceAction = props.onClickSequenceSaveAction;
   } else if (props.sequences.mode === MODE_LOAD) {
     texts = props.sequences.textsLoad[props.language.curLang];
+    onClickSequenceAction = props.onClickSequenceLoadAction;
   } else {
     texts = { header: "", button: "" };
+    onClickSequenceAction = () => {};
   }
 
   return (
@@ -32,7 +37,7 @@ function SequencesList(props) {
       saveName={props.sequences.saveName}
       onChangeSaveNameAction={props.onChangeSaveNameAction}
       closeSeqListAction={props.closeSeqListAction}
-      onClickSequenceAction={props.onClickSequenceAction}
+      onClickSequenceAction={onClickSequenceAction}
       onClickDeleteSequenceAction={props.onClickDeleteSequenceAction}
       onClickSaveSequenceAction={() =>
         props.onClickSaveSequenceAction(
@@ -61,7 +66,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     closeSeqListAction: () => dispatch(closeSeqListAction()),
     onChangeSaveNameAction: (e) => dispatch(onChangeSaveNameAction(e)),
-    onClickSequenceAction: (name) => dispatch(onClickSequenceAction(name)),
+    onClickSequenceSaveAction: (name) =>
+      dispatch(onClickSequenceSaveAction(name)),
+    onClickSequenceLoadAction: (name, id, login, password) =>
+      dispatch(onClickSequenceLoadAction(name, id, login, password)),
     onClickDeleteSequenceAction: (login, password, id) =>
       dispatch(
         onClickDeleteSequenceAction(() =>

@@ -17,13 +17,18 @@ import {
   CLOSE_GRID,
   CHANGE_GRID_NAME,
 } from "../actions/AsanasGridActions";
-import { SAVE_SUCCESS, REWRITE_SUCCESS } from "../actions/SequencesListActions";
+import {
+  SAVE_SUCCESS,
+  REWRITE_SUCCESS,
+  CLICK_SEQ_LOAD,
+} from "../actions/SequencesListActions";
 
 const initialState = {
   panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
   panelName: "",
   isPanelNameDef: true,
   cards: [{ gridCards: [], gridKey: 0, gridName: "", defaultName: true }],
+  cardsBak: null,
   gridDefaultName: {
     ru: "Без названия",
     en: "noname",
@@ -72,6 +77,9 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case CLICK_SEQ_LOAD:
+      return { ...state, cardsBak: state.cards, cards: action.payload.cards };
+
     case REWRITE_SUCCESS:
       return {
         ...state,

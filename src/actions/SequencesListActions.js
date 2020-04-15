@@ -5,7 +5,8 @@ export const DELETE_SEQ = "DELETE_SEQ";
 export const SAVE_SUCCESS = "SAVE_SUCCESS";
 export const REWRITE_SUCCESS = "REWRITE_SUCCESS";
 export const SEQ_NAME_NOT_UNIQ = "SEQ_NAME_NOT_UNIQ";
-export const CLICK_SEQ = "CLICK_SEQ";
+export const CLICK_SEQ_SAVE = "CLICK_SEQ_SAVE";
+export const CLICK_SEQ_LOAD = "CLICK_SEQ_LOAD";
 
 export function closeSeqListAction() {
   return {
@@ -20,9 +21,34 @@ export function onChangeSaveNameAction(e) {
   };
 }
 
-export function onClickSequenceAction(name) {
+export function onClickSequenceLoadAction(name, id, login, password) {
+  return (dispatch) => {
+    fetch("http://localhost/YSB/public/php/loadsequence.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        login: login,
+        password: password,
+        id: id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        return dispatch({
+          type: CLICK_SEQ_LOAD,
+          payload: { name: name, cards: result },
+        });
+      })
+      .catch((error) => console.error(error));
+  };
+}
+
+export function onClickSequenceSaveAction(name) {
   return {
-    type: CLICK_SEQ,
+    type: CLICK_SEQ_SAVE,
     payload: name,
   };
 }
