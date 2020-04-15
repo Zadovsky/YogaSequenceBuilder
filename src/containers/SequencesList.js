@@ -36,7 +36,9 @@ function SequencesList(props) {
       texts={texts}
       saveName={props.sequences.saveName}
       onChangeSaveNameAction={props.onChangeSaveNameAction}
-      closeSeqListAction={props.closeSeqListAction}
+      closeSeqListAction={() =>
+        props.closeSeqListAction(props.sequences.skipClickAway)
+      }
       onClickSequenceAction={onClickSequenceAction}
       onClickDeleteSequenceAction={props.onClickDeleteSequenceAction}
       onClickSaveSequenceAction={() =>
@@ -64,7 +66,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    closeSeqListAction: () => dispatch(closeSeqListAction()),
+    closeSeqListAction: (skip) => dispatch(closeSeqListAction(skip)),
     onChangeSaveNameAction: (e) => dispatch(onChangeSaveNameAction(e)),
     onClickSequenceSaveAction: (name) =>
       dispatch(onClickSequenceSaveAction(name)),

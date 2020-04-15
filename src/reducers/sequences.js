@@ -1,6 +1,7 @@
 import { CLICK_SAVE, CLICK_LOAD } from "../actions/SaveLoadPdfButtonsActions";
 import {
   CLOSE_SEQ_LIST,
+  SKIP_CLOSE_SEQ_LIST,
   CHANGE_SAVE_NAME,
   SAVE_SUCCESS,
   REWRITE_SUCCESS,
@@ -100,18 +101,17 @@ export function sequencesReducer(state = initialState, action) {
         saveName: "",
       };
 
+    case SKIP_CLOSE_SEQ_LIST:
+      return {
+        ...state,
+        skipClickAway: false,
+      };
+
     case CLOSE_SEQ_LIST:
-      if (state.skipClickAway) {
-        return {
-          ...state,
-          skipClickAway: false,
-        };
-      } else {
-        return {
-          ...state,
-          isOpen: false,
-        };
-      }
+      return {
+        ...state,
+        isOpen: false,
+      };
 
     case CLICK_DELETE_SEQ:
       return { ...state, skipClickAway: true };

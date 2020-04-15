@@ -1,4 +1,5 @@
 export const CLOSE_SEQ_LIST = "CLOSE_SEQ_LIST";
+export const SKIP_CLOSE_SEQ_LIST = "SKIP_CLOSE_SEQ_LIST";
 export const CHANGE_SAVE_NAME = "CHANGE_SAVE_NAME";
 export const CLICK_DELETE_SEQ = "CLICK_DELETE_SEQ";
 export const DELETE_SEQ = "DELETE_SEQ";
@@ -8,10 +9,16 @@ export const SEQ_NAME_NOT_UNIQ = "SEQ_NAME_NOT_UNIQ";
 export const CLICK_SEQ_SAVE = "CLICK_SEQ_SAVE";
 export const CLICK_SEQ_LOAD = "CLICK_SEQ_LOAD";
 
-export function closeSeqListAction() {
-  return {
-    type: CLOSE_SEQ_LIST,
-  };
+export function closeSeqListAction(skip) {
+  if (skip) {
+    return {
+      type: SKIP_CLOSE_SEQ_LIST,
+    };
+  } else {
+    return {
+      type: CLOSE_SEQ_LIST,
+    };
+  }
 }
 
 export function onChangeSaveNameAction(e) {
