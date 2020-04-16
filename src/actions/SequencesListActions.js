@@ -47,7 +47,6 @@ export function onClickSequenceLoadAction(name, id, login, password) {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         return dispatch({
           type: CLICK_SEQ_LOAD,
           payload: { name: name, cards: result.cards },
