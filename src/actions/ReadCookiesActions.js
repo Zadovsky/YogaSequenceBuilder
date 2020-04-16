@@ -4,34 +4,61 @@ export const GET_LOGIN_COOKIES = "GET_LOGIN_COOKIES";
 export function onReadCookiesAction() {
   var login = Cookies.get("login");
   var password = Cookies.get("password");
+  var cards = Cookies.get("cards");
+  var panelName = Cookies.get("panelName");
+
+  if (cards === undefined) {
+    cards = [{ gridCards: [], gridKey: 0, gridName: null }];
+  }
+
+  if (panelName === undefined) {
+    panelName = null;
+  }
 
   if (login === undefined || password === undefined) {
     return {
-      type: ""
+      type: GET_LOGIN_COOKIES,
+      payload: {
+        login: null,
+        password: null,
+        cards: cards,
+        panelName: panelName,
+      },
     };
   }
 
-  return dispatch => {
+  return (dispatch) => {
     fetch("http://localhost/YSB/public/php/logincheck.php", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json;charset=utf-8"
+        "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({ login: login, password: password })
+      body: JSON.stringify({ login: login, password: password }),
     })
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         if (result) {
           return dispatch({
             type: GET_LOGIN_COOKIES,
-            payload: { login: login, password: password }
+            payload: {
+              login: login,
+              password: password,
+              cards: cards,
+              panelName: panelName,
+            },
           });
         } else {
           return dispatch({
-            type: ""
+            type: GET_LOGIN_COOKIES,
+            payload: {
+              login: null,
+              password: null,
+              cards: cards,
+              panelName: panelName,
+            },
           });
         }
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   };
 }
