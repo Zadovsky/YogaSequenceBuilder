@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Panel from "../components/Panel";
 import SaveLoadPdfButtons from "../components/SaveLoadPdfButtons";
+import SetCookies from "../components/SetCookies";
 import {
   addAsanaAction,
   dragEnterAction,
@@ -21,10 +22,13 @@ import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndActions";
 import { onChangePanelNameAction } from "../actions/PanelNameActions";
 import { onClickSave, onClickLoad } from "../actions/SaveLoadPdfButtonsActions";
+import { onSetCookiesAction } from "../actions/SetCookiesActions";
+
 import "./SchedulePanel.css";
 
 function SchedulePanel(props) {
   const {
+    setCookies,
     readOnly,
     draggingGrid,
     panelDefaultName,
@@ -70,55 +74,61 @@ function SchedulePanel(props) {
   });
 
   return (
-    <Panel
-      asanas={asanas}
-      panelNameRO={false}
-      onChangePanelNameAction={onChangePanelNameAction}
-      startCardDragAction={readOnly ? () => {} : startCardDragAction}
-      startGridDragAction={startGridDragAction}
-      onDragIconMouseDownAction={onDragIconMouseDownAction}
-      onDragIconMouseUpAction={onDragIconMouseUpAction}
-      addAsanaAction={readOnly ? () => {} : addAsanaAction}
-      dragEnterAction={dragEnterAction}
-      onDragEnterEmptySpaceAction={onDragEnterEmptySpaceAction}
-      onDragEnterHolderAction={onDragEnterHolderAction}
-      closeCardAction={closeCardAction}
-      closeGridAction={closeGridAction}
-      dragEnterGridAction={dragEnterGridAction}
-      onDragEnterGridPhAction={onDragEnterGridPhAction}
-      onChangeGridNameAction={onChangeGridNameAction}
-      draggingGrid={draggingGrid}
-      panelDefaultName={panelDefaultName[language.curLang]}
-      panelName={panelName}
-      cards={cards}
-      draggingCard={draggingCard}
-      dragOverCard={dragOverCard}
-      dragOverGrid={dragOverGrid}
-      fastTransition={fastTransition}
-      dragSourceGrid={dragSourceGrid}
-      dragSourcePanelIsSchedule={dragSourcePanelIsSchedule}
-      gridHeight={gridHeight}
-      gridDefaultName={gridDefaultName[language.curLang]}
-      buttonsPanel={
-        <SaveLoadPdfButtons
-          texts={saveLoadPdfText[language.curLang]}
-          onClickSave={() =>
-            onClickSave(
-              user.login,
-              user.password,
-              panelName === null
-                ? panelDefaultName[language.curLang]
-                : panelName
-            )
-          }
-          onClickLoad={() => props.onClickLoad(user.login, user.password)}
-        />
-      }
-      wrapperClassName={"SchedulePanel"}
-      itIsSchedulePanel={!readOnly}
-      selectedGroupId={null}
-      onGridBlockScroll={() => {}}
-    />
+    <div className="SchedulePanel">
+      <Panel
+        asanas={asanas}
+        panelNameRO={false}
+        onChangePanelNameAction={onChangePanelNameAction}
+        startCardDragAction={readOnly ? () => {} : startCardDragAction}
+        startGridDragAction={startGridDragAction}
+        onDragIconMouseDownAction={onDragIconMouseDownAction}
+        onDragIconMouseUpAction={onDragIconMouseUpAction}
+        addAsanaAction={readOnly ? () => {} : addAsanaAction}
+        dragEnterAction={dragEnterAction}
+        onDragEnterEmptySpaceAction={onDragEnterEmptySpaceAction}
+        onDragEnterHolderAction={onDragEnterHolderAction}
+        closeCardAction={closeCardAction}
+        closeGridAction={closeGridAction}
+        dragEnterGridAction={dragEnterGridAction}
+        onDragEnterGridPhAction={onDragEnterGridPhAction}
+        onChangeGridNameAction={onChangeGridNameAction}
+        draggingGrid={draggingGrid}
+        panelDefaultName={panelDefaultName[language.curLang]}
+        panelName={panelName}
+        cards={cards}
+        draggingCard={draggingCard}
+        dragOverCard={dragOverCard}
+        dragOverGrid={dragOverGrid}
+        fastTransition={fastTransition}
+        dragSourceGrid={dragSourceGrid}
+        dragSourcePanelIsSchedule={dragSourcePanelIsSchedule}
+        gridHeight={gridHeight}
+        gridDefaultName={gridDefaultName[language.curLang]}
+        buttonsPanel={
+          <SaveLoadPdfButtons
+            texts={saveLoadPdfText[language.curLang]}
+            onClickSave={() =>
+              onClickSave(
+                user.login,
+                user.password,
+                panelName === null
+                  ? panelDefaultName[language.curLang]
+                  : panelName
+              )
+            }
+            onClickLoad={() => props.onClickLoad(user.login, user.password)}
+          />
+        }
+        wrapperClassName={"SchedulePanel"}
+        itIsSchedulePanel={!readOnly}
+        selectedGroupId={null}
+        onGridBlockScroll={() => {}}
+      />
+      <SetCookies
+        setCookies={setCookies}
+        onSetCookiesAction={() => props.onSetCookiesAction(cards, panelName)}
+      />
+    </div>
   );
 }
 
@@ -133,6 +143,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onSetCookiesAction: (cards, panelName) =>
+      dispatch(onSetCookiesAction(cards, panelName)),
     startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
       dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
     startGridDragAction: (gridId, e) =>

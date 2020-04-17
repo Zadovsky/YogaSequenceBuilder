@@ -19,6 +19,7 @@ import {
 } from "../actions/AsanasGridActions";
 import { CLICK_LOAD, CLICK_SAVE } from "../actions/SaveLoadPdfButtonsActions";
 import { GET_LOGIN_COOKIES } from "../actions/ReadCookiesActions";
+import { SET_COOKIES } from "../actions/SetCookiesActions";
 import {
   SAVE_SUCCESS,
   REWRITE_SUCCESS,
@@ -29,6 +30,7 @@ import {
 
 const initialState = {
   readOnly: false,
+  setCookies: false,
   panelName: null,
   panelNameBak: null,
   cards: [{ gridCards: [], gridKey: 0, gridName: null }],
@@ -84,8 +86,14 @@ export function scheduleReducer(state = initialState, action) {
     case GET_LOGIN_COOKIES:
       return {
         ...state,
-        cards: action.payload.cards,
-        panelName: action.payload.panelName,
+        cards: JSON.parse(action.payload.cards),
+        panelName: JSON.parse(action.payload.panelName),
+      };
+
+    case SET_COOKIES:
+      return {
+        ...state,
+        setCookies: false,
       };
 
     case LOAD_SEQ:
@@ -93,6 +101,7 @@ export function scheduleReducer(state = initialState, action) {
         ...state,
         readOnly: false,
         cards: action.payload.cards,
+        setCookies: true,
         cardsBak: null,
         panelName: action.payload.name,
         nextCardKey: action.payload.nextCardKey,
@@ -147,6 +156,7 @@ export function scheduleReducer(state = initialState, action) {
         ...state,
         readOnly: false,
         panelName: action.payload,
+        setCookies: true,
       };
 
     case SAVE_SUCCESS:
@@ -154,12 +164,14 @@ export function scheduleReducer(state = initialState, action) {
         ...state,
         readOnly: false,
         panelName: action.payload,
+        setCookies: true,
       };
 
     case CHANGE_PANEL_NAME:
       return {
         ...state,
         panelName: action.payload,
+        setCookies: true,
       };
 
     case CHANGE_GRID_NAME:
@@ -168,6 +180,7 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         cards: cards,
+        setCookies: true,
       };
 
     case DRAG_ICON_MOUSE_DOWN:
@@ -250,6 +263,7 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         cards: cards,
+        setCookies: true,
       };
 
     case ADD_ASANA:
@@ -266,6 +280,7 @@ export function scheduleReducer(state = initialState, action) {
         return {
           ...state,
           cards: cardsWithEmptyGrid.cards,
+          setCookies: true,
           nextCardKey: state.nextCardKey + 1,
           nextGridKey: cardsWithEmptyGrid.nextGridKey,
         };
@@ -285,6 +300,7 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         cards: cards,
+        setCookies: true,
       };
 
     case START_DRAG_CARD:
@@ -439,6 +455,7 @@ export function scheduleReducer(state = initialState, action) {
         return {
           ...state,
           cards: cardsWithEmptyGrid.cards,
+          setCookies: true,
           nextGridKey: cardsWithEmptyGrid.nextGridKey,
           dragOverCard: null,
           dragOverGrid: null,
@@ -472,6 +489,7 @@ export function scheduleReducer(state = initialState, action) {
         return {
           ...state,
           cards: cardsWithEmptyGrid.cards,
+          setCookies: true,
           nextGridKey: cardsWithEmptyGrid.nextGridKey,
           fastTransition: true,
           gridHeight: null,
