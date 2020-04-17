@@ -29,6 +29,8 @@ import "./SchedulePanel.css";
 function SchedulePanel(props) {
   const {
     setCookies,
+    nextGridKey,
+    nextCardKey,
     readOnly,
     draggingGrid,
     panelDefaultName,
@@ -126,7 +128,9 @@ function SchedulePanel(props) {
       />
       <SetCookies
         setCookies={setCookies}
-        onSetCookiesAction={() => props.onSetCookiesAction(cards, panelName)}
+        onSetCookiesAction={() =>
+          props.onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)
+        }
       />
     </div>
   );
@@ -143,8 +147,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSetCookiesAction: (cards, panelName) =>
-      dispatch(onSetCookiesAction(cards, panelName)),
+    onSetCookiesAction: (cards, panelName, nextGridKey, nextCardKey) =>
+      dispatch(onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)),
     startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
       dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
     startGridDragAction: (gridId, e) =>

@@ -6,6 +6,8 @@ export function onReadCookiesAction() {
   var password = Cookies.get("password");
   var cards = Cookies.get("cards");
   var panelName = Cookies.get("panelName");
+  var nextGridKey = Cookies.get("nextGridKey");
+  var nextCardKey = Cookies.get("nextCardKey");
 
   if (login !== undefined) {
     login = JSON.parse(login);
@@ -27,6 +29,14 @@ export function onReadCookiesAction() {
     panelName = JSON.parse(panelName);
   }
 
+  if (nextGridKey === undefined) {
+    nextGridKey = 1;
+  }
+
+  if (nextCardKey === undefined) {
+    nextCardKey = 0;
+  }
+
   if (login === undefined || password === undefined) {
     return {
       type: GET_LOGIN_COOKIES,
@@ -35,6 +45,8 @@ export function onReadCookiesAction() {
         password: null,
         cards: cards,
         panelName: panelName,
+        nextGridKey: nextGridKey,
+        nextCardKey: nextCardKey,
       },
     };
   }
@@ -57,6 +69,8 @@ export function onReadCookiesAction() {
               password: password,
               cards: cards,
               panelName: panelName,
+              nextGridKey: nextGridKey,
+              nextCardKey: nextCardKey,
             },
           });
         } else {
@@ -67,6 +81,8 @@ export function onReadCookiesAction() {
               password: null,
               cards: cards,
               panelName: panelName,
+              nextGridKey: nextGridKey,
+              nextCardKey: nextCardKey,
             },
           });
         }

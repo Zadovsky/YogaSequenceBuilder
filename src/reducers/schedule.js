@@ -88,6 +88,8 @@ export function scheduleReducer(state = initialState, action) {
         ...state,
         cards: action.payload.cards,
         panelName: action.payload.panelName,
+        nextCardKey: action.payload.nextCardKey,
+        nextGridKey: action.payload.nextGridKey,
       };
 
     case SET_COOKIES:
