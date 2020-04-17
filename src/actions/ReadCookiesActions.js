@@ -9,14 +9,6 @@ export function onReadCookiesAction() {
   var nextGridKey = Cookies.get("nextGridKey");
   var nextCardKey = Cookies.get("nextCardKey");
 
-  if (login !== undefined) {
-    login = JSON.parse(login);
-  }
-
-  if (password !== undefined) {
-    password = JSON.parse(password);
-  }
-
   if (cards === undefined) {
     cards = [{ gridCards: [], gridKey: 0, gridName: null }];
   } else {
@@ -25,24 +17,19 @@ export function onReadCookiesAction() {
 
   if (panelName === undefined) {
     panelName = null;
-  } else {
-    panelName = JSON.parse(panelName);
   }
 
   if (nextGridKey === undefined) {
     nextGridKey = 1;
   } else {
-    nextGridKey = JSON.parse(nextGridKey);
+    nextGridKey = +nextGridKey;
   }
 
   if (nextCardKey === undefined) {
     nextCardKey = 0;
   } else {
-    nextCardKey = JSON.parse(nextCardKey);
+    nextCardKey = +nextCardKey;
   }
-
-  console.log(nextGridKey);
-  console.log(nextCardKey);
 
   if (login === undefined || password === undefined) {
     return {
