@@ -23,7 +23,6 @@ import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndAction
 import { onChangePanelNameAction } from "../actions/PanelNameActions";
 import { onClickSave, onClickLoad } from "../actions/SaveLoadPdfButtonsActions";
 import { onSetCookiesAction } from "../actions/SetCookiesActions";
-
 import "./SchedulePanel.css";
 
 function SchedulePanel(props) {
