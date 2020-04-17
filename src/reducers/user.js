@@ -1,4 +1,4 @@
-import { GET_LOGIN_COOKIES } from "../actions/ReadCookiesActions";
+import { GET_COOKIES } from "../actions/ReadCookiesActions";
 import { LOGIN_CHECK_SUCCESS } from "../actions/SignInPopUpWindowActions";
 import {
   CONFIRM_EXIT,
@@ -12,7 +12,7 @@ const initialState = {
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_LOGIN_COOKIES:
+    case GET_COOKIES:
       return {
         ...state,
         login: action.payload.login,

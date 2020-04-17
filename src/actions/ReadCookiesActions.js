@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-export const GET_LOGIN_COOKIES = "GET_LOGIN_COOKIES";
+export const GET_COOKIES = "GET_COOKIES";
 
 export function onReadCookiesAction() {
   var login = Cookies.get("login");
@@ -33,7 +33,7 @@ export function onReadCookiesAction() {
 
   if (login === undefined || password === undefined) {
     return {
-      type: GET_LOGIN_COOKIES,
+      type: GET_COOKIES,
       payload: {
         login: null,
         password: null,
@@ -57,7 +57,7 @@ export function onReadCookiesAction() {
       .then((result) => {
         if (result) {
           return dispatch({
-            type: GET_LOGIN_COOKIES,
+            type: GET_COOKIES,
             payload: {
               login: login,
               password: password,
@@ -69,7 +69,7 @@ export function onReadCookiesAction() {
           });
         } else {
           return dispatch({
-            type: GET_LOGIN_COOKIES,
+            type: GET_COOKIES,
             payload: {
               login: null,
               password: null,
