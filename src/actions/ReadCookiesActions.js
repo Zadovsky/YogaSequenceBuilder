@@ -7,12 +7,24 @@ export function onReadCookiesAction() {
   var cards = Cookies.get("cards");
   var panelName = Cookies.get("panelName");
 
+  if (login !== undefined) {
+    login = JSON.parse(login);
+  }
+
+  if (password !== undefined) {
+    password = JSON.parse(password);
+  }
+
   if (cards === undefined) {
     cards = [{ gridCards: [], gridKey: 0, gridName: null }];
+  } else {
+    cards = JSON.parse(cards);
   }
 
   if (panelName === undefined) {
     panelName = null;
+  } else {
+    panelName = JSON.parse(panelName);
   }
 
   if (login === undefined || password === undefined) {

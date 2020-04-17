@@ -86,8 +86,8 @@ export function scheduleReducer(state = initialState, action) {
     case GET_LOGIN_COOKIES:
       return {
         ...state,
-        cards: JSON.parse(action.payload.cards),
-        panelName: JSON.parse(action.payload.panelName),
+        cards: action.payload.cards,
+        panelName: action.payload.panelName,
       };
 
     case SET_COOKIES:
