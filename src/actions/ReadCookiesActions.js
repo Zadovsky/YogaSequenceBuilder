@@ -31,11 +31,18 @@ export function onReadCookiesAction() {
 
   if (nextGridKey === undefined) {
     nextGridKey = 1;
+  } else {
+    nextGridKey = JSON.parse(nextGridKey);
   }
 
   if (nextCardKey === undefined) {
     nextCardKey = 0;
+  } else {
+    nextCardKey = JSON.parse(nextCardKey);
   }
+
+  console.log(nextGridKey);
+  console.log(nextCardKey);
 
   if (login === undefined || password === undefined) {
     return {
