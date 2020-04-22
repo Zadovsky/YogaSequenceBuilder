@@ -24,7 +24,11 @@ import {
   onChangePanelNameAction,
   onBlurPanelNameAction,
 } from "../actions/PanelNameActions";
-import { onClickSave, onClickLoad } from "../actions/SaveLoadPdfButtonsActions";
+import {
+  onClickSave,
+  onClickLoad,
+  onClickPdf,
+} from "../actions/SaveLoadPdfButtonsActions";
 import { onSetCookiesAction } from "../actions/SetCookiesActions";
 import "./SchedulePanel.css";
 
@@ -69,6 +73,8 @@ function SchedulePanel(props) {
     onChangeGridNameAction,
     onBlurGridNameAction,
     onClickSave,
+    onClickLoad,
+    onClickPdf,
   } = props;
 
   const asanas = asanasArr.arr.map((asana) => {
@@ -123,7 +129,8 @@ function SchedulePanel(props) {
                   : panelName
               )
             }
-            onClickLoad={() => props.onClickLoad(user.login, user.password)}
+            onClickLoad={() => onClickLoad(user.login, user.password)}
+            onClickPdf={onClickPdf}
           />
         }
         wrapperClassName={"SchedulePanel"}
@@ -179,6 +186,7 @@ const mapDispatchToProps = (dispatch) => {
     onClickSave: (login, password, seqName) =>
       dispatch(onClickSave(login, password, seqName)),
     onClickLoad: (login, password) => dispatch(onClickLoad(login, password)),
+    onClickPdf: () => dispatch(onClickPdf()),
   };
 };
 

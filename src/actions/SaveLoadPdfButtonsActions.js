@@ -1,5 +1,6 @@
 export const CLICK_SAVE = "CLICK_SAVE";
 export const CLICK_LOAD = "CLICK_LOAD";
+export const CLICK_PDF = "CLICK_PDF";
 export const NO_AUTHORIZATION_SAVE = "NO_AUTHORIZATION_SAVE";
 export const NO_AUTHORIZATION_LOAD = "NO_AUTHORIZATION_LOAD";
 
@@ -53,5 +54,11 @@ export function onClickSave(login, password, seqName) {
         });
       })
       .catch((error) => console.error(error));
+  };
+}
+
+export function onClickPdf() {
+  return {
+    type: CLICK_PDF,
   };
 }

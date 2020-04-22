@@ -21,7 +21,11 @@ import {
   CHANGE_GRID_NAME,
   BLUR_GRID_NAME,
 } from "../actions/AsanasGridActions";
-import { CLICK_LOAD, CLICK_SAVE } from "../actions/SaveLoadPdfButtonsActions";
+import {
+  CLICK_LOAD,
+  CLICK_SAVE,
+  CLICK_PDF,
+} from "../actions/SaveLoadPdfButtonsActions";
 import { GET_COOKIES } from "../actions/ReadCookiesActions";
 import { SET_COOKIES } from "../actions/SetCookiesActions";
 import {
@@ -87,6 +91,12 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case CLICK_PDF:
+      console.log(CLICK_PDF);
+      return {
+        ...state,
+      };
+
     case GET_COOKIES:
       return {
         ...state,
