@@ -80,7 +80,7 @@ function createListItemArr(
         </IconButton>
       </ListItem>
     ));
-  } else return "";
+  } else return null;
 }
 
 export default function SequencesListSpace(props) {

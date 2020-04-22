@@ -9,17 +9,17 @@ class ReadCookies extends React.Component {
   }
 
   render() {
-    return "";
+    return null;
   }
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onReadCookiesAction: () => dispatch(onReadCookiesAction())
+    onReadCookiesAction: () => dispatch(onReadCookiesAction()),
   };
 };
 

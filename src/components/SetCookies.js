@@ -8,6 +8,6 @@ export default class SetCookies extends React.Component {
   }
 
   render() {
-    return "";
+    return null;
   }
 }
