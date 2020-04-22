@@ -3,21 +3,14 @@ export const DRAG_ENTER_CARD = "DRAG_ENTER_CARD";
 export const START_DRAG_CARD = "START_DRAG_CARD";
 export const CLOSE_CARD = "CLOSE_CARD";
 
-export function addAsanaAction(asanaId, gridId, itIsSchedulePanel, e) {
-  if (e.target.closest(".MuiButtonBase-root") === null) {
-    return {
-      type: ADD_ASANA,
-      payload: {
-        asanaId: asanaId,
-        gridId: gridId,
-        itIsSchedulePanel: itIsSchedulePanel
-      }
-    };
-  } else {
-    return {
-      type: ""
-    };
-  }
+export function addAsanaAction(asanaId, gridId) {
+  return {
+    type: ADD_ASANA,
+    payload: {
+      asanaId: asanaId,
+      gridId: gridId,
+    },
+  };
 }
 
 export function closeCardAction(cardIndex, gridId) {
@@ -25,8 +18,8 @@ export function closeCardAction(cardIndex, gridId) {
     type: CLOSE_CARD,
     payload: {
       cardIndex: cardIndex,
-      gridId: gridId
-    }
+      gridId: gridId,
+    },
   };
 }
 
@@ -36,8 +29,8 @@ export function dragEnterAction(cardPlace, gridId, itIsSchedulePanel) {
     payload: {
       cardPlace: cardPlace,
       gridId: gridId,
-      itIsSchedulePanel: itIsSchedulePanel
-    }
+      itIsSchedulePanel: itIsSchedulePanel,
+    },
   };
 }
 
@@ -47,7 +40,7 @@ export function startCardDragAction(cardPlace, gridId, itIsSchedulePanel) {
     payload: {
       card: cardPlace,
       gridId: gridId,
-      itIsSchedulePanel: itIsSchedulePanel
-    }
+      itIsSchedulePanel: itIsSchedulePanel,
+    },
   };
 }

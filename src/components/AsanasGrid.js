@@ -62,8 +62,8 @@ function makeCardsArr(props) {
         dragEnterAction={() => {
           dragEnterAction(asanaIndex, gridId, itIsSchedulePanel);
         }}
-        addAsanaAction={(e) => {
-          addAsanaAction(asanaIndex, gridId, itIsSchedulePanel, e);
+        addAsanaAction={() => {
+          addAsanaAction(asanaIndex, gridId);
         }}
         closeCardAction={() => {
           closeCardAction(asanaIndex, gridId);

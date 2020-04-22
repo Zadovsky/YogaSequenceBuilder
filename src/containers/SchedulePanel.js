@@ -4,7 +4,6 @@ import Panel from "../components/Panel";
 import SaveLoadPdfButtons from "../components/SaveLoadPdfButtons";
 import SetCookies from "../components/SetCookies";
 import {
-  addAsanaAction,
   dragEnterAction,
   startCardDragAction,
   closeCardAction,
@@ -60,7 +59,6 @@ function SchedulePanel(props) {
     startGridDragAction,
     onDragIconMouseDownAction,
     onDragIconMouseUpAction,
-    addAsanaAction,
     dragEnterAction,
     onDragEnterEmptySpaceAction,
     onDragEnterHolderAction,
@@ -91,7 +89,7 @@ function SchedulePanel(props) {
         startGridDragAction={startGridDragAction}
         onDragIconMouseDownAction={onDragIconMouseDownAction}
         onDragIconMouseUpAction={onDragIconMouseUpAction}
-        addAsanaAction={readOnly ? () => {} : addAsanaAction}
+        addAsanaAction={() => {}}
         dragEnterAction={dragEnterAction}
         onDragEnterEmptySpaceAction={onDragEnterEmptySpaceAction}
         onDragEnterHolderAction={onDragEnterHolderAction}
@@ -162,8 +160,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(startGridDragAction(gridId, e)),
     onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),
     onDragIconMouseUpAction: () => dispatch(onDragIconMouseUpAction()),
-    addAsanaAction: (asanaId, gridId, itIsSchedulePanel, e) =>
-      dispatch(addAsanaAction(asanaId, gridId, itIsSchedulePanel, e)),
     closeCardAction: (cardIndex, gridId) =>
       dispatch(closeCardAction(cardIndex, gridId)),
     closeGridAction: (gridId) => dispatch(closeGridAction(gridId)),

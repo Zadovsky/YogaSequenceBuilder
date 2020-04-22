@@ -283,28 +283,22 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case ADD_ASANA:
-      if (!action.payload.itIsSchedulePanel) {
-        cards = JSON.parse(JSON.stringify(state.cards));
-        const gridToAdd = cards.length === 1 ? 0 : cards.length - 2;
-        cards[gridToAdd].gridCards.push({
-          cardKey: state.nextCardKey,
-          asanaIndex: action.payload.asanaId,
-        });
+      cards = JSON.parse(JSON.stringify(state.cards));
+      const gridToAdd = cards.length === 1 ? 0 : cards.length - 2;
+      cards[gridToAdd].gridCards.push({
+        cardKey: state.nextCardKey,
+        asanaIndex: action.payload.asanaId,
+      });
 
-        let cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
+      let cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
 
-        return {
-          ...state,
-          cards: cardsWithEmptyGrid.cards,
-          setCookies: true,
-          nextCardKey: state.nextCardKey + 1,
-          nextGridKey: cardsWithEmptyGrid.nextGridKey,
-        };
-      } else {
-        return {
-          ...state,
-        };
-      }
+      return {
+        ...state,
+        cards: cardsWithEmptyGrid.cards,
+        setCookies: true,
+        nextCardKey: state.nextCardKey + 1,
+        nextGridKey: cardsWithEmptyGrid.nextGridKey,
+      };
 
     case CLOSE_CARD:
       cards = JSON.parse(JSON.stringify(state.cards));
