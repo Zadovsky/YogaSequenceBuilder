@@ -97,7 +97,6 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case SET_COOKIES:
-      console.log("SET_COOKIES");
       return {
         ...state,
         setCookies: false,

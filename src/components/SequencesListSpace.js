@@ -99,7 +99,10 @@ export default function SequencesListSpace(props) {
     <div
       className={props.isOpen ? "sequencesListWrapper" : classes.displayNone}
     >
-      <ClickAwayListener onClickAway={props.closeSeqListAction}>
+      <ClickAwayListener
+        onClickAway={props.closeSeqListAction}
+        mouseEvent={props.isOpen ? "onClick" : false}
+      >
         <Paper className={classes.paper} elevation={2}>
           <div className="SeqListFlexBox">
             <Typography variant="h5" component="h3" className={classes.h3}>
