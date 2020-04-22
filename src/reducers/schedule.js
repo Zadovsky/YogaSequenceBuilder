@@ -19,6 +19,7 @@ import {
   DRAG_ENTER_GRID,
   CLOSE_GRID,
   CHANGE_GRID_NAME,
+  BLUR_GRID_NAME,
 } from "../actions/AsanasGridActions";
 import { CLICK_LOAD, CLICK_SAVE } from "../actions/SaveLoadPdfButtonsActions";
 import { GET_COOKIES } from "../actions/ReadCookiesActions";
@@ -191,6 +192,11 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         cards: cards,
+      };
+
+    case BLUR_GRID_NAME:
+      return {
+        ...state,
         setCookies: true,
       };
 

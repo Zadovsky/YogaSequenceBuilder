@@ -44,6 +44,7 @@ function createGridArr(props) {
         enableCloseIcon={i === cardsArr.length - 1 ? false : true}
         dragEnterGridAction={props.dragEnterGridAction}
         onChangeGridNameAction={props.onChangeGridNameAction}
+        onBlurGridNameAction={props.onBlurGridNameAction}
         scrollIntoView={cards.gridKey === props.selectedGroupId}
       />
     );

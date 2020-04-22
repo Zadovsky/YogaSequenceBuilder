@@ -11,19 +11,19 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import "./AsanasGrid.css";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(3, 2),
-    position: "relative"
+    position: "relative",
   },
   button: {
     position: "absolute",
     right: 0,
-    top: 0
+    top: 0,
   },
   textField: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 function makeCardsArr(props) {
@@ -37,7 +37,7 @@ function makeCardsArr(props) {
     dragEnterAction,
     dragSourceGrid,
     dragSourcePanelIsSchedule,
-    itIsSchedulePanel
+    itIsSchedulePanel,
   } = props;
   return asanas.map((asana, i) => {
     const asanaIndex = itIsSchedulePanel ? i : asana.asanaIndex;
@@ -62,7 +62,7 @@ function makeCardsArr(props) {
         dragEnterAction={() => {
           dragEnterAction(asanaIndex, gridId, itIsSchedulePanel);
         }}
-        addAsanaAction={e => {
+        addAsanaAction={(e) => {
           addAsanaAction(asanaIndex, gridId, itIsSchedulePanel, e);
         }}
         closeCardAction={() => {
@@ -80,7 +80,7 @@ function makeCardsHoldersArr(cardsArr, props) {
     onDragEnterHolderAction,
     gridId,
     fastTransition,
-    draggingCard
+    draggingCard,
   } = props;
 
   var cardsHoldersArr = [];
@@ -116,13 +116,14 @@ export default function AsanasGrid(props) {
     enableCloseIcon,
     closeGridAction,
     onChangeGridNameAction,
-    scrollIntoView
+    onBlurGridNameAction,
+    scrollIntoView,
   } = props;
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
   const onDragOverFunc = itIsSchedulePanel
-    ? e => {
+    ? (e) => {
         e.preventDefault();
       }
     : () => {};
@@ -136,7 +137,7 @@ export default function AsanasGrid(props) {
       <div
         className={classStr}
         draggable="true"
-        onDragStart={e => {
+        onDragStart={(e) => {
           startGridDragAction(gridId, e);
         }}
         onDragEnter={() => dragEnterGridAction(gridId)}
@@ -148,7 +149,8 @@ export default function AsanasGrid(props) {
             value={name}
             inputProps={{
               readOnly: itIsSchedulePanel ? false : true,
-              onChange: e => onChangeGridNameAction(gridId, e)
+              onChange: (e) => onChangeGridNameAction(gridId, e),
+              onBlur: onBlurGridNameAction,
             }}
           />
           <div className="AsanasGrid">

@@ -68,6 +68,7 @@ function AsanasPanel(props) {
       dragEnterGridAction={() => {}}
       onDragEnterGridPhAction={() => {}}
       onChangeGridNameAction={() => {}}
+      onBlurGridNameAction={() => {}}
       draggingGrid={null}
       panelDefaultName={props.asanas.panelDefaultName[props.language.curLang]}
       panelName={null}

@@ -30,6 +30,7 @@ export default function Panel(props) {
     dragEnterGridAction,
     onDragEnterGridPhAction,
     onChangeGridNameAction,
+    onBlurGridNameAction,
     draggingGrid,
     panelDefaultName,
     panelName,
@@ -97,6 +98,7 @@ export default function Panel(props) {
               dragEnterGridAction={dragEnterGridAction}
               onDragEnterGridPhAction={onDragEnterGridPhAction}
               onChangeGridNameAction={onChangeGridNameAction}
+              onBlurGridNameAction={onBlurGridNameAction}
               gridDefaultName={gridDefaultName}
               selectedGroupId={selectedGroupId}
               onGridBlockScroll={onGridBlockScroll}

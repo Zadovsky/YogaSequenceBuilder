@@ -16,6 +16,7 @@ import {
   dragEnterGridAction,
   closeGridAction,
   onChangeGridNameAction,
+  onBlurGridNameAction,
 } from "../actions/AsanasGridActions";
 import { onDragEnterGridPhAction } from "../actions/GridPlaceHolderActions";
 import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
@@ -68,6 +69,7 @@ function SchedulePanel(props) {
     dragEnterGridAction,
     onDragEnterGridPhAction,
     onChangeGridNameAction,
+    onBlurGridNameAction,
     onClickSave,
   } = props;
 
@@ -98,6 +100,7 @@ function SchedulePanel(props) {
         dragEnterGridAction={dragEnterGridAction}
         onDragEnterGridPhAction={onDragEnterGridPhAction}
         onChangeGridNameAction={onChangeGridNameAction}
+        onBlurGridNameAction={onBlurGridNameAction}
         draggingGrid={draggingGrid}
         panelDefaultName={panelDefaultName[language.curLang]}
         panelName={panelName}
@@ -174,6 +177,7 @@ const mapDispatchToProps = (dispatch) => {
     onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction()),
     onChangeGridNameAction: (gridId, e) =>
       dispatch(onChangeGridNameAction(gridId, e)),
+    onBlurGridNameAction: () => dispatch(onBlurGridNameAction()),
     onChangePanelNameAction: (e) => dispatch(onChangePanelNameAction(e)),
     onBlurPanelNameAction: (e) => dispatch(onBlurPanelNameAction(e)),
     onClickSave: (login, password, seqName) =>
