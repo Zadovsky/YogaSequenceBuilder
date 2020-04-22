@@ -8,7 +8,10 @@ import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
 import { DRAG_ENTER_GRID_PH } from "../actions/GridPlaceHolderActions";
-import { CHANGE_PANEL_NAME } from "../actions/PanelNameActions";
+import {
+  CHANGE_PANEL_NAME,
+  BLUR_PANEL_NAME,
+} from "../actions/PanelNameActions";
 import {
   DRAG_ICON_MOUSE_DOWN,
   DRAG_ICON_MOUSE_UP,
@@ -93,6 +96,7 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case SET_COOKIES:
+      console.log("SET_COOKIES");
       return {
         ...state,
         setCookies: false,
@@ -173,6 +177,11 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         panelName: action.payload,
+      };
+
+    case BLUR_PANEL_NAME:
+      return {
+        ...state,
         setCookies: true,
       };
 

@@ -20,7 +20,10 @@ import {
 import { onDragEnterGridPhAction } from "../actions/GridPlaceHolderActions";
 import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndActions";
-import { onChangePanelNameAction } from "../actions/PanelNameActions";
+import {
+  onChangePanelNameAction,
+  onBlurPanelNameAction,
+} from "../actions/PanelNameActions";
 import { onClickSave, onClickLoad } from "../actions/SaveLoadPdfButtonsActions";
 import { onSetCookiesAction } from "../actions/SetCookiesActions";
 import "./SchedulePanel.css";
@@ -51,6 +54,7 @@ function SchedulePanel(props) {
     language,
     user,
     onChangePanelNameAction,
+    onBlurPanelNameAction,
     startCardDragAction,
     startGridDragAction,
     onDragIconMouseDownAction,
@@ -80,6 +84,7 @@ function SchedulePanel(props) {
         asanas={asanas}
         panelNameRO={false}
         onChangePanelNameAction={onChangePanelNameAction}
+        onBlurPanelNameAction={onBlurPanelNameAction}
         startCardDragAction={readOnly ? () => {} : startCardDragAction}
         startGridDragAction={startGridDragAction}
         onDragIconMouseDownAction={onDragIconMouseDownAction}
@@ -170,6 +175,7 @@ const mapDispatchToProps = (dispatch) => {
     onChangeGridNameAction: (gridId, e) =>
       dispatch(onChangeGridNameAction(gridId, e)),
     onChangePanelNameAction: (e) => dispatch(onChangePanelNameAction(e)),
+    onBlurPanelNameAction: (e) => dispatch(onBlurPanelNameAction(e)),
     onClickSave: (login, password, seqName) =>
       dispatch(onClickSave(login, password, seqName)),
     onClickLoad: (login, password) => dispatch(onClickLoad(login, password)),

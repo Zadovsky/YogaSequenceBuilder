@@ -3,14 +3,14 @@ import "./PanelName.css";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(0, 0, 2)
-  }
+    margin: theme.spacing(0, 0, 2),
+  },
 }));
 
 const styles = {
-  resize: { fontSize: "1.5rem" }
+  resize: { fontSize: "1.5rem" },
 };
 
 export default function PanelName(props) {
@@ -21,8 +21,9 @@ export default function PanelName(props) {
       value={props.name}
       inputProps={{
         readOnly: props.readOnly,
-        onChange: e => props.onChangePanelNameAction(e),
-        style: styles.resize
+        onChange: (e) => props.onChangePanelNameAction(e),
+        onBlur: (e) => props.onBlurPanelNameAction(e),
+        style: styles.resize,
       }}
     />
   );

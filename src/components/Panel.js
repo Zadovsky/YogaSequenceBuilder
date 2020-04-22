@@ -16,6 +16,7 @@ export default function Panel(props) {
   const {
     asanas,
     onChangePanelNameAction,
+    onBlurPanelNameAction,
     startCardDragAction,
     startGridDragAction,
     onDragIconMouseDownAction,
@@ -65,6 +66,7 @@ export default function Panel(props) {
             <PanelName
               name={panelName === null ? panelDefaultName : panelName}
               onChangePanelNameAction={onChangePanelNameAction}
+              onBlurPanelNameAction={onBlurPanelNameAction}
               readOnly={panelNameRO}
             />
           </div>
