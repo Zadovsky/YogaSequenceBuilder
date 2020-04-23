@@ -28,6 +28,7 @@ import {
 } from "../actions/SaveLoadPdfButtonsActions";
 import { GET_COOKIES } from "../actions/ReadCookiesActions";
 import { SET_COOKIES } from "../actions/SetCookiesActions";
+import { PDF_DOWNLOAD } from "../actions/PDFDownloadActions";
 import {
   SAVE_SUCCESS,
   REWRITE_SUCCESS,
@@ -38,6 +39,7 @@ import {
 
 const initialState = {
   readOnly: false,
+  renderPdf: false,
   setCookies: false,
   panelName: null,
   panelNameBak: null,
@@ -91,10 +93,17 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
-    case CLICK_PDF:
-      console.log(CLICK_PDF);
+    case PDF_DOWNLOAD:
+      console.log(PDF_DOWNLOAD);
       return {
         ...state,
+        renderPdf: false,
+      };
+
+    case CLICK_PDF:
+      return {
+        ...state,
+        renderPdf: true,
       };
 
     case GET_COOKIES:

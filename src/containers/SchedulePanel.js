@@ -30,11 +30,14 @@ import {
   onClickPdf,
 } from "../actions/SaveLoadPdfButtonsActions";
 import { onSetCookiesAction } from "../actions/SetCookiesActions";
+import { onPDFDownloadAction } from "../actions/PDFDownloadActions";
+import PDFDownload from "../components/PDFDownload";
 import "./SchedulePanel.css";
 
 function SchedulePanel(props) {
   const {
     setCookies,
+    renderPdf,
     nextGridKey,
     nextCardKey,
     readOnly,
@@ -75,6 +78,7 @@ function SchedulePanel(props) {
     onClickSave,
     onClickLoad,
     onClickPdf,
+    onPDFDownloadAction,
   } = props;
 
   const asanas = asanasArr.arr.map((asana) => {
@@ -144,6 +148,7 @@ function SchedulePanel(props) {
           props.onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)
         }
       />
+      {renderPdf && <PDFDownload onPDFDownloadAction={onPDFDownloadAction} />}
     </div>
   );
 }
@@ -187,6 +192,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(onClickSave(login, password, seqName)),
     onClickLoad: (login, password) => dispatch(onClickLoad(login, password)),
     onClickPdf: () => dispatch(onClickPdf()),
+    onPDFDownloadAction: () => dispatch(onPDFDownloadAction()),
   };
 };
 
