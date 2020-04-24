@@ -94,7 +94,6 @@ function addEmptyGrid(cards, nextGridKey) {
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
     case PDF_DOWNLOAD:
-      console.log(PDF_DOWNLOAD);
       return {
         ...state,
         renderPdf: false,

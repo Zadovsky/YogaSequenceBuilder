@@ -148,7 +148,10 @@ function SchedulePanel(props) {
           props.onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)
         }
       />
-      {renderPdf && <PDFDownload onPDFDownloadAction={onPDFDownloadAction} />}
+      <PDFDownload
+        onPDFDownloadAction={onPDFDownloadAction}
+        renderPdf={renderPdf}
+      />
     </div>
   );
 }
