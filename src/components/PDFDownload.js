@@ -34,23 +34,26 @@ const MyDoc = () => (
 );
 
 export default class PDFDownload extends React.Component {
-  componentDidUpdate() {
-    if (this.props.renderPdf) {
-      this.props.onPDFDownloadAction();
-    }
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
   }
 
   render() {
     return (
-      <PDFDownloadLink document={<MyDoc />}>
-        {({ blob, url, loading, error }) => {
-          if (!loading) {
-            if (this.props.renderPdf) {
-              require("downloadjs")(url, "test.pdf");
+      <div ref={this.ref}>
+        <PDFDownloadLink document={<MyDoc />} fileName="test.pdf">
+          {({ blob, url, loading, error }) => {
+            if (!loading) {
+              setTimeout(
+                () =>
+                  this.props.onPDFDownloadAction(this.ref.current.firstChild),
+                1
+              );
             }
-          }
-        }}
-      </PDFDownloadLink>
+          }}
+        </PDFDownloadLink>
+      </div>
     );
   }
 }

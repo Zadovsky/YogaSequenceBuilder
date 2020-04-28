@@ -148,10 +148,7 @@ function SchedulePanel(props) {
           props.onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)
         }
       />
-      <PDFDownload
-        onPDFDownloadAction={onPDFDownloadAction}
-        renderPdf={renderPdf}
-      />
+      {renderPdf && <PDFDownload onPDFDownloadAction={onPDFDownloadAction} />}
     </div>
   );
 }
@@ -195,7 +192,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(onClickSave(login, password, seqName)),
     onClickLoad: (login, password) => dispatch(onClickLoad(login, password)),
     onClickPdf: () => dispatch(onClickPdf()),
-    onPDFDownloadAction: () => dispatch(onPDFDownloadAction()),
+    onPDFDownloadAction: (ref) => dispatch(onPDFDownloadAction(ref)),
   };
 };
 
