@@ -148,7 +148,17 @@ function SchedulePanel(props) {
           props.onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)
         }
       />
-      {renderPdf && <PDFDownload onPDFDownloadAction={onPDFDownloadAction} />}
+      {renderPdf && (
+        <PDFDownload
+          onPDFDownloadAction={onPDFDownloadAction}
+          cards={cards}
+          asanas={asanas}
+          panelName={
+            panelName === null ? panelDefaultName[language.curLang] : panelName
+          }
+          gridDefaultName={gridDefaultName[language.curLang]}
+        />
+      )}
     </div>
   );
 }
