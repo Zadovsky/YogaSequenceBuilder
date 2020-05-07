@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
 import Header from "../components/Header";
 import { onChangeLangChooser } from "../actions/LanguageChooserActions";
 import {
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   h1: {
     padding: theme.spacing(1, 2, 0),
   },
+  h2: {},
   instruction: {
     padding: theme.spacing(1, 2),
   },
@@ -69,9 +71,44 @@ function PageTop(props) {
       >
         {props.pageTop.headerText[props.language.curLang]}
       </Typography>
-      <Typography variant="body1" className={classes.instruction}>
-        {props.pageTop.instructionText[props.language.curLang]}
-      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={6}>
+          <Typography
+            variant="h5"
+            component="h2"
+            align="center"
+            className={classes.h2}
+          >
+            {props.pageTop.whatItIsText[props.language.curLang].title}
+          </Typography>
+          <Typography variant="body1" className={classes.instruction}>
+            {props.pageTop.whatItIsText[props.language.curLang].text}
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography
+            variant="h5"
+            component="h2"
+            align="center"
+            className={classes.h2}
+          >
+            {props.pageTop.howItWorksText[props.language.curLang].title}
+          </Typography>
+          {props.pageTop.howItWorksText[props.language.curLang].texts.map(
+            (text, i) => {
+              return (
+                <Typography
+                  key={i}
+                  variant="body1"
+                  className={classes.instruction}
+                >
+                  {text}
+                </Typography>
+              );
+            }
+          )}
+        </Grid>
+      </Grid>
     </Paper>
   );
 }
