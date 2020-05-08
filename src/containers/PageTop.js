@@ -61,6 +61,9 @@ function PageTop(props) {
           props.changePwdItemClickAction(props.user.login, props.user.password)
         }
         userMenuTexts={props.pageTop.userMenuTexts[props.language.curLang]}
+        logoImg={props.pageTop.logoPath}
+        logoText={props.pageTop.logoText}
+        logoUrl={props.pageTop.logoUrl}
       />
       <Divider variant="middle" />
       <Typography

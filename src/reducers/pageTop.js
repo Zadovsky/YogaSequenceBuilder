@@ -51,6 +51,9 @@ const initialState = {
     email: "",
     notEmail: false,
   },
+  logoPath: "/img/logo.png",
+  logoText: "YogaSequenceBuilder.online",
+  logoUrl: "localhost:3000",
   signInWindowTexts: {
     ru: {
       title: "Вход в аккаунт",
