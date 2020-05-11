@@ -8,6 +8,7 @@ import { userReducer } from "./user";
 import { infoPopUpReducer } from "./infoPopUp";
 import { yesNoPopUpReducer } from "./yesNoPopUp";
 import { sequencesReducer } from "./sequences";
+import { logoReducer } from "./logo";
 
 export const rootReducer = combineReducers({
   pageTop: pageTopReducer,
@@ -18,5 +19,6 @@ export const rootReducer = combineReducers({
   user: userReducer,
   infoPopUp: infoPopUpReducer,
   yesNoPopUp: yesNoPopUpReducer,
-  sequences: sequencesReducer
+  sequences: sequencesReducer,
+  logo: logoReducer,
 });

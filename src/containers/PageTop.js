@@ -61,9 +61,9 @@ function PageTop(props) {
           props.changePwdItemClickAction(props.user.login, props.user.password)
         }
         userMenuTexts={props.pageTop.userMenuTexts[props.language.curLang]}
-        logoImg={props.pageTop.logoPath}
-        logoText={props.pageTop.logoText}
-        logoUrl={props.pageTop.logoUrl}
+        logoImg={props.logo.logoPath}
+        logoText={props.logo.logoText}
+        logoUrl={props.logo.logoUrl}
       />
       <Divider variant="middle" />
       <Typography
@@ -121,6 +121,7 @@ const mapStateToProps = (store) => {
     language: store.language,
     pageTop: store.pageTop,
     user: store.user,
+    logo: store.logo,
   };
 };
 
