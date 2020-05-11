@@ -46,7 +46,12 @@ const styles = StyleSheet.create({
     borderBottom: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     padding: 10,
+  },
+  logo: {
+    width: 30,
+    height: 30,
   },
 });
 
@@ -97,14 +102,16 @@ function createCardBlocks(cards, gridDefaultName, asanas) {
   return cardBlocks.slice(0, cardBlocks.length - 1);
 }
 
-function createPdf(panelName, cards, gridDefaultName, asanas) {
+function createPdf(panelName, cards, gridDefaultName, asanas, logo) {
   const cardBlocks = createCardBlocks(cards, gridDefaultName, asanas);
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
-          <Text>Yoga Sequence Builder</Text>
-          <Link style={styles.link}>www.ysb.com</Link>
+          <Image src={logo.logoPath} style={styles.logo} />
+          <Link style={styles.link} src={logo.logoUrl}>
+            {logo.logoText}
+          </Link>
         </View>
         <View style={styles.section}>
           <Text style={styles.title}>{panelName}</Text>
@@ -122,14 +129,14 @@ export default class PDFDownload extends React.Component {
   }
 
   render() {
-    const { panelName, cards, gridDefaultName, asanas } = this.props;
+    const { panelName, cards, gridDefaultName, asanas, logo } = this.props;
 
     Font.register({
       family: "Roboto",
       src: "/ttf/Roboto-Light.ttf",
     });
 
-    const pdfDoc = createPdf(panelName, cards, gridDefaultName, asanas);
+    const pdfDoc = createPdf(panelName, cards, gridDefaultName, asanas, logo);
 
     return (
       <div ref={this.ref}>

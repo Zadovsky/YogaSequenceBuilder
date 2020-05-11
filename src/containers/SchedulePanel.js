@@ -60,6 +60,7 @@ function SchedulePanel(props) {
     asanasArr,
     language,
     user,
+    logo,
     onChangePanelNameAction,
     onBlurPanelNameAction,
     startCardDragAction,
@@ -157,6 +158,7 @@ function SchedulePanel(props) {
             panelName === null ? panelDefaultName[language.curLang] : panelName
           }
           gridDefaultName={gridDefaultName[language.curLang]}
+          logo={logo}
         />
       )}
     </div>
@@ -169,6 +171,7 @@ const mapStateToProps = (store) => {
     asanasArr: store.asanasArr,
     schedule: store.schedule,
     user: store.user,
+    logo: store.logo,
   };
 };
 
