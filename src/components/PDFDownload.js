@@ -133,7 +133,7 @@ export default class PDFDownload extends React.Component {
 
     return (
       <div ref={this.ref}>
-        <PDFDownloadLink document={pdfDoc} fileName="test.pdf">
+        <PDFDownloadLink document={pdfDoc} fileName={panelName + ".pdf"}>
           {({ blob, url, loading, error }) => {
             if (!loading) {
               setTimeout(
