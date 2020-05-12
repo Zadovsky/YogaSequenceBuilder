@@ -7,13 +7,16 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  saveLoadPdfButtons: {
+    margin: theme.spacing(-1, -1, 2),
+  },
 }));
 
 export default function SaveLoadPdfButtons(props) {
   const classes = useStyles();
 
   return (
-    <div className="SaveLoadPdfButtons">
+    <div className={classes.saveLoadPdfButtons}>
       <Button
         variant="contained"
         className={classes.button}
