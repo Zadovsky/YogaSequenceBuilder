@@ -14,13 +14,13 @@ import YesNoPopUpWindow from "../containers/YesNoPopUpWindow";
 import { makeStyles } from "@material-ui/core/styles";
 import "./App.css";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   grid: {
-    height: "100%"
+    height: "100%",
   },
   container: {
-    height: "100%"
-  }
+    height: "100%",
+  },
 }));
 
 export default function App(props) {
@@ -29,36 +29,32 @@ export default function App(props) {
   return (
     <React.Fragment>
       <ReadCookies />
-      <div className="App">
-        <CssBaseline />
-        <DnDContext>
-          <Container maxWidth="lg" className={classes.container}>
-            <div className="TopPanelsFlexBox">
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <PageTop />
-                </Grid>
+      <CssBaseline />
+      <DnDContext>
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <PageTop />
+            </Grid>
+          </Grid>
+          <div className="PanelsWrapper">
+            <Grid container spacing={3} className={classes.grid}>
+              <Grid item xs={6} className={classes.grid}>
+                <div className="PanelListWrapper">
+                  <AsanasPanel />
+                  <SequencesList />
+                </div>
               </Grid>
-              <div className="TopPanelsFlexElement">
-                <Grid container spacing={3} className={classes.grid}>
-                  <Grid item xs={6} className={classes.grid}>
-                    <div className="PanelListWrapper">
-                      <AsanasPanel />
-                      <SequencesList />
-                    </div>
-                  </Grid>
-                  <Grid item xs={6} className={classes.grid}>
-                    <SchedulePanel />
-                  </Grid>
-                </Grid>
-              </div>
-            </div>
-          </Container>
-        </DnDContext>
-        <UserPopUpWindows />
-        <InfoPopUpWindow />
-        <YesNoPopUpWindow />
-      </div>
+              <Grid item xs={6} className={classes.grid}>
+                <SchedulePanel />
+              </Grid>
+            </Grid>
+          </div>
+        </Container>
+      </DnDContext>
+      <UserPopUpWindows />
+      <InfoPopUpWindow />
+      <YesNoPopUpWindow />
     </React.Fragment>
   );
 }

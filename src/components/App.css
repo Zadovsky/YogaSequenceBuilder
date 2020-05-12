@@ -1,20 +1,5 @@
-.App {
+.PanelsWrapper {
   height: 100vh;
-  overflow: hidden;
-}
-
-.TopPanelsFlexBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-}
-
-.TopPanelsFlexElement {
-  overflow: hidden;
-  width: 102%;
-  padding: 1%;
-  flex-grow: 3;
 }
 
 .PanelListWrapper {
