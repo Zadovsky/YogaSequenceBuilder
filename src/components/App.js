@@ -18,8 +18,9 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     height: "100%",
   },
-  container: {
-    height: "100%",
+  containerPanels: {
+    marginTop: theme.spacing(1),
+    height: "100vh",
   },
 }));
 
@@ -31,25 +32,23 @@ export default function App(props) {
       <ReadCookies />
       <CssBaseline />
       <DnDContext>
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
+        <Container maxWidth="lg">
+          <Grid container>
             <Grid item xs={12}>
               <PageTop />
             </Grid>
           </Grid>
-          <div className="PanelsWrapper">
-            <Grid container spacing={3} className={classes.grid}>
-              <Grid item xs={6} className={classes.grid}>
-                <div className="PanelListWrapper">
-                  <AsanasPanel />
-                  <SequencesList />
-                </div>
-              </Grid>
-              <Grid item xs={6} className={classes.grid}>
-                <SchedulePanel />
-              </Grid>
+          <Grid container spacing={2} className={classes.containerPanels}>
+            <Grid item xs={6} className={classes.grid}>
+              <div className="PanelListWrapper">
+                <AsanasPanel />
+                <SequencesList />
+              </div>
             </Grid>
-          </div>
+            <Grid item xs={6} className={classes.grid}>
+              <SchedulePanel />
+            </Grid>
+          </Grid>
         </Container>
       </DnDContext>
       <UserPopUpWindows />
