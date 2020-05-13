@@ -5,12 +5,12 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     position: "absolute",
     right: 0,
-    top: 0
-  }
+    top: 0,
+  },
 }));
 
 export default function AsanaCard(props) {
@@ -34,7 +34,7 @@ export default function AsanaCard(props) {
             className="AsanaCardImg"
             style={{
               backgroundImage: "url(" + props.img + ")",
-              backgroundSize: "cover"
+              backgroundSize: "cover",
             }}
           ></div>
         </div>

@@ -22,7 +22,7 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Уттхита Триконасана",
+        ru: "Уттхита триконасана",
         en: "Utthita triconasana",
       },
       asanaImg: "/img/utrikonasana.jpg",
@@ -38,32 +38,32 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Вирабхадрасана 3",
-        en: "Virabhadrasana 3",
+        ru: "Вирабха­драсана 3",
+        en: "Virabha­drasana 3",
       },
       asanaImg: "/img/vira3.jpg",
       groupId: "balance",
     },
     {
       asanaName: {
-        ru: "Вирабхадрасана 1",
-        en: "Virabhadrasana 1",
+        ru: "Вирабха­драсана 1",
+        en: "Virabha­drasana 1",
       },
       asanaImg: "/img/vira1.jpg",
       groupId: "stand",
     },
     {
       asanaName: {
-        ru: "Вирабхадрасана 2",
-        en: "Virabhadrasana 2",
+        ru: "Вирабха­драсана 2",
+        en: "Virabha­drasana 2",
       },
       asanaImg: "/img/vira2.jpg",
       groupId: "stand",
     },
     {
       asanaName: {
-        ru: "Прасарита Падоттанасана",
-        en: "Prasarita Padottanasana",
+        ru: "Прасарита падот­танасана",
+        en: "Prasarita padot­tanasana",
       },
       asanaImg: "/img/prasarita.jpg",
       groupId: "stand",
@@ -94,16 +94,16 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Бхуджапидасана",
-        en: "Bhujapidasana",
+        ru: "Бхуджа­пидасана",
+        en: "Bhuja­pidasana",
       },
       asanaImg: "/img/bhudzh.jpg",
       groupId: "handbalance",
     },
     {
       asanaName: {
-        ru: "Пашчимоттанасана",
-        en: "Pashchimottanasana",
+        ru: "Пашчимот­танасана",
+        en: "Pashchimot­tanasana",
       },
       asanaImg: "/img/paschimot.jpg",
       groupId: "forwardfold",
@@ -118,16 +118,16 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Падахастасана",
-        en: "Padahastasana",
+        ru: "Пада­хастасана",
+        en: "Pada­hastasana",
       },
       asanaImg: "/img/padah.jpg",
       groupId: "stand",
     },
     {
       asanaName: {
-        ru: "Аштанга намаскарасана",
-        en: "Ashtanga namaskarasana",
+        ru: "Аштанга намаскар­асана",
+        en: "Ashtanga namaskar­asana",
       },
       asanaImg: "/img/ashtanga.jpg",
       groupId: "knees",
@@ -150,16 +150,16 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Уттхита паршваконасана",
-        en: "Utthita parsvakonasana",
+        ru: "Уттхита паршва­конасана",
+        en: "Utthita parsva­konasana",
       },
       asanaImg: "/img/uparshvakon.jpg",
       groupId: "stand",
     },
     {
       asanaName: {
-        ru: "Паривритта паршваконасана",
-        en: "Parivrtta parsvakonasana",
+        ru: "Паривритта паршва­конасана",
+        en: "Parivrtta parsva­konasana",
       },
       asanaImg: "/img/pparshvakon.jpg",
       groupId: "stand",
@@ -174,8 +174,8 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Паршвоттанасана",
-        en: "Parshvattonasana",
+        ru: "Паршвот­танасана",
+        en: "Parshvat­tonasana",
       },
       asanaImg: "/img/parshvat.jpg",
       groupId: "stand",
@@ -214,8 +214,8 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Уттхита хаста падангуштхасана",
-        en: "Utthita hasta padangusthasana",
+        ru: "Уттхита хаста падангушт­хасана",
+        en: "Utthita hasta padangust­hasana",
       },
       asanaImg: "/img/uhpadangushth.jpg",
       groupId: "balance",
@@ -238,24 +238,24 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Натараджасана",
-        en: "Natarajasana",
+        ru: "Натарадж­асана",
+        en: "Nataraj­asana",
       },
       asanaImg: "/img/nataraj.jpg",
       groupId: "balance",
     },
     {
       asanaName: {
-        ru: "Ардха баддха падмоттанасана",
-        en: "Aardha baddha padmottanasana",
+        ru: "Ардха баддха падмот­танасана",
+        en: "Aardha baddha padmot­tanasana",
       },
       asanaImg: "/img/abpadmo.jpg",
       groupId: "balance",
     },
     {
       asanaName: {
-        ru: "Аштавакрасана",
-        en: "Ashtavakrasana",
+        ru: "Аштавакр­асана",
+        en: "Ashtavakr­asana",
       },
       asanaImg: "/img/ashtavakr.jpg",
       groupId: "handbalance",
@@ -270,8 +270,8 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Ашва санчаланасана",
-        en: "Ashva sanchalanasana",
+        ru: "Ашва санчалан­асана",
+        en: "Ashva sanchalan­asana",
       },
       asanaImg: "/img/ashvasanch.jpg",
       groupId: "knees",
@@ -302,8 +302,8 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Хануманасана",
-        en: "Hanumanasana",
+        ru: "Хануман­асана",
+        en: "Hanuman­asana",
       },
       asanaImg: "/img/hanuman.jpg",
       groupId: "knees",
@@ -382,8 +382,8 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Раджакапотасана",
-        en: "Rajakapotasana",
+        ru: "Раджа­капотасана",
+        en: "Raja­kapotasana",
       },
       asanaImg: "/img/rajakap.jpg",
       groupId: "backbend",
@@ -398,8 +398,8 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Ардха баддха падма пашчимоттанасана",
-        en: "Ardha baddha padma paschimottanasana",
+        ru: "Ардха баддха падма пашчи­мот­танасана",
+        en: "Ardha baddha padma paschi­mot­tanasana",
       },
       asanaImg: "/img/ardhabaddhapadmap.jpg",
       groupId: "forwardfold",
@@ -446,16 +446,16 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Сахаджа пурвоттанасана",
-        en: "Sahaja purvottanasana",
+        ru: "Сахаджа пурвот­танасана",
+        en: "Sahaja purvot­tanasana",
       },
       asanaImg: "/img/spurvottan.jpg",
       groupId: "backbend",
     },
     {
       asanaName: {
-        ru: "Пурвоттанасана",
-        en: "Purvottanasana",
+        ru: "Пурвот­танасана",
+        en: "Purvot­tanasana",
       },
       asanaImg: "/img/purvottan.jpg",
       groupId: "backbend",
@@ -478,24 +478,24 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Марджариасана",
-        en: "Marjariasana",
+        ru: "Марджари­асана",
+        en: "Marjari­asana",
       },
       asanaImg: "/img/marjari.jpg",
       groupId: "backbend",
     },
     {
       asanaName: {
-        ru: "Супта падангуштхасана",
-        en: "Supta padangusthasana",
+        ru: "Супта падангушт­хасана",
+        en: "Supta padangust­hasana",
       },
       asanaImg: "/img/spadangyshth.jpg",
       groupId: "lie",
     },
     {
       asanaName: {
-        ru: "Паванамуктасана",
-        en: "Pavanamuktasana",
+        ru: "Павана­муктасана",
+        en: "Pavana­muktasana",
       },
       asanaImg: "/img/pavanam.jpg",
       groupId: "lie",
@@ -510,16 +510,16 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Васиштхасана",
-        en: "Vasisthasana",
+        ru: "Васиштх­асана",
+        en: "Vasisth­asana",
       },
       asanaImg: "/img/vasisth.jpg",
       groupId: "plank",
     },
     {
       asanaName: {
-        ru: "Кумбхакасана",
-        en: "Kumbhakasana",
+        ru: "Кумбхак­асана",
+        en: "Kumbhak­asana",
       },
       asanaImg: "/img/kumbhak.jpg",
       groupId: "plank",
@@ -566,16 +566,16 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Ардха бхуджангасана",
-        en: "Ardha bhujangasana",
+        ru: "Ардха бхуджанг­асана",
+        en: "Ardha bhujang­asana",
       },
       asanaImg: "/img/abhujang.jpg",
       groupId: "backbend",
     },
     {
       asanaName: {
-        ru: "Бхуджангасана",
-        en: "Bhujangasana",
+        ru: "Бхуджанг­асана",
+        en: "Bhujang­asana",
       },
       asanaImg: "/img/bhujang.jpg",
       groupId: "backbend",
@@ -590,8 +590,8 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Супта матсиендрасана",
-        en: "Supta matsyendrasana",
+        ru: "Супта матсиен­драсана",
+        en: "Supta matsyen­drasana",
       },
       asanaImg: "/img/suptamatsy.jpg",
       groupId: "lie",
@@ -638,8 +638,8 @@ const initialState = {
     },
     {
       asanaName: {
-        ru: "Карнапидасана",
-        en: "Karnapidasana",
+        ru: "Карна­пидасана",
+        en: "Karna­pidasana",
       },
       asanaImg: "/img/karnapid.jpg",
       groupId: "invert",

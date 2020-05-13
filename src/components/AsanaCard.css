@@ -8,11 +8,6 @@
   cursor: grabbing;
 }
 
-.AsanaCard p {
-  text-align: center;
-  user-select: none;
-}
-
 .AsanaCardDragging {
   width: 0;
   transition: all 0ms ease 10ms;
@@ -52,5 +47,11 @@
 }
 
 .CardTypography {
-  height: 60px;
+  text-align: center;
+  user-select: none;
+  height: 90px;
+  padding-top: 8px;
+  width: 90%;
+  margin: auto !important;
+  word-wrap: break-word;
 }
