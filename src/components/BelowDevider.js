@@ -22,10 +22,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "16px",
   },
   paperLeft: {
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   paperRight: {
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   textField: {
     margin: theme.spacing(1, 2, 1),
