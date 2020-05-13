@@ -9,6 +9,8 @@
 }
 
 .PanelFlexElement {
-  overflow: auto;
+  overflow-y: scroll;
+  margin-left: -10px;
+  padding-left: 10px;
   flex-grow: 3;
 }

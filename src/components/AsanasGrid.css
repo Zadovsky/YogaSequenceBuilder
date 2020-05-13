@@ -19,7 +19,6 @@
 
 .AsanasGridDraggable {
   height: 100%;
-  overflow: hidden;
 }
 
 .AsanaGridDragging {

@@ -13,7 +13,7 @@ import "./AsanasGrid.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(3, 2),
+    margin: theme.spacing(3, 1, 3, 0),
     position: "relative",
   },
   button: {
