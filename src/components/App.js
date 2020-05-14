@@ -16,10 +16,6 @@ import "./App.css";
 
 const useStyles = makeStyles((theme) => ({
   grid: {
-    height: "100%",
-  },
-  containerPanels: {
-    marginTop: theme.spacing(1),
     height: "100vh",
   },
 }));
@@ -33,12 +29,10 @@ export default function App(props) {
       <CssBaseline />
       <DnDContext>
         <Container maxWidth="lg">
-          <Grid container>
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <PageTop />
             </Grid>
-          </Grid>
-          <Grid container spacing={2} className={classes.containerPanels}>
             <Grid item xs={6} className={classes.grid}>
               <div className="PanelListWrapper">
                 <AsanasPanel />
