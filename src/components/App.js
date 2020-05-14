@@ -7,6 +7,7 @@ import SchedulePanel from "../containers/SchedulePanel";
 import SequencesList from "../containers/SequencesList";
 import DnDContext from "../containers/DnDContext";
 import PageTop from "../containers/PageTop";
+import Footer from "../containers/Footer";
 import UserPopUpWindows from "../containers/UserPopUpWindows";
 import ReadCookies from "../containers/ReadCookies";
 import InfoPopUpWindow from "../containers/InfoPopUpWindow";
@@ -41,6 +42,9 @@ export default function App(props) {
             </Grid>
             <Grid item xs={6} className={classes.grid}>
               <SchedulePanel />
+            </Grid>
+            <Grid item xs={12}>
+              <Footer />
             </Grid>
           </Grid>
         </Container>
