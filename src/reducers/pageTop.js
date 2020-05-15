@@ -125,23 +125,22 @@ const initialState = {
     ru: {
       title: "Что это",
       text:
-        "Это веб-приложение поможет составить последовательность асан для занятия хатха-йогой. Если вы преподаете хатха-йогу или занимаетесь самостоятельно, то оно будет вам полезно.",
+        "Это веб-приложение помогает составить последовательность асан для практики хатха-йоги. Вы можете сохранить последовательность в коллекцию, в любое время вернуться к ней снова, отредактировать, сохранить в PDF и т.д. Будет полезно тем, кто преподает хатха-йогу или занимается самостоятельно.",
     },
     en: {
       title: "What it is",
       text:
-        "The web-application will help you to build your own asanas sequence to hatha-yoga practice. It will be useful for yoga teachers and solo practitioners.",
+        "The web-application helps to build your own asanas sequence for hatha-yoga practice. You will be able to save sequence to collection, load it again any time you want, redact it, save to PDF etc. It’s useful for yoga teachers and solo practitioners.",
     },
   },
   howItWorksText: {
     ru: {
-      title: "Как это работает",
+      title: "Как все работает",
       texts: [
         "Перетаскивайте асаны из списка в расписание",
-        "С помощью перетаскивания меняйте асаны местами и переносите их в другие блоки",
+        "Меняйте асаны местами и переносите их в другие блоки",
         "Перетаскивайте блоки асан и меняйте их местами",
-        "Меняйте название последовательности и блоков асан",
-        "Сохраняйте и загружайте последовательности асан, выводите их в PDF",
+        "Сохраняйте и загружайте последовательности асан, выгружайте их в PDF",
       ],
     },
     en: {
@@ -150,7 +149,6 @@ const initialState = {
         "Drag’n’drop asanas from the list to the schedule",
         "Use drag’n’drop to move an asana to another place or another block",
         "Drag’n’drop asanas blocks and change they places",
-        "Type the sequence name and asanas blocks names",
         "Save and load asanas sequences and print it to PDF",
       ],
     },
