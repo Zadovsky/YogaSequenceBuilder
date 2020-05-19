@@ -122,6 +122,7 @@ export default function SequencesListSpace(props) {
                   variant="contained"
                   className={classes.button}
                   onClick={props.onClickMainButtonSeqListAction}
+                  color="secondary"
                 >
                   {props.texts.button}
                 </Button>

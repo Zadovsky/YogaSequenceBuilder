@@ -4,10 +4,12 @@ import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import yellow from "@material-ui/core/colors/yellow";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(1),
+    backgroundColor: yellow[100],
   },
 }));
 

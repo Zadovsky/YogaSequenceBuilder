@@ -22,6 +22,8 @@
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   margin: auto;
   margin-top: 5%;
+  background-color: white;
+  overflow: hidden;
 }
 
 .AsanaCardInnerDiv .MuiButtonBase-root {
@@ -36,6 +38,7 @@
   width: 100%;
   padding-bottom: 100%;
   position: relative;
+  margin-bottom: 8px;
 }
 
 .AsanaCardImg {

@@ -9,12 +9,14 @@ import CardPlaceHolder from "./CardPlaceHolder";
 import EmptySpaceAtTheEnd from "./EmptySpaceAtTheEnd";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import yellow from "@material-ui/core/colors/yellow";
 import "./AsanasGrid.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(3, 1, 3, 0),
     position: "relative",
+    backgroundColor: yellow[50],
   },
   button: {
     position: "absolute",

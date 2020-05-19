@@ -19,6 +19,7 @@ export default function SaveLoadPdfButtons(props) {
     <div className={classes.saveLoadPdfButtons}>
       <Button
         variant="contained"
+        color="secondary"
         className={classes.button}
         onClick={props.onClickLoad}
       >
@@ -26,6 +27,7 @@ export default function SaveLoadPdfButtons(props) {
       </Button>
       <Button
         variant="contained"
+        color="secondary"
         className={classes.button}
         onClick={props.onClickSave}
       >
@@ -33,6 +35,7 @@ export default function SaveLoadPdfButtons(props) {
       </Button>
       <Button
         variant="contained"
+        color="secondary"
         className={classes.button}
         onClick={props.onClickPdf}
       >

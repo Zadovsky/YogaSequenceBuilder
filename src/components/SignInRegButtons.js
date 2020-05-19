@@ -2,10 +2,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 export default function SignInRegButtons(props) {
@@ -15,6 +15,7 @@ export default function SignInRegButtons(props) {
     <div className="SignInRegButtons">
       <Button
         variant="contained"
+        color="secondary"
         className={classes.button}
         onClick={props.onClickSignInAction}
       >
@@ -22,6 +23,7 @@ export default function SignInRegButtons(props) {
       </Button>
       <Button
         variant="contained"
+        color="secondary"
         className={classes.button}
         onClick={props.onClickRegAction}
       >

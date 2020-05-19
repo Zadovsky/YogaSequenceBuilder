@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -48,6 +49,7 @@ export default function AsanaCard(props) {
         ) : (
           ""
         )}
+        <Divider variant="middle" />
         <Typography
           variant="subtitle2"
           color="textPrimary"

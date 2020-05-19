@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: {
     margin: theme.spacing(0.5),
+    color: "black",
   },
 }));
 
@@ -19,6 +20,7 @@ export default function AsanasNavigation(props) {
     return (
       <Chip
         variant="outlined"
+        color="secondary"
         key={group.id}
         label={group.name}
         className={classes.chip}

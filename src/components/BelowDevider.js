@@ -7,10 +7,11 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
+import yellow from "@material-ui/core/colors/yellow";
 
 const useStyles = makeStyles((theme) => ({
   h1: {
-    padding: theme.spacing(2, 2, 0),
+    padding: theme.spacing(3, 2, 2),
   },
   h2: {},
   instruction: {
@@ -24,10 +25,12 @@ const useStyles = makeStyles((theme) => ({
   paperLeft: {
     marginLeft: theme.spacing(2),
     marginBottom: theme.spacing(2),
+    backgroundColor: yellow[50],
   },
   paperRight: {
     marginRight: theme.spacing(2),
     marginBottom: theme.spacing(2),
+    backgroundColor: yellow[50],
   },
   textField: {
     margin: theme.spacing(1, 2, 1),

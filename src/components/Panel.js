@@ -3,12 +3,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
+import yellow from "@material-ui/core/colors/yellow";
 import "./Panel.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(1, 2, 3),
     height: "100%",
+    // backgroundColor: yellow[50],
   },
 }));
 

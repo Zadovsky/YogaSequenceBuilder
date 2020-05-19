@@ -5,8 +5,12 @@ import UserMenu from "../components/UserMenu";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import yellow from "@material-ui/core/colors/yellow";
 
 const useStyles = makeStyles((theme) => ({
+  gridContainer: {
+    backgroundColor: yellow[100],
+  },
   gridItem: {
     padding: theme.spacing(1, 2),
     display: "flex",
@@ -30,7 +34,7 @@ export default function Header(props) {
   const classes = useStyles();
 
   return (
-    <Grid container>
+    <Grid container className={classes.gridContainer}>
       <Grid item xs={4} className={classes.gridItem}>
         <a href={props.logoUrl} className={classes.a}>
           <img src={props.logoImg} alt="logo" className={classes.logoImg}></img>

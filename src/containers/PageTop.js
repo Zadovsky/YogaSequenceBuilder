@@ -57,7 +57,7 @@ function PageTop(props) {
         logoText={props.logo.logoText}
         logoUrl={props.logo.logoUrl}
       />
-      <Divider variant="middle" />
+      {/* <Divider variant="middle" /> */}
       <BelowDevider
         headerText={props.pageTop.headerText[props.language.curLang]}
         whatItIsText={props.pageTop.whatItIsText[props.language.curLang]}
