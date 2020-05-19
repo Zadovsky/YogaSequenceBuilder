@@ -22,14 +22,14 @@ export default function AsanaCard(props) {
   const classStr = classArr.join(" ");
 
   return (
-    <div
-      className={classStr}
-      onClick={props.addAsanaAction}
-      onDragEnter={props.dragEnterAction}
-      onDragStart={props.startCardDragAction}
-      draggable="true"
-    >
-      <div className="AsanaCardInnerDiv">
+    <div className={classStr}>
+      <div
+        className="AsanaCardInnerDiv"
+        onClick={props.addAsanaAction}
+        onDragEnter={props.dragEnterAction}
+        onDragStart={props.startCardDragAction}
+        draggable="true"
+      >
         <div className="AsanaCardImgWrapper">
           <div
             className="AsanaCardImg"
