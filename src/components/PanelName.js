@@ -2,10 +2,11 @@ import React from "react";
 import "./PanelName.css";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(0, 0, 2),
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -16,15 +17,18 @@ const styles = {
 export default function PanelName(props) {
   const classes = useStyles();
   return (
-    <TextField
-      className={classes.root}
-      value={props.name}
-      inputProps={{
-        readOnly: props.readOnly,
-        onChange: (e) => props.onChangePanelNameAction(e),
-        onBlur: (e) => props.onBlurPanelNameAction(e),
-        style: styles.resize,
-      }}
-    />
+    <div className="TextFieldIconWrapper">
+      <TextField
+        className={classes.root}
+        value={props.name}
+        inputProps={{
+          readOnly: props.readOnly,
+          onChange: (e) => props.onChangePanelNameAction(e),
+          onBlur: (e) => props.onBlurPanelNameAction(e),
+          style: styles.resize,
+        }}
+      />
+      {!props.readOnly && <EditIcon />}
+    </div>
   );
 }
