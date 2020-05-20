@@ -9,6 +9,7 @@ import CardPlaceHolder from "./CardPlaceHolder";
 import EmptySpaceAtTheEnd from "./EmptySpaceAtTheEnd";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import EditIcon from "@material-ui/icons/Edit";
 import yellow from "@material-ui/core/colors/yellow";
 import "./AsanasGrid.css";
 
@@ -146,15 +147,18 @@ export default function AsanasGrid(props) {
         onDragOver={onDragOverFunc}
       >
         <Paper className={classes.root}>
-          <TextField
-            className={classes.textField}
-            value={name}
-            inputProps={{
-              readOnly: itIsSchedulePanel ? false : true,
-              onChange: (e) => onChangeGridNameAction(gridId, e),
-              onBlur: onBlurGridNameAction,
-            }}
-          />
+          <div className="TextFieldIconWrapper">
+            <TextField
+              className={classes.textField}
+              value={name}
+              inputProps={{
+                readOnly: itIsSchedulePanel ? false : true,
+                onChange: (e) => onChangeGridNameAction(gridId, e),
+                onBlur: onBlurGridNameAction,
+              }}
+            />
+            {itIsSchedulePanel && <EditIcon />}
+          </div>
           <div className="AsanasGrid">
             {cardsHoldersArr}
             <EmptySpaceAtTheEnd

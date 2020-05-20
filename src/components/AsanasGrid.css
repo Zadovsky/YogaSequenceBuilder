@@ -36,3 +36,8 @@
 .AsanasGridDraggable:hover .closeGridIconDiv .MuiButtonBase-root {
   opacity: 100%;
 }
+
+.TextFieldIconWrapper {
+  display: flex;
+  align-items: center;
+}
