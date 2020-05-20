@@ -14,7 +14,7 @@ import "./AsanasGrid.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(3, 1, 3, 0),
+    margin: theme.spacing(0, 1, 3, 0),
     position: "relative",
     backgroundColor: yellow[50],
   },
