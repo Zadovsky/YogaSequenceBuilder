@@ -167,14 +167,12 @@ export default function AsanasGrid(props) {
               }
             />
           </div>
-          {itIsSchedulePanel && enableCloseIcon ? (
+          {itIsSchedulePanel && enableCloseIcon && (
             <div className="closeGridIconDiv">
               <IconButton className={classes.button} onClick={closeGridAction}>
                 <CloseIcon />
               </IconButton>
             </div>
-          ) : (
-            ""
           )}
           {itIsSchedulePanel ? (
             <div
