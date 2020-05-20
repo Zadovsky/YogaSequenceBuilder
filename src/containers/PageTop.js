@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Divider from "@material-ui/core/Divider";
 import Header from "../components/Header";
 import BelowDevider from "../components/BelowDevider";
 import { onChangeLangChooser } from "../actions/LanguageChooserActions";
@@ -57,7 +56,6 @@ function PageTop(props) {
         logoText={props.logo.logoText}
         logoUrl={props.logo.logoUrl}
       />
-      {/* <Divider variant="middle" /> */}
       <BelowDevider
         headerText={props.pageTop.headerText[props.language.curLang]}
         whatItIsText={props.pageTop.whatItIsText[props.language.curLang]}
