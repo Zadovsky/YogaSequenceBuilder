@@ -23,10 +23,10 @@ export default function ForgotPwdPopUpWindow(props) {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onClickCancelAction} color="primary">
+        <Button onClick={props.onClickCancelAction} color="secondary">
           {props.texts.cancelText}
         </Button>
-        <Button onClick={props.onClickConfirmAction} color="primary">
+        <Button onClick={props.onClickConfirmAction} color="secondary">
           {props.texts.confirmText}
         </Button>
       </DialogActions>

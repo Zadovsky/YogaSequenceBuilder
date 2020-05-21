@@ -11,8 +11,8 @@ import { onCloseInfoPopUpAction } from "../actions/InfoPopUpWindowActions";
 const buttonText = {
   ok: {
     ru: "Ок",
-    en: "Ok"
-  }
+    en: "Ok",
+  },
 };
 
 function InfoPopUpWindow(props) {
@@ -30,7 +30,7 @@ function InfoPopUpWindow(props) {
         <DialogContentText>{texts.text}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onCloseInfoPopUpAction} color="primary">
+        <Button onClick={props.onCloseInfoPopUpAction} color="secondary">
           {buttonText.ok[props.language.curLang]}
         </Button>
       </DialogActions>
@@ -38,16 +38,16 @@ function InfoPopUpWindow(props) {
   );
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {
     language: store.language,
-    infoPopUp: store.infoPopUp
+    infoPopUp: store.infoPopUp,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onCloseInfoPopUpAction: () => dispatch(onCloseInfoPopUpAction())
+    onCloseInfoPopUpAction: () => dispatch(onCloseInfoPopUpAction()),
   };
 };
 

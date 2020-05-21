@@ -26,10 +26,10 @@ export default function RegPopUpWindow(props) {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onClickCancelRegAction} color="primary">
+        <Button onClick={props.onClickCancelRegAction} color="secondary">
           {props.texts.cancelText}
         </Button>
-        <Button onClick={props.onClickConfirmRegAction} color="primary">
+        <Button onClick={props.onClickConfirmRegAction} color="secondary">
           {props.texts.confirmText}
         </Button>
       </DialogActions>

@@ -11,12 +11,12 @@ import { onCloseYesNoPopUpAction } from "../actions/YesNoPopUpWindowActions";
 const buttonText = {
   yes: {
     ru: "Да",
-    en: "Yes"
+    en: "Yes",
   },
   no: {
     ru: "Нет",
-    en: "No"
-  }
+    en: "No",
+  },
 };
 
 function YesNoPopUpWindow(props) {
@@ -34,10 +34,10 @@ function YesNoPopUpWindow(props) {
         <DialogContentText>{texts.text}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onCloseYesNoPopUpAction} color="primary">
+        <Button onClick={props.onCloseYesNoPopUpAction} color="secondary">
           {buttonText.no[props.language.curLang]}
         </Button>
-        <Button onClick={props.yesNoPopUp.yesAction} color="primary">
+        <Button onClick={props.yesNoPopUp.yesAction} color="secondary">
           {buttonText.yes[props.language.curLang]}
         </Button>
       </DialogActions>
@@ -45,16 +45,16 @@ function YesNoPopUpWindow(props) {
   );
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {
     language: store.language,
-    yesNoPopUp: store.yesNoPopUp
+    yesNoPopUp: store.yesNoPopUp,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onCloseYesNoPopUpAction: () => dispatch(onCloseYesNoPopUpAction())
+    onCloseYesNoPopUpAction: () => dispatch(onCloseYesNoPopUpAction()),
   };
 };
 

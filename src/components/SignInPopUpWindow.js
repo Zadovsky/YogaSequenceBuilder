@@ -9,13 +9,13 @@ import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import "./SignInPopUpWindow.css";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   link: {
     margin: theme.spacing(2, 0, 0),
     marginLeft: "auto",
     marginRight: "auto",
-    display: "block"
-  }
+    display: "block",
+  },
 }));
 
 export default function SignInPopUpWindow(props) {
@@ -58,15 +58,16 @@ export default function SignInPopUpWindow(props) {
           variant="body2"
           onClick={props.onClickForgotPwdAction}
           className={classes.link}
+          color="secondary"
         >
           {props.signInWindowTexts.forgotPwdText}
         </Link>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onClickCancelSignInAction} color="primary">
+        <Button onClick={props.onClickCancelSignInAction} color="secondary">
           {props.signInWindowTexts.cancelText}
         </Button>
-        <Button onClick={props.onClickSignInAction} color="primary">
+        <Button onClick={props.onClickSignInAction} color="secondary">
           {props.signInWindowTexts.signInText}
         </Button>
       </DialogActions>
