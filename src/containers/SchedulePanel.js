@@ -93,7 +93,6 @@ function SchedulePanel(props) {
     <div className="SchedulePanel">
       <Panel
         asanas={asanas}
-        panelNameRO={false}
         onChangePanelNameAction={onChangePanelNameAction}
         onBlurPanelNameAction={onBlurPanelNameAction}
         startCardDragAction={readOnly ? () => {} : startCardDragAction}

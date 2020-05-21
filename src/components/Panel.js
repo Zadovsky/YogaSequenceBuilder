@@ -45,7 +45,6 @@ export default function Panel(props) {
     gridDefaultName,
     buttonsPanel,
     wrapperClassName,
-    panelNameRO,
     itIsSchedulePanel,
     selectedGroupId,
     onGridBlockScroll,
@@ -68,7 +67,7 @@ export default function Panel(props) {
               name={panelName === null ? panelDefaultName : panelName}
               onChangePanelNameAction={onChangePanelNameAction}
               onBlurPanelNameAction={onBlurPanelNameAction}
-              readOnly={panelNameRO}
+              readOnly={!itIsSchedulePanel}
             />
           </div>
           {buttonsPanel}

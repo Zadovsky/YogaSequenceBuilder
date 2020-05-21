@@ -52,7 +52,6 @@ function AsanasPanel(props) {
   return (
     <Panel
       asanas={asanas}
-      panelNameRO={true}
       onChangePanelNameAction={() => {}}
       onBlurPanelNameAction={() => {}}
       startCardDragAction={props.startCardDragAction}
