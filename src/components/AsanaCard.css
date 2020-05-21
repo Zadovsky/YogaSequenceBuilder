@@ -28,10 +28,12 @@
 
 .AsanaCardInnerDiv .MuiButtonBase-root {
   opacity: 0;
+  transition: 200ms;
 }
 
 .AsanaCardInnerDiv:hover .MuiButtonBase-root {
   opacity: 100%;
+  transition: 200ms;
 }
 
 .AsanaCardImgWrapper {

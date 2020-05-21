@@ -36,9 +36,11 @@ const useStyles = makeStyles((theme) => ({
   list: {
     "& button": {
       opacity: 0,
+      transition: "200ms",
     },
     "& :hover button": {
       opacity: "100%",
+      transition: "200ms",
     },
   },
   listItemText: {

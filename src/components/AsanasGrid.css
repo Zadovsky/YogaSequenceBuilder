@@ -31,10 +31,12 @@
 
 .AsanasGridDraggable .closeGridIconDiv .MuiButtonBase-root {
   opacity: 0;
+  transition: 200ms;
 }
 
 .AsanasGridDraggable:hover .closeGridIconDiv .MuiButtonBase-root {
   opacity: 100%;
+  transition: 200ms;
 }
 
 .TextFieldIconWrapper {
