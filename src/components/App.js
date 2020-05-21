@@ -15,6 +15,8 @@ import YesNoPopUpWindow from "../containers/YesNoPopUpWindow";
 import { makeStyles } from "@material-ui/core/styles";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import pink from "@material-ui/core/colors/pink";
+import grey from "@material-ui/core/colors/grey";
+import orange from "@material-ui/core/colors/orange";
 import "./App.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +30,10 @@ const theme = createMuiTheme({
     secondary: {
       main: pink[500],
     },
+    primary: grey,
+    error: {
+      main: orange[600],
+    },
   },
 });
 
@@ -38,8 +44,8 @@ export default function App(props) {
     <React.Fragment>
       <ReadCookies />
       <CssBaseline />
-      <DnDContext>
-        <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={theme}>
+        <DnDContext>
           <Container maxWidth="lg">
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -59,11 +65,11 @@ export default function App(props) {
               </Grid>
             </Grid>
           </Container>
-        </MuiThemeProvider>
-      </DnDContext>
-      <UserPopUpWindows />
-      <InfoPopUpWindow />
-      <YesNoPopUpWindow />
+        </DnDContext>
+        <UserPopUpWindows />
+        <InfoPopUpWindow />
+        <YesNoPopUpWindow />
+      </MuiThemeProvider>
     </React.Fragment>
   );
 }
