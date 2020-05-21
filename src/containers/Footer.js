@@ -20,7 +20,11 @@ function Footer(props) {
     <Paper className={classes.paper}>
       <Typography align="center">
         {props.logo.footerText + " "}
-        <Link href={props.logo.footerLinkUrl} underline="always">
+        <Link
+          href={props.logo.footerLinkUrl}
+          underline="always"
+          color="secondary"
+        >
           {props.logo.footerLinkText}
         </Link>
       </Typography>
