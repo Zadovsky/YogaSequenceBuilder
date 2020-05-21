@@ -19,25 +19,25 @@ export default function SaveLoadPdfButtons(props) {
     <div className={classes.saveLoadPdfButtons}>
       <Button
         variant="contained"
-        color="secondary"
+        color={props.readOnly ? "default" : "secondary"}
         className={classes.button}
-        onClick={props.onClickLoad}
+        onClick={props.readOnly ? () => {} : props.onClickLoad}
       >
         {props.texts.load}
       </Button>
       <Button
         variant="contained"
-        color="secondary"
+        color={props.readOnly ? "default" : "secondary"}
         className={classes.button}
-        onClick={props.onClickSave}
+        onClick={props.readOnly ? () => {} : props.onClickSave}
       >
         {props.texts.save}
       </Button>
       <Button
         variant="contained"
-        color="secondary"
+        color={props.readOnly ? "default" : "secondary"}
         className={classes.button}
-        onClick={props.onClickPdf}
+        onClick={props.readOnly ? () => {} : props.onClickPdf}
       >
         {props.texts.pdf}
       </Button>

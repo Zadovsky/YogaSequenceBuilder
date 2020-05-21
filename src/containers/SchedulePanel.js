@@ -135,6 +135,7 @@ function SchedulePanel(props) {
             }
             onClickLoad={() => onClickLoad(user.login, user.password)}
             onClickPdf={onClickPdf}
+            readOnly={readOnly}
           />
         }
         wrapperClassName={"SchedulePanel"}
