@@ -10,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Slide from "@material-ui/core/Slide";
 import "./SequencesListSpace.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,9 +40,6 @@ const useStyles = makeStyles((theme) => ({
     "& :hover button": {
       opacity: "100%",
     },
-  },
-  displayNone: {
-    display: "none",
   },
   listItemText: {
     padding: theme.spacing(0, 1, 0, 0),
@@ -96,13 +94,11 @@ export default function SequencesListSpace(props) {
   );
 
   return (
-    <div
-      className={props.isOpen ? "sequencesListWrapper" : classes.displayNone}
+    <ClickAwayListener
+      onClickAway={props.closeSeqListAction}
+      mouseEvent={props.isOpen ? "onClick" : false}
     >
-      <ClickAwayListener
-        onClickAway={props.closeSeqListAction}
-        mouseEvent={props.isOpen ? "onClick" : false}
-      >
+      <Slide direction="right" in={props.isOpen}>
         <Paper className={classes.paper} elevation={2}>
           <div className="SeqListFlexBox">
             <Typography variant="h5" component="h3" className={classes.h3}>
@@ -139,7 +135,7 @@ export default function SequencesListSpace(props) {
             </IconButton>
           </div>
         </Paper>
-      </ClickAwayListener>
-    </div>
+      </Slide>
+    </ClickAwayListener>
   );
 }
