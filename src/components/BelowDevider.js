@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   h2: {},
   instruction: {
     padding: theme.spacing(1, 2),
+    textAlign: "justify",
   },
   li: {
     paddingLeft: theme.spacing(5),
