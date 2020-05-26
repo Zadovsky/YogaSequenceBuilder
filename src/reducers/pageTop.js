@@ -118,7 +118,7 @@ const initialState = {
     },
   },
   headerText: {
-    ru: "Конструктор последовательностей асан",
+    ru: "Конструктор последова­тель­ностей асан",
     en: "Yoga Sequence Builder",
   },
   whatItIsText: {

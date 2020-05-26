@@ -10,6 +10,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import yellow from "@material-ui/core/colors/yellow";
 
 const useStyles = makeStyles((theme) => ({
+  gridContainer: {
+    padding: theme.spacing(2),
+  },
+  gridItem: {
+    width: "100%",
+  },
   h1: {
     padding: theme.spacing(3, 2, 2),
   },
@@ -23,14 +29,7 @@ const useStyles = makeStyles((theme) => ({
     background: "url(img/om.png) no-repeat 16px",
     backgroundSize: "16px",
   },
-  paperLeft: {
-    marginLeft: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    backgroundColor: yellow[50],
-  },
-  paperRight: {
-    marginRight: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+  paper: {
     backgroundColor: yellow[50],
   },
   textField: {
@@ -46,7 +45,7 @@ export default function BelowDevider(props) {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} className={classes.gridContainer}>
       <Grid item xs={12}>
         <Typography
           variant="h4"
@@ -57,8 +56,8 @@ export default function BelowDevider(props) {
           {props.headerText}
         </Typography>
       </Grid>
-      <Grid item xs={6}>
-        <Paper className={classes.paperLeft}>
+      <Grid item md={6} className={classes.gridItem}>
+        <Paper className={classes.paper}>
           <TextField
             className={classes.textField}
             value={props.whatItIsText.title}
@@ -72,8 +71,8 @@ export default function BelowDevider(props) {
           </Typography>
         </Paper>
       </Grid>
-      <Grid item xs={6}>
-        <Paper className={classes.paperRight}>
+      <Grid item md={6} className={classes.gridItem}>
+        <Paper className={classes.paper}>
           <TextField
             className={classes.textField}
             value={props.howItWorksText.title}
