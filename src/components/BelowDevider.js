@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   h1: {
-    padding: theme.spacing(3, 2, 2),
+    padding: theme.spacing(2),
   },
   h2: {},
   instruction: {
