@@ -16,17 +16,23 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    width: "100%",
   },
   p: {
     display: "inline",
     margin: theme.spacing(0, 0, 0, 2),
   },
-  a: {
+  aText: {
+    maxWidth: "85%",
     textDecoration: "none",
   },
+  aLogo: {
+    width: "15%",
+    maxWidth: "64px",
+    lineHeight: 0,
+  },
   logoImg: {
-    height: "64px",
-    width: "64px",
+    width: "100%",
   },
 }));
 
@@ -35,29 +41,24 @@ export default function Header(props) {
 
   return (
     <Grid container className={classes.gridContainer}>
-      <Grid item xs={4} className={classes.gridItem}>
-        <a href={props.logoUrl} className={classes.a}>
+      <Grid item md={4} className={classes.gridItem}>
+        <a href={props.logoUrl} className={classes.aLogo}>
           <img src={props.logoImg} alt="logo" className={classes.logoImg}></img>
         </a>
-        <a href={props.logoUrl} className={classes.a}>
-          <Typography
-            variant="h5"
-            component="p"
-            className={classes.p}
-            color="textPrimary"
-          >
+        <a href={props.logoUrl} className={classes.aText}>
+          <Typography component="p" className={classes.p} color="textPrimary">
             {props.logoText}
           </Typography>
         </a>
       </Grid>
-      <Grid item xs={4} className={classes.gridItem}>
+      <Grid item md={4} className={classes.gridItem}>
         <LanguageChooser
           curLang={props.curLang}
           langList={props.langList}
           onChangeAction={props.onChangeAction}
         />
       </Grid>
-      <Grid item xs={4} className={classes.gridItem}>
+      <Grid item md={4} className={classes.gridItem}>
         {props.login === null ? (
           <SignInRegButtons
             signInButtonText={props.signInButtonText}
