@@ -21,7 +21,13 @@ import "./App.css";
 
 const useStyles = makeStyles((theme) => ({
   grid: {
-    height: "100vh",
+    width: "100%",
+    [theme.breakpoints.up("lg")]: {
+      height: "100vh",
+    },
+    [theme.breakpoints.down("md")]: {
+      height: "50vh",
+    },
   },
 }));
 
@@ -51,13 +57,13 @@ export default function App(props) {
               <Grid item xs={12}>
                 <PageTop />
               </Grid>
-              <Grid item xs={6} className={classes.grid}>
+              <Grid item md={6} className={classes.grid}>
                 <div className="PanelListWrapper">
                   <AsanasPanel />
                   <SequencesList />
                 </div>
               </Grid>
-              <Grid item xs={6} className={classes.grid}>
+              <Grid item md={6} className={classes.grid}>
                 <SchedulePanel />
               </Grid>
               <Grid item xs={12}>
