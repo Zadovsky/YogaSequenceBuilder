@@ -23,7 +23,7 @@ export function asanasReducer(state = initialState, action) {
     case MENU_BUTTON_ASANAS:
       return {
         ...state,
-        openMenu: !state.openMenu,
+        openMenu: true,
       };
 
     case ON_CLICK_ASANAS_NAVIGATION:

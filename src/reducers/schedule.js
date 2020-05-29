@@ -105,7 +105,7 @@ export function scheduleReducer(state = initialState, action) {
     case MENU_BUTTON_SCHEDULE:
       return {
         ...state,
-        openMenu: !state.openMenu,
+        openMenu: true,
       };
 
     case PDF_DOWNLOAD:

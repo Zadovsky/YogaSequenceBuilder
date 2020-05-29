@@ -5,6 +5,7 @@ import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import IconButton from "@material-ui/core/IconButton";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import clsx from "clsx";
 import "./Panel.css";
 
@@ -107,20 +108,25 @@ export default function Panel(props) {
               menuButtonAction={menuButtonAction}
             />
           </div>
-          <div
-            className={clsx(
-              classes.buttonsPanelWrapper,
-              openMenu && classes.buttonsPanelVisible
-            )}
+          <ClickAwayListener
+            onClickAway={closeMenuAction}
+            mouseEvent={openMenu ? "onClick" : false}
           >
-            {buttonsPanel}
-            <IconButton
-              className={classes.upArrowButton}
-              onClick={closeMenuAction}
+            <div
+              className={clsx(
+                classes.buttonsPanelWrapper,
+                openMenu && classes.buttonsPanelVisible
+              )}
             >
-              <KeyboardArrowUpIcon />
-            </IconButton>
-          </div>
+              {buttonsPanel}
+              <IconButton
+                className={classes.upArrowButton}
+                onClick={closeMenuAction}
+              >
+                <KeyboardArrowUpIcon />
+              </IconButton>
+            </div>
+          </ClickAwayListener>
           <div className={classes.PanelFlexElement}>
             <AsanasGridBlock
               cards={cards}
