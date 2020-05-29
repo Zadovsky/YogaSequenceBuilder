@@ -27,7 +27,7 @@ export function asanasReducer(state = initialState, action) {
       };
 
     case ON_CLICK_ASANAS_NAVIGATION:
-      return { ...state, selectedGroupId: action.payload };
+      return { ...state, selectedGroupId: action.payload, openMenu: false };
 
     case GRID_BLOCK_SCROLL:
       return { ...state, selectedGroupId: null };

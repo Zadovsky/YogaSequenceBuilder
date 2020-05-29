@@ -26,6 +26,8 @@ import {
   CLICK_LOAD,
   CLICK_SAVE,
   CLICK_PDF,
+  NO_AUTHORIZATION_LOAD,
+  NO_AUTHORIZATION_SAVE,
 } from "../actions/SaveLoadPdfButtonsActions";
 import { GET_COOKIES } from "../actions/ReadCookiesActions";
 import { SET_COOKIES } from "../actions/SetCookiesActions";
@@ -118,6 +120,7 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         renderPdf: true,
+        openMenu: false,
       };
 
     case GET_COOKIES:
@@ -151,12 +154,26 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         readOnly: true,
+        openMenu: false,
       };
 
     case CLICK_SAVE:
       return {
         ...state,
         readOnly: true,
+        openMenu: false,
+      };
+
+    case NO_AUTHORIZATION_LOAD:
+      return {
+        ...state,
+        openMenu: false,
+      };
+
+    case NO_AUTHORIZATION_SAVE:
+      return {
+        ...state,
+        openMenu: false,
       };
 
     case CLICK_SEQ_LOAD:
