@@ -11,6 +11,7 @@ import { DRAG_ENTER_GRID_PH } from "../actions/GridPlaceHolderActions";
 import {
   CHANGE_PANEL_NAME,
   BLUR_PANEL_NAME,
+  MENU_BUTTON_SCHEDULE,
 } from "../actions/PanelNameActions";
 import {
   DRAG_ICON_MOUSE_DOWN,
@@ -58,6 +59,7 @@ const initialState = {
   fastTransition: false,
   onPlaceHolder: false,
   gridHeight: null,
+  openMenu: false,
   panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
   gridDefaultName: {
     ru: "Без названия",
@@ -93,6 +95,12 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case MENU_BUTTON_SCHEDULE:
+      return {
+        ...state,
+        openMenu: !state.openMenu,
+      };
+
     case PDF_DOWNLOAD:
       return {
         ...state,

@@ -23,6 +23,7 @@ import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndAction
 import {
   onChangePanelNameAction,
   onBlurPanelNameAction,
+  onPressMenuButtonScheduleAction,
 } from "../actions/PanelNameActions";
 import {
   onClickSave,
@@ -142,6 +143,8 @@ function SchedulePanel(props) {
         itIsSchedulePanel={!readOnly}
         selectedGroupId={null}
         onGridBlockScroll={() => {}}
+        menuButtonAction={props.onPressMenuButtonScheduleAction}
+        openMenu={props.schedule.openMenu}
       />
       <SetCookies
         setCookies={setCookies}
@@ -206,6 +209,8 @@ const mapDispatchToProps = (dispatch) => {
     onClickLoad: (login, password) => dispatch(onClickLoad(login, password)),
     onClickPdf: () => dispatch(onClickPdf()),
     onPDFDownloadAction: (ref) => dispatch(onPDFDownloadAction(ref)),
+    onPressMenuButtonScheduleAction: () =>
+      dispatch(onPressMenuButtonScheduleAction()),
   };
 };
 

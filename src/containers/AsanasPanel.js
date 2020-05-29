@@ -12,6 +12,7 @@ import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
 import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndActions";
 import { onClickAsanasNavigation } from "../actions/AsanasNavigationActions";
+import { onPressMenuButtonAsanasAction } from "../actions/PanelNameActions";
 import "./AsanasPanel.css";
 
 function createCardsArr(asanas, language) {
@@ -90,6 +91,8 @@ function AsanasPanel(props) {
       itIsSchedulePanel={false}
       selectedGroupId={props.asanas.selectedGroupId}
       onGridBlockScroll={props.onGridBlockScroll}
+      menuButtonAction={props.onPressMenuButtonAsanasAction}
+      openMenu={props.asanas.openMenu}
     />
   );
 }
@@ -119,6 +122,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(onDragEnterHolderAction(index, gridId)),
     onDragEnterEmptySpaceAction: (gridId, itIsSchedulePanel) =>
       dispatch(onDragEnterEmptySpaceAction(gridId, itIsSchedulePanel)),
+    onPressMenuButtonAsanasAction: () =>
+      dispatch(onPressMenuButtonAsanasAction()),
   };
 };
 

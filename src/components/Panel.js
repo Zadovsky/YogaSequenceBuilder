@@ -3,12 +3,37 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
+import clsx from "clsx";
 import "./Panel.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(1, 2, 3),
     height: "100%",
+  },
+  buttonsPanelWrapper: {
+    [theme.breakpoints.down("sm")]: {
+      maxHeight: 0,
+      transition: "1000ms",
+    },
+  },
+  buttonsPanelVisible: {
+    maxHeight: "500px",
+    transition: "1000ms",
+  },
+  overflowHidden: {
+    overflow: "hidden",
+    minHeight: "fit-content",
+    margin: "-4px",
+    padding: "4px",
+  },
+  PanelFlexElement: {
+    overflowY: "scroll",
+    scrollBehavior: "smooth",
+    marginLeft: "-10px",
+    paddingLeft: "10px",
+    flexGrow: 3,
+    marginTop: theme.spacing(2),
   },
 }));
 
@@ -48,6 +73,8 @@ export default function Panel(props) {
     itIsSchedulePanel,
     selectedGroupId,
     onGridBlockScroll,
+    menuButtonAction,
+    openMenu,
   } = props;
 
   const classes = useStyles();
@@ -68,10 +95,20 @@ export default function Panel(props) {
               onChangePanelNameAction={onChangePanelNameAction}
               onBlurPanelNameAction={onBlurPanelNameAction}
               readOnly={!itIsSchedulePanel}
+              menuButtonAction={menuButtonAction}
             />
           </div>
-          {buttonsPanel}
-          <div className="PanelFlexElement">
+          <div className={classes.overflowHidden}>
+            <div
+              className={clsx(
+                classes.buttonsPanelWrapper,
+                openMenu && classes.buttonsPanelVisible
+              )}
+            >
+              {buttonsPanel}
+            </div>
+          </div>
+          <div className={classes.PanelFlexElement}>
             <AsanasGridBlock
               cards={cards}
               draggingCard={draggingCard}

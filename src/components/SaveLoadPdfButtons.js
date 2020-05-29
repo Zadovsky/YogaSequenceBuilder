@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   saveLoadPdfButtons: {
-    margin: theme.spacing(1, -1, 2),
+    margin: theme.spacing(1, -1, 0),
   },
 }));
 
