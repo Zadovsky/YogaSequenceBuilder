@@ -14,18 +14,14 @@ const useStyles = makeStyles((theme) => ({
   buttonsPanelWrapper: {
     [theme.breakpoints.down("sm")]: {
       maxHeight: 0,
-      transition: "1000ms",
+      transition: "max-height 500ms, visibility 0ms 500ms",
+      visibility: "hidden",
     },
   },
   buttonsPanelVisible: {
     maxHeight: "500px",
-    transition: "1000ms",
-  },
-  overflowHidden: {
-    overflow: "hidden",
-    minHeight: "fit-content",
-    margin: "-4px",
-    padding: "4px",
+    transition: "max-height 500ms",
+    visibility: "visible",
   },
   PanelFlexElement: {
     overflowY: "scroll",
@@ -98,15 +94,13 @@ export default function Panel(props) {
               menuButtonAction={menuButtonAction}
             />
           </div>
-          <div className={classes.overflowHidden}>
-            <div
-              className={clsx(
-                classes.buttonsPanelWrapper,
-                openMenu && classes.buttonsPanelVisible
-              )}
-            >
-              {buttonsPanel}
-            </div>
+          <div
+            className={clsx(
+              classes.buttonsPanelWrapper,
+              openMenu && classes.buttonsPanelVisible
+            )}
+          >
+            {buttonsPanel}
           </div>
           <div className={classes.PanelFlexElement}>
             <AsanasGridBlock
