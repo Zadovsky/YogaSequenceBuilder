@@ -37,6 +37,7 @@ import {
   CLOSE_SEQ_LIST,
   LOAD_SEQ,
 } from "../actions/SequencesListActions";
+import { CLOSE_MENU_SCHEDULE } from "../actions/PanelActions";
 
 const initialState = {
   readOnly: false,
@@ -95,6 +96,12 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case CLOSE_MENU_SCHEDULE:
+      return {
+        ...state,
+        openMenu: false,
+      };
+
     case MENU_BUTTON_SCHEDULE:
       return {
         ...state,

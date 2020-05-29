@@ -32,6 +32,7 @@ import {
 } from "../actions/SaveLoadPdfButtonsActions";
 import { onSetCookiesAction } from "../actions/SetCookiesActions";
 import { onPDFDownloadAction } from "../actions/PDFDownloadActions";
+import { onCloseMenuScheduleAction } from "../actions/PanelActions";
 import PDFDownload from "../components/PDFDownload";
 import "./SchedulePanel.css";
 
@@ -145,6 +146,7 @@ function SchedulePanel(props) {
         onGridBlockScroll={() => {}}
         menuButtonAction={props.onPressMenuButtonScheduleAction}
         openMenu={props.schedule.openMenu}
+        closeMenuAction={props.onCloseMenuScheduleAction}
       />
       <SetCookies
         setCookies={setCookies}
@@ -211,6 +213,7 @@ const mapDispatchToProps = (dispatch) => {
     onPDFDownloadAction: (ref) => dispatch(onPDFDownloadAction(ref)),
     onPressMenuButtonScheduleAction: () =>
       dispatch(onPressMenuButtonScheduleAction()),
+    onCloseMenuScheduleAction: () => dispatch(onCloseMenuScheduleAction()),
   };
 };
 
