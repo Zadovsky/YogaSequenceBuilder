@@ -3,30 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import IconButton from "@material-ui/core/IconButton";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import clsx from "clsx";
+import ButtonsPanelBlock from "../components/ButtonsPanelBlock";
 import "./Panel.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(1, 2, 3),
     height: "100%",
-  },
-  buttonsPanelWrapper: {
-    [theme.breakpoints.down("sm")]: {
-      maxHeight: 0,
-      transition: "max-height 500ms, visibility 0ms 500ms",
-      visibility: "hidden",
-      paddingRight: theme.spacing(6),
-    },
-    position: "relative",
-  },
-  buttonsPanelVisible: {
-    maxHeight: "500px",
-    transition: "max-height 500ms",
-    visibility: "visible",
   },
   PanelFlexElement: {
     overflowY: "scroll",
@@ -35,14 +18,6 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "10px",
     flexGrow: 3,
     marginTop: theme.spacing(2),
-  },
-  upArrowButton: {
-    [theme.breakpoints.up("md")]: {
-      visibility: "hidden",
-    },
-    position: "absolute",
-    right: 0,
-    top: 0,
   },
 }));
 
@@ -108,25 +83,11 @@ export default function Panel(props) {
               menuButtonAction={menuButtonAction}
             />
           </div>
-          <ClickAwayListener
-            onClickAway={closeMenuAction}
-            mouseEvent={openMenu ? "onClick" : false}
-          >
-            <div
-              className={clsx(
-                classes.buttonsPanelWrapper,
-                openMenu && classes.buttonsPanelVisible
-              )}
-            >
-              {buttonsPanel}
-              <IconButton
-                className={classes.upArrowButton}
-                onClick={closeMenuAction}
-              >
-                <KeyboardArrowUpIcon />
-              </IconButton>
-            </div>
-          </ClickAwayListener>
+          <ButtonsPanelBlock
+            buttonsPanel={buttonsPanel}
+            openMenu={openMenu}
+            closeMenuAction={closeMenuAction}
+          />
           <div className={classes.PanelFlexElement}>
             <AsanasGridBlock
               cards={cards}
