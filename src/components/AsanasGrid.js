@@ -16,9 +16,12 @@ import "./AsanasGrid.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(0, 1, 3, 0),
+    margin: theme.spacing(0, 1, 2, 0),
     position: "relative",
     backgroundColor: yellow[50],
+    [theme.breakpoints.down("xs")]: {
+      margin: theme.spacing(0, 1, 1, 0),
+    },
   },
   button: {
     position: "absolute",
