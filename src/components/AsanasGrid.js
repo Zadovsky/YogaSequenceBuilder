@@ -11,6 +11,8 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import EditIcon from "@material-ui/icons/Edit";
 import yellow from "@material-ui/core/colors/yellow";
+import { useTheme } from "@material-ui/core/styles";
+import { useMediaQuery } from "@material-ui/core";
 import clsx from "clsx";
 import "./AsanasGrid.css";
 
@@ -33,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     margin: theme.spacing(1),
+    [theme.breakpoints.down("xs")]: {
+      margin: theme.spacing(0, 1, 1),
+    },
   },
 }));
 
@@ -132,6 +137,22 @@ export default function AsanasGrid(props) {
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
+  const iconButtonProps = {
+    size: isSmallScreen ? "small" : "",
+  };
+  const iconProps = {
+    fontSize: isSmallScreen ? "small" : "",
+  };
+  const styles = {
+    resize: {
+      fontSize: isSmallScreen ? "0.8rem" : "",
+      height: isSmallScreen ? "0.9rem" : "",
+      paddingBottom: isSmallScreen ? "4px" : "",
+    },
+  };
+
   const onDragOverFunc = itIsSchedulePanel
     ? (e) => {
         e.preventDefault();
@@ -163,9 +184,10 @@ export default function AsanasGrid(props) {
                 readOnly: itIsSchedulePanel ? false : true,
                 onChange: (e) => onChangeGridNameAction(gridId, e),
                 onBlur: onBlurGridNameAction,
+                style: styles.resize,
               }}
             />
-            {itIsSchedulePanel && <EditIcon />}
+            {itIsSchedulePanel && <EditIcon {...iconProps} />}
           </div>
           <div className="AsanasGrid">
             {cardsHoldersArr}
@@ -177,7 +199,11 @@ export default function AsanasGrid(props) {
           </div>
           {itIsSchedulePanel && enableCloseIcon && (
             <div className="closeGridIconDiv">
-              <IconButton className={classes.button} onClick={closeGridAction}>
+              <IconButton
+                {...iconButtonProps}
+                className={classes.button}
+                onClick={closeGridAction}
+              >
                 <CloseIcon />
               </IconButton>
             </div>

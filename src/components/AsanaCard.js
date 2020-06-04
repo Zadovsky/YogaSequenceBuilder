@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Divider from "@material-ui/core/Divider";
+import { useTheme } from "@material-ui/core/styles";
+import { useMediaQuery } from "@material-ui/core";
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +41,15 @@ export default function AsanaCard(props) {
   const classes = useStyles();
   const classStr = clsx("AsanaCard", props.isDragging && "AsanaCardDragging");
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
+  const iconButtonProps = {
+    size: isSmallScreen ? "small" : "",
+  };
+  const iconProps = {
+    fontSize: isSmallScreen ? "small" : "",
+  };
+
   return (
     <div className={classStr}>
       <div
@@ -59,10 +70,11 @@ export default function AsanaCard(props) {
         </div>
         {props.itIsSchedulePanel ? (
           <IconButton
+            {...iconButtonProps}
             className={classes.button}
             onClick={props.closeCardAction}
           >
-            <CloseIcon />
+            <CloseIcon {...iconProps} />
           </IconButton>
         ) : (
           ""
