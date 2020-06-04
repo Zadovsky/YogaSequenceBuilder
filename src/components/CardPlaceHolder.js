@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import "./CardPlaceHolder.css";
 
 function makeTransitionStyle(fast, DragEnd) {
@@ -14,9 +15,7 @@ function makeTransitionStyle(fast, DragEnd) {
 }
 
 export default function CardPlaceHolder(props) {
-  var classArr = ["CardPlaceHolder"];
-  if (props.fat) classArr.push("PlaceHolderFat");
-  const classStr = classArr.join(" ");
+  const classStr = clsx("CardPlaceHolder", props.fat && "PlaceHolderFat");
 
   const transitionStyle = makeTransitionStyle(
     props.fastTransition,

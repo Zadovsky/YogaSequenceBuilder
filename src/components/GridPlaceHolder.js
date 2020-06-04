@@ -14,9 +14,6 @@ function makeTransitionStyle(fast, DragEnd) {
 }
 
 export default function GridPlaceHolder(props) {
-  var classArr = ["GridPlaceHolder"];
-  const classStr = classArr.join(" ");
-
   var transitionStyle = makeTransitionStyle(
     props.fastTransition,
     props.isDragEnd
@@ -25,7 +22,7 @@ export default function GridPlaceHolder(props) {
 
   return (
     <div
-      className={classStr}
+      className="GridPlaceHolder"
       style={transitionStyle}
       onDragEnter={props.onDragEnterGridPhAction}
     ></div>

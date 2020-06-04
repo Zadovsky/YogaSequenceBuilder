@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import EditIcon from "@material-ui/icons/Edit";
 import yellow from "@material-ui/core/colors/yellow";
+import clsx from "clsx";
 import "./AsanasGrid.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -134,9 +135,10 @@ export default function AsanasGrid(props) {
       }
     : () => {};
 
-  var classArr = ["AsanasGridDraggable"];
-  if (isDragging) classArr.push("AsanaGridDragging");
-  const classStr = classArr.join(" ");
+  const classStr = clsx(
+    "AsanasGridDraggable",
+    isDragging && "AsanaGridDragging"
+  );
 
   return (
     <AsanasGridWrapper scrollIntoView={scrollIntoView}>

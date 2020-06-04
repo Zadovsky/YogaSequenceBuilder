@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Divider from "@material-ui/core/Divider";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -36,10 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AsanaCard(props) {
   const classes = useStyles();
-
-  var classArr = ["AsanaCard"];
-  if (props.isDragging) classArr.push("AsanaCardDragging");
-  const classStr = classArr.join(" ");
+  const classStr = clsx("AsanaCard", props.isDragging && "AsanaCardDragging");
 
   return (
     <div className={classStr}>
