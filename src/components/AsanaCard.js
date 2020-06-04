@@ -12,6 +12,23 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     top: 0,
   },
+  сardTypography: {
+    textAlign: "center",
+    userSelect: "none",
+    height: "90px",
+    paddingTop: "8px",
+    width: "90%",
+    margin: "auto",
+    wordWrap: "break-word",
+    [theme.breakpoints.only("md")]: {
+      fontSize: "0.65rem",
+      height: "70px",
+    },
+    [theme.breakpoints.only("xs")]: {
+      fontSize: "0.45rem",
+      height: "50px",
+    },
+  },
 }));
 
 export default function AsanaCard(props) {
@@ -51,10 +68,10 @@ export default function AsanaCard(props) {
         )}
         <Divider variant="middle" />
         <Typography
-          variant="subtitle2"
+          variant="body2"
           color="textPrimary"
           component="p"
-          className="CardTypography"
+          className={classes.сardTypography}
         >
           {props.name}
         </Typography>
