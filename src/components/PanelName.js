@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import MenuIcon from "@material-ui/icons/Menu";
+import { useTheme } from "@material-ui/core/styles";
+import { useMediaQuery } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,12 +20,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const styles = {
-  resize: { fontSize: "1.5rem" },
-};
-
 export default function PanelName(props) {
   const classes = useStyles();
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const styles = {
+    resize: { fontSize: isSmallScreen ? "" : "1.5rem" },
+  };
+
   return (
     <div className="TextFieldIconWrapper">
       <TextField
