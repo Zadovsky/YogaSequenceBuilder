@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: 0,
     top: 0,
+    [theme.breakpoints.down("sm")]: {
+      opacity: "70% !important",
+    },
   },
   сardTypography: {
     textAlign: "center",
