@@ -2,6 +2,8 @@ import React from "react";
 import "./SaveLoadPdfButtons.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { useTheme } from "@material-ui/core/styles";
+import { useMediaQuery } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -15,9 +17,16 @@ const useStyles = makeStyles((theme) => ({
 export default function SaveLoadPdfButtons(props) {
   const classes = useStyles();
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
+  const buttonProps = {
+    size: isSmallScreen ? "small" : "",
+  };
+
   return (
     <div className={classes.saveLoadPdfButtons}>
       <Button
+        {...buttonProps}
         variant="contained"
         color={props.readOnly ? "default" : "secondary"}
         className={classes.button}
@@ -26,6 +35,7 @@ export default function SaveLoadPdfButtons(props) {
         {props.texts.load}
       </Button>
       <Button
+        {...buttonProps}
         variant="contained"
         color={props.readOnly ? "default" : "secondary"}
         className={classes.button}
@@ -34,6 +44,7 @@ export default function SaveLoadPdfButtons(props) {
         {props.texts.save}
       </Button>
       <Button
+        {...buttonProps}
         variant="contained"
         color={props.readOnly ? "default" : "secondary"}
         className={classes.button}
