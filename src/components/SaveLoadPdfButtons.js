@@ -8,9 +8,11 @@ import { useMediaQuery } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
+    [theme.breakpoints.only("xs")]: { margin: theme.spacing(0.5) },
   },
   saveLoadPdfButtons: {
     margin: theme.spacing(1, -1, 0),
+    [theme.breakpoints.only("xs")]: { margin: theme.spacing(1, -0.5, 0) },
   },
 }));
 
