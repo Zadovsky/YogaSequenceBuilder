@@ -24,9 +24,9 @@ export default function PanelName(props) {
   const classes = useStyles();
 
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
   const styles = {
-    resize: { fontSize: isSmallScreen ? "" : "1.5rem" },
+    resize: { fontSize: isSmallScreen ? undefined : "1.5rem" },
   };
 
   return (

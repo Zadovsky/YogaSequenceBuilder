@@ -44,10 +44,10 @@ export default function AsanaCard(props) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
   const iconButtonProps = {
-    size: isSmallScreen ? "small" : "",
+    size: isSmallScreen ? "small" : undefined,
   };
   const iconProps = {
-    fontSize: isSmallScreen ? "small" : "",
+    fontSize: isSmallScreen ? "small" : undefined,
   };
 
   return (

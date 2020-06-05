@@ -140,16 +140,16 @@ export default function AsanasGrid(props) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
   const iconButtonProps = {
-    size: isSmallScreen ? "small" : "",
+    size: isSmallScreen ? "small" : undefined,
   };
   const iconProps = {
-    fontSize: isSmallScreen ? "small" : "",
+    fontSize: isSmallScreen ? "small" : undefined,
   };
   const styles = {
     resize: {
-      fontSize: isSmallScreen ? "0.8rem" : "",
-      height: isSmallScreen ? "0.9rem" : "",
-      paddingBottom: isSmallScreen ? "4px" : "",
+      fontSize: isSmallScreen ? "0.8rem" : undefined,
+      height: isSmallScreen ? "0.9rem" : undefined,
+      paddingBottom: isSmallScreen ? "4px" : undefined,
     },
   };
 

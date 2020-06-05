@@ -20,7 +20,7 @@ export default function SaveLoadPdfButtons(props) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
   const buttonProps = {
-    size: isSmallScreen ? "small" : "",
+    size: isSmallScreen ? "small" : undefined,
   };
 
   return (
