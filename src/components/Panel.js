@@ -8,8 +8,11 @@ import "./Panel.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(1, 2, 3),
+    padding: theme.spacing(1, 2, 2),
     height: "100%",
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(0, 1, 1),
+    },
   },
   PanelFlexElement: {
     overflowY: "scroll",
@@ -18,9 +21,6 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "10px",
     flexGrow: 3,
     marginTop: theme.spacing(1),
-    [theme.breakpoints.down("xs")]: {
-      marginTop: theme.spacing(0),
-    },
   },
 }));
 

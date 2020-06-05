@@ -45,6 +45,7 @@ export default function PanelName(props) {
       <IconButton
         onClick={props.menuButtonAction}
         className={classes.menuButton}
+        size="small"
       >
         <MenuIcon />
       </IconButton>
