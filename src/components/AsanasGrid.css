@@ -1,11 +1,3 @@
-.AsanasGrid {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  padding-right: 30px;
-  overflow: hidden;
-}
-
 .AsanasGridDragIcon {
   position: absolute;
   right: 0;

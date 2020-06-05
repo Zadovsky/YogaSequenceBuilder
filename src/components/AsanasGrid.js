@@ -39,6 +39,16 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(0, 1, 1),
     },
   },
+  asanasGrid: {
+    position: "relative",
+    display: "flex",
+    flexWrap: "wrap",
+    paddingRight: "30px",
+    overflow: "hidden",
+    [theme.breakpoints.down("xs")]: {
+      paddingRight: "20px",
+    },
+  },
 }));
 
 function makeCardsArr(props) {
@@ -139,8 +149,11 @@ export default function AsanasGrid(props) {
 
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
-  const iconButtonProps = {
+  const closeIconButtonProps = {
     size: isSmallScreen ? "small" : undefined,
+  };
+  const dragIconButtonProps = {
+    fontSize: isSmallScreen ? "default" : "large",
   };
   const iconProps = {
     fontSize: isSmallScreen ? "small" : undefined,
@@ -189,7 +202,7 @@ export default function AsanasGrid(props) {
             />
             {itIsSchedulePanel && <EditIcon {...iconProps} />}
           </div>
-          <div className="AsanasGrid">
+          <div className={classes.asanasGrid}>
             {cardsHoldersArr}
             <EmptySpaceAtTheEnd
               onDragEnterEmptySpaceAction={() =>
@@ -200,7 +213,7 @@ export default function AsanasGrid(props) {
           {itIsSchedulePanel && enableCloseIcon && (
             <div className="closeGridIconDiv">
               <IconButton
-                {...iconButtonProps}
+                {...closeIconButtonProps}
                 className={classes.button}
                 onClick={closeGridAction}
               >
@@ -214,7 +227,7 @@ export default function AsanasGrid(props) {
               onMouseDown={onDragIconMouseDownAction}
               onMouseUp={onDragIconMouseUpAction}
             >
-              <DragIndicatorIcon fontSize="large" />
+              <DragIndicatorIcon {...dragIconButtonProps} />
             </div>
           ) : (
             ""
