@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 2, 2),
     height: "100%",
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(0, 1, 1),
+      padding: theme.spacing(1, 1, 1),
     },
   },
   PanelFlexElement: {

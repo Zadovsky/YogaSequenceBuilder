@@ -14,6 +14,8 @@ import InfoPopUpWindow from "../containers/InfoPopUpWindow";
 import YesNoPopUpWindow from "../containers/YesNoPopUpWindow";
 import { makeStyles } from "@material-ui/core/styles";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import { useMediaQuery } from "@material-ui/core";
 import pink from "@material-ui/core/colors/pink";
 import grey from "@material-ui/core/colors/grey";
 import orange from "@material-ui/core/colors/orange";
@@ -31,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const theme = createMuiTheme({
+const customTheme = createMuiTheme({
   palette: {
     secondary: {
       main: pink[500],
@@ -46,14 +48,19 @@ const theme = createMuiTheme({
 export default function App(props) {
   const classes = useStyles();
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
+  const gridContainerProps = { spacing: isSmallScreen ? 1 : 2 };
+  const containerProps = { disableGutters: isSmallScreen ? true : false };
+
   return (
     <React.Fragment>
       <ReadCookies />
       <CssBaseline />
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={customTheme}>
         <DnDContext>
-          <Container maxWidth="lg">
-            <Grid container spacing={2}>
+          <Container maxWidth="lg" {...containerProps}>
+            <Grid container {...gridContainerProps}>
               <Grid item xs={12}>
                 <PageTop />
               </Grid>
