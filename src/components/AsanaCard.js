@@ -18,11 +18,27 @@ const useStyles = makeStyles((theme) => ({
       opacity: "70% !important",
     },
   },
+  asanaCardInnerDiv: {
+    position: "relative",
+    width: "90%",
+    height: "90%",
+    marginTop: "5%",
+    borderRadius: " 4px",
+    boxShadow:
+      "0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)",
+    margin: "auto",
+    backgroundColor: "white",
+    overflow: "hidden",
+    [theme.breakpoints.only("xs")]: {
+      height: "96%",
+      marginTop: "2%",
+    },
+  },
   сardTypography: {
     textAlign: "center",
     userSelect: "none",
     height: "90px",
-    paddingTop: "8px",
+    paddingTop: theme.spacing(1),
     width: "90%",
     margin: "auto",
     wordWrap: "break-word",
@@ -53,7 +69,7 @@ export default function AsanaCard(props) {
   return (
     <div className={classStr}>
       <div
-        className="AsanaCardInnerDiv"
+        className={classes.asanaCardInnerDiv}
         onClick={props.addAsanaAction}
         onDragEnter={props.dragEnterAction}
         onDragStart={props.startCardDragAction}
