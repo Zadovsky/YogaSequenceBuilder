@@ -22,6 +22,7 @@ import {
   NO_SEQ_NAME,
   EMPTY_SEQ_NAME_LOAD,
   EMPTY_SEQ_NAME_SAVE,
+  LOAD_SEQ,
 } from "../actions/SequencesListActions";
 
 const initialState = {
@@ -141,10 +142,23 @@ const initialState = {
       text: "",
     },
   },
+  loadSeqTexts: {
+    ru: {
+      title: "Последовательность успешно загружена",
+      text: "",
+    },
+    en: {
+      title: "Sequence loaded successfully",
+      text: "",
+    },
+  },
 };
 
 export function infoPopUpReducer(state = initialState, action) {
   switch (action.type) {
+    case LOAD_SEQ:
+      return { ...state, isOpen: true, texts: state.loadSeqTexts };
+
     case NO_SEQ_NAME:
       return { ...state, isOpen: true, texts: state.noSeqNameTexts };
 
