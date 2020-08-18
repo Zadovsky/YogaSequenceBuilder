@@ -33,6 +33,14 @@ const useStyles = makeStyles((theme) => ({
       height: "96%",
       marginTop: "2%",
     },
+    "& .MuiButtonBase-root": {
+      opacity: 0,
+      transition: "200ms",
+    },
+    "& .MuiButtonBase-root:hover": {
+      opacity: "100%",
+      transition: "200ms",
+    },
   },
   сardTypography: {
     textAlign: "center",
