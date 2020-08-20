@@ -46,7 +46,7 @@ export function onReadCookiesAction() {
   }
 
   return (dispatch) => {
-    fetch("http://localhost/YSB/public/php/logincheck.php", {
+    fetch("http://zadovskii.ru/php/logincheck.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",

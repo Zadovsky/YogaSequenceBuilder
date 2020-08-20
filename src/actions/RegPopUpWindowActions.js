@@ -12,42 +12,42 @@ function validateEmail(email) {
 export function onClickConfirmRegAction(email) {
   if (!validateEmail(email)) {
     return {
-      type: NOT_EMAIL_REG
+      type: NOT_EMAIL_REG,
     };
   }
 
-  return dispatch => {
-    fetch("http://localhost/YSB/public/php/regnewuser.php", {
+  return (dispatch) => {
+    fetch("http://zadovskii.ru/php/regnewuser.php", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json;charset=utf-8"
+        "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({ login: email })
+      body: JSON.stringify({ login: email }),
     })
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         if (result === LOGIN_ALREADY_EXIST) {
           return dispatch({
-            type: LOGIN_ALREADY_EXIST
+            type: LOGIN_ALREADY_EXIST,
           });
         } else
           return dispatch({
-            type: LOGIN_REGED
+            type: LOGIN_REGED,
           });
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   };
 }
 
 export function onClickCancelRegAction() {
   return {
-    type: CANCEL_REG
+    type: CANCEL_REG,
   };
 }
 
 export function onChangeEmailRegAction(e) {
   return {
     type: CHANGE_EMAIL_REG,
-    payload: e.target.value
+    payload: e.target.value,
   };
 }

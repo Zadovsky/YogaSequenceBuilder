@@ -11,7 +11,7 @@ export function onClickLoad(login, password) {
     };
   }
   return (dispatch) => {
-    fetch("http://localhost/YSB/public/php/getsequenceslist.php", {
+    fetch("http://zadovskii.ru/php/getsequenceslist.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -36,7 +36,7 @@ export function onClickSave(login, password, seqName) {
     };
   }
   return (dispatch) => {
-    fetch("http://localhost/YSB/public/php/getsequenceslist.php", {
+    fetch("http://zadovskii.ru/php/getsequenceslist.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",

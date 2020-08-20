@@ -7,28 +7,28 @@ export function onConfirmExitAction() {
   Cookies.remove("login");
   Cookies.remove("password");
   return {
-    type: CONFIRM_EXIT
+    type: CONFIRM_EXIT,
   };
 }
 
 export function onConfirmChangePwdAction(email, password) {
-  return dispatch => {
-    fetch("http://localhost/YSB/public/php/changepwd.php", {
+  return (dispatch) => {
+    fetch("http://zadovskii.ru/php/changepwd.php", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json;charset=utf-8"
+        "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({ email: email, password: password })
+      body: JSON.stringify({ email: email, password: password }),
     })
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         Cookies.set("password", result, { expires: 365 });
         return dispatch({
           type: CONFIRM_CHANGE_PASSWORD,
-          payload: result
+          payload: result,
         });
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   };
 }
 

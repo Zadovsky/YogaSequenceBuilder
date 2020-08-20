@@ -34,7 +34,7 @@ export function onChangeSeqNameAction(e) {
 
 export function onClickSequenceLoadAction(name, id, login, password) {
   return (dispatch) => {
-    fetch("http://localhost/YSB/public/php/loadsequence.php", {
+    fetch("http://zadovskii.ru/php/loadsequence.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -72,7 +72,7 @@ export function onClickDeleteSequenceAction(deleteAction) {
 
 export function deleteSequenceAction(login, password, id) {
   return (dispatch) => {
-    fetch("http://localhost/YSB/public/php/deletesequence.php", {
+    fetch("http://zadovskii.ru/php/deletesequence.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -111,7 +111,7 @@ export function onClickLoadSequenceAction(login, password, seqName, sequences) {
     };
   } else {
     return (dispatch) => {
-      fetch("http://localhost/YSB/public/php/loadsequence.php", {
+      fetch("http://zadovskii.ru/php/loadsequence.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -173,7 +173,7 @@ export function onClickSaveSequenceAction(
       curDate.getSeconds();
 
     return (dispatch) => {
-      fetch("http://localhost/YSB/public/php/savesequence.php", {
+      fetch("http://zadovskii.ru/php/savesequence.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -232,7 +232,7 @@ export function rewriteSequenceAction(
     curDate.getSeconds();
 
   return (dispatch) => {
-    fetch("http://localhost/YSB/public/php/rewritesequence.php", {
+    fetch("http://zadovskii.ru/php/rewritesequence.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
