@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useMediaQuery } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Header from "../components/Header";
 import BelowDevider from "../components/BelowDevider";
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 function PageTop(props) {
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <Paper className={classes.paper}>
@@ -56,11 +58,13 @@ function PageTop(props) {
         logoText={props.logo.logoText}
         logoUrl={props.logo.logoUrl}
       />
-      <BelowDevider
-        headerText={props.pageTop.headerText[props.language.curLang]}
-        whatItIsText={props.pageTop.whatItIsText[props.language.curLang]}
-        howItWorksText={props.pageTop.howItWorksText[props.language.curLang]}
-      />
+      {useMediaQuery(theme.breakpoints.up("lg")) && (
+        <BelowDevider
+          headerText={props.pageTop.headerText[props.language.curLang]}
+          whatItIsText={props.pageTop.whatItIsText[props.language.curLang]}
+          howItWorksText={props.pageTop.howItWorksText[props.language.curLang]}
+        />
+      )}
     </Paper>
   );
 }
