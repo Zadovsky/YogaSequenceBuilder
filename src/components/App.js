@@ -24,10 +24,10 @@ import "./App.css";
 const useStyles = makeStyles((theme) => ({
   grid: {
     width: "100%",
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("sm")]: {
       height: "100vh",
     },
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("xs")]: {
       height: "50vh",
     },
   },
@@ -64,13 +64,13 @@ export default function App(props) {
               <Grid item xs={12}>
                 <PageTop />
               </Grid>
-              <Grid item md={6} className={classes.grid}>
+              <Grid item sm={6} className={classes.grid}>
                 <div className="PanelListWrapper">
                   <AsanasPanel />
                   <SequencesList />
                 </div>
               </Grid>
-              <Grid item md={6} className={classes.grid}>
+              <Grid item sm={6} className={classes.grid}>
                 <SchedulePanel />
               </Grid>
               <Grid item xs={12}>
