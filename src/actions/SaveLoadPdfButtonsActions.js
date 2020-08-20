@@ -1,3 +1,4 @@
+import { PHP_URL } from "../config";
 export const CLICK_SAVE = "CLICK_SAVE";
 export const CLICK_LOAD = "CLICK_LOAD";
 export const CLICK_PDF = "CLICK_PDF";
@@ -11,7 +12,7 @@ export function onClickLoad(login, password) {
     };
   }
   return (dispatch) => {
-    fetch("http://zadovskii.ru/php/getsequenceslist.php", {
+    fetch(PHP_URL + "getsequenceslist.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -36,7 +37,7 @@ export function onClickSave(login, password, seqName) {
     };
   }
   return (dispatch) => {
-    fetch("http://zadovskii.ru/php/getsequenceslist.php", {
+    fetch(PHP_URL + "getsequenceslist.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",

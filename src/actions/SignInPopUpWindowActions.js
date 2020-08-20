@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { PHP_URL } from "../config";
 export const CANCEL_SIGN_IN = "CANCEL_SIGN_IN";
 export const SIGN_IN_EMPTY_FIELD = "SIGN_IN_EMPTY_FIELD";
 export const CHANGE_EMAIL_SIGN_IN = "CHANGE_EMAIL_SIGN_IN";
@@ -21,7 +22,7 @@ export function onClickSignInAction(email, password) {
   }
 
   return (dispatch) => {
-    fetch("http://zadovskii.ru/php/logincheck.php", {
+    fetch(PHP_URL + "logincheck.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",

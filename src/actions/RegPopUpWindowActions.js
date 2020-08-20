@@ -1,3 +1,4 @@
+import { PHP_URL } from "../config";
 export const CANCEL_REG = "CANCEL_REG";
 export const NOT_EMAIL_REG = "NOT_EMAIL_REG";
 export const CHANGE_EMAIL_REG = "CHANGE_EMAIL_REG";
@@ -17,7 +18,7 @@ export function onClickConfirmRegAction(email) {
   }
 
   return (dispatch) => {
-    fetch("http://zadovskii.ru/php/regnewuser.php", {
+    fetch(PHP_URL + "regnewuser.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",

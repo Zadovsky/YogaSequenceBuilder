@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { PHP_URL } from "../config";
 export const GET_COOKIES = "GET_COOKIES";
 
 export function onReadCookiesAction() {
@@ -46,7 +47,7 @@ export function onReadCookiesAction() {
   }
 
   return (dispatch) => {
-    fetch("http://zadovskii.ru/php/logincheck.php", {
+    fetch(PHP_URL + "logincheck.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",

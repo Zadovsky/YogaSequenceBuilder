@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { PHP_URL } from "../config";
 export const CONFIRM_EXIT = "CONFIRM_EXIT";
 export const CLOSE_YESNO_POPUP = "CLOSE_YESNO_POPUP";
 export const CONFIRM_CHANGE_PASSWORD = "CONFIRM_CHANGE_PASSWORD";
@@ -13,7 +14,7 @@ export function onConfirmExitAction() {
 
 export function onConfirmChangePwdAction(email, password) {
   return (dispatch) => {
-    fetch("http://zadovskii.ru/php/changepwd.php", {
+    fetch(PHP_URL + "changepwd.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",

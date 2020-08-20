@@ -1,3 +1,4 @@
+import { PHP_URL } from "../config";
 export const CANCEL_FORGOT_PWD = "CANCEL_FORGOT_PWD";
 export const PWD_SENT_TO_EMAIL = "PWD_SENT_TO_EMAIL";
 export const NO_SUCH_LOGIN = "NO_SUCH_LOGIN";
@@ -18,7 +19,7 @@ export function onClickConfirmForgotPwdAction(email) {
   }
 
   return (dispatch) => {
-    fetch("http://zadovskii.ru/php/recoverypwd.php", {
+    fetch(PHP_URL + "recoverypwd.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
