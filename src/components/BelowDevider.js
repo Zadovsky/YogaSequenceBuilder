@@ -1,14 +1,12 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
+import { Typography, useMediaQuery } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
-import { useMediaQuery } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import yellow from "@material-ui/core/colors/yellow";
 
 const useStyles = makeStyles((theme) => ({
