@@ -49,7 +49,7 @@ export default function App(props) {
   const classes = useStyles();
 
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const gridContainerProps = { spacing: isSmallScreen ? 1 : 2 };
   const containerProps = { disableGutters: isSmallScreen ? true : false };
 
