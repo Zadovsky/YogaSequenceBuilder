@@ -12,7 +12,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: yellow[100],
   },
   gridItem: {
-    padding: theme.spacing(1, 2),
+    [theme.breakpoints.up("md")]: {
+      padding: theme.spacing(1, 2),
+    },
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -28,8 +30,13 @@ const useStyles = makeStyles((theme) => ({
   },
   aLogo: {
     width: "15%",
-    maxWidth: "64px",
     lineHeight: 0,
+    [theme.breakpoints.up("md")]: {
+      maxWidth: "64px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "32px",
+    },
   },
   logoImg: {
     width: "100%",
@@ -51,14 +58,14 @@ export default function Header(props) {
           </Typography>
         </a>
       </Grid>
-      <Grid item md={4} className={classes.gridItem}>
+      <Grid item xs={6} md={4} className={classes.gridItem}>
         <LanguageChooser
           curLang={props.curLang}
           langList={props.langList}
           onChangeAction={props.onChangeAction}
         />
       </Grid>
-      <Grid item md={4} className={classes.gridItem}>
+      <Grid item xs={6} md={4} className={classes.gridItem}>
         {props.login === null ? (
           <SignInRegButtons
             signInButtonText={props.signInButtonText}
