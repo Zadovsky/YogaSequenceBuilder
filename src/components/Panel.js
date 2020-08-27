@@ -77,7 +77,12 @@ export default function Panel(props) {
     <div className={"Panel " + wrapperClassName} onDragOver={onDragOverFunc}>
       <Paper className={classes.root}>
         <div className="PanelFlexBox">
-          <div className="PanelNameWraper">
+          <ButtonsPanelBlock
+            buttonsPanel={buttonsPanel}
+            openMenu={openMenu}
+            closeMenuAction={closeMenuAction}
+          />
+          <div className={classes.PanelFlexElement}>
             <PanelName
               name={panelName === null ? panelDefaultName : panelName}
               onChangePanelNameAction={onChangePanelNameAction}
@@ -85,13 +90,6 @@ export default function Panel(props) {
               readOnly={!itIsSchedulePanel}
               menuButtonAction={menuButtonAction}
             />
-          </div>
-          <ButtonsPanelBlock
-            buttonsPanel={buttonsPanel}
-            openMenu={openMenu}
-            closeMenuAction={closeMenuAction}
-          />
-          <div className={classes.PanelFlexElement}>
             <AsanasGridBlock
               cards={cards}
               draggingCard={draggingCard}

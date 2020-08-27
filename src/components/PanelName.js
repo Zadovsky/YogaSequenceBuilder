@@ -9,8 +9,9 @@ import { useTheme } from "@material-ui/core/styles";
 import { useMediaQuery } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  textField: {
     marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   menuButton: {
     marginLeft: "auto",
@@ -32,7 +33,7 @@ export default function PanelName(props) {
   return (
     <div className="TextFieldIconWrapper">
       <TextField
-        className={classes.root}
+        className={classes.textField}
         value={props.name}
         inputProps={{
           readOnly: props.readOnly,

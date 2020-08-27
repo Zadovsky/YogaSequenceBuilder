@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.only("xs")]: { margin: theme.spacing(0.5) },
   },
   saveLoadPdfButtons: {
-    margin: theme.spacing(1, -1, 0),
-    [theme.breakpoints.only("xs")]: { margin: theme.spacing(1, -0.5, 0) },
+    margin: theme.spacing(0, -1, 0),
+    [theme.breakpoints.only("xs")]: { margin: theme.spacing(0, -0.5, 0) },
   },
 }));
 

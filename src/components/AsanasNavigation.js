@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   asanasNavigation: {
-    margin: theme.spacing(1.5, -0.5, 0.5),
+    margin: theme.spacing(0.5, -0.5, 0.5),
   },
   chip: {
     margin: theme.spacing(0.5),
