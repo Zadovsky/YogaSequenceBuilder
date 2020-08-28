@@ -1,9 +1,0 @@
-.Panel {
-  height: 100%;
-}
-
-.PanelFlexBox {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}

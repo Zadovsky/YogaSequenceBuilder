@@ -1,10 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
 import ButtonsPanelBlock from "../components/ButtonsPanelBlock";
-import "./Panel.css";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,12 +17,29 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(1, 1, 1),
     },
   },
-  PanelFlexElement: {
+  panelFlexElement: {
     overflowY: "scroll",
     scrollBehavior: "smooth",
     marginLeft: "-10px",
     paddingLeft: "10px",
     flexGrow: 3,
+  },
+  panelFlexBox: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+  },
+  panel: {
+    height: "100%",
+  },
+  menuButton: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
   },
 }));
 
@@ -73,15 +93,18 @@ export default function Panel(props) {
       : () => {};
 
   return (
-    <div className={"Panel " + wrapperClassName} onDragOver={onDragOverFunc}>
+    <div
+      className={clsx(classes.panel, wrapperClassName)}
+      onDragOver={onDragOverFunc}
+    >
       <Paper className={classes.root}>
-        <div className="PanelFlexBox">
+        <div className={classes.panelFlexBox}>
           <ButtonsPanelBlock
             buttonsPanel={buttonsPanel}
             openMenu={openMenu}
             closeMenuAction={closeMenuAction}
           />
-          <div className={classes.PanelFlexElement}>
+          <div className={classes.panelFlexElement}>
             <PanelName
               name={panelName === null ? panelDefaultName : panelName}
               onChangePanelNameAction={onChangePanelNameAction}
@@ -122,6 +145,13 @@ export default function Panel(props) {
               onGridBlockScroll={onGridBlockScroll}
             />
           </div>
+          <IconButton
+            onClick={openMenu ? closeMenuAction : openMenuAction}
+            className={classes.menuButton}
+            size="small"
+          >
+            {openMenu ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
         </div>
       </Paper>
     </div>
