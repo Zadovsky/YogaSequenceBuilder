@@ -1,7 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import IconButton from "@material-ui/core/IconButton";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import clsx from "clsx";
 
@@ -19,14 +17,6 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "500px",
     transition: "max-height 500ms",
     visibility: "visible",
-  },
-  upArrowButton: {
-    [theme.breakpoints.up("md")]: {
-      visibility: "hidden",
-    },
-    position: "absolute",
-    right: 0,
-    top: 0,
   },
 }));
 
@@ -46,12 +36,6 @@ export default function ButtonsPanelBlock(props) {
         )}
       >
         {props.buttonsPanel}
-        <IconButton
-          className={classes.upArrowButton}
-          onClick={props.closeMenuAction}
-        >
-          <KeyboardArrowUpIcon />
-        </IconButton>
       </div>
     </ClickAwayListener>
   );
