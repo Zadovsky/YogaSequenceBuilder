@@ -37,6 +37,7 @@ export default function ButtonsPanelBlock(props) {
     <ClickAwayListener
       onClickAway={props.closeMenuAction}
       mouseEvent={props.openMenu ? "onClick" : false}
+      touchEvent={props.isOpen ? "onTouchEnd" : false}
     >
       <div
         className={clsx(

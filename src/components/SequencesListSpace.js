@@ -102,6 +102,7 @@ export default function SequencesListSpace(props) {
     <ClickAwayListener
       onClickAway={props.closeSeqListAction}
       mouseEvent={props.isOpen ? "onClick" : false}
+      touchEvent={props.isOpen ? "onTouchEnd" : false}
     >
       <Slide direction="right" in={props.isOpen}>
         <Paper className={classes.paper} elevation={2}>
