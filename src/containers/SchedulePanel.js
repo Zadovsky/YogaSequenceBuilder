@@ -23,7 +23,6 @@ import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndAction
 import {
   onChangePanelNameAction,
   onBlurPanelNameAction,
-  onOpenMenuScheduleAction,
 } from "../actions/PanelNameActions";
 import {
   onClickSave,
@@ -32,7 +31,10 @@ import {
 } from "../actions/SaveLoadPdfButtonsActions";
 import { onSetCookiesAction } from "../actions/SetCookiesActions";
 import { onPDFDownloadAction } from "../actions/PDFDownloadActions";
-import { onCloseMenuScheduleAction } from "../actions/PanelActions";
+import {
+  onOpenMenuScheduleAction,
+  onCloseMenuScheduleAction,
+} from "../actions/PanelActions";
 import PDFDownload from "../components/PDFDownload";
 import "./SchedulePanel.css";
 

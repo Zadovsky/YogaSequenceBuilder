@@ -11,7 +11,6 @@ import { DRAG_ENTER_GRID_PH } from "../actions/GridPlaceHolderActions";
 import {
   CHANGE_PANEL_NAME,
   BLUR_PANEL_NAME,
-  OPEN_MENU_SCHEDULE,
 } from "../actions/PanelNameActions";
 import {
   DRAG_ICON_MOUSE_DOWN,
@@ -39,7 +38,10 @@ import {
   CLOSE_SEQ_LIST,
   LOAD_SEQ,
 } from "../actions/SequencesListActions";
-import { CLOSE_MENU_SCHEDULE } from "../actions/PanelActions";
+import {
+  OPEN_MENU_SCHEDULE,
+  CLOSE_MENU_SCHEDULE,
+} from "../actions/PanelActions";
 
 const initialState = {
   readOnly: false,

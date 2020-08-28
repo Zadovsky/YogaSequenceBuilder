@@ -1,7 +1,6 @@
 import { ON_CLICK_ASANAS_NAVIGATION } from "../actions/AsanasNavigationActions";
 import { GRID_BLOCK_SCROLL } from "../actions/AsanasGridBlockActions";
-import { OPEN_MENU_ASANAS } from "../actions/PanelNameActions";
-import { CLOSE_MENU_ASANAS } from "../actions/PanelActions";
+import { OPEN_MENU_ASANAS, CLOSE_MENU_ASANAS } from "../actions/PanelActions";
 
 const initialState = {
   selectedGroupId: null,
