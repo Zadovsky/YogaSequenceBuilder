@@ -1,7 +1,7 @@
 export const CHANGE_PANEL_NAME = "CHANGE_PANEL_NAME";
 export const BLUR_PANEL_NAME = "BLUR_PANEL_NAME";
-export const MENU_BUTTON_SCHEDULE = "MENU_BUTTON_SCHEDULE";
-export const MENU_BUTTON_ASANAS = "MENU_BUTTON_ASANAS";
+export const OPEN_MENU_SCHEDULE = "OPEN_MENU_SCHEDULE";
+export const OPEN_MENU_ASANAS = "OPEN_MENU_ASANAS";
 
 export function onChangePanelNameAction(e) {
   return {
@@ -19,12 +19,12 @@ export function onBlurPanelNameAction(e) {
 
 export function onOpenMenuAsanasAction() {
   return {
-    type: MENU_BUTTON_ASANAS,
+    type: OPEN_MENU_ASANAS,
   };
 }
 
 export function onOpenMenuScheduleAction() {
   return {
-    type: MENU_BUTTON_SCHEDULE,
+    type: OPEN_MENU_SCHEDULE,
   };
 }

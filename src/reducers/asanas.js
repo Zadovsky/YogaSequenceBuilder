@@ -1,6 +1,6 @@
 import { ON_CLICK_ASANAS_NAVIGATION } from "../actions/AsanasNavigationActions";
 import { GRID_BLOCK_SCROLL } from "../actions/AsanasGridBlockActions";
-import { MENU_BUTTON_ASANAS } from "../actions/PanelNameActions";
+import { OPEN_MENU_ASANAS } from "../actions/PanelNameActions";
 import { CLOSE_MENU_ASANAS } from "../actions/PanelActions";
 
 const initialState = {
@@ -20,7 +20,7 @@ export function asanasReducer(state = initialState, action) {
         openMenu: false,
       };
 
-    case MENU_BUTTON_ASANAS:
+    case OPEN_MENU_ASANAS:
       return {
         ...state,
         openMenu: true,

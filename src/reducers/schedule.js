@@ -11,7 +11,7 @@ import { DRAG_ENTER_GRID_PH } from "../actions/GridPlaceHolderActions";
 import {
   CHANGE_PANEL_NAME,
   BLUR_PANEL_NAME,
-  MENU_BUTTON_SCHEDULE,
+  OPEN_MENU_SCHEDULE,
 } from "../actions/PanelNameActions";
 import {
   DRAG_ICON_MOUSE_DOWN,
@@ -104,7 +104,7 @@ export function scheduleReducer(state = initialState, action) {
         openMenu: false,
       };
 
-    case MENU_BUTTON_SCHEDULE:
+    case OPEN_MENU_SCHEDULE:
       return {
         ...state,
         openMenu: true,
