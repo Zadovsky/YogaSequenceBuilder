@@ -110,8 +110,6 @@ export default function Panel(props) {
               onChangePanelNameAction={onChangePanelNameAction}
               onBlurPanelNameAction={onBlurPanelNameAction}
               readOnly={!itIsSchedulePanel}
-              openMenuAction={openMenuAction}
-              closeMenuAction={closeMenuAction}
               openMenu={openMenu}
             />
             <AsanasGridBlock
