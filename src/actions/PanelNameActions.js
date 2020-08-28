@@ -17,13 +17,13 @@ export function onBlurPanelNameAction(e) {
   };
 }
 
-export function onPressMenuButtonAsanasAction() {
+export function onOpenMenuAsanasAction() {
   return {
     type: MENU_BUTTON_ASANAS,
   };
 }
 
-export function onPressMenuButtonScheduleAction() {
+export function onOpenMenuScheduleAction() {
   return {
     type: MENU_BUTTON_SCHEDULE,
   };

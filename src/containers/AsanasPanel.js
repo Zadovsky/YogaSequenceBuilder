@@ -12,7 +12,7 @@ import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
 import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndActions";
 import { onClickAsanasNavigation } from "../actions/AsanasNavigationActions";
-import { onPressMenuButtonAsanasAction } from "../actions/PanelNameActions";
+import { onOpenMenuAsanasAction } from "../actions/PanelNameActions";
 import { onCloseMenuAsanasAction } from "../actions/PanelActions";
 import "./AsanasPanel.css";
 
@@ -92,7 +92,7 @@ function AsanasPanel(props) {
       itIsSchedulePanel={false}
       selectedGroupId={props.asanas.selectedGroupId}
       onGridBlockScroll={props.onGridBlockScroll}
-      menuButtonAction={props.onPressMenuButtonAsanasAction}
+      openMenuAction={props.onOpenMenuAsanasAction}
       openMenu={props.asanas.openMenu}
       closeMenuAction={props.onCloseMenuAsanasAction}
     />
@@ -124,8 +124,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(onDragEnterHolderAction(index, gridId)),
     onDragEnterEmptySpaceAction: (gridId, itIsSchedulePanel) =>
       dispatch(onDragEnterEmptySpaceAction(gridId, itIsSchedulePanel)),
-    onPressMenuButtonAsanasAction: () =>
-      dispatch(onPressMenuButtonAsanasAction()),
+    onOpenMenuAsanasAction: () => dispatch(onOpenMenuAsanasAction()),
     onCloseMenuAsanasAction: () => dispatch(onCloseMenuAsanasAction()),
   };
 };

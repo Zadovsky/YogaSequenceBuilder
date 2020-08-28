@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "-10px",
     paddingLeft: "10px",
     flexGrow: 3,
-    // marginTop: theme.spacing(1),
   },
 }));
 
@@ -60,7 +59,7 @@ export default function Panel(props) {
     itIsSchedulePanel,
     selectedGroupId,
     onGridBlockScroll,
-    menuButtonAction,
+    openMenuAction,
     openMenu,
     closeMenuAction,
   } = props;
@@ -88,7 +87,9 @@ export default function Panel(props) {
               onChangePanelNameAction={onChangePanelNameAction}
               onBlurPanelNameAction={onBlurPanelNameAction}
               readOnly={!itIsSchedulePanel}
-              menuButtonAction={menuButtonAction}
+              openMenuAction={openMenuAction}
+              closeMenuAction={closeMenuAction}
+              openMenu={openMenu}
             />
             <AsanasGridBlock
               cards={cards}

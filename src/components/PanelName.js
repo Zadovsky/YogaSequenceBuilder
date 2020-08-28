@@ -4,7 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
-import MenuIcon from "@material-ui/icons/Menu";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { useTheme } from "@material-ui/core/styles";
 import { useMediaQuery } from "@material-ui/core";
 
@@ -44,11 +45,11 @@ export default function PanelName(props) {
       />
       {!props.readOnly && <EditIcon />}
       <IconButton
-        onClick={props.menuButtonAction}
+        onClick={props.openMenu ? props.closeMenuAction : props.openMenuAction}
         className={classes.menuButton}
         size="small"
       >
-        <MenuIcon />
+        {props.openMenu ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       </IconButton>
     </div>
   );
