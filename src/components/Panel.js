@@ -33,7 +33,13 @@ const useStyles = makeStyles((theme) => ({
   panel: {
     height: "100%",
   },
-  menuButton: {
+  circleUnderMenuButton: {
+    display: "flex",
+    background: "white",
+    opacity: "90%",
+    borderRadius: "50%",
+    width: "32px",
+    height: "32px",
     position: "absolute",
     top: 0,
     right: 0,
@@ -143,13 +149,15 @@ export default function Panel(props) {
               onGridBlockScroll={onGridBlockScroll}
             />
           </div>
-          <IconButton
-            onClick={openMenu ? closeMenuAction : openMenuAction}
-            className={classes.menuButton}
-            size="small"
-          >
-            {openMenu ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
+          <div className={classes.circleUnderMenuButton}>
+            <IconButton
+              onClick={openMenu ? closeMenuAction : openMenuAction}
+              className={classes.menuButton}
+              size="small"
+            >
+              {openMenu ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            </IconButton>
+          </div>
         </div>
       </Paper>
     </div>
