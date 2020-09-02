@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
   },
 });
 
-function createCardRow(cards, asanas) {
+function createCardRow(cards, asanas, key) {
   return (
-    <View style={styles.cardBlock}>
+    <View style={styles.cardBlock} key={key}>
       {cards.map((card, i) => {
         return (
           <View key={i} style={styles.card}>
@@ -80,7 +80,7 @@ function createOneCardBlock(block, asanas) {
   var cardRows = [];
 
   do {
-    cardRows.push(createCardRow(block.gridCards.slice(k, k + 4), asanas));
+    cardRows.push(createCardRow(block.gridCards.slice(k, k + 4), asanas, k));
     k += 4;
   } while (k < block.gridCards.length);
 
