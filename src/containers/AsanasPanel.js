@@ -93,7 +93,9 @@ function AsanasPanel(props) {
       wrapperClassName={"AsanasPanel"}
       itIsSchedulePanel={false}
       selectedGroupId={props.asanas.selectedGroupId}
-      onGridBlockScroll={props.onGridBlockScroll}
+      onGridBlockScroll={
+        props.asanas.selectedGroupId ? props.onGridBlockScroll : () => {}
+      }
       openMenuAction={props.onOpenMenuAsanasAction}
       openMenu={props.asanas.openMenu}
       closeMenuAction={props.onCloseMenuAsanasAction}
