@@ -41,7 +41,7 @@ import {
 import {
   OPEN_MENU_SCHEDULE,
   CLOSE_MENU_SCHEDULE,
-} from "../actions/PanelActions";
+} from "../actions/MenuButtonActions";
 
 const initialState = {
   readOnly: false,

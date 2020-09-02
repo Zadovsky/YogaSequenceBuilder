@@ -34,7 +34,7 @@ import { onPDFDownloadAction } from "../actions/PDFDownloadActions";
 import {
   onOpenMenuScheduleAction,
   onCloseMenuScheduleAction,
-} from "../actions/PanelActions";
+} from "../actions/MenuButtonActions";
 import PDFDownload from "../components/PDFDownload";
 import "./SchedulePanel.css";
 

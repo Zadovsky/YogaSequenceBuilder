@@ -12,8 +12,10 @@ import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
 import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
 import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndActions";
 import { onClickAsanasNavigation } from "../actions/AsanasNavigationActions";
-import { onOpenMenuAsanasAction } from "../actions/PanelActions";
-import { onCloseMenuAsanasAction } from "../actions/PanelActions";
+import {
+  onOpenMenuAsanasAction,
+  onCloseMenuAsanasAction,
+} from "../actions/MenuButtonActions";
 import "./AsanasPanel.css";
 
 function createCardsArr(asanas, language) {
