@@ -1,12 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
 import ButtonsPanelBlock from "../components/ButtonsPanelBlock";
+import MenuButton from "../components/MenuButton";
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,20 +30,6 @@ const useStyles = makeStyles((theme) => ({
   },
   panel: {
     height: "100%",
-  },
-  circleUnderMenuButton: {
-    display: "flex",
-    background: "white",
-    opacity: "90%",
-    borderRadius: "50%",
-    width: "32px",
-    height: "32px",
-    position: "absolute",
-    top: 0,
-    right: 0,
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
   },
 }));
 
@@ -149,15 +133,11 @@ export default function Panel(props) {
               onGridBlockScroll={onGridBlockScroll}
             />
           </div>
-          <div className={classes.circleUnderMenuButton}>
-            <IconButton
-              onClick={openMenu ? closeMenuAction : openMenuAction}
-              className={classes.menuButton}
-              size="small"
-            >
-              {openMenu ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-            </IconButton>
-          </div>
+          <MenuButton
+            openMenu={openMenu}
+            closeMenuAction={closeMenuAction}
+            openMenuAction={openMenuAction}
+          />
         </div>
       </Paper>
     </div>
