@@ -8,11 +8,11 @@ import { useMediaQuery } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
-    [theme.breakpoints.only("xs")]: { margin: theme.spacing(0.5) },
+    [theme.breakpoints.down("sm")]: { margin: theme.spacing(0.5) },
   },
   saveLoadPdfButtons: {
     margin: theme.spacing(0, -1, 1),
-    [theme.breakpoints.only("xs")]: { margin: theme.spacing(0, -0.5, 1) },
+    [theme.breakpoints.down("sm")]: { margin: theme.spacing(0, -0.5, 1) },
   },
 }));
 
@@ -20,7 +20,7 @@ export default function SaveLoadPdfButtons(props) {
   const classes = useStyles();
 
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const buttonProps = {
     size: isSmallScreen ? "small" : undefined,
   };

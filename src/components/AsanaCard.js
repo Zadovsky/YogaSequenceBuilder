@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     backgroundColor: "white",
     overflow: "hidden",
-    [theme.breakpoints.only("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       height: "96%",
       marginTop: "2%",
     },
@@ -54,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "0.65rem",
       height: "70px",
     },
+    [theme.breakpoints.only("sm")]: {
+      fontSize: "0.49rem",
+      height: "60px",
+    },
     [theme.breakpoints.only("xs")]: {
       fontSize: "0.45rem",
       height: "50px",
@@ -66,7 +70,7 @@ export default function AsanaCard(props) {
   const classStr = clsx("AsanaCard", props.isDragging && "AsanaCardDragging");
 
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const iconButtonProps = {
     size: isSmallScreen ? "small" : undefined,
   };

@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0, 1, 2, 0),
     position: "relative",
     backgroundColor: yellow[50],
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       margin: theme.spacing(0, 1, 1, 0),
     },
   },
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     margin: theme.spacing(1),
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       margin: theme.spacing(0, 1, 1),
     },
   },
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     paddingRight: "30px",
     overflow: "hidden",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       paddingRight: "20px",
     },
   },
@@ -148,7 +148,7 @@ export default function AsanasGrid(props) {
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
 
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const closeIconButtonProps = {
     size: isSmallScreen ? "small" : undefined,
   };
