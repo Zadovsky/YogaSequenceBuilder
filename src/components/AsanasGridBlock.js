@@ -86,9 +86,5 @@ export default function AsanasGridBlock(props) {
   const gridArr = createGridArr(props);
   const gridHoldersArr = createGridHolderArr(gridArr, props);
 
-  return (
-    <div className="AsanasGridBlock" onScroll={props.onGridBlockScroll}>
-      {gridHoldersArr}
-    </div>
-  );
+  return <div className="AsanasGridBlock">{gridHoldersArr}</div>;
 }

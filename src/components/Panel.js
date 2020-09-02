@@ -94,7 +94,10 @@ export default function Panel(props) {
             openMenu={openMenu}
             closeMenuAction={closeMenuAction}
           />
-          <div className={classes.panelFlexElement}>
+          <div
+            className={classes.panelFlexElement}
+            onScroll={onGridBlockScroll}
+          >
             <PanelName
               name={panelName === null ? panelDefaultName : panelName}
               onChangePanelNameAction={onChangePanelNameAction}
@@ -130,7 +133,6 @@ export default function Panel(props) {
               onBlurGridNameAction={onBlurGridNameAction}
               gridDefaultName={gridDefaultName}
               selectedGroupId={selectedGroupId}
-              onGridBlockScroll={onGridBlockScroll}
             />
           </div>
           <MenuButton
