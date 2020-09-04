@@ -8,8 +8,10 @@ import yellow from "@material-ui/core/colors/yellow";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding: theme.spacing(1),
     backgroundColor: yellow[100],
+    [theme.breakpoints.up("lg")]: {
+      padding: theme.spacing(1),
+    },
   },
 }));
 
