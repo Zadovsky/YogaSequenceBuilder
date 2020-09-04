@@ -23,6 +23,7 @@ import orange from "@material-ui/core/colors/orange";
 const useStyles = makeStyles((theme) => ({
   container: {
     height: "100vh",
+    overflow: "hidden",
   },
   appFlexBox: {
     display: "flex",
