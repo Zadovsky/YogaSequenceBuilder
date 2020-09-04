@@ -24,11 +24,8 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("lg")]: {
       margin: theme.spacing(1, 0),
-    },
-    [theme.breakpoints.down("sm")]: {
-      margin: 0,
     },
   },
 }));

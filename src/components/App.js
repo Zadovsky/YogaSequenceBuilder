@@ -19,16 +19,41 @@ import { useMediaQuery } from "@material-ui/core";
 import pink from "@material-ui/core/colors/pink";
 import grey from "@material-ui/core/colors/grey";
 import orange from "@material-ui/core/colors/orange";
-import "./App.css";
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    height: "100vh",
+  },
+  appFlexBox: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+  },
+  panelsFlexElement: {
+    display: "flex",
+    alignItems: "center",
+    overflow: "hidden",
+    flexGrow: 3,
+    margin: theme.spacing(1, -1),
+    padding: theme.spacing(0, 1),
+    [theme.breakpoints.down("sm")]: {
+      margin: theme.spacing(0.5, -1),
+    },
+  },
+  panelListWrapper: {
+    position: "relative",
+    height: "100%",
+  },
+  gridContainer: {
+    height: "100%",
+  },
   grid: {
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      height: "100vh",
+      height: "100%",
     },
     [theme.breakpoints.down("xs")]: {
-      height: "50vh",
+      height: "50%",
     },
   },
 }));
@@ -59,24 +84,40 @@ export default function App(props) {
       <CssBaseline />
       <MuiThemeProvider theme={customTheme}>
         <DnDContext>
-          <Container maxWidth="lg" {...containerProps}>
-            <Grid container {...gridContainerProps}>
-              <Grid item xs={12}>
-                <PageTop />
+          <Container
+            maxWidth="lg"
+            className={classes.container}
+            {...containerProps}
+          >
+            <div className={classes.appFlexBox}>
+              <Grid container {...gridContainerProps}>
+                <Grid item xs={12}>
+                  <PageTop />
+                </Grid>
               </Grid>
-              <Grid item sm={6} className={classes.grid}>
-                <div className="PanelListWrapper">
-                  <AsanasPanel />
-                  <SequencesList />
-                </div>
+              <div className={classes.panelsFlexElement}>
+                <Grid
+                  container
+                  className={classes.gridContainer}
+                  {...gridContainerProps}
+                >
+                  <Grid item sm={6} className={classes.grid}>
+                    <div className={classes.panelListWrapper}>
+                      <AsanasPanel />
+                      <SequencesList />
+                    </div>
+                  </Grid>
+                  <Grid item sm={6} className={classes.grid}>
+                    <SchedulePanel />
+                  </Grid>
+                </Grid>
+              </div>
+              <Grid container {...gridContainerProps}>
+                <Grid item xs={12}>
+                  <Footer />
+                </Grid>
               </Grid>
-              <Grid item sm={6} className={classes.grid}>
-                <SchedulePanel />
-              </Grid>
-              <Grid item xs={12}>
-                <Footer />
-              </Grid>
-            </Grid>
+            </div>
           </Container>
         </DnDContext>
         <UserPopUpWindows />
