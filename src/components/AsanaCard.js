@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     backgroundColor: "white",
     overflow: "hidden",
+    touchAction: "none",
     [theme.breakpoints.down("sm")]: {
       height: "96%",
       marginTop: "2%",
