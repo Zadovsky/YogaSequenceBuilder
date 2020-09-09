@@ -104,7 +104,7 @@ function SchedulePanel(props) {
         onDragIconMouseDownAction={onDragIconMouseDownAction}
         onDragIconMouseUpAction={onDragIconMouseUpAction}
         addAsanaAction={() => {}}
-        dragEnterAction={dragEnterAction}
+        dragEnterAction={draggingCard ? dragEnterAction : () => {}}
         onDragEnterEmptySpaceAction={onDragEnterEmptySpaceAction}
         onDragEnterHolderAction={onDragEnterHolderAction}
         closeCardAction={closeCardAction}
