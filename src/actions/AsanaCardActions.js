@@ -1,6 +1,7 @@
 export const ADD_ASANA = "ADD_ASANA";
 export const DRAG_ENTER_CARD = "DRAG_ENTER_CARD";
-export const START_DRAG_CARD = "START_DRAG_CARD";
+export const START_DRAG_CARD_ASANAS = "START_DRAG_CARD_ASANAS";
+export const START_DRAG_CARD_SCHEDULE = "START_DRAG_CARD_SCHEDULE";
 export const CLOSE_CARD = "CLOSE_CARD";
 
 export function addAsanaAction(asanaId, gridId) {
@@ -34,13 +35,22 @@ export function dragEnterAction(cardPlace, gridId, itIsSchedulePanel) {
   };
 }
 
-export function startCardDragAction(cardPlace, gridId, itIsSchedulePanel) {
+export function startCardDragAsanasAction(cardPlace, gridId) {
   return {
-    type: START_DRAG_CARD,
+    type: START_DRAG_CARD_ASANAS,
     payload: {
       card: cardPlace,
       gridId: gridId,
-      itIsSchedulePanel: itIsSchedulePanel,
+    },
+  };
+}
+
+export function startCardDragScheduleAction(cardPlace, gridId) {
+  return {
+    type: START_DRAG_CARD_SCHEDULE,
+    payload: {
+      card: cardPlace,
+      gridId: gridId,
     },
   };
 }

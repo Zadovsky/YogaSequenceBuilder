@@ -5,7 +5,7 @@ import SaveLoadPdfButtons from "../components/SaveLoadPdfButtons";
 import SetCookies from "../components/SetCookies";
 import {
   dragEnterAction,
-  startCardDragAction,
+  startCardDragScheduleAction,
   closeCardAction,
 } from "../actions/AsanaCardActions";
 import {
@@ -186,8 +186,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSetCookiesAction: (cards, panelName, nextGridKey, nextCardKey) =>
       dispatch(onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)),
-    startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
-      dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
+    startCardDragAction: (asanaId, gridId) =>
+      dispatch(startCardDragScheduleAction(asanaId, gridId)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
     onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),

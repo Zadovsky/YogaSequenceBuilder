@@ -5,7 +5,7 @@ import AsanasNavigation from "../components/AsanasNavigation";
 import {
   addAsanaAction,
   dragEnterAction,
-  startCardDragAction,
+  startCardDragAsanasAction,
 } from "../actions/AsanaCardActions";
 import { startGridDragAction } from "../actions/AsanasGridActions";
 import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
@@ -116,8 +116,8 @@ const mapDispatchToProps = (dispatch) => {
     onGridBlockScroll: () => dispatch(onGridBlockScroll()),
     onClickAsanasNavigation: (groupId) =>
       dispatch(onClickAsanasNavigation(groupId)),
-    startCardDragAction: (asanaId, gridId, itIsSchedulePanel) =>
-      dispatch(startCardDragAction(asanaId, gridId, itIsSchedulePanel)),
+    startCardDragAction: (asanaId, gridId) =>
+      dispatch(startCardDragAsanasAction(asanaId, gridId)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
     addAsanaAction: (asanaId, gridId) =>

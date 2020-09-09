@@ -1,7 +1,8 @@
 import {
   ADD_ASANA,
   DRAG_ENTER_CARD,
-  START_DRAG_CARD,
+  START_DRAG_CARD_SCHEDULE,
+  START_DRAG_CARD_ASANAS,
   CLOSE_CARD,
 } from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
@@ -365,30 +366,29 @@ export function scheduleReducer(state = initialState, action) {
         setCookies: true,
       };
 
-    case START_DRAG_CARD:
-      if (action.payload.itIsSchedulePanel) {
-        return {
-          ...state,
-          dragSourceGrid: action.payload.gridId,
-          dragSourcePanelIsSchedule: action.payload.itIsSchedulePanel,
-          draggingCard: action.payload.card,
-          dragOverCard: action.payload.card + 1,
-          dragOverGrid: action.payload.gridId,
-          fastTransition: true,
-          onPlaceHolder: true,
-        };
-      } else {
-        return {
-          ...state,
-          dragSourceGrid: action.payload.gridId,
-          dragSourcePanelIsSchedule: action.payload.itIsSchedulePanel,
-          draggingCard: action.payload.card,
-          dragOverCard: null,
-          dragOverGrid: null,
-          fastTransition: false,
-          onPlaceHolder: false,
-        };
-      }
+    case START_DRAG_CARD_SCHEDULE:
+      return {
+        ...state,
+        dragSourceGrid: action.payload.gridId,
+        dragSourcePanelIsSchedule: true,
+        draggingCard: action.payload.card,
+        dragOverCard: action.payload.card + 1,
+        dragOverGrid: action.payload.gridId,
+        fastTransition: true,
+        onPlaceHolder: true,
+      };
+
+    case START_DRAG_CARD_ASANAS:
+      return {
+        ...state,
+        dragSourceGrid: action.payload.gridId,
+        dragSourcePanelIsSchedule: false,
+        draggingCard: action.payload.card,
+        dragOverCard: null,
+        dragOverGrid: null,
+        fastTransition: false,
+        onPlaceHolder: false,
+      };
 
     case DRAG_ENTER_CARD:
       if (
