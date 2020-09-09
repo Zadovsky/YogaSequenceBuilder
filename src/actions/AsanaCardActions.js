@@ -24,13 +24,12 @@ export function closeCardAction(cardIndex, gridId) {
   };
 }
 
-export function dragEnterAction(cardPlace, gridId, itIsSchedulePanel) {
+export function dragEnterAction(cardPlace, gridId) {
   return {
     type: DRAG_ENTER_CARD,
     payload: {
       cardPlace: cardPlace,
       gridId: gridId,
-      itIsSchedulePanel: itIsSchedulePanel,
     },
   };
 }

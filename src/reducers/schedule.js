@@ -393,7 +393,6 @@ export function scheduleReducer(state = initialState, action) {
     case DRAG_ENTER_CARD:
       if (
         state.draggingCard !== null &&
-        action.payload.itIsSchedulePanel &&
         !(
           action.payload.cardPlace === state.lastDragEnterCard &&
           action.payload.gridId === state.lastDragEnterGrid
