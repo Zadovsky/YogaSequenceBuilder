@@ -391,39 +391,28 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case DRAG_ENTER_CARD:
+      let newDragOverCard = action.payload.cardPlace;
+
       if (
-        !(
-          action.payload.cardPlace === state.lastDragEnterCard &&
-          action.payload.gridId === state.lastDragEnterGrid
-        )
+        (state.dragOverGrid === action.payload.gridId &&
+          state.dragOverCard === newDragOverCard &&
+          state.onPlaceHolder) ||
+        (state.dragSourceGrid === action.payload.gridId &&
+          state.dragOverCard < newDragOverCard - 1 &&
+          state.dragOverCard != null)
       ) {
-        let newDragOverCard = action.payload.cardPlace;
-
-        if (
-          (state.dragOverGrid === action.payload.gridId &&
-            state.dragOverCard === newDragOverCard &&
-            state.onPlaceHolder) ||
-          (state.dragSourceGrid === action.payload.gridId &&
-            state.dragOverCard < newDragOverCard - 1 &&
-            state.dragOverCard != null)
-        ) {
-          newDragOverCard++;
-        }
-
-        return {
-          ...state,
-          dragOverCard: newDragOverCard,
-          dragOverGrid: action.payload.gridId,
-          lastDragEnterCard: action.payload.cardPlace,
-          lastDragEnterGrid: action.payload.gridId,
-          fastTransition: false,
-          onPlaceHolder: false,
-        };
-      } else {
-        return {
-          ...state,
-        };
+        newDragOverCard++;
       }
+
+      return {
+        ...state,
+        dragOverCard: newDragOverCard,
+        dragOverGrid: action.payload.gridId,
+        lastDragEnterCard: action.payload.cardPlace,
+        lastDragEnterGrid: action.payload.gridId,
+        fastTransition: false,
+        onPlaceHolder: false,
+      };
 
     case DRAG_ENTER_EMPTY_SPACE:
       if (state.draggingCard !== null && action.payload.itIsSchedulePanel) {

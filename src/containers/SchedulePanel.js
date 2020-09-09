@@ -58,6 +58,8 @@ function SchedulePanel(props) {
     gridHeight,
     gridDefaultName,
     saveLoadPdfText,
+    lastDragEnterCard,
+    lastDragEnterGrid,
   } = props.schedule;
 
   const {
@@ -104,7 +106,11 @@ function SchedulePanel(props) {
         onDragIconMouseDownAction={onDragIconMouseDownAction}
         onDragIconMouseUpAction={onDragIconMouseUpAction}
         addAsanaAction={() => {}}
-        dragEnterAction={draggingCard ? dragEnterAction : () => {}}
+        dragEnterAction={
+          draggingCard
+            ? dragEnterAction.bind(null, lastDragEnterCard, lastDragEnterGrid)
+            : () => {}
+        }
         onDragEnterEmptySpaceAction={onDragEnterEmptySpaceAction}
         onDragEnterHolderAction={onDragEnterHolderAction}
         closeCardAction={closeCardAction}
@@ -195,8 +201,20 @@ const mapDispatchToProps = (dispatch) => {
     closeCardAction: (cardIndex, gridId) =>
       dispatch(closeCardAction(cardIndex, gridId)),
     closeGridAction: (gridId) => dispatch(closeGridAction(gridId)),
-    dragEnterAction: (enterIndex, gridId) =>
-      dispatch(dragEnterAction(enterIndex, gridId)),
+    dragEnterAction: (
+      lastDragEnterCard,
+      lastDragEnterGrid,
+      enterIndex,
+      gridId
+    ) =>
+      dispatch(
+        dragEnterAction(
+          lastDragEnterCard,
+          lastDragEnterGrid,
+          enterIndex,
+          gridId
+        )
+      ),
     onDragEnterHolderAction: (index, gridId) =>
       dispatch(onDragEnterHolderAction(index, gridId)),
     onDragEnterEmptySpaceAction: (gridId, itIsSchedulePanel) =>
