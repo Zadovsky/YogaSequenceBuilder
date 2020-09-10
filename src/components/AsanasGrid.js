@@ -213,7 +213,7 @@ export default function AsanasGrid(props) {
             {cardsHoldersArr}
             <EmptySpaceAtTheEnd
               onDragEnterEmptySpaceAction={() =>
-                onDragEnterEmptySpaceAction(gridId, itIsSchedulePanel)
+                onDragEnterEmptySpaceAction(gridId)
               }
             />
           </div>

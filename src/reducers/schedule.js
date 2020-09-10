@@ -415,20 +415,14 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case DRAG_ENTER_EMPTY_SPACE:
-      if (state.draggingCard !== null && action.payload.itIsSchedulePanel) {
-        return {
-          ...state,
-          dragOverCard: state.cards[action.payload.gridId].gridCards.length,
-          dragOverGrid: action.payload.gridId,
-          lastDragEnterCard: null,
-          fastTransition: false,
-          onPlaceHolder: false,
-        };
-      } else {
-        return {
-          ...state,
-        };
-      }
+      return {
+        ...state,
+        dragOverCard: state.cards[action.payload.gridId].gridCards.length,
+        dragOverGrid: action.payload.gridId,
+        lastDragEnterCard: null,
+        fastTransition: false,
+        onPlaceHolder: false,
+      };
 
     case DRAG_ENTER_PLACEHOLDER:
       return {
