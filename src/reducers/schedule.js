@@ -280,37 +280,33 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case DRAG_ENTER_GRID:
-      if (action.payload !== state.lastDragEnterGrid) {
-        if (state.draggingGrid !== null) {
-          let newDragOverGrid;
+      if (state.draggingGrid !== null) {
+        let newDragOverGrid;
 
-          if (state.onPlaceHolder && state.dragOverGrid === action.payload) {
-            if (action.payload + 1 === state.draggingGrid) {
-              newDragOverGrid = action.payload + 2;
-            } else {
-              newDragOverGrid = action.payload + 1;
-            }
+        if (state.onPlaceHolder && state.dragOverGrid === action.payload) {
+          if (action.payload + 1 === state.draggingGrid) {
+            newDragOverGrid = action.payload + 2;
           } else {
-            newDragOverGrid = action.payload;
+            newDragOverGrid = action.payload + 1;
           }
-
-          return {
-            ...state,
-            fastTransition: false,
-            onPlaceHolder: false,
-            dragOverGrid: newDragOverGrid,
-            lastDragEnterGrid: action.payload,
-          };
-        } else if (state.draggingCard !== null) {
-          return {
-            ...state,
-            dragOverGrid: action.payload,
-            dragOverCard: state.cards[action.payload].gridCards.length,
-            lastDragEnterGrid: action.payload,
-          };
         } else {
-          return state;
+          newDragOverGrid = action.payload;
         }
+
+        return {
+          ...state,
+          fastTransition: false,
+          onPlaceHolder: false,
+          dragOverGrid: newDragOverGrid,
+          lastDragEnterGrid: action.payload,
+        };
+      } else if (state.draggingCard !== null) {
+        return {
+          ...state,
+          dragOverGrid: action.payload,
+          dragOverCard: state.cards[action.payload].gridCards.length,
+          lastDragEnterGrid: action.payload,
+        };
       } else {
         return state;
       }

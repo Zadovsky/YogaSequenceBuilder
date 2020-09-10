@@ -96,6 +96,8 @@ function AsanasPanel(props) {
       openMenuAction={props.onOpenMenuAsanasAction}
       openMenu={props.asanas.openMenu}
       closeMenuAction={props.onCloseMenuAsanasAction}
+      lastDragEnterCard={null}
+      lastDragEnterGrid={null}
     />
   );
 }

@@ -150,6 +150,7 @@ export default function AsanasGrid(props) {
     onBlurGridNameAction,
     scrollIntoView,
     draggingGrid,
+    lastDragEnterGrid,
   } = props;
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
@@ -196,7 +197,11 @@ export default function AsanasGrid(props) {
               }
             : () => {}
         }
-        onDragEnter={() => dragEnterGridAction(gridId)}
+        onDragEnter={
+          gridId !== lastDragEnterGrid
+            ? () => dragEnterGridAction(gridId)
+            : () => {}
+        }
         onDragOver={onDragOverFunc}
       >
         <Paper className={classes.root}>
