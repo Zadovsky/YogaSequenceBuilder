@@ -7,7 +7,11 @@ import {
 } from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
-import { END_DRAG, DRAG_ENTER_DND_CONTEXT } from "../actions/DnDContextActions";
+import {
+  END_DRAG,
+  DRAG_ENTER_DND_CONTEXT_CARD,
+  DRAG_ENTER_DND_CONTEXT_GRID,
+} from "../actions/DnDContextActions";
 import { DRAG_ENTER_GRID_PH } from "../actions/GridPlaceHolderActions";
 import {
   CHANGE_PANEL_NAME,
@@ -431,31 +435,25 @@ export function scheduleReducer(state = initialState, action) {
         onPlaceHolder: true,
       };
 
-    case DRAG_ENTER_DND_CONTEXT:
-      if (
-        (action.payload.outOfAsanasGrid || action.payload.outOfPanel) &&
-        state.draggingCard !== null
-      ) {
-        return {
-          ...state,
-          dragOverCard: null,
-          dragOverGrid: null,
-          lastDragEnterCard: null,
-          lastDragEnterGrid: null,
-          fastTransition: false,
-          onPlaceHolder: false,
-        };
-      } else if (action.payload.outOfPanel && state.draggingGrid !== null) {
-        return {
-          ...state,
-          fastTransition: false,
-          onPlaceHolder: false,
-          dragOverGrid: null,
-          lastDragEnterGrid: null,
-        };
-      } else {
-        return state;
-      }
+    case DRAG_ENTER_DND_CONTEXT_CARD:
+      return {
+        ...state,
+        dragOverCard: null,
+        dragOverGrid: null,
+        lastDragEnterCard: null,
+        lastDragEnterGrid: null,
+        fastTransition: false,
+        onPlaceHolder: false,
+      };
+
+    case DRAG_ENTER_DND_CONTEXT_GRID:
+      return {
+        ...state,
+        fastTransition: false,
+        onPlaceHolder: false,
+        dragOverGrid: null,
+        lastDragEnterGrid: null,
+      };
 
     case END_DRAG:
       cards = JSON.parse(JSON.stringify(state.cards));
