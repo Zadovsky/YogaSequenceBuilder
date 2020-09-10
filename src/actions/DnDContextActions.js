@@ -1,10 +1,17 @@
-export const END_DRAG = "END_DRAG";
+export const END_DRAG_CARD = "END_DRAG_CARD";
+export const END_DRAG_GRID = "END_DRAG_GRID";
 export const DRAG_ENTER_DND_CONTEXT_CARD = "DRAG_ENTER_DND_CONTEXT_CARD";
 export const DRAG_ENTER_DND_CONTEXT_GRID = "DRAG_ENTER_DND_CONTEXT_GRID";
 
-export function endDrag(e) {
+export function endDragCard() {
   return {
-    type: END_DRAG,
+    type: END_DRAG_CARD,
+  };
+}
+
+export function endDragGrid() {
+  return {
+    type: END_DRAG_GRID,
   };
 }
 

@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  endDrag,
+  endDragCard,
+  endDragGrid,
   dragEnterCard,
   dragEnterGrid,
 } from "../actions/DnDContextActions";
@@ -11,18 +12,17 @@ function DnDContext(props) {
   const { draggingCard, draggingGrid } = props.schedule;
 
   var onDragEnter = () => {};
+  var onDragEnd = () => {};
   if (draggingCard !== null) {
     onDragEnter = props.onDragEnterCardAction;
+    onDragEnd = props.onDragEndCardAction;
   } else if (draggingGrid !== null) {
     onDragEnter = props.onDragEnterGridAction;
+    onDragEnd = props.onDragEndGridAction;
   }
 
   return (
-    <div
-      className="DnDContext"
-      onDragEnd={props.endDragAction}
-      onDragEnter={onDragEnter}
-    >
+    <div className="DnDContext" onDragEnd={onDragEnd} onDragEnter={onDragEnter}>
       {props.children}
     </div>
   );
@@ -36,7 +36,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    endDragAction: (e) => dispatch(endDrag(e)),
+    onDragEndCardAction: () => dispatch(endDragCard()),
+    onDragEndGridAction: () => dispatch(endDragGrid()),
     onDragEnterCardAction: (e) => dispatch(dragEnterCard(e)),
     onDragEnterGridAction: (e) => dispatch(dragEnterGrid(e)),
   };

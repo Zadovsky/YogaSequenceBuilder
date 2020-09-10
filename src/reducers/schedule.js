@@ -8,7 +8,8 @@ import {
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
 import {
-  END_DRAG,
+  END_DRAG_CARD,
+  END_DRAG_GRID,
   DRAG_ENTER_DND_CONTEXT_CARD,
   DRAG_ENTER_DND_CONTEXT_GRID,
 } from "../actions/DnDContextActions";
@@ -340,7 +341,7 @@ export function scheduleReducer(state = initialState, action) {
         asanaIndex: action.payload.asanaId,
       });
 
-      let cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
+      var cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
 
       return {
         ...state,
@@ -448,92 +449,91 @@ export function scheduleReducer(state = initialState, action) {
         lastDragEnterGrid: null,
       };
 
-    case END_DRAG:
+    case END_DRAG_CARD:
       cards = JSON.parse(JSON.stringify(state.cards));
 
-      if (state.draggingCard !== null) {
-        var {
-          dragOverCard,
-          dragOverGrid,
-          draggingCard,
-          dragSourceGrid,
-          dragSourcePanelIsSchedule,
-        } = state;
+      var {
+        dragOverCard,
+        dragOverGrid,
+        draggingCard,
+        dragSourceGrid,
+        dragSourcePanelIsSchedule,
+      } = state;
 
-        var newNextCardKey = state.nextCardKey;
+      var newNextCardKey = state.nextCardKey;
 
-        if (dragSourcePanelIsSchedule) {
-          var dragCard = cards[dragSourceGrid].gridCards[draggingCard];
-          cards[dragSourceGrid].gridCards.splice(draggingCard, 1);
-        } else {
-          dragCard = {
-            cardKey: newNextCardKey,
-            asanaIndex: draggingCard,
-          };
-          newNextCardKey++;
-        }
-
-        if (dragOverCard !== null) {
-          if (dragOverCard > draggingCard && dragSourceGrid === dragOverGrid) {
-            dragOverCard--;
-          }
-          cards[dragOverGrid].gridCards = [
-            ...cards[dragOverGrid].gridCards.slice(0, dragOverCard),
-            dragCard,
-            ...cards[dragOverGrid].gridCards.slice(dragOverCard),
-          ];
-        }
-
-        let cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
-
-        return {
-          ...state,
-          cards: cardsWithEmptyGrid.cards,
-          setCookies: true,
-          nextGridKey: cardsWithEmptyGrid.nextGridKey,
-          dragOverCard: null,
-          dragOverGrid: null,
-          draggingCard: null,
-          lastDragEnterCard: null,
-          lastDragEnterGrid: null,
-          fastTransition: true,
-          nextCardKey: newNextCardKey,
-        };
-      } else if (state.draggingGrid !== null) {
-        var draggingGrid = state.draggingGrid;
-        var dragGrid = cards[draggingGrid];
-        dragOverGrid = state.dragOverGrid;
-
-        cards.splice(draggingGrid, 1);
-
-        if (dragOverGrid > draggingGrid) {
-          dragOverGrid--;
-        }
-
-        if (dragOverGrid !== null) {
-          cards = [
-            ...cards.slice(0, dragOverGrid),
-            dragGrid,
-            ...cards.slice(dragOverGrid),
-          ];
-        }
-
-        let cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
-
-        return {
-          ...state,
-          cards: cardsWithEmptyGrid.cards,
-          setCookies: true,
-          nextGridKey: cardsWithEmptyGrid.nextGridKey,
-          fastTransition: true,
-          gridHeight: null,
-          draggingGrid: null,
-          dragOverGrid: null,
-          lastDragEnterGrid: null,
-        };
+      if (dragSourcePanelIsSchedule) {
+        var dragCard = cards[dragSourceGrid].gridCards[draggingCard];
+        cards[dragSourceGrid].gridCards.splice(draggingCard, 1);
       } else {
-        return state;
+        dragCard = {
+          cardKey: newNextCardKey,
+          asanaIndex: draggingCard,
+        };
+        newNextCardKey++;
       }
+
+      if (dragOverCard !== null) {
+        if (dragOverCard > draggingCard && dragSourceGrid === dragOverGrid) {
+          dragOverCard--;
+        }
+        cards[dragOverGrid].gridCards = [
+          ...cards[dragOverGrid].gridCards.slice(0, dragOverCard),
+          dragCard,
+          ...cards[dragOverGrid].gridCards.slice(dragOverCard),
+        ];
+      }
+
+      cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
+
+      return {
+        ...state,
+        cards: cardsWithEmptyGrid.cards,
+        setCookies: true,
+        nextGridKey: cardsWithEmptyGrid.nextGridKey,
+        dragOverCard: null,
+        dragOverGrid: null,
+        draggingCard: null,
+        lastDragEnterCard: null,
+        lastDragEnterGrid: null,
+        fastTransition: true,
+        nextCardKey: newNextCardKey,
+      };
+
+    case END_DRAG_GRID:
+      cards = JSON.parse(JSON.stringify(state.cards));
+
+      var draggingGrid = state.draggingGrid;
+      var dragGrid = cards[draggingGrid];
+      dragOverGrid = state.dragOverGrid;
+
+      cards.splice(draggingGrid, 1);
+
+      if (dragOverGrid > draggingGrid) {
+        dragOverGrid--;
+      }
+
+      if (dragOverGrid !== null) {
+        cards = [
+          ...cards.slice(0, dragOverGrid),
+          dragGrid,
+          ...cards.slice(dragOverGrid),
+        ];
+      }
+
+      cardsWithEmptyGrid = addEmptyGrid(cards, state.nextGridKey);
+
+      return {
+        ...state,
+        cards: cardsWithEmptyGrid.cards,
+        setCookies: true,
+        nextGridKey: cardsWithEmptyGrid.nextGridKey,
+        fastTransition: true,
+        gridHeight: null,
+        draggingGrid: null,
+        dragOverGrid: null,
+        lastDragEnterGrid: null,
+      };
 
     default:
       return state;
