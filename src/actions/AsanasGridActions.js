@@ -9,7 +9,7 @@ export const BLUR_GRID_NAME = "BLUR_GRID_NAME";
 export function startGridDragAction(gridId, e) {
   return {
     type: START_DRAG_GRID,
-    payload: { gridId: gridId, e: e, height: e.target.clientHeight },
+    payload: { gridId: gridId, height: e.target.clientHeight },
   };
 }
 

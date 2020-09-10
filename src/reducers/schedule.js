@@ -269,21 +269,14 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case START_DRAG_GRID:
-      if (state.draggingGrid === true) {
-        return {
-          ...state,
-          fastTransition: true,
-          onPlaceHolder: true,
-          gridHeight: action.payload.height,
-          draggingGrid: action.payload.gridId,
-          dragOverGrid: action.payload.gridId + 1,
-        };
-      } else if (state.draggingCard !== null) {
-        return state;
-      } else {
-        action.payload.e.preventDefault();
-        return state;
-      }
+      return {
+        ...state,
+        fastTransition: true,
+        onPlaceHolder: true,
+        gridHeight: action.payload.height,
+        draggingGrid: action.payload.gridId,
+        dragOverGrid: action.payload.gridId + 1,
+      };
 
     case DRAG_ENTER_GRID:
       if (action.payload !== state.lastDragEnterGrid) {

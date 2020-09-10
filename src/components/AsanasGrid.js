@@ -138,7 +138,6 @@ export default function AsanasGrid(props) {
   const {
     gridId,
     name,
-    isDragging,
     itIsSchedulePanel,
     startGridDragAction,
     dragEnterGridAction,
@@ -150,6 +149,7 @@ export default function AsanasGrid(props) {
     onChangeGridNameAction,
     onBlurGridNameAction,
     scrollIntoView,
+    draggingGrid,
   } = props;
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
@@ -181,17 +181,21 @@ export default function AsanasGrid(props) {
 
   const classStr = clsx(
     "AsanasGridDraggable",
-    isDragging && "AsanaGridDragging"
+    gridId === draggingGrid && itIsSchedulePanel && "AsanaGridDragging"
   );
 
   return (
     <AsanasGridWrapper scrollIntoView={scrollIntoView}>
       <div
         className={classStr}
-        draggable="true"
-        onDragStart={(e) => {
-          startGridDragAction(gridId, e);
-        }}
+        draggable={draggingGrid !== null}
+        onDragStart={
+          draggingGrid === true
+            ? (e) => {
+                startGridDragAction(gridId, e);
+              }
+            : () => {}
+        }
         onDragEnter={() => dragEnterGridAction(gridId)}
         onDragOver={onDragOverFunc}
       >

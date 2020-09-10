@@ -6,7 +6,6 @@ import {
   addAsanaAction,
   startCardDragAsanasAction,
 } from "../actions/AsanaCardActions";
-import { startGridDragAction } from "../actions/AsanasGridActions";
 import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
 import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
 import { onClickAsanasNavigation } from "../actions/AsanasNavigationActions";
@@ -57,7 +56,7 @@ function AsanasPanel(props) {
       onChangePanelNameAction={() => {}}
       onBlurPanelNameAction={() => {}}
       startCardDragAction={props.startCardDragAction}
-      startGridDragAction={props.startGridDragAction}
+      startGridDragAction={() => {}}
       onDragIconMouseDownAction={() => {}}
       onDragIconMouseUpAction={() => {}}
       addAsanaAction={props.addAsanaAction}
@@ -116,8 +115,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(onClickAsanasNavigation(groupId)),
     startCardDragAction: (asanaId, gridId) =>
       dispatch(startCardDragAsanasAction(asanaId, gridId)),
-    startGridDragAction: (gridId, e) =>
-      dispatch(startGridDragAction(gridId, e)),
     addAsanaAction: (asanaId, gridId) =>
       dispatch(addAsanaAction(asanaId, gridId)),
     onDragEnterHolderAction: (index, gridId) =>
