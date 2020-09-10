@@ -24,21 +24,14 @@ export function closeCardAction(cardIndex, gridId) {
   };
 }
 
-export function dragEnterAction(
-  lastDragEnterCard,
-  lastDragEnterGrid,
-  cardPlace,
-  gridId
-) {
-  if (!(cardPlace === lastDragEnterCard && gridId === lastDragEnterGrid)) {
-    return {
-      type: DRAG_ENTER_CARD,
-      payload: {
-        cardPlace: cardPlace,
-        gridId: gridId,
-      },
-    };
-  } else return { type: null };
+export function dragEnterAction(cardPlace, gridId) {
+  return {
+    type: DRAG_ENTER_CARD,
+    payload: {
+      cardPlace: cardPlace,
+      gridId: gridId,
+    },
+  };
 }
 
 export function startCardDragAsanasAction(cardPlace, gridId) {

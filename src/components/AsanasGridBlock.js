@@ -46,6 +46,8 @@ function createGridArr(props) {
         onChangeGridNameAction={props.onChangeGridNameAction}
         onBlurGridNameAction={props.onBlurGridNameAction}
         scrollIntoView={cards.gridKey === props.selectedGroupId}
+        lastDragEnterCard={props.lastDragEnterCard}
+        lastDragEnterGrid={props.lastDragEnterGrid}
       />
     );
   });

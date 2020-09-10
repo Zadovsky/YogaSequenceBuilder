@@ -72,6 +72,8 @@ export default function Panel(props) {
     openMenuAction,
     openMenu,
     closeMenuAction,
+    lastDragEnterCard,
+    lastDragEnterGrid,
   } = props;
 
   const classes = useStyles();
@@ -133,6 +135,8 @@ export default function Panel(props) {
               onBlurGridNameAction={onBlurGridNameAction}
               gridDefaultName={gridDefaultName}
               selectedGroupId={selectedGroupId}
+              lastDragEnterCard={lastDragEnterCard}
+              lastDragEnterGrid={lastDragEnterGrid}
             />
           </div>
           <MenuButton

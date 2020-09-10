@@ -106,11 +106,7 @@ function SchedulePanel(props) {
         onDragIconMouseDownAction={onDragIconMouseDownAction}
         onDragIconMouseUpAction={onDragIconMouseUpAction}
         addAsanaAction={() => {}}
-        dragEnterAction={
-          draggingCard
-            ? dragEnterAction.bind(null, lastDragEnterCard, lastDragEnterGrid)
-            : () => {}
-        }
+        dragEnterAction={dragEnterAction}
         onDragEnterEmptySpaceAction={onDragEnterEmptySpaceAction}
         onDragEnterHolderAction={onDragEnterHolderAction}
         closeCardAction={closeCardAction}
@@ -155,6 +151,8 @@ function SchedulePanel(props) {
         openMenuAction={props.onOpenMenuScheduleAction}
         openMenu={props.schedule.openMenu}
         closeMenuAction={props.onCloseMenuScheduleAction}
+        lastDragEnterCard={lastDragEnterCard}
+        lastDragEnterGrid={lastDragEnterGrid}
       />
       <SetCookies
         setCookies={setCookies}
@@ -201,20 +199,8 @@ const mapDispatchToProps = (dispatch) => {
     closeCardAction: (cardIndex, gridId) =>
       dispatch(closeCardAction(cardIndex, gridId)),
     closeGridAction: (gridId) => dispatch(closeGridAction(gridId)),
-    dragEnterAction: (
-      lastDragEnterCard,
-      lastDragEnterGrid,
-      enterIndex,
-      gridId
-    ) =>
-      dispatch(
-        dragEnterAction(
-          lastDragEnterCard,
-          lastDragEnterGrid,
-          enterIndex,
-          gridId
-        )
-      ),
+    dragEnterAction: (enterIndex, gridId) =>
+      dispatch(dragEnterAction(enterIndex, gridId)),
     onDragEnterHolderAction: (index, gridId) =>
       dispatch(onDragEnterHolderAction(index, gridId)),
     onDragEnterEmptySpaceAction: (gridId, itIsSchedulePanel) =>
