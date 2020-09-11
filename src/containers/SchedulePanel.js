@@ -59,6 +59,7 @@ function SchedulePanel(props) {
     gridHeight,
     gridDefaultName,
     saveLoadPdfText,
+    openMenu,
     lastDragEnterCard,
     lastDragEnterGrid,
   } = props.schedule;
@@ -88,6 +89,8 @@ function SchedulePanel(props) {
     onClickLoad,
     onClickPdf,
     onPDFDownloadAction,
+    onOpenMenuScheduleAction,
+    onCloseMenuScheduleAction,
   } = props;
 
   const asanas = asanasArr.arr.map((asana) => {
@@ -161,9 +164,9 @@ function SchedulePanel(props) {
         itIsSchedulePanel={!readOnly}
         selectedGroupId={null}
         onGridBlockScroll={() => {}}
-        openMenuAction={props.onOpenMenuScheduleAction}
-        openMenu={props.schedule.openMenu}
-        closeMenuAction={props.onCloseMenuScheduleAction}
+        openMenuAction={onOpenMenuScheduleAction}
+        openMenu={openMenu}
+        closeMenuAction={onCloseMenuScheduleAction}
         lastDragEnterCard={lastDragEnterCard}
         lastDragEnterGrid={lastDragEnterGrid}
       />
