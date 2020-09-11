@@ -87,7 +87,6 @@ function makeCardsArr(props) {
           startCardDragAction(asanaIndex, gridId);
         }}
         dragEnterAction={
-          draggingCard !== null &&
           !(asanaIndex === lastDragEnterCard && gridId === lastDragEnterGrid)
             ? () => {
                 dragEnterAction(asanaIndex, gridId);
