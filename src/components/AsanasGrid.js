@@ -65,6 +65,7 @@ function makeCardsArr(props) {
     itIsSchedulePanel,
     lastDragEnterCard,
     lastDragEnterGrid,
+    touchStartAction,
   } = props;
   return asanas.map((asana, i) => {
     const asanaIndex = itIsSchedulePanel ? i : asana.asanaIndex;
@@ -83,6 +84,7 @@ function makeCardsArr(props) {
             : i === draggingCard
         }
         itIsSchedulePanel={itIsSchedulePanel}
+        touchStartAction={touchStartAction}
         startCardDragAction={() => {
           startCardDragAction(asanaIndex, gridId);
         }}

@@ -86,6 +86,9 @@ export default function AsanaCard(props) {
         onClick={props.addAsanaAction}
         onDragEnter={props.dragEnterAction}
         onDragStart={props.startCardDragAction}
+        onTouchStart={props.touchStartAction}
+        onTouchMove={() => console.log("onTouchMove")}
+        onTouchEnd={() => console.log("onTouchEnd")}
         draggable="true"
       >
         <div className="AsanaCardImgWrapper">

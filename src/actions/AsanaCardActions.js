@@ -3,6 +3,7 @@ export const DRAG_ENTER_CARD = "DRAG_ENTER_CARD";
 export const START_DRAG_CARD_ASANAS = "START_DRAG_CARD_ASANAS";
 export const START_DRAG_CARD_SCHEDULE = "START_DRAG_CARD_SCHEDULE";
 export const CLOSE_CARD = "CLOSE_CARD";
+export const TOUCH_START = "TOUCH_START";
 
 export function addAsanaAction(asanaId, gridId) {
   return {
@@ -51,5 +52,13 @@ export function startCardDragScheduleAction(cardPlace, gridId) {
       card: cardPlace,
       gridId: gridId,
     },
+  };
+}
+
+export function touchStartAction() {
+  var time = new Date();
+  return {
+    type: TOUCH_START,
+    payload: time.getTime(),
   };
 }

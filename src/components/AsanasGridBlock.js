@@ -44,6 +44,7 @@ function createGridArr(props) {
         scrollIntoView={cards.gridKey === props.selectedGroupId}
         lastDragEnterCard={props.lastDragEnterCard}
         lastDragEnterGrid={props.lastDragEnterGrid}
+        touchStartAction={props.touchStartAction}
       />
     );
   });

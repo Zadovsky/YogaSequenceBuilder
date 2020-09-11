@@ -5,6 +5,7 @@ import AsanasNavigation from "../components/AsanasNavigation";
 import {
   addAsanaAction,
   startCardDragAsanasAction,
+  touchStartAction,
 } from "../actions/AsanaCardActions";
 import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
 import { onClickAsanasNavigation } from "../actions/AsanasNavigationActions";
@@ -97,6 +98,7 @@ function AsanasPanel(props) {
       closeMenuAction={props.onCloseMenuAsanasAction}
       lastDragEnterCard={null}
       lastDragEnterGrid={null}
+      touchStartAction={props.touchStartAction}
     />
   );
 }
@@ -120,6 +122,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(addAsanaAction(asanaId, gridId)),
     onOpenMenuAsanasAction: () => dispatch(onOpenMenuAsanasAction()),
     onCloseMenuAsanasAction: () => dispatch(onCloseMenuAsanasAction()),
+    touchStartAction: () => dispatch(touchStartAction()),
   };
 };
 

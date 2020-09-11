@@ -4,6 +4,7 @@ import {
   START_DRAG_CARD_SCHEDULE,
   START_DRAG_CARD_ASANAS,
   CLOSE_CARD,
+  TOUCH_START,
 } from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
@@ -72,6 +73,7 @@ const initialState = {
   onPlaceHolder: false,
   gridHeight: null,
   openMenu: false,
+  touchStartTime: null,
   panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
   gridDefaultName: {
     ru: "Без названия",
@@ -107,6 +109,12 @@ function addEmptyGrid(cards, nextGridKey) {
 
 export function scheduleReducer(state = initialState, action) {
   switch (action.type) {
+    case TOUCH_START:
+      return {
+        ...state,
+        touchStartTime: action.payload,
+      };
+
     case CLOSE_MENU_SCHEDULE:
       return {
         ...state,
