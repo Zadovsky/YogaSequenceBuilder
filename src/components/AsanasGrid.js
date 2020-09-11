@@ -123,7 +123,7 @@ function makeCardsHoldersArr(cardsArr, props) {
         fat={dragOverCard === i && dragOverGrid === gridId}
         fastTransition={fastTransition}
         isDragEnd={draggingCard == null}
-        onDragEnterHolderAction={() => onDragEnterHolderAction(i, gridId)}
+        onDragEnterHolderAction={onDragEnterHolderAction}
       />
     );
     cardsHoldersArr.push(placeHolder, card);

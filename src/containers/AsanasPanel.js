@@ -7,7 +7,6 @@ import {
   startCardDragAsanasAction,
 } from "../actions/AsanaCardActions";
 import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
-import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
 import { onClickAsanasNavigation } from "../actions/AsanasNavigationActions";
 import {
   onOpenMenuAsanasAction,
@@ -62,7 +61,7 @@ function AsanasPanel(props) {
       addAsanaAction={props.addAsanaAction}
       dragEnterAction={() => {}}
       onDragEnterEmptySpaceAction={() => {}}
-      onDragEnterHolderAction={props.onDragEnterHolderAction}
+      onDragEnterHolderAction={() => {}}
       closeCardAction={() => {}}
       closeGridAction={() => {}}
       dragEnterGridAction={() => {}}
@@ -119,8 +118,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(startCardDragAsanasAction(asanaId, gridId)),
     addAsanaAction: (asanaId, gridId) =>
       dispatch(addAsanaAction(asanaId, gridId)),
-    onDragEnterHolderAction: (index, gridId) =>
-      dispatch(onDragEnterHolderAction(index, gridId)),
     onOpenMenuAsanasAction: () => dispatch(onOpenMenuAsanasAction()),
     onCloseMenuAsanasAction: () => dispatch(onCloseMenuAsanasAction()),
   };
