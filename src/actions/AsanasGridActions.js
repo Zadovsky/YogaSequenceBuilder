@@ -1,7 +1,8 @@
 export const START_DRAG_GRID = "START_DRAG_GRID";
 export const DRAG_ICON_MOUSE_DOWN = "DRAG_ICON_MOUSE_DOWN";
 export const DRAG_ICON_MOUSE_UP = "DRAG_ICON_MOUSE_UP";
-export const DRAG_ENTER_GRID = "DRAG_ENTER_GRID";
+export const DRAG_ENTER_GRID_CARD = "DRAG_ENTER_GRID_CARD";
+export const DRAG_ENTER_GRID_GRID = "DRAG_ENTER_GRID_GRID";
 export const CLOSE_GRID = "CLOSE_GRID";
 export const CHANGE_GRID_NAME = "CHANGE_GRID_NAME";
 export const BLUR_GRID_NAME = "BLUR_GRID_NAME";
@@ -25,9 +26,16 @@ export function onDragIconMouseUpAction() {
   };
 }
 
-export function dragEnterGridAction(gridId) {
+export function dragEnterGridCardAction(gridId) {
   return {
-    type: DRAG_ENTER_GRID,
+    type: DRAG_ENTER_GRID_CARD,
+    payload: gridId,
+  };
+}
+
+export function dragEnterGridGridAction(gridId) {
+  return {
+    type: DRAG_ENTER_GRID_GRID,
     payload: gridId,
   };
 }

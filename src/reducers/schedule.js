@@ -22,7 +22,8 @@ import {
   DRAG_ICON_MOUSE_DOWN,
   DRAG_ICON_MOUSE_UP,
   START_DRAG_GRID,
-  DRAG_ENTER_GRID,
+  DRAG_ENTER_GRID_CARD,
+  DRAG_ENTER_GRID_GRID,
   CLOSE_GRID,
   CHANGE_GRID_NAME,
   BLUR_GRID_NAME,
@@ -279,37 +280,34 @@ export function scheduleReducer(state = initialState, action) {
         dragOverGrid: action.payload.gridId + 1,
       };
 
-    case DRAG_ENTER_GRID:
-      if (state.draggingGrid !== null) {
-        let newDragOverGrid;
+    case DRAG_ENTER_GRID_GRID:
+      let newDragOverGrid;
 
-        if (state.onPlaceHolder && state.dragOverGrid === action.payload) {
-          if (action.payload + 1 === state.draggingGrid) {
-            newDragOverGrid = action.payload + 2;
-          } else {
-            newDragOverGrid = action.payload + 1;
-          }
+      if (state.onPlaceHolder && state.dragOverGrid === action.payload) {
+        if (action.payload + 1 === state.draggingGrid) {
+          newDragOverGrid = action.payload + 2;
         } else {
-          newDragOverGrid = action.payload;
+          newDragOverGrid = action.payload + 1;
         }
-
-        return {
-          ...state,
-          fastTransition: false,
-          onPlaceHolder: false,
-          dragOverGrid: newDragOverGrid,
-          lastDragEnterGrid: action.payload,
-        };
-      } else if (state.draggingCard !== null) {
-        return {
-          ...state,
-          dragOverGrid: action.payload,
-          dragOverCard: state.cards[action.payload].gridCards.length,
-          lastDragEnterGrid: action.payload,
-        };
       } else {
-        return state;
+        newDragOverGrid = action.payload;
       }
+
+      return {
+        ...state,
+        fastTransition: false,
+        onPlaceHolder: false,
+        dragOverGrid: newDragOverGrid,
+        lastDragEnterGrid: action.payload,
+      };
+
+    case DRAG_ENTER_GRID_CARD:
+      return {
+        ...state,
+        dragOverGrid: action.payload,
+        dragOverCard: state.cards[action.payload].gridCards.length,
+        lastDragEnterGrid: action.payload,
+      };
 
     case DRAG_ENTER_GRID_PH:
       return {

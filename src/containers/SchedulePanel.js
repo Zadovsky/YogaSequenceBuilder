@@ -12,7 +12,8 @@ import {
   startGridDragAction,
   onDragIconMouseDownAction,
   onDragIconMouseUpAction,
-  dragEnterGridAction,
+  dragEnterGridCardAction,
+  dragEnterGridGridAction,
   closeGridAction,
   onChangeGridNameAction,
   onBlurGridNameAction,
@@ -78,7 +79,8 @@ function SchedulePanel(props) {
     onDragEnterHolderAction,
     closeCardAction,
     closeGridAction,
-    dragEnterGridAction,
+    dragEnterGridCardAction,
+    dragEnterGridGridAction,
     onDragEnterGridPhAction,
     onChangeGridNameAction,
     onBlurGridNameAction,
@@ -94,6 +96,13 @@ function SchedulePanel(props) {
       asanaName: asana.asanaName[language.curLang],
     };
   });
+
+  var dragEnterGridAction = () => {};
+  if (draggingCard !== null) {
+    dragEnterGridAction = dragEnterGridCardAction;
+  } else if (draggingGrid !== null) {
+    dragEnterGridAction = dragEnterGridGridAction;
+  }
 
   return (
     <div className="SchedulePanel">
@@ -207,7 +216,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(onDragEnterHolderAction(index, gridId)),
     onDragEnterEmptySpaceAction: (gridId) =>
       dispatch(onDragEnterEmptySpaceAction(gridId)),
-    dragEnterGridAction: (gridId) => dispatch(dragEnterGridAction(gridId)),
+    dragEnterGridCardAction: (gridId) =>
+      dispatch(dragEnterGridCardAction(gridId)),
+    dragEnterGridGridAction: (gridId) =>
+      dispatch(dragEnterGridGridAction(gridId)),
     onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction()),
     onChangeGridNameAction: (gridId, e) =>
       dispatch(onChangeGridNameAction(gridId, e)),
