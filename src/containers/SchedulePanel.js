@@ -98,10 +98,12 @@ function SchedulePanel(props) {
   });
 
   var dragEnterGridAction = () => {},
-    dragEnterVar = () => {};
+    dragEnterVar = () => {},
+    onDragEnterEmptySpaceVar = () => {};
   if (draggingCard !== null) {
     dragEnterGridAction = dragEnterGridCardAction;
     dragEnterVar = dragEnterAction;
+    onDragEnterEmptySpaceVar = onDragEnterEmptySpaceAction;
   } else if (draggingGrid !== null) {
     dragEnterGridAction = dragEnterGridGridAction;
   }
@@ -118,9 +120,7 @@ function SchedulePanel(props) {
         onDragIconMouseUpAction={onDragIconMouseUpAction}
         addAsanaAction={() => {}}
         dragEnterAction={dragEnterVar}
-        onDragEnterEmptySpaceAction={
-          draggingCard !== null ? onDragEnterEmptySpaceAction : () => {}
-        }
+        onDragEnterEmptySpaceAction={onDragEnterEmptySpaceVar}
         onDragEnterHolderAction={onDragEnterHolderAction}
         closeCardAction={closeCardAction}
         closeGridAction={closeGridAction}
