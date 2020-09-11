@@ -5,6 +5,7 @@ import {
   START_DRAG_CARD_ASANAS,
   CLOSE_CARD,
   TOUCH_START,
+  TOUCH_END,
 } from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
@@ -113,6 +114,12 @@ export function scheduleReducer(state = initialState, action) {
       return {
         ...state,
         touchStartTime: action.payload,
+      };
+
+    case TOUCH_END:
+      return {
+        ...state,
+        touchStartTime: null,
       };
 
     case CLOSE_MENU_SCHEDULE:

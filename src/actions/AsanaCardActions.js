@@ -4,6 +4,7 @@ export const START_DRAG_CARD_ASANAS = "START_DRAG_CARD_ASANAS";
 export const START_DRAG_CARD_SCHEDULE = "START_DRAG_CARD_SCHEDULE";
 export const CLOSE_CARD = "CLOSE_CARD";
 export const TOUCH_START = "TOUCH_START";
+export const TOUCH_END = "TOUCH_END";
 
 export function addAsanaAction(asanaId, gridId) {
   return {
@@ -60,5 +61,11 @@ export function touchStartAction() {
   return {
     type: TOUCH_START,
     payload: time.getTime(),
+  };
+}
+
+export function touchEndAction() {
+  return {
+    type: TOUCH_END,
   };
 }

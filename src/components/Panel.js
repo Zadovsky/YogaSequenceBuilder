@@ -75,6 +75,7 @@ export default function Panel(props) {
     lastDragEnterCard,
     lastDragEnterGrid,
     touchStartAction,
+    touchEndAction,
   } = props;
 
   const classes = useStyles();
@@ -139,6 +140,7 @@ export default function Panel(props) {
               lastDragEnterCard={lastDragEnterCard}
               lastDragEnterGrid={lastDragEnterGrid}
               touchStartAction={touchStartAction}
+              touchEndAction={touchEndAction}
             />
           </div>
           <MenuButton

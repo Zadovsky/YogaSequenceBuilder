@@ -8,6 +8,7 @@ import {
   startCardDragScheduleAction,
   closeCardAction,
   touchStartAction,
+  touchEndAction,
 } from "../actions/AsanaCardActions";
 import {
   startGridDragAction,
@@ -93,6 +94,7 @@ function SchedulePanel(props) {
     onOpenMenuScheduleAction,
     onCloseMenuScheduleAction,
     touchStartAction,
+    touchEndAction,
   } = props;
 
   const asanas = asanasArr.arr.map((asana) => {
@@ -172,6 +174,7 @@ function SchedulePanel(props) {
         lastDragEnterCard={lastDragEnterCard}
         lastDragEnterGrid={lastDragEnterGrid}
         touchStartAction={touchStartAction}
+        touchEndAction={touchEndAction}
       />
       <SetCookies
         setCookies={setCookies}
@@ -241,6 +244,7 @@ const mapDispatchToProps = (dispatch) => {
     onOpenMenuScheduleAction: () => dispatch(onOpenMenuScheduleAction()),
     onCloseMenuScheduleAction: () => dispatch(onCloseMenuScheduleAction()),
     touchStartAction: () => dispatch(touchStartAction()),
+    touchEndAction: () => dispatch(touchEndAction()),
   };
 };
 
