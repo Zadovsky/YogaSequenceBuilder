@@ -209,7 +209,7 @@ export default function AsanasGrid(props) {
               className={classes.textField}
               value={name}
               inputProps={{
-                readOnly: itIsSchedulePanel ? false : true,
+                readOnly: !itIsSchedulePanel,
                 onChange: (e) => onChangeGridNameAction(gridId, e),
                 onBlur: onBlurGridNameAction,
                 style: styles.resize,
