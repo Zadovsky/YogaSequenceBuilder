@@ -60,12 +60,9 @@ export function startCardDragScheduleAction(cardPlace, gridId) {
 }
 
 export function touchStartAction() {
-  var time = new Date();
-
   return (dispatch) => {
     dispatch({
       type: TOUCH_START,
-      payload: time.getTime(),
     });
 
     setTimeout(
