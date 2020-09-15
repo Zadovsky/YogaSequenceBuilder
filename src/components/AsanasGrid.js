@@ -77,12 +77,10 @@ function makeCardsArr(props) {
         img={asana.asanaImg}
         key={asana.cardKey}
         isDragging={
-          draggingCard === null ||
-          dragSourceGrid !== gridId ||
-          !itIsSchedulePanel ||
-          !dragSourcePanelIsSchedule
-            ? false
-            : i === draggingCard
+          draggingCard === i &&
+          dragSourceGrid === gridId &&
+          itIsSchedulePanel &&
+          dragSourcePanelIsSchedule
         }
         itIsSchedulePanel={itIsSchedulePanel}
         touchStartAction={touchStartAction}
