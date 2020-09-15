@@ -5,6 +5,7 @@ import {
   START_DRAG_CARD_ASANAS,
   CLOSE_CARD,
   TOUCH_START,
+  TOUCH_MOVE,
   TOUCH_END,
   TOUCH_TIMEOUT_END,
 } from "../actions/AsanaCardActions";
@@ -112,6 +113,9 @@ function addEmptyGrid(cards, nextGridKey) {
 export function scheduleReducer(state = initialState, action) {
   console.log(action.type);
   switch (action.type) {
+    case TOUCH_MOVE:
+      return state;
+
     case TOUCH_TIMEOUT_END:
       return state;
 

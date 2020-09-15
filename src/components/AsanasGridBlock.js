@@ -45,6 +45,7 @@ function createGridArr(props) {
         lastDragEnterCard={props.lastDragEnterCard}
         lastDragEnterGrid={props.lastDragEnterGrid}
         touchStartAction={props.touchStartAction}
+        touchMoveAction={props.touchMoveAction}
         touchEndAction={props.touchEndAction}
       />
     );

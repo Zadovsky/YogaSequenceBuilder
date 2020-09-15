@@ -75,6 +75,7 @@ export default function Panel(props) {
     lastDragEnterCard,
     lastDragEnterGrid,
     touchStartAction,
+    touchMoveAction,
     touchEndAction,
   } = props;
 
@@ -140,6 +141,7 @@ export default function Panel(props) {
               lastDragEnterCard={lastDragEnterCard}
               lastDragEnterGrid={lastDragEnterGrid}
               touchStartAction={touchStartAction}
+              touchMoveAction={touchMoveAction}
               touchEndAction={touchEndAction}
             />
           </div>
