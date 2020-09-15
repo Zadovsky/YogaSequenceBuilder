@@ -1,3 +1,4 @@
+import { TOUCH_DND_START_TIMEOUT } from "../config";
 export const ADD_ASANA = "ADD_ASANA";
 export const DRAG_ENTER_CARD = "DRAG_ENTER_CARD";
 export const START_DRAG_CARD_ASANAS = "START_DRAG_CARD_ASANAS";
@@ -5,6 +6,7 @@ export const START_DRAG_CARD_SCHEDULE = "START_DRAG_CARD_SCHEDULE";
 export const CLOSE_CARD = "CLOSE_CARD";
 export const TOUCH_START = "TOUCH_START";
 export const TOUCH_END = "TOUCH_END";
+export const TOUCH_TIMEOUT_END = "TOUCH_TIMEOUT_END";
 
 export function addAsanaAction(asanaId, gridId) {
   return {
@@ -58,9 +60,20 @@ export function startCardDragScheduleAction(cardPlace, gridId) {
 
 export function touchStartAction() {
   var time = new Date();
-  return {
-    type: TOUCH_START,
-    payload: time.getTime(),
+
+  return (dispatch) => {
+    dispatch({
+      type: TOUCH_START,
+      payload: time.getTime(),
+    });
+
+    setTimeout(
+      () =>
+        dispatch({
+          type: TOUCH_TIMEOUT_END,
+        }),
+      TOUCH_DND_START_TIMEOUT
+    );
   };
 }
 

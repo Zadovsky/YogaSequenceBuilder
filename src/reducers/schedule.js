@@ -6,6 +6,7 @@ import {
   CLOSE_CARD,
   TOUCH_START,
   TOUCH_END,
+  TOUCH_TIMEOUT_END,
 } from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
@@ -109,7 +110,11 @@ function addEmptyGrid(cards, nextGridKey) {
 }
 
 export function scheduleReducer(state = initialState, action) {
+  console.log(action.type);
   switch (action.type) {
+    case TOUCH_TIMEOUT_END:
+      return state;
+
     case TOUCH_START:
       return {
         ...state,
