@@ -184,7 +184,13 @@ function SchedulePanel(props) {
         touchEndAction={touchEndAction}
         touchDnd={touchDnd}
       />
-      {touchDnd && <TouchDndBlock startCardDragAction={startCardDragAction} />}
+      {touchDnd && (
+        <TouchDndBlock
+          startCardDragAction={startCardDragAction}
+          dragSourceGrid={dragSourceGrid}
+          draggingCard={draggingCard}
+        />
+      )}
       <SetCookies
         setCookies={setCookies}
         onSetCookiesAction={() =>
@@ -252,7 +258,8 @@ const mapDispatchToProps = (dispatch) => {
     onPDFDownloadAction: (ref) => dispatch(onPDFDownloadAction(ref)),
     onOpenMenuScheduleAction: () => dispatch(onOpenMenuScheduleAction()),
     onCloseMenuScheduleAction: () => dispatch(onCloseMenuScheduleAction()),
-    touchStartAction: () => dispatch(touchStartAction()),
+    touchStartAction: (asanaIndex, gridId) =>
+      dispatch(touchStartAction(asanaIndex, gridId)),
     touchMoveDndAction: () => dispatch(touchMoveDndAction()),
     touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
     touchEndAction: () => dispatch(touchEndAction()),

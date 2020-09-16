@@ -2,7 +2,8 @@ import React from "react";
 
 export default class TouchDndBlock extends React.Component {
   componentDidMount() {
-    this.props.startCardDragAction(0, 0);
+    const { startCardDragAction, draggingCard, dragSourceGrid } = this.props;
+    startCardDragAction(draggingCard, dragSourceGrid);
   }
 
   render() {

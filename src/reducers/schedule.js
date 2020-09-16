@@ -127,14 +127,20 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case TOUCH_TIMEOUT_END:
-      return {
-        ...state,
-        touchDnd:
-          state.touchMode && state.touchDnd === null ? true : state.touchDnd,
-      };
+      if (state.touchMode && state.touchDnd === null) {
+        return {
+          ...state,
+          touchDnd: true,
+          dragSourceGrid: action.payload.gridId,
+          draggingCard: action.payload.card,
+        };
+      } else return state;
 
     case TOUCH_START:
-      return { ...state, touchMode: true };
+      return {
+        ...state,
+        touchMode: true,
+      };
 
     case TOUCH_END:
       return {

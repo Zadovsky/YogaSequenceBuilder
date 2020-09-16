@@ -60,7 +60,7 @@ export function startCardDragScheduleAction(cardPlace, gridId) {
   };
 }
 
-export function touchStartAction() {
+export function touchStartAction(cardPlace, gridId) {
   return (dispatch) => {
     dispatch({
       type: TOUCH_START,
@@ -70,6 +70,10 @@ export function touchStartAction() {
       () =>
         dispatch({
           type: TOUCH_TIMEOUT_END,
+          payload: {
+            gridId: gridId,
+            card: cardPlace,
+          },
         }),
       TOUCH_DND_START_TIMEOUT
     );
