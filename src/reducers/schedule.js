@@ -77,6 +77,7 @@ const initialState = {
   onPlaceHolder: false,
   gridHeight: null,
   openMenu: false,
+  touchMode: false,
   touchDnd: null,
   panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
   gridDefaultName: {
@@ -128,15 +129,17 @@ export function scheduleReducer(state = initialState, action) {
     case TOUCH_TIMEOUT_END:
       return {
         ...state,
-        touchDnd: state.touchDnd === null ? true : state.touchDnd,
+        touchDnd:
+          state.touchMode && state.touchDnd === null ? true : state.touchDnd,
       };
 
     case TOUCH_START:
-      return state;
+      return { ...state, touchMode: true };
 
     case TOUCH_END:
       return {
         ...state,
+        touchMode: false,
         touchDnd: null,
       };
 
