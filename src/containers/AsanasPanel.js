@@ -6,7 +6,7 @@ import {
   addAsanaAction,
   startCardDragAsanasAction,
   touchStartAction,
-  touchMoveAction,
+  // touchMoveAction,
   touchEndAction,
 } from "../actions/AsanaCardActions";
 import { onGridBlockScroll } from "../actions/AsanasGridBlockActions";
@@ -101,7 +101,7 @@ function AsanasPanel(props) {
       lastDragEnterCard={null}
       lastDragEnterGrid={null}
       touchStartAction={props.touchStartAction}
-      touchMoveAction={props.touchMoveAction}
+      // touchMoveAction={props.touchDnd ? props.touchMoveAction : () => {}}
       touchEndAction={props.touchEndAction}
     />
   );
@@ -127,7 +127,7 @@ const mapDispatchToProps = (dispatch) => {
     onOpenMenuAsanasAction: () => dispatch(onOpenMenuAsanasAction()),
     onCloseMenuAsanasAction: () => dispatch(onCloseMenuAsanasAction()),
     touchStartAction: () => dispatch(touchStartAction()),
-    touchMoveAction: () => dispatch(touchMoveAction()),
+    // touchMoveAction: () => dispatch(touchMoveAction()),
     touchEndAction: () => dispatch(touchEndAction()),
   };
 };

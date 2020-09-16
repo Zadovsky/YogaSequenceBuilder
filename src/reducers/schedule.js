@@ -5,7 +5,8 @@ import {
   START_DRAG_CARD_ASANAS,
   CLOSE_CARD,
   TOUCH_START,
-  TOUCH_MOVE,
+  TOUCH_MOVE_DND,
+  TOUCH_MOVE_SCROLL,
   TOUCH_END,
   TOUCH_TIMEOUT_END,
 } from "../actions/AsanaCardActions";
@@ -76,6 +77,7 @@ const initialState = {
   onPlaceHolder: false,
   gridHeight: null,
   openMenu: false,
+  touchDnd: null,
   panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
   gridDefaultName: {
     ru: "Без названия",
@@ -112,17 +114,31 @@ function addEmptyGrid(cards, nextGridKey) {
 export function scheduleReducer(state = initialState, action) {
   console.log(action.type);
   switch (action.type) {
-    case TOUCH_MOVE:
-      return state;
+    case TOUCH_MOVE_DND:
+      return {
+        ...state,
+      };
+
+    case TOUCH_MOVE_SCROLL:
+      return {
+        ...state,
+        touchDnd: state.touchDnd === null ? false : state.touchDnd,
+      };
 
     case TOUCH_TIMEOUT_END:
-      return state;
+      return {
+        ...state,
+        touchDnd: state.touchDnd === null ? true : state.touchDnd,
+      };
 
     case TOUCH_START:
       return state;
 
     case TOUCH_END:
-      return state;
+      return {
+        ...state,
+        touchDnd: null,
+      };
 
     case CLOSE_MENU_SCHEDULE:
       return {

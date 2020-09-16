@@ -8,7 +8,8 @@ import {
   startCardDragScheduleAction,
   closeCardAction,
   touchStartAction,
-  touchMoveAction,
+  touchMoveDndAction,
+  touchMoveScrollAction,
   touchEndAction,
 } from "../actions/AsanaCardActions";
 import {
@@ -65,6 +66,7 @@ function SchedulePanel(props) {
     openMenu,
     lastDragEnterCard,
     lastDragEnterGrid,
+    touchDnd,
   } = props.schedule;
 
   const {
@@ -95,7 +97,8 @@ function SchedulePanel(props) {
     onOpenMenuScheduleAction,
     onCloseMenuScheduleAction,
     touchStartAction,
-    touchMoveAction,
+    touchMoveDndAction,
+    touchMoveScrollAction,
     touchEndAction,
   } = props;
 
@@ -176,8 +179,9 @@ function SchedulePanel(props) {
         lastDragEnterCard={lastDragEnterCard}
         lastDragEnterGrid={lastDragEnterGrid}
         touchStartAction={touchStartAction}
-        touchMoveAction={touchMoveAction}
+        touchMoveAction={touchDnd ? touchMoveDndAction : touchMoveScrollAction}
         touchEndAction={touchEndAction}
+        touchDnd={touchDnd}
       />
       <SetCookies
         setCookies={setCookies}
@@ -247,7 +251,8 @@ const mapDispatchToProps = (dispatch) => {
     onOpenMenuScheduleAction: () => dispatch(onOpenMenuScheduleAction()),
     onCloseMenuScheduleAction: () => dispatch(onCloseMenuScheduleAction()),
     touchStartAction: () => dispatch(touchStartAction()),
-    touchMoveAction: () => dispatch(touchMoveAction()),
+    touchMoveDndAction: () => dispatch(touchMoveDndAction()),
+    touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
     touchEndAction: () => dispatch(touchEndAction()),
   };
 };
