@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Panel from "../components/Panel";
 import SaveLoadPdfButtons from "../components/SaveLoadPdfButtons";
 import SetCookies from "../components/SetCookies";
+import TouchDndBlock from "../components/TouchDndBlock";
 import {
   dragEnterAction,
   startCardDragScheduleAction,
@@ -183,6 +184,7 @@ function SchedulePanel(props) {
         touchEndAction={touchEndAction}
         touchDnd={touchDnd}
       />
+      {touchDnd && <TouchDndBlock startCardDragAction={startCardDragAction} />}
       <SetCookies
         setCookies={setCookies}
         onSetCookiesAction={() =>
