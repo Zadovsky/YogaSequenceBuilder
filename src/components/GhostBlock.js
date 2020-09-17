@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class TouchDndBlock extends React.Component {
+export default class GhostBlock extends React.Component {
   componentDidMount() {
     const {
       startCardDragScheduleAction,

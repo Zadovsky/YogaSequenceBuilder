@@ -3,11 +3,9 @@ import { connect } from "react-redux";
 import Panel from "../components/Panel";
 import SaveLoadPdfButtons from "../components/SaveLoadPdfButtons";
 import SetCookies from "../components/SetCookies";
-import TouchDndBlock from "../components/TouchDndBlock";
 import {
   dragEnterAction,
   startCardDragScheduleAction,
-  startCardDragAsanasAction,
   closeCardAction,
   touchStartAction,
   touchMoveDndAction,
@@ -70,7 +68,7 @@ function SchedulePanel(props) {
     lastDragEnterGrid,
   } = props.schedule;
 
-  const { touchDnd, startCard, startGrid, startPanelIsSchedule } = props.touch;
+  const { touchDnd } = props.touch;
 
   const {
     asanasArr,
@@ -80,7 +78,6 @@ function SchedulePanel(props) {
     onChangePanelNameAction,
     onBlurPanelNameAction,
     startCardDragScheduleAction,
-    startCardDragAsanasAction,
     startGridDragAction,
     onDragIconMouseDownAction,
     onDragIconMouseUpAction,
@@ -185,17 +182,7 @@ function SchedulePanel(props) {
         touchStartAction={touchStartAction}
         touchMoveAction={touchDnd ? touchMoveDndAction : touchMoveScrollAction}
         touchEndAction={touchEndAction}
-        touchDnd={touchDnd}
       />
-      {touchDnd && (
-        <TouchDndBlock
-          startCardDragScheduleAction={startCardDragScheduleAction}
-          startCardDragAsanasAction={startCardDragAsanasAction}
-          startPanelIsSchedule={startPanelIsSchedule}
-          startGrid={startGrid}
-          startCard={startCard}
-        />
-      )}
       <SetCookies
         setCookies={setCookies}
         onSetCookiesAction={() =>
@@ -235,8 +222,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)),
     startCardDragScheduleAction: (asanaId, gridId) =>
       dispatch(startCardDragScheduleAction(asanaId, gridId)),
-    startCardDragAsanasAction: (asanaId, gridId) =>
-      dispatch(startCardDragAsanasAction(asanaId, gridId)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
     onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),
