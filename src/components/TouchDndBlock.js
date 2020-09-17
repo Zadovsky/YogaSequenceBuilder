@@ -2,8 +2,17 @@ import React from "react";
 
 export default class TouchDndBlock extends React.Component {
   componentDidMount() {
-    const { startCardDragAction, draggingCard, dragSourceGrid } = this.props;
-    startCardDragAction(draggingCard, dragSourceGrid);
+    const {
+      startCardDragScheduleAction,
+      startCardDragAsanasAction,
+      dragSourcePanelIsSchedule,
+      draggingCard,
+      dragSourceGrid,
+    } = this.props;
+
+    if (dragSourcePanelIsSchedule) {
+      startCardDragScheduleAction(draggingCard, dragSourceGrid);
+    } else startCardDragAsanasAction(draggingCard, dragSourceGrid);
   }
 
   render() {

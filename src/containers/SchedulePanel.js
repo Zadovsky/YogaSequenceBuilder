@@ -7,6 +7,7 @@ import TouchDndBlock from "../components/TouchDndBlock";
 import {
   dragEnterAction,
   startCardDragScheduleAction,
+  startCardDragAsanasAction,
   closeCardAction,
   touchStartAction,
   touchMoveDndAction,
@@ -77,7 +78,8 @@ function SchedulePanel(props) {
     logo,
     onChangePanelNameAction,
     onBlurPanelNameAction,
-    startCardDragAction,
+    startCardDragScheduleAction,
+    startCardDragAsanasAction,
     startGridDragAction,
     onDragIconMouseDownAction,
     onDragIconMouseUpAction,
@@ -127,7 +129,7 @@ function SchedulePanel(props) {
         asanas={asanas}
         onChangePanelNameAction={onChangePanelNameAction}
         onBlurPanelNameAction={onBlurPanelNameAction}
-        startCardDragAction={readOnly ? () => {} : startCardDragAction}
+        startCardDragAction={readOnly ? () => {} : startCardDragScheduleAction}
         startGridDragAction={startGridDragAction}
         onDragIconMouseDownAction={onDragIconMouseDownAction}
         onDragIconMouseUpAction={onDragIconMouseUpAction}
@@ -186,7 +188,9 @@ function SchedulePanel(props) {
       />
       {touchDnd && (
         <TouchDndBlock
-          startCardDragAction={startCardDragAction}
+          startCardDragScheduleAction={startCardDragScheduleAction}
+          startCardDragAsanasAction={startCardDragAsanasAction}
+          dragSourcePanelIsSchedule={dragSourcePanelIsSchedule}
           dragSourceGrid={dragSourceGrid}
           draggingCard={draggingCard}
         />
@@ -227,8 +231,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSetCookiesAction: (cards, panelName, nextGridKey, nextCardKey) =>
       dispatch(onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)),
-    startCardDragAction: (asanaId, gridId) =>
+    startCardDragScheduleAction: (asanaId, gridId) =>
       dispatch(startCardDragScheduleAction(asanaId, gridId)),
+    startCardDragAsanasAction: (asanaId, gridId) =>
+      dispatch(startCardDragAsanasAction(asanaId, gridId)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
     onDragIconMouseDownAction: () => dispatch(onDragIconMouseDownAction()),
@@ -258,8 +264,8 @@ const mapDispatchToProps = (dispatch) => {
     onPDFDownloadAction: (ref) => dispatch(onPDFDownloadAction(ref)),
     onOpenMenuScheduleAction: () => dispatch(onOpenMenuScheduleAction()),
     onCloseMenuScheduleAction: () => dispatch(onCloseMenuScheduleAction()),
-    touchStartAction: (asanaIndex, gridId) =>
-      dispatch(touchStartAction(asanaIndex, gridId)),
+    touchStartAction: (asanaIndex, gridId, schedule) =>
+      dispatch(touchStartAction(asanaIndex, gridId, schedule)),
     touchMoveDndAction: () => dispatch(touchMoveDndAction()),
     touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
     touchEndAction: () => dispatch(touchEndAction()),

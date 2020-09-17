@@ -133,6 +133,7 @@ export function scheduleReducer(state = initialState, action) {
           touchDnd: true,
           dragSourceGrid: action.payload.gridId,
           draggingCard: action.payload.card,
+          dragSourcePanelIsSchedule: action.payload.schedule,
         };
       } else return state;
 
