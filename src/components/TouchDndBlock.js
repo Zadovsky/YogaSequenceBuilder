@@ -5,14 +5,14 @@ export default class TouchDndBlock extends React.Component {
     const {
       startCardDragScheduleAction,
       startCardDragAsanasAction,
-      dragSourcePanelIsSchedule,
-      draggingCard,
-      dragSourceGrid,
+      startPanelIsSchedule,
+      startCard,
+      startGrid,
     } = this.props;
 
-    if (dragSourcePanelIsSchedule) {
-      startCardDragScheduleAction(draggingCard, dragSourceGrid);
-    } else startCardDragAsanasAction(draggingCard, dragSourceGrid);
+    if (startPanelIsSchedule) {
+      startCardDragScheduleAction(startCard, startGrid);
+    } else startCardDragAsanasAction(startCard, startGrid);
   }
 
   render() {

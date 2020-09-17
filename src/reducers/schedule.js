@@ -4,11 +4,6 @@ import {
   START_DRAG_CARD_SCHEDULE,
   START_DRAG_CARD_ASANAS,
   CLOSE_CARD,
-  TOUCH_START,
-  TOUCH_MOVE_DND,
-  TOUCH_MOVE_SCROLL,
-  TOUCH_END,
-  TOUCH_TIMEOUT_END,
 } from "../actions/AsanaCardActions";
 import { DRAG_ENTER_EMPTY_SPACE } from "../actions/EmptySpaceAtTheEndActions";
 import { DRAG_ENTER_PLACEHOLDER } from "../actions/PlaceHolderActions";
@@ -77,8 +72,6 @@ const initialState = {
   onPlaceHolder: false,
   gridHeight: null,
   openMenu: false,
-  touchMode: false,
-  touchDnd: null,
   panelDefaultName: { ru: "Ваш комплекс", en: "Your sequence" },
   gridDefaultName: {
     ru: "Без названия",
@@ -113,43 +106,7 @@ function addEmptyGrid(cards, nextGridKey) {
 }
 
 export function scheduleReducer(state = initialState, action) {
-  console.log(action.type);
   switch (action.type) {
-    case TOUCH_MOVE_DND:
-      return {
-        ...state,
-      };
-
-    case TOUCH_MOVE_SCROLL:
-      return {
-        ...state,
-        touchDnd: state.touchDnd === null ? false : state.touchDnd,
-      };
-
-    case TOUCH_TIMEOUT_END:
-      if (state.touchMode && state.touchDnd === null) {
-        return {
-          ...state,
-          touchDnd: true,
-          dragSourceGrid: action.payload.gridId,
-          draggingCard: action.payload.card,
-          dragSourcePanelIsSchedule: action.payload.schedule,
-        };
-      } else return state;
-
-    case TOUCH_START:
-      return {
-        ...state,
-        touchMode: true,
-      };
-
-    case TOUCH_END:
-      return {
-        ...state,
-        touchMode: false,
-        touchDnd: null,
-      };
-
     case CLOSE_MENU_SCHEDULE:
       return {
         ...state,

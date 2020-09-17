@@ -68,8 +68,9 @@ function SchedulePanel(props) {
     openMenu,
     lastDragEnterCard,
     lastDragEnterGrid,
-    touchDnd,
   } = props.schedule;
+
+  const { touchDnd, startCard, startGrid, startPanelIsSchedule } = props.touch;
 
   const {
     asanasArr,
@@ -190,9 +191,9 @@ function SchedulePanel(props) {
         <TouchDndBlock
           startCardDragScheduleAction={startCardDragScheduleAction}
           startCardDragAsanasAction={startCardDragAsanasAction}
-          dragSourcePanelIsSchedule={dragSourcePanelIsSchedule}
-          dragSourceGrid={dragSourceGrid}
-          draggingCard={draggingCard}
+          startPanelIsSchedule={startPanelIsSchedule}
+          startGrid={startGrid}
+          startCard={startCard}
         />
       )}
       <SetCookies
@@ -224,6 +225,7 @@ const mapStateToProps = (store) => {
     schedule: store.schedule,
     user: store.user,
     logo: store.logo,
+    touch: store.touch,
   };
 };
 
