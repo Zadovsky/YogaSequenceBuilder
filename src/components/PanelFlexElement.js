@@ -8,10 +8,9 @@ class PanelFlexElement extends React.Component {
   }
 
   componentDidUpdate() {
-    const { touchDY, touchScrollDoneAction } = this.props;
+    const { touchDY } = this.props;
     if (touchDY !== 0) {
       this.ref.current.scrollBy(0, touchDY);
-      // touchScrollDoneAction();
     }
   }
 

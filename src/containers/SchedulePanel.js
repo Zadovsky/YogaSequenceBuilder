@@ -40,7 +40,6 @@ import {
   onOpenMenuScheduleAction,
   onCloseMenuScheduleAction,
 } from "../actions/MenuButtonActions";
-import { touchScrollDoneAction } from "../actions/PanelFlexElementActions";
 import PDFDownload from "../components/PDFDownload";
 import "./SchedulePanel.css";
 
@@ -102,7 +101,6 @@ function SchedulePanel(props) {
     touchMoveDndAction,
     touchMoveScrollAction,
     touchEndAction,
-    touchScrollDoneAction,
   } = props;
 
   const asanas = asanasArr.arr.map((asana) => {
@@ -184,7 +182,6 @@ function SchedulePanel(props) {
         touchStartAction={touchStartAction}
         touchMoveAction={touchDnd ? touchMoveDndAction : touchMoveScrollAction}
         touchEndAction={touchEndAction}
-        touchScrollDoneAction={touchScrollDoneAction}
         touchDY={startPanelIsSchedule ? dY : 0}
       />
       <SetCookies
@@ -259,7 +256,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(touchStartAction(e, asanaIndex, gridId, schedule)),
     touchMoveDndAction: (e) => dispatch(touchMoveDndAction(e)),
     touchMoveScrollAction: (e) => dispatch(touchMoveScrollAction(e)),
-    touchScrollDoneAction: () => dispatch(touchScrollDoneAction()),
     touchEndAction: () => dispatch(touchEndAction()),
   };
 };

@@ -6,8 +6,6 @@ import {
   TOUCH_TIMEOUT_END,
 } from "../actions/AsanaCardActions";
 
-import { TOUCH_SCROLL_DONE } from "../actions/PanelFlexElementActions";
-
 const initialState = {
   x: null,
   y: null,
@@ -35,13 +33,6 @@ export function touchReducer(state = initialState, action) {
         y: action.payload.y,
         dX: state.x - action.payload.x,
         dY: state.y - action.payload.y,
-      };
-
-    case TOUCH_SCROLL_DONE:
-      return {
-        ...state,
-        dX: 0,
-        dY: 0,
       };
 
     case TOUCH_TIMEOUT_END:
