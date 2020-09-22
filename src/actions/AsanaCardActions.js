@@ -60,21 +60,23 @@ export function startCardDragScheduleAction(cardPlace, gridId) {
   };
 }
 
-export function touchStartAction(cardPlace, gridId, schedule) {
+export function touchStartAction(e, cardPlace, gridId, schedule) {
   return (dispatch) => {
     dispatch({
       type: TOUCH_START,
+      payload: {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+        gridId: gridId,
+        card: cardPlace,
+        schedule: schedule,
+      },
     });
 
     setTimeout(
       () =>
         dispatch({
           type: TOUCH_TIMEOUT_END,
-          payload: {
-            gridId: gridId,
-            card: cardPlace,
-            schedule: schedule,
-          },
         }),
       TOUCH_DND_START_TIMEOUT
     );
@@ -87,14 +89,18 @@ export function touchEndAction() {
   };
 }
 
-export function touchMoveDndAction() {
+export function touchMoveDndAction(e) {
   return {
     type: TOUCH_MOVE_DND,
   };
 }
 
-export function touchMoveScrollAction() {
+export function touchMoveScrollAction(e) {
   return {
     type: TOUCH_MOVE_SCROLL,
+    payload: {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    },
   };
 }

@@ -6,7 +6,13 @@ import {
   TOUCH_TIMEOUT_END,
 } from "../actions/AsanaCardActions";
 
+import { TOUCH_SCROLL_DONE } from "../actions/PanelFlexElementActions";
+
 const initialState = {
+  x: null,
+  y: null,
+  dX: 0,
+  dY: 0,
   touchMode: false,
   touchDnd: null,
   startCard: null,
@@ -15,7 +21,6 @@ const initialState = {
 };
 
 export function touchReducer(state = initialState, action) {
-  console.log(action.type);
   switch (action.type) {
     case TOUCH_MOVE_DND:
       return {
@@ -26,6 +31,17 @@ export function touchReducer(state = initialState, action) {
       return {
         ...state,
         touchDnd: state.touchDnd === null ? false : state.touchDnd,
+        x: action.payload.x,
+        y: action.payload.y,
+        dX: state.x - action.payload.x,
+        dY: state.y - action.payload.y,
+      };
+
+    case TOUCH_SCROLL_DONE:
+      return {
+        ...state,
+        dX: 0,
+        dY: 0,
       };
 
     case TOUCH_TIMEOUT_END:
@@ -33,9 +49,6 @@ export function touchReducer(state = initialState, action) {
         return {
           ...state,
           touchDnd: true,
-          startGrid: action.payload.gridId,
-          startCard: action.payload.card,
-          startPanelIsSchedule: action.payload.schedule,
         };
       } else return state;
 
@@ -43,6 +56,13 @@ export function touchReducer(state = initialState, action) {
       return {
         ...state,
         touchMode: true,
+        startGrid: action.payload.gridId,
+        startCard: action.payload.card,
+        startPanelIsSchedule: action.payload.schedule,
+        x: action.payload.x,
+        y: action.payload.y,
+        dX: 0,
+        dY: 0,
       };
 
     case TOUCH_END:
@@ -50,6 +70,13 @@ export function touchReducer(state = initialState, action) {
         ...state,
         touchMode: false,
         touchDnd: null,
+        startGrid: null,
+        startCard: null,
+        startPanelIsSchedule: null,
+        x: null,
+        y: null,
+        dX: 0,
+        dY: 0,
       };
 
     default:

@@ -16,6 +16,7 @@ import {
   onOpenMenuAsanasAction,
   onCloseMenuAsanasAction,
 } from "../actions/MenuButtonActions";
+import { touchScrollDoneAction } from "../actions/PanelFlexElementActions";
 import "./AsanasPanel.css";
 
 function createCardsArr(asanas, language) {
@@ -108,6 +109,8 @@ function AsanasPanel(props) {
           : props.touchMoveScrollAction
       }
       touchEndAction={props.touchEndAction}
+      touchScrollDoneAction={props.touchScrollDoneAction}
+      touchDY={props.touch.startPanelIsSchedule === false ? props.touch.dY : 0}
     />
   );
 }
@@ -132,11 +135,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(addAsanaAction(asanaId, gridId)),
     onOpenMenuAsanasAction: () => dispatch(onOpenMenuAsanasAction()),
     onCloseMenuAsanasAction: () => dispatch(onCloseMenuAsanasAction()),
-    touchStartAction: (asanaIndex, gridId, schedule) =>
-      dispatch(touchStartAction(asanaIndex, gridId, schedule)),
-    touchMoveDndAction: () => dispatch(touchMoveDndAction()),
-    touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
+    touchStartAction: (e, asanaIndex, gridId, schedule) =>
+      dispatch(touchStartAction(e, asanaIndex, gridId, schedule)),
+    touchMoveDndAction: (e) => dispatch(touchMoveDndAction(e)),
+    touchMoveScrollAction: (e) => dispatch(touchMoveScrollAction(e)),
     touchEndAction: () => dispatch(touchEndAction()),
+    touchScrollDoneAction: () => dispatch(touchScrollDoneAction()),
   };
 };
 
