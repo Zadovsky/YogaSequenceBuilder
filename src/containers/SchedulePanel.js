@@ -183,6 +183,7 @@ function SchedulePanel(props) {
         touchMoveAction={touchDnd ? touchMoveDndAction : touchMoveScrollAction}
         touchEndAction={touchEndAction}
         touchDY={startPanelIsSchedule ? dY : 0}
+        touchDnd={touchDnd}
       />
       <SetCookies
         setCookies={setCookies}

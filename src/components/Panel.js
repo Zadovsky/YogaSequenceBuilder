@@ -98,6 +98,7 @@ export default function Panel(props) {
           <PanelFlexElement
             onGridBlockScroll={onGridBlockScroll}
             touchDY={touchDY}
+            touchDnd={touchDnd}
           >
             <PanelName
               name={panelName === null ? panelDefaultName : panelName}

@@ -109,6 +109,7 @@ function AsanasPanel(props) {
       }
       touchEndAction={props.touchEndAction}
       touchDY={props.touch.startPanelIsSchedule === false ? props.touch.dY : 0}
+      touchDnd={props.touch.touchDnd}
     />
   );
 }

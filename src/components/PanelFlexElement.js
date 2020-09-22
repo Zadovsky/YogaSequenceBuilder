@@ -1,5 +1,6 @@
 import React from "react";
 import "./PanelFlexElement.css";
+import clsx from "clsx";
 
 class PanelFlexElement extends React.Component {
   constructor(props) {
@@ -15,9 +16,14 @@ class PanelFlexElement extends React.Component {
   }
 
   render() {
+    const { touchDnd } = this.props;
+    console.log(touchDnd);
     return (
       <div
-        className="PanelFlexElement"
+        className={clsx(
+          "PanelFlexElement",
+          touchDnd === null && "PanelFlexElementSmooth"
+        )}
         onScroll={this.props.onGridBlockScroll}
         ref={this.ref}
       >
