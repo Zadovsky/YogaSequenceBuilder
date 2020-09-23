@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Divider from "@material-ui/core/Divider";
+import { ActiveListener } from "react-event-injector";
 import { useTheme } from "@material-ui/core/styles";
 import { useMediaQuery } from "@material-ui/core";
 import clsx from "clsx";
@@ -29,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     backgroundColor: "white",
     overflow: "hidden",
-    touchAction: "none",
     [theme.breakpoints.down("sm")]: {
       height: "96%",
       marginTop: "2%",
@@ -81,46 +81,47 @@ export default function AsanaCard(props) {
 
   return (
     <div className={classStr}>
-      <div
-        className={classes.asanaCardInnerDiv}
-        onClick={props.addAsanaAction}
-        onDragEnter={props.dragEnterAction}
-        onDragStart={props.startCardDragAction}
-        onTouchStart={props.touchStartAction}
-        onTouchMove={props.touchMoveAction}
-        onTouchEnd={props.touchEndAction}
-        draggable="true"
-      >
-        <div className="AsanaCardImgWrapper">
-          <div
-            className="AsanaCardImg"
-            style={{
-              backgroundImage: "url(" + props.img + ")",
-              backgroundSize: "cover",
-            }}
-          ></div>
-        </div>
-        {props.itIsSchedulePanel ? (
-          <IconButton
-            {...iconButtonProps}
-            className={classes.button}
-            onClick={props.closeCardAction}
-          >
-            <CloseIcon {...iconProps} />
-          </IconButton>
-        ) : (
-          ""
-        )}
-        <Divider variant="middle" />
-        <Typography
-          variant="body2"
-          color="textPrimary"
-          component="p"
-          className={classes.сardTypography}
+      <ActiveListener onTouchMove={props.touchMoveAction}>
+        <div
+          className={classes.asanaCardInnerDiv}
+          onClick={props.addAsanaAction}
+          onDragEnter={props.dragEnterAction}
+          onDragStart={props.startCardDragAction}
+          onTouchStart={props.touchStartAction}
+          onTouchEnd={props.touchEndAction}
+          draggable="true"
         >
-          {props.name}
-        </Typography>
-      </div>
+          <div className="AsanaCardImgWrapper">
+            <div
+              className="AsanaCardImg"
+              style={{
+                backgroundImage: "url(" + props.img + ")",
+                backgroundSize: "cover",
+              }}
+            ></div>
+          </div>
+          {props.itIsSchedulePanel ? (
+            <IconButton
+              {...iconButtonProps}
+              className={classes.button}
+              onClick={props.closeCardAction}
+            >
+              <CloseIcon {...iconProps} />
+            </IconButton>
+          ) : (
+            ""
+          )}
+          <Divider variant="middle" />
+          <Typography
+            variant="body2"
+            color="textPrimary"
+            component="p"
+            className={classes.сardTypography}
+          >
+            {props.name}
+          </Typography>
+        </div>
+      </ActiveListener>
     </div>
   );
 }

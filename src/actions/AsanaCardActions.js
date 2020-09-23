@@ -87,7 +87,8 @@ export function touchEndAction() {
   };
 }
 
-export function touchMoveDndAction() {
+export function touchMoveDndAction(e) {
+  e.preventDefault();
   return {
     type: TOUCH_MOVE_DND,
   };

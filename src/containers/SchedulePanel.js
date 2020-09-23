@@ -253,7 +253,7 @@ const mapDispatchToProps = (dispatch) => {
     onCloseMenuScheduleAction: () => dispatch(onCloseMenuScheduleAction()),
     touchStartAction: (asanaIndex, gridId, schedule) =>
       dispatch(touchStartAction(asanaIndex, gridId, schedule)),
-    touchMoveDndAction: () => dispatch(touchMoveDndAction()),
+    touchMoveDndAction: (e) => dispatch(touchMoveDndAction(e)),
     touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
     touchEndAction: () => dispatch(touchEndAction()),
   };
