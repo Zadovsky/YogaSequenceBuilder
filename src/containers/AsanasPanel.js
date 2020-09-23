@@ -110,6 +110,7 @@ function AsanasPanel(props) {
           : () => {}
       }
       touchEndAction={props.touchEndAction}
+      touchDnd={props.touch.touchDnd}
     />
   );
 }

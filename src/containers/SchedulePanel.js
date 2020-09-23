@@ -188,6 +188,7 @@ function SchedulePanel(props) {
             : () => {}
         }
         touchEndAction={touchEndAction}
+        touchDnd={touchDnd}
       />
       <SetCookies
         setCookies={setCookies}
