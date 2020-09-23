@@ -17,7 +17,6 @@ class PanelFlexElement extends React.Component {
 
   render() {
     const { touchDnd } = this.props;
-    console.log(touchDnd);
     return (
       <div
         className={clsx(
