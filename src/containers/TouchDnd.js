@@ -5,10 +5,15 @@ import {
   startCardDragScheduleAction,
   startCardDragAsanasAction,
 } from "../actions/AsanaCardActions";
+import { endDragCard } from "../actions/DnDContextActions";
 
 function TouchDnd(props) {
   const { touchDnd, startPanelIsSchedule, startGrid, startCard } = props.touch;
-  const { startCardDragScheduleAction, startCardDragAsanasAction } = props;
+  const {
+    startCardDragScheduleAction,
+    startCardDragAsanasAction,
+    endDragCard,
+  } = props;
 
   return (
     touchDnd && (
@@ -18,6 +23,7 @@ function TouchDnd(props) {
         startPanelIsSchedule={startPanelIsSchedule}
         startGrid={startGrid}
         startCard={startCard}
+        endDragCard={endDragCard}
       />
     )
   );
@@ -35,6 +41,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(startCardDragScheduleAction(asanaId, gridId)),
     startCardDragAsanasAction: (asanaId, gridId) =>
       dispatch(startCardDragAsanasAction(asanaId, gridId)),
+    endDragCard: () => dispatch(endDragCard()),
   };
 };
 

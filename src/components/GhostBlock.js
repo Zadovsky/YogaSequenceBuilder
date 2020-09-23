@@ -15,6 +15,10 @@ export default class GhostBlock extends React.Component {
     } else startCardDragAsanasAction(startCard, startGrid);
   }
 
+  componentWillUnmount() {
+    this.props.endDragCard();
+  }
+
   render() {
     return null;
   }
