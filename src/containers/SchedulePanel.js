@@ -68,7 +68,7 @@ function SchedulePanel(props) {
     lastDragEnterGrid,
   } = props.schedule;
 
-  const { touchDnd } = props.touch;
+  const { touchDnd, dY, startPanelIsSchedule } = props.touch;
 
   const {
     asanasArr,

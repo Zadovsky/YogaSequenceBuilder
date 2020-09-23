@@ -1,0 +1,10 @@
+.PanelFlexElement {
+  overflow-y: scroll;
+  margin-left: -10px;
+  padding-left: 10px;
+  flex-grow: 3;
+}
+
+.PanelFlexElementSmooth {
+  scroll-behavior: smooth;
+}

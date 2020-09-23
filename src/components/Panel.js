@@ -5,6 +5,7 @@ import PanelName from "../components/PanelName";
 import AsanasGridBlock from "../components/AsanasGridBlock";
 import ButtonsPanelBlock from "../components/ButtonsPanelBlock";
 import MenuButton from "../components/MenuButton";
+import PanelFlexElement from "../components/PanelFlexElement";
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,13 +15,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       padding: theme.spacing(1, 1, 1),
     },
-  },
-  panelFlexElement: {
-    overflowY: "scroll",
-    scrollBehavior: "smooth",
-    marginLeft: "-10px",
-    paddingLeft: "10px",
-    flexGrow: 3,
   },
   panelFlexBox: {
     position: "relative",
@@ -78,6 +72,7 @@ export default function Panel(props) {
     touchMoveAction,
     touchEndAction,
     touchDnd,
+    touchDY,
   } = props;
 
   const classes = useStyles();
@@ -100,9 +95,10 @@ export default function Panel(props) {
             openMenu={openMenu}
             closeMenuAction={closeMenuAction}
           />
-          <div
-            className={classes.panelFlexElement}
-            onScroll={onGridBlockScroll}
+          <PanelFlexElement
+            onGridBlockScroll={onGridBlockScroll}
+            touchDY={touchDY}
+            touchDnd={touchDnd}
           >
             <PanelName
               name={panelName === null ? panelDefaultName : panelName}
@@ -146,7 +142,7 @@ export default function Panel(props) {
               touchEndAction={touchEndAction}
               touchDnd={touchDnd}
             />
-          </div>
+          </PanelFlexElement>
           <MenuButton
             openMenu={openMenu}
             closeMenuAction={closeMenuAction}
