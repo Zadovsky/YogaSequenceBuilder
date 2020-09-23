@@ -180,7 +180,13 @@ function SchedulePanel(props) {
         lastDragEnterCard={lastDragEnterCard}
         lastDragEnterGrid={lastDragEnterGrid}
         touchStartAction={touchStartAction}
-        touchMoveAction={touchDnd ? touchMoveDndAction : touchMoveScrollAction}
+        touchMoveAction={
+          touchDnd
+            ? touchMoveDndAction
+            : touchDnd === null
+            ? touchMoveScrollAction
+            : () => {}
+        }
         touchEndAction={touchEndAction}
       />
       <SetCookies

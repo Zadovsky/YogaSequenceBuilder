@@ -105,7 +105,9 @@ function AsanasPanel(props) {
       touchMoveAction={
         props.touch.touchDnd
           ? props.touchMoveDndAction
-          : props.touchMoveScrollAction
+          : props.touch.touchDnd === null
+          ? props.touchMoveScrollAction
+          : () => {}
       }
       touchEndAction={props.touchEndAction}
     />

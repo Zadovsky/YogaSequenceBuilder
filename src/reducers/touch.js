@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export function touchReducer(state = initialState, action) {
-  // console.log(action.type);
+  console.log(action.type);
   switch (action.type) {
     case TOUCH_MOVE_DND:
       return {
