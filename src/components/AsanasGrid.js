@@ -86,8 +86,8 @@ function makeCardsArr(props) {
         }
         itIsSchedulePanel={itIsSchedulePanel}
         touchDnd={touchDnd}
-        touchStartAction={() =>
-          touchStartAction(asanaIndex, gridId, itIsSchedulePanel)
+        touchStartAction={(e) =>
+          touchStartAction(e, asanaIndex, gridId, itIsSchedulePanel)
         }
         touchMoveAction={touchMoveAction}
         touchEndAction={touchEndAction}

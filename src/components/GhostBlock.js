@@ -1,4 +1,5 @@
 import React from "react";
+import "./GhostBlock.css";
 
 export default class GhostBlock extends React.Component {
   componentDidMount() {
@@ -20,6 +21,13 @@ export default class GhostBlock extends React.Component {
   }
 
   render() {
-    return null;
+    return (
+      <div
+        className="GhostBlock"
+        dangerouslySetInnerHTML={{
+          __html: this.props.target ? this.props.target.innerHTML : null,
+        }}
+      />
+    );
   }
 }

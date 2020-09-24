@@ -135,8 +135,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(addAsanaAction(asanaId, gridId)),
     onOpenMenuAsanasAction: () => dispatch(onOpenMenuAsanasAction()),
     onCloseMenuAsanasAction: () => dispatch(onCloseMenuAsanasAction()),
-    touchStartAction: (asanaIndex, gridId, schedule) =>
-      dispatch(touchStartAction(asanaIndex, gridId, schedule)),
+    touchStartAction: (e, asanaIndex, gridId, schedule) =>
+      dispatch(touchStartAction(e, asanaIndex, gridId, schedule)),
     touchMoveDndAction: (e) => dispatch(touchMoveDndAction(e)),
     touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
     touchEndAction: () => dispatch(touchEndAction()),

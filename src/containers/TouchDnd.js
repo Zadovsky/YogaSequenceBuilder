@@ -8,7 +8,13 @@ import {
 import { endDragCard } from "../actions/DnDContextActions";
 
 function TouchDnd(props) {
-  const { touchDnd, startPanelIsSchedule, startGrid, startCard } = props.touch;
+  const {
+    touchDnd,
+    startPanelIsSchedule,
+    startGrid,
+    startCard,
+    target,
+  } = props.touch;
   const {
     startCardDragScheduleAction,
     startCardDragAsanasAction,
@@ -24,6 +30,7 @@ function TouchDnd(props) {
         startGrid={startGrid}
         startCard={startCard}
         endDragCard={endDragCard}
+        target={target}
       />
     )
   );
