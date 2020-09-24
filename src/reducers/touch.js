@@ -17,6 +17,10 @@ const initialState = {
   targetLeft: 0,
   targetWidth: 0,
   targetHeight: 0,
+  startX: 0,
+  startY: 0,
+  moveX: 0,
+  moveY: 0,
 };
 
 export function touchReducer(state = initialState, action) {
@@ -25,6 +29,8 @@ export function touchReducer(state = initialState, action) {
     case TOUCH_MOVE_DND:
       return {
         ...state,
+        moveX: action.payload.x,
+        moveY: action.payload.y,
       };
 
     case TOUCH_MOVE_SCROLL:
@@ -53,6 +59,10 @@ export function touchReducer(state = initialState, action) {
         targetLeft: action.payload.left,
         targetWidth: action.payload.width,
         targetHeight: action.payload.height,
+        startX: action.payload.x,
+        startY: action.payload.y,
+        moveX: action.payload.x,
+        moveY: action.payload.y,
       };
 
     case TOUCH_END:

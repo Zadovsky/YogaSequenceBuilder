@@ -27,6 +27,8 @@ export default class GhostBlock extends React.Component {
       targetHeight,
       targetTop,
       targetLeft,
+      dX,
+      dY,
     } = this.props;
 
     if (target) {
@@ -36,8 +38,8 @@ export default class GhostBlock extends React.Component {
           style={{
             width: targetWidth,
             height: targetHeight,
-            top: targetTop,
-            left: targetLeft,
+            top: targetTop + dY,
+            left: targetLeft + dX,
           }}
           dangerouslySetInnerHTML={{
             __html: target.innerHTML,

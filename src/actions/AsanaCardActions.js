@@ -73,6 +73,8 @@ export function touchStartAction(e, cardPlace, gridId, schedule) {
         width: target.offsetWidth,
         top: rect.top,
         left: rect.left,
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
       },
     });
 
@@ -101,6 +103,10 @@ export function touchMoveDndAction(e) {
   e.preventDefault();
   return {
     type: TOUCH_MOVE_DND,
+    payload: {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    },
   };
 }
 

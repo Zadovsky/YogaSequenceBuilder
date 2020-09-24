@@ -18,6 +18,10 @@ function TouchDnd(props) {
     targetHeight,
     targetTop,
     targetLeft,
+    startX,
+    startY,
+    moveX,
+    moveY,
   } = props.touch;
   const {
     startCardDragScheduleAction,
@@ -39,6 +43,8 @@ function TouchDnd(props) {
         targetHeight={targetHeight}
         targetTop={targetTop}
         targetLeft={targetLeft}
+        dX={moveX - startX}
+        dY={moveY - startY}
       />
     )
   );
