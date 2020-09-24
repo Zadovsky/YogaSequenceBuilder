@@ -61,11 +61,18 @@ export function startCardDragScheduleAction(cardPlace, gridId) {
 }
 
 export function touchStartAction(e, cardPlace, gridId, schedule) {
+  const target = e.touches[0].target.closest(".AsanaCard");
+  const rect = target.getBoundingClientRect();
+
   return (dispatch) => {
     dispatch({
       type: TOUCH_START,
       payload: {
-        target: e.touches[0].target.closest(".AsanaCard"),
+        target: target,
+        height: target.offsetHeight,
+        width: target.offsetWidth,
+        top: rect.top,
+        left: rect.left,
       },
     });
 

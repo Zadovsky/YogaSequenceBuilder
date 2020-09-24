@@ -21,8 +21,13 @@ export default class GhostBlock extends React.Component {
   }
 
   render() {
-    const { target } = this.props;
-    const rect = target ? target.getBoundingClientRect() : null;
+    const {
+      target,
+      targetWidth,
+      targetHeight,
+      targetTop,
+      targetLeft,
+    } = this.props;
 
     return (
       <div
@@ -30,10 +35,10 @@ export default class GhostBlock extends React.Component {
         style={
           target
             ? {
-                width: target.offsetWidth,
-                height: target.offsetHeigh,
-                top: rect.top,
-                left: rect.left,
+                width: targetWidth,
+                height: targetHeight,
+                top: targetTop,
+                left: targetLeft,
               }
             : null
         }

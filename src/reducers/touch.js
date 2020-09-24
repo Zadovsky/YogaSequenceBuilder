@@ -13,6 +13,10 @@ const initialState = {
   startGrid: null,
   startPanelIsSchedule: null,
   target: null,
+  targetTop: 0,
+  targetLeft: 0,
+  targetWidth: 0,
+  targetHeight: 0,
 };
 
 export function touchReducer(state = initialState, action) {
@@ -45,6 +49,10 @@ export function touchReducer(state = initialState, action) {
         ...state,
         touchMode: true,
         target: action.payload.target,
+        targetTop: action.payload.top,
+        targetLeft: action.payload.left,
+        targetWidth: action.payload.width,
+        targetHeight: action.payload.height,
       };
 
     case TOUCH_END:
