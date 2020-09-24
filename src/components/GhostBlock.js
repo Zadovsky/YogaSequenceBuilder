@@ -29,23 +29,21 @@ export default class GhostBlock extends React.Component {
       targetLeft,
     } = this.props;
 
-    return (
-      <div
-        className="GhostBlock"
-        style={
-          target
-            ? {
-                width: targetWidth,
-                height: targetHeight,
-                top: targetTop,
-                left: targetLeft,
-              }
-            : null
-        }
-        dangerouslySetInnerHTML={{
-          __html: target ? target.innerHTML : null,
-        }}
-      />
-    );
+    if (target) {
+      return (
+        <div
+          className="GhostBlock"
+          style={{
+            width: targetWidth,
+            height: targetHeight,
+            top: targetTop,
+            left: targetLeft,
+          }}
+          dangerouslySetInnerHTML={{
+            __html: target.innerHTML,
+          }}
+        />
+      );
+    } else return null;
   }
 }
