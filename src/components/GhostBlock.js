@@ -21,19 +21,24 @@ export default class GhostBlock extends React.Component {
   }
 
   render() {
+    const { target } = this.props;
+    const rect = target ? target.getBoundingClientRect() : null;
+
     return (
       <div
         className="GhostBlock"
         style={
-          this.props.target
+          target
             ? {
-                width: this.props.target.offsetWidth,
-                height: this.props.target.offsetHeigh,
+                width: target.offsetWidth,
+                height: target.offsetHeigh,
+                top: rect.top,
+                left: rect.left,
               }
             : null
         }
         dangerouslySetInnerHTML={{
-          __html: this.props.target ? this.props.target.innerHTML : null,
+          __html: target ? target.innerHTML : null,
         }}
       />
     );
