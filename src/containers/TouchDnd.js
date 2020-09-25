@@ -4,6 +4,7 @@ import GhostBlock from "../components/GhostBlock";
 import {
   startCardDragScheduleAction,
   startCardDragAsanasAction,
+  dragEnterAction,
 } from "../actions/AsanaCardActions";
 import { endDragCard } from "../actions/DnDContextActions";
 
@@ -22,11 +23,13 @@ function TouchDnd(props) {
     startY,
     moveX,
     moveY,
+    moveOnEl,
   } = props.touch;
   const {
     startCardDragScheduleAction,
     startCardDragAsanasAction,
     endDragCard,
+    dragEnterAction,
   } = props;
 
   return (
@@ -45,6 +48,8 @@ function TouchDnd(props) {
         targetLeft={targetLeft}
         dX={moveX - startX}
         dY={moveY - startY}
+        moveOnEl={moveOnEl}
+        dragEnterAction={dragEnterAction}
       />
     )
   );
@@ -63,6 +68,8 @@ const mapDispatchToProps = (dispatch) => {
     startCardDragAsanasAction: (asanaId, gridId) =>
       dispatch(startCardDragAsanasAction(asanaId, gridId)),
     endDragCard: () => dispatch(endDragCard()),
+    dragEnterAction: (cardPlace, gridId) =>
+      dispatch(dragEnterAction(cardPlace, gridId)),
   };
 };
 

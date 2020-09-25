@@ -101,11 +101,15 @@ export function touchEndAction() {
 
 export function touchMoveDndAction(e) {
   e.preventDefault();
+  const x = e.touches[0].clientX;
+  const y = e.touches[0].clientY;
+
   return {
     type: TOUCH_MOVE_DND,
     payload: {
-      x: e.touches[0].clientX,
-      y: e.touches[0].clientY,
+      x: x,
+      y: y,
+      e: document.elementFromPoint(x, y),
     },
   };
 }

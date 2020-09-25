@@ -80,7 +80,12 @@ export default function AsanaCard(props) {
   };
 
   return (
-    <div className={classStr}>
+    <div
+      className={classStr}
+      data-cardplace={props.cardPlace}
+      data-gridid={props.gridId}
+      data-itisschedulepanel={props.itIsSchedulePanel}
+    >
       <ActiveListener onTouchMove={props.touchMoveAction}>
         <div
           className={classes.asanaCardInnerDiv}

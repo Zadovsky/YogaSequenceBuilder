@@ -21,16 +21,18 @@ const initialState = {
   startY: 0,
   moveX: 0,
   moveY: 0,
+  moveOnEl: null,
 };
 
 export function touchReducer(state = initialState, action) {
-  console.log(action.type);
+  // console.log(action.type);
   switch (action.type) {
     case TOUCH_MOVE_DND:
       return {
         ...state,
         moveX: action.payload.x,
         moveY: action.payload.y,
+        moveOnEl: action.payload.e,
       };
 
     case TOUCH_MOVE_SCROLL:
