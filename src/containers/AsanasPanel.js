@@ -111,6 +111,7 @@ function AsanasPanel(props) {
       }
       touchEndAction={props.touchEndAction}
       touchDnd={props.touch.touchDnd}
+      ghostBlock={props.touch.ghostBlock}
     />
   );
 }
@@ -137,7 +138,7 @@ const mapDispatchToProps = (dispatch) => {
     onCloseMenuAsanasAction: () => dispatch(onCloseMenuAsanasAction()),
     touchStartAction: (e, asanaIndex, gridId, schedule) =>
       dispatch(touchStartAction(e, asanaIndex, gridId, schedule)),
-    touchMoveDndAction: (e) => dispatch(touchMoveDndAction(e)),
+    touchMoveDndAction: (e, ref) => dispatch(touchMoveDndAction(e, ref)),
     touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
     touchEndAction: () => dispatch(touchEndAction()),
   };

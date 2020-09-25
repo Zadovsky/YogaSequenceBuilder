@@ -48,6 +48,7 @@ function createGridArr(props) {
         touchMoveAction={props.touchMoveAction}
         touchEndAction={props.touchEndAction}
         touchDnd={props.touchDnd}
+        ghostBlock={props.ghostBlock}
       />
     );
   });

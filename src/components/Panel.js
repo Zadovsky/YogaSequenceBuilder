@@ -78,6 +78,7 @@ export default function Panel(props) {
     touchMoveAction,
     touchEndAction,
     touchDnd,
+    ghostBlock,
   } = props;
 
   const classes = useStyles();
@@ -145,6 +146,7 @@ export default function Panel(props) {
               touchMoveAction={touchMoveAction}
               touchEndAction={touchEndAction}
               touchDnd={touchDnd}
+              ghostBlock={ghostBlock}
             />
           </div>
           <MenuButton

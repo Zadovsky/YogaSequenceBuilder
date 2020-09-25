@@ -68,7 +68,7 @@ function SchedulePanel(props) {
     lastDragEnterGrid,
   } = props.schedule;
 
-  const { touchDnd } = props.touch;
+  const { touchDnd, ghostBlock } = props.touch;
 
   const {
     asanasArr,
@@ -189,6 +189,7 @@ function SchedulePanel(props) {
         }
         touchEndAction={touchEndAction}
         touchDnd={touchDnd}
+        ghostBlock={ghostBlock}
       />
       <SetCookies
         setCookies={setCookies}
@@ -260,7 +261,7 @@ const mapDispatchToProps = (dispatch) => {
     onCloseMenuScheduleAction: () => dispatch(onCloseMenuScheduleAction()),
     touchStartAction: (e, asanaIndex, gridId, schedule) =>
       dispatch(touchStartAction(e, asanaIndex, gridId, schedule)),
-    touchMoveDndAction: (e) => dispatch(touchMoveDndAction(e)),
+    touchMoveDndAction: (e, ref) => dispatch(touchMoveDndAction(e, ref)),
     touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
     touchEndAction: () => dispatch(touchEndAction()),
   };

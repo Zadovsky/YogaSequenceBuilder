@@ -2,6 +2,11 @@ import React from "react";
 import "./GhostBlock.css";
 
 export default class GhostBlock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
+
   componentDidMount() {
     const {
       startCardDragScheduleAction,
@@ -9,11 +14,14 @@ export default class GhostBlock extends React.Component {
       startPanelIsSchedule,
       startCard,
       startGrid,
+      mountGhostBlockAction,
     } = this.props;
 
     if (startPanelIsSchedule) {
       startCardDragScheduleAction(startCard, startGrid);
     } else startCardDragAsanasAction(startCard, startGrid);
+
+    mountGhostBlockAction(this.ref);
   }
 
   componentWillUnmount() {
@@ -23,13 +31,15 @@ export default class GhostBlock extends React.Component {
   componentDidUpdate() {
     const { moveOnEl, dragEnterAction, dragEnterCard } = this.props;
 
-    if (moveOnEl.closest(".AsanaCard")) {
-      const { cardplace, gridid, itisschedulepanel } = moveOnEl.closest(
-        ".AsanaCard"
-      ).dataset;
-      if (itisschedulepanel === "true") dragEnterAction(+cardplace, +gridid);
-    } else {
-      dragEnterCard({ target: moveOnEl });
+    if (moveOnEl) {
+      if (moveOnEl.closest(".AsanaCard")) {
+        const { cardplace, gridid, itisschedulepanel } = moveOnEl.closest(
+          ".AsanaCard"
+        ).dataset;
+        if (itisschedulepanel === "true") dragEnterAction(+cardplace, +gridid);
+      } else {
+        dragEnterCard({ target: moveOnEl });
+      }
     }
   }
 
@@ -48,6 +58,7 @@ export default class GhostBlock extends React.Component {
       return (
         <div
           className="GhostBlock"
+          ref={this.ref}
           style={{
             width: targetWidth,
             height: targetHeight,

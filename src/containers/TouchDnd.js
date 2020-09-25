@@ -7,6 +7,7 @@ import {
   dragEnterAction,
 } from "../actions/AsanaCardActions";
 import { dragEnterCard, endDragCard } from "../actions/DnDContextActions";
+import { mountGhostBlockAction } from "../actions/GhostBlockActions";
 
 function TouchDnd(props) {
   const {
@@ -31,6 +32,7 @@ function TouchDnd(props) {
     endDragCard,
     dragEnterAction,
     dragEnterCard,
+    mountGhostBlockAction,
   } = props;
 
   return (
@@ -52,6 +54,7 @@ function TouchDnd(props) {
         moveOnEl={moveOnEl}
         dragEnterAction={dragEnterAction}
         dragEnterCard={dragEnterCard}
+        mountGhostBlockAction={mountGhostBlockAction}
       />
     )
   );
@@ -73,6 +76,7 @@ const mapDispatchToProps = (dispatch) => {
     dragEnterAction: (cardPlace, gridId) =>
       dispatch(dragEnterAction(cardPlace, gridId)),
     dragEnterCard: (e) => dispatch(dragEnterCard(e)),
+    mountGhostBlockAction: (ref) => dispatch(mountGhostBlockAction(ref)),
   };
 };
 

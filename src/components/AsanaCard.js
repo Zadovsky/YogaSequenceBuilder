@@ -86,7 +86,9 @@ export default function AsanaCard(props) {
       data-gridid={props.gridId}
       data-itisschedulepanel={props.itIsSchedulePanel}
     >
-      <ActiveListener onTouchMove={props.touchMoveAction}>
+      <ActiveListener
+        onTouchMove={(e) => props.touchMoveAction(e, props.ghostBlock)}
+      >
         <div
           className={classes.asanaCardInnerDiv}
           onClick={props.addAsanaAction}

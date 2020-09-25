@@ -6,6 +6,8 @@ import {
   TOUCH_TIMEOUT_END,
 } from "../actions/AsanaCardActions";
 
+import { MOUNT_GHOST_BLOCK } from "../actions/GhostBlockActions";
+
 const initialState = {
   touchMode: false,
   touchDnd: null,
@@ -22,11 +24,18 @@ const initialState = {
   moveX: 0,
   moveY: 0,
   moveOnEl: null,
+  ghostBlock: null,
 };
 
 export function touchReducer(state = initialState, action) {
   // console.log(action.type);
   switch (action.type) {
+    case MOUNT_GHOST_BLOCK:
+      return {
+        ...state,
+        ghostBlock: action.payload,
+      };
+
     case TOUCH_MOVE_DND:
       return {
         ...state,

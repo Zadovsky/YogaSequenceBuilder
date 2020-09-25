@@ -99,17 +99,20 @@ export function touchEndAction() {
   };
 }
 
-export function touchMoveDndAction(e) {
+export function touchMoveDndAction(e, ref) {
   e.preventDefault();
   const x = e.touches[0].clientX;
   const y = e.touches[0].clientY;
+  ref.current.style.display = "none";
+  const elFromP = document.elementFromPoint(x, y);
+  ref.current.style.display = "block";
 
   return {
     type: TOUCH_MOVE_DND,
     payload: {
       x: x,
       y: y,
-      e: document.elementFromPoint(x, y),
+      e: elFromP,
     },
   };
 }
