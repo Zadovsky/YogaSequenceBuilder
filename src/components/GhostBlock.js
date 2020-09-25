@@ -21,13 +21,15 @@ export default class GhostBlock extends React.Component {
   }
 
   componentDidUpdate() {
-    const { moveOnEl, dragEnterAction } = this.props;
+    const { moveOnEl, dragEnterAction, dragEnterCard } = this.props;
 
     if (moveOnEl.closest(".AsanaCard")) {
       const { cardplace, gridid, itisschedulepanel } = moveOnEl.closest(
         ".AsanaCard"
       ).dataset;
       if (itisschedulepanel === "true") dragEnterAction(+cardplace, +gridid);
+    } else {
+      dragEnterCard({ target: moveOnEl });
     }
   }
 
