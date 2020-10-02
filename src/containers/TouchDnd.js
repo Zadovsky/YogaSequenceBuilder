@@ -9,6 +9,7 @@ import {
 import { dragEnterCard, endDragCard } from "../actions/DnDContextActions";
 import { mountGhostBlockAction } from "../actions/GhostBlockActions";
 import { onDragEnterHolderAction } from "../actions/PlaceHolderActions";
+import { onDragEnterEmptySpaceAction } from "../actions/EmptySpaceAtTheEndActions";
 
 function TouchDnd(props) {
   const {
@@ -35,6 +36,7 @@ function TouchDnd(props) {
     dragEnterCard,
     mountGhostBlockAction,
     onDragEnterHolderAction,
+    onDragEnterEmptySpaceAction,
   } = props;
 
   return (
@@ -58,6 +60,7 @@ function TouchDnd(props) {
         dragEnterCard={dragEnterCard}
         mountGhostBlockAction={mountGhostBlockAction}
         onDragEnterHolderAction={onDragEnterHolderAction}
+        onDragEnterEmptySpaceAction={onDragEnterEmptySpaceAction}
       />
     )
   );
@@ -81,6 +84,8 @@ const mapDispatchToProps = (dispatch) => {
     dragEnterCard: (e) => dispatch(dragEnterCard(e)),
     mountGhostBlockAction: (ref) => dispatch(mountGhostBlockAction(ref)),
     onDragEnterHolderAction: () => dispatch(onDragEnterHolderAction()),
+    onDragEnterEmptySpaceAction: (gridId) =>
+      dispatch(onDragEnterEmptySpaceAction(gridId)),
   };
 };
 

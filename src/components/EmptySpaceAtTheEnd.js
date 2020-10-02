@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   emptySpaceAtTheEnd: {
@@ -17,8 +18,9 @@ export default function EmptySpaceAtTheEnd(props) {
 
   return (
     <div
-      className={classes.emptySpaceAtTheEnd}
+      className={clsx("EmptySpaceAtTheEnd", classes.emptySpaceAtTheEnd)}
       onDragEnter={props.onDragEnterEmptySpaceAction}
+      data-gridid={props.gridId}
     ></div>
   );
 }

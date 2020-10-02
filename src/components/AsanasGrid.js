@@ -235,6 +235,7 @@ export default function AsanasGrid(props) {
               onDragEnterEmptySpaceAction={() =>
                 onDragEnterEmptySpaceAction(gridId)
               }
+              gridId={gridId}
             />
           </div>
           {itIsSchedulePanel && enableCloseIcon && (
