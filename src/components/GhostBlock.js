@@ -29,7 +29,12 @@ export default class GhostBlock extends React.Component {
   }
 
   componentDidUpdate() {
-    const { moveOnEl, dragEnterAction, dragEnterCard } = this.props;
+    const {
+      moveOnEl,
+      dragEnterAction,
+      dragEnterCard,
+      onDragEnterHolderAction,
+    } = this.props;
 
     if (moveOnEl) {
       if (moveOnEl.closest(".AsanaCard")) {
@@ -37,6 +42,8 @@ export default class GhostBlock extends React.Component {
           ".AsanaCard"
         ).dataset;
         if (itisschedulepanel === "true") dragEnterAction(+cardplace, +gridid);
+      } else if (moveOnEl.closest(".CardPlaceHolder")) {
+        onDragEnterHolderAction();
       } else {
         dragEnterCard({ target: moveOnEl });
       }
