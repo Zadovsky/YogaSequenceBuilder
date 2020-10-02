@@ -214,6 +214,7 @@ export default function AsanasGrid(props) {
             : () => {}
         }
         onDragOver={onDragOverFunc}
+        data-gridid={gridId}
       >
         <Paper className={classes.root}>
           <div className="TextFieldIconWrapper">
