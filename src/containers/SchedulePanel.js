@@ -259,8 +259,8 @@ const mapDispatchToProps = (dispatch) => {
     onPDFDownloadAction: (ref) => dispatch(onPDFDownloadAction(ref)),
     onOpenMenuScheduleAction: () => dispatch(onOpenMenuScheduleAction()),
     onCloseMenuScheduleAction: () => dispatch(onCloseMenuScheduleAction()),
-    touchStartAction: (e, asanaIndex, gridId, schedule) =>
-      dispatch(touchStartAction(e, asanaIndex, gridId, schedule)),
+    touchStartAction: (e, asanaIndex, gridId, schedule, targetClass) =>
+      dispatch(touchStartAction(e, asanaIndex, gridId, schedule, targetClass)),
     touchMoveDndAction: (e, ref) => dispatch(touchMoveDndAction(e, ref)),
     touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
     touchEndAction: () => dispatch(touchEndAction()),

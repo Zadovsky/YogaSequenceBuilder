@@ -15,11 +15,17 @@ export default class GhostBlock extends React.Component {
       startCard,
       startGrid,
       mountGhostBlockAction,
+      target,
+      startGridDragAction,
     } = this.props;
 
-    if (startPanelIsSchedule) {
-      startCardDragScheduleAction(startCard, startGrid);
-    } else startCardDragAsanasAction(startCard, startGrid);
+    if (target.classList.contains("AsanaCard")) {
+      if (startPanelIsSchedule) {
+        startCardDragScheduleAction(startCard, startGrid);
+      } else startCardDragAsanasAction(startCard, startGrid);
+    } else if (target.classList.contains("AsanasGrid")) {
+      startGridDragAction(startGrid, { target: target });
+    }
 
     mountGhostBlockAction(this.ref);
   }

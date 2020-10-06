@@ -105,7 +105,13 @@ function makeCardsArr(props) {
         touchDnd={touchDnd}
         ghostBlock={ghostBlock}
         touchStartAction={(e) =>
-          touchStartAction(e, asanaIndex, gridId, itIsSchedulePanel)
+          touchStartAction(
+            e,
+            asanaIndex,
+            gridId,
+            itIsSchedulePanel,
+            "AsanaCard"
+          )
         }
         touchMoveAction={touchMoveAction}
         touchEndAction={touchEndAction}
@@ -176,6 +182,7 @@ export default function AsanasGrid(props) {
     scrollIntoView,
     draggingGrid,
     lastDragEnterGrid,
+    touchStartAction,
   } = props;
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
@@ -206,6 +213,7 @@ export default function AsanasGrid(props) {
     : () => {};
 
   const classStr = clsx(
+    "AsanasGrid",
     classes.asanasGridDraggable,
     gridId === draggingGrid && itIsSchedulePanel && "AsanaGridDragging"
   );
@@ -271,6 +279,15 @@ export default function AsanasGrid(props) {
               className="AsanasGridDragIcon"
               onMouseDown={onDragIconMouseDownAction}
               onMouseUp={onDragIconMouseUpAction}
+              onTouchStart={(e) =>
+                touchStartAction(
+                  e,
+                  null,
+                  gridId,
+                  itIsSchedulePanel,
+                  "AsanasGrid"
+                )
+              }
             >
               <DragIndicatorIcon {...dragIconButtonProps} />
             </div>
