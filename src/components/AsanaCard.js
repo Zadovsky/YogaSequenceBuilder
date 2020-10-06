@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       opacity: 0,
       transition: "200ms",
     },
-    "& .MuiButtonBase-root:hover": {
+    "&:hover .MuiButtonBase-root": {
       opacity: "100%",
       transition: "200ms",
     },
