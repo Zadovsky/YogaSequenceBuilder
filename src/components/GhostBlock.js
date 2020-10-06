@@ -47,7 +47,11 @@ export default class GhostBlock extends React.Component {
         dragEnterAction(+cardplace, +gridid);
       } else if (moveOnEl.closest(".CardPlaceHolder")) {
         onDragEnterHolderAction();
-      } else if (moveOnEl.closest(".EmptySpaceAtTheEnd")) {
+      } else if (
+        moveOnEl.closest(".EmptySpaceAtTheEnd") &&
+        moveOnEl.closest(".EmptySpaceAtTheEnd").dataset.itisschedulepanel ===
+          "true"
+      ) {
         const { gridid } = moveOnEl.closest(".EmptySpaceAtTheEnd").dataset;
         onDragEnterEmptySpaceAction(+gridid);
       } else if (

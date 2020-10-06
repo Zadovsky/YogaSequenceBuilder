@@ -21,6 +21,7 @@ export default function EmptySpaceAtTheEnd(props) {
       className={clsx("EmptySpaceAtTheEnd", classes.emptySpaceAtTheEnd)}
       onDragEnter={props.onDragEnterEmptySpaceAction}
       data-gridid={props.gridId}
+      data-itisschedulepanel={props.itIsSchedulePanel}
     ></div>
   );
 }
