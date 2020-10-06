@@ -88,6 +88,7 @@ export default class GhostBlock extends React.Component {
             height: targetHeight,
             top: targetTop + dY,
             left: targetLeft + dX,
+            opacity: "70%",
           }}
           dangerouslySetInnerHTML={{
             __html: target.innerHTML,
