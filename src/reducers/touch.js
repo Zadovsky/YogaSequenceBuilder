@@ -81,6 +81,7 @@ export function touchReducer(state = initialState, action) {
         ...state,
         touchMode: false,
         touchDnd: null,
+        moveOnEl: null,
       };
 
     default:
