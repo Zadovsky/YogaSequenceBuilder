@@ -39,17 +39,22 @@ export default class GhostBlock extends React.Component {
     } = this.props;
 
     if (moveOnEl) {
-      if (moveOnEl.closest(".AsanaCard")) {
-        const { cardplace, gridid, itisschedulepanel } = moveOnEl.closest(
-          ".AsanaCard"
-        ).dataset;
-        if (itisschedulepanel === "true") dragEnterAction(+cardplace, +gridid);
+      if (
+        moveOnEl.closest(".AsanaCard") &&
+        moveOnEl.closest(".AsanaCard").dataset.itisschedulepanel === "true"
+      ) {
+        const { cardplace, gridid } = moveOnEl.closest(".AsanaCard").dataset;
+        dragEnterAction(+cardplace, +gridid);
       } else if (moveOnEl.closest(".CardPlaceHolder")) {
         onDragEnterHolderAction();
       } else if (moveOnEl.closest(".EmptySpaceAtTheEnd")) {
         const { gridid } = moveOnEl.closest(".EmptySpaceAtTheEnd").dataset;
         onDragEnterEmptySpaceAction(+gridid);
-      } else if (moveOnEl.closest(".AsanasGridDraggable")) {
+      } else if (
+        moveOnEl.closest(".AsanasGridDraggable") &&
+        moveOnEl.closest(".AsanasGridDraggable").dataset.itisschedulepanel ===
+          "true"
+      ) {
         const { gridid } = moveOnEl.closest(".AsanasGridDraggable").dataset;
         dragEnterGridCardAction(+gridid);
       } else {

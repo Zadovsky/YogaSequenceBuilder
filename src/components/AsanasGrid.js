@@ -215,6 +215,7 @@ export default function AsanasGrid(props) {
         }
         onDragOver={onDragOverFunc}
         data-gridid={gridId}
+        data-itisschedulepanel={itIsSchedulePanel}
       >
         <Paper className={classes.root}>
           <div className="TextFieldIconWrapper">
