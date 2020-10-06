@@ -49,6 +49,20 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: "20px",
     },
   },
+  asanasGridDraggable: {
+    height: "100%",
+    overflow: "hidden",
+    marginLeft: "-10px",
+    paddingLeft: "10px",
+    "& .closeGridIconDiv .MuiButtonBase-root": {
+      opacity: 0,
+      transition: "200ms",
+    },
+    "&:hover .closeGridIconDiv .MuiButtonBase-root": {
+      opacity: "100%",
+      transition: "200ms",
+    },
+  },
 }));
 
 function makeCardsArr(props) {
@@ -192,7 +206,7 @@ export default function AsanasGrid(props) {
     : () => {};
 
   const classStr = clsx(
-    "AsanasGridDraggable",
+    classes.asanasGridDraggable,
     gridId === draggingGrid && itIsSchedulePanel && "AsanaGridDragging"
   );
 

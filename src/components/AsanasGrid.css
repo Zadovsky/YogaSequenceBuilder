@@ -9,26 +9,9 @@
   cursor: grabbing;
 }
 
-.AsanasGridDraggable {
-  height: 100%;
-  overflow: hidden;
-  margin-left: -10px;
-  padding-left: 10px;
-}
-
 .AsanaGridDragging {
   height: 0;
   transition: all 0ms ease 10ms;
-}
-
-.AsanasGridDraggable .closeGridIconDiv .MuiButtonBase-root {
-  opacity: 0;
-  transition: 200ms;
-}
-
-.AsanasGridDraggable:hover .closeGridIconDiv .MuiButtonBase-root {
-  opacity: 100%;
-  transition: 200ms;
 }
 
 .TextFieldIconWrapper {
