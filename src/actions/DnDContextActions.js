@@ -16,7 +16,7 @@ export function endDragGrid() {
 }
 
 export function dragEnterCard(e) {
-  const outOfAsanasGrid = e.target.closest(".AsanasGridDraggable") === null;
+  const outOfAsanasGrid = e.target.closest(".AsanasGrid") === null;
   const outOfPanel = e.target.closest(".SchedulePanel") === null;
   if (outOfAsanasGrid || outOfPanel) {
     return {
