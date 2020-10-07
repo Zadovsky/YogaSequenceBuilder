@@ -183,6 +183,7 @@ export default function AsanasGrid(props) {
     draggingGrid,
     lastDragEnterGrid,
     touchStartAction,
+    touchEndAction,
   } = props;
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
@@ -288,6 +289,7 @@ export default function AsanasGrid(props) {
                   "AsanasGrid"
                 )
               }
+              onTouchEnd={touchEndAction}
             >
               <DragIndicatorIcon {...dragIconButtonProps} />
             </div>

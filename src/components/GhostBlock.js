@@ -31,7 +31,12 @@ export default class GhostBlock extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.endDragCard();
+    const { target, endDragCard, endDragGrid } = this.props;
+    if (target.classList.contains("AsanaCard")) {
+      endDragCard();
+    } else if (target.classList.contains("AsanasGrid")) {
+      endDragGrid();
+    }
   }
 
   componentDidUpdate() {
