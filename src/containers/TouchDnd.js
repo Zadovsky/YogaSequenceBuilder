@@ -20,6 +20,7 @@ import {
   dragEnterGridGridAction,
   startGridDragAction,
 } from "../actions/AsanasGridActions";
+import { onDragEnterGridPhAction } from "../actions/GridPlaceHolderActions";
 
 function TouchDnd(props) {
   const {
@@ -52,6 +53,7 @@ function TouchDnd(props) {
     startGridDragAction,
     dragEnterGridGridAction,
     dragEnterGrid,
+    onDragEnterGridPhAction,
   } = props;
 
   return (
@@ -81,6 +83,7 @@ function TouchDnd(props) {
         startGridDragAction={startGridDragAction}
         dragEnterGridGridAction={dragEnterGridGridAction}
         dragEnterGrid={dragEnterGrid}
+        onDragEnterGridPhAction={onDragEnterGridPhAction}
       />
     )
   );
@@ -114,6 +117,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(dragEnterGridGridAction(gridId)),
     startGridDragAction: (gridId, e) =>
       dispatch(startGridDragAction(gridId, e)),
+    onDragEnterGridPhAction: () => dispatch(onDragEnterGridPhAction()),
   };
 };
 
