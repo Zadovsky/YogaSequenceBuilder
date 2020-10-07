@@ -49,6 +49,7 @@ export default class GhostBlock extends React.Component {
       dragEnterGridCardAction,
       target,
       dragEnterGridGridAction,
+      dragEnterGrid,
     } = this.props;
 
     if (target.classList.contains("AsanaCard")) {
@@ -86,6 +87,8 @@ export default class GhostBlock extends React.Component {
         ) {
           const { gridid } = moveOnEl.closest(".AsanasGrid").dataset;
           dragEnterGridGridAction(+gridid);
+        } else {
+          dragEnterGrid({ target: moveOnEl });
         }
       }
     }

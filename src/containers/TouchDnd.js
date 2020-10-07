@@ -8,6 +8,7 @@ import {
 } from "../actions/AsanaCardActions";
 import {
   dragEnterCard,
+  dragEnterGrid,
   endDragCard,
   endDragGrid,
 } from "../actions/DnDContextActions";
@@ -50,6 +51,7 @@ function TouchDnd(props) {
     dragEnterGridCardAction,
     startGridDragAction,
     dragEnterGridGridAction,
+    dragEnterGrid,
   } = props;
 
   return (
@@ -78,6 +80,7 @@ function TouchDnd(props) {
         dragEnterGridCardAction={dragEnterGridCardAction}
         startGridDragAction={startGridDragAction}
         dragEnterGridGridAction={dragEnterGridGridAction}
+        dragEnterGrid={dragEnterGrid}
       />
     )
   );
@@ -100,6 +103,7 @@ const mapDispatchToProps = (dispatch) => {
     dragEnterAction: (cardPlace, gridId) =>
       dispatch(dragEnterAction(cardPlace, gridId)),
     dragEnterCard: (e) => dispatch(dragEnterCard(e)),
+    dragEnterGrid: (e) => dispatch(dragEnterGrid(e)),
     mountGhostBlockAction: (ref) => dispatch(mountGhostBlockAction(ref)),
     onDragEnterHolderAction: () => dispatch(onDragEnterHolderAction()),
     onDragEnterEmptySpaceAction: (gridId) =>
