@@ -10,7 +10,7 @@
 }
 
 .AsanaGridDragging {
-  height: 0;
+  height: 0 !important;
   transition: all 0ms ease 10ms;
 }
 
