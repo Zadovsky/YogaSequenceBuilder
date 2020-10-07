@@ -14,6 +14,7 @@ import yellow from "@material-ui/core/colors/yellow";
 import { useTheme } from "@material-ui/core/styles";
 import { useMediaQuery } from "@material-ui/core";
 import clsx from "clsx";
+import { ActiveListener } from "react-event-injector";
 import "./AsanasGrid.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -184,6 +185,8 @@ export default function AsanasGrid(props) {
     lastDragEnterGrid,
     touchStartAction,
     touchEndAction,
+    touchMoveAction,
+    ghostBlock,
   } = props;
   const cardsArr = makeCardsArr(props);
   const cardsHoldersArr = makeCardsHoldersArr(cardsArr, props);
@@ -276,23 +279,25 @@ export default function AsanasGrid(props) {
             </div>
           )}
           {itIsSchedulePanel ? (
-            <div
-              className="AsanasGridDragIcon"
-              onMouseDown={onDragIconMouseDownAction}
-              onMouseUp={onDragIconMouseUpAction}
-              onTouchStart={(e) =>
-                touchStartAction(
-                  e,
-                  null,
-                  gridId,
-                  itIsSchedulePanel,
-                  "AsanasGrid"
-                )
-              }
-              onTouchEnd={touchEndAction}
-            >
-              <DragIndicatorIcon {...dragIconButtonProps} />
-            </div>
+            <ActiveListener onTouchMove={(e) => touchMoveAction(e, ghostBlock)}>
+              <div
+                className="AsanasGridDragIcon"
+                onMouseDown={onDragIconMouseDownAction}
+                onMouseUp={onDragIconMouseUpAction}
+                onTouchStart={(e) =>
+                  touchStartAction(
+                    e,
+                    null,
+                    gridId,
+                    itIsSchedulePanel,
+                    "AsanasGrid"
+                  )
+                }
+                onTouchEnd={touchEndAction}
+              >
+                <DragIndicatorIcon {...dragIconButtonProps} />
+              </div>
+            </ActiveListener>
           ) : (
             ""
           )}
