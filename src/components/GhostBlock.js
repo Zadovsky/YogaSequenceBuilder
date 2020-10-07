@@ -47,32 +47,46 @@ export default class GhostBlock extends React.Component {
       onDragEnterHolderAction,
       onDragEnterEmptySpaceAction,
       dragEnterGridCardAction,
+      target,
+      dragEnterGridGridAction,
     } = this.props;
 
-    if (moveOnEl) {
-      if (
-        moveOnEl.closest(".AsanaCard") &&
-        moveOnEl.closest(".AsanaCard").dataset.itisschedulepanel === "true"
-      ) {
-        const { cardplace, gridid } = moveOnEl.closest(".AsanaCard").dataset;
-        dragEnterAction(+cardplace, +gridid);
-      } else if (moveOnEl.closest(".CardPlaceHolder")) {
-        onDragEnterHolderAction();
-      } else if (
-        moveOnEl.closest(".EmptySpaceAtTheEnd") &&
-        moveOnEl.closest(".EmptySpaceAtTheEnd").dataset.itisschedulepanel ===
-          "true"
-      ) {
-        const { gridid } = moveOnEl.closest(".EmptySpaceAtTheEnd").dataset;
-        onDragEnterEmptySpaceAction(+gridid);
-      } else if (
-        moveOnEl.closest(".AsanasGrid") &&
-        moveOnEl.closest(".AsanasGrid").dataset.itisschedulepanel === "true"
-      ) {
-        const { gridid } = moveOnEl.closest(".AsanasGrid").dataset;
-        dragEnterGridCardAction(+gridid);
-      } else {
-        dragEnterCard({ target: moveOnEl });
+    if (target.classList.contains("AsanaCard")) {
+      if (moveOnEl) {
+        if (
+          moveOnEl.closest(".AsanaCard") &&
+          moveOnEl.closest(".AsanaCard").dataset.itisschedulepanel === "true"
+        ) {
+          const { cardplace, gridid } = moveOnEl.closest(".AsanaCard").dataset;
+          dragEnterAction(+cardplace, +gridid);
+        } else if (moveOnEl.closest(".CardPlaceHolder")) {
+          onDragEnterHolderAction();
+        } else if (
+          moveOnEl.closest(".EmptySpaceAtTheEnd") &&
+          moveOnEl.closest(".EmptySpaceAtTheEnd").dataset.itisschedulepanel ===
+            "true"
+        ) {
+          const { gridid } = moveOnEl.closest(".EmptySpaceAtTheEnd").dataset;
+          onDragEnterEmptySpaceAction(+gridid);
+        } else if (
+          moveOnEl.closest(".AsanasGrid") &&
+          moveOnEl.closest(".AsanasGrid").dataset.itisschedulepanel === "true"
+        ) {
+          const { gridid } = moveOnEl.closest(".AsanasGrid").dataset;
+          dragEnterGridCardAction(+gridid);
+        } else {
+          dragEnterCard({ target: moveOnEl });
+        }
+      }
+    } else if (target.classList.contains("AsanasGrid")) {
+      if (moveOnEl) {
+        if (
+          moveOnEl.closest(".AsanasGrid") &&
+          moveOnEl.closest(".AsanasGrid").dataset.itisschedulepanel === "true"
+        ) {
+          const { gridid } = moveOnEl.closest(".AsanasGrid").dataset;
+          dragEnterGridGridAction(+gridid);
+        }
       }
     }
   }
