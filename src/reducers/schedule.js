@@ -281,25 +281,27 @@ export function scheduleReducer(state = initialState, action) {
       };
 
     case DRAG_ENTER_GRID_GRID:
-      let newDragOverGrid;
+      if (state.lastDragEnterGrid !== action.payload) {
+        let newDragOverGrid;
 
-      if (state.onPlaceHolder && state.dragOverGrid === action.payload) {
-        if (action.payload + 1 === state.draggingGrid) {
-          newDragOverGrid = action.payload + 2;
+        if (state.onPlaceHolder && state.dragOverGrid === action.payload) {
+          if (action.payload + 1 === state.draggingGrid) {
+            newDragOverGrid = action.payload + 2;
+          } else {
+            newDragOverGrid = action.payload + 1;
+          }
         } else {
-          newDragOverGrid = action.payload + 1;
+          newDragOverGrid = action.payload;
         }
-      } else {
-        newDragOverGrid = action.payload;
-      }
 
-      return {
-        ...state,
-        fastTransition: false,
-        onPlaceHolder: false,
-        dragOverGrid: newDragOverGrid,
-        lastDragEnterGrid: action.payload,
-      };
+        return {
+          ...state,
+          fastTransition: false,
+          onPlaceHolder: false,
+          dragOverGrid: newDragOverGrid,
+          lastDragEnterGrid: action.payload,
+        };
+      } else return state;
 
     case DRAG_ENTER_GRID_CARD:
       return {
