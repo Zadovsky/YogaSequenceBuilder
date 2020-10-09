@@ -102,7 +102,7 @@ export default function Panel(props) {
             closeMenuAction={closeMenuAction}
           />
           <div
-            className={classes.panelFlexElement}
+            className={clsx("PanelFlexElement", classes.panelFlexElement)}
             onScroll={onGridBlockScroll}
           >
             <PanelName

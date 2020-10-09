@@ -13,18 +13,44 @@ function makeTransitionStyle(fast, DragEnd) {
   }
 }
 
-export default function GridPlaceHolder(props) {
-  var transitionStyle = makeTransitionStyle(
-    props.fastTransition,
-    props.isDragEnd
-  );
-  transitionStyle.height = props.height;
+class GridPlaceHolder extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
 
-  return (
-    <div
-      className="GridPlaceHolder"
-      style={transitionStyle}
-      onDragEnter={props.onDragEnterGridPhAction}
-    ></div>
-  );
+  componentDidUpdate() {
+    if (this.props.height > 0) {
+      if (
+        this.ref.current.offsetTop <
+        this.ref.current.closest(".PanelFlexElement").scrollTop
+      ) {
+        this.ref.current.scrollIntoViewIfNeeded(true);
+      } else if (
+        this.ref.current.offsetTop + this.ref.current.clientHeight >
+        this.ref.current.closest(".PanelFlexElement").scrollTop +
+          this.ref.current.closest(".PanelFlexElement").clientHeight
+      )
+        this.ref.current.scrollIntoViewIfNeeded(false);
+    }
+  }
+
+  render() {
+    var transitionStyle = makeTransitionStyle(
+      this.props.fastTransition,
+      this.props.isDragEnd
+    );
+    transitionStyle.height = this.props.height;
+
+    return (
+      <div
+        className="GridPlaceHolder"
+        style={transitionStyle}
+        onDragEnter={this.props.onDragEnterGridPhAction}
+        ref={this.ref}
+      ></div>
+    );
+  }
 }
+
+export default GridPlaceHolder;
