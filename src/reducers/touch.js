@@ -28,7 +28,6 @@ const initialState = {
 };
 
 export function touchReducer(state = initialState, action) {
-  // console.log(action.type);
   switch (action.type) {
     case MOUNT_GHOST_BLOCK:
       return {
