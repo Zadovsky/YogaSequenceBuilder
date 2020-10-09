@@ -179,7 +179,7 @@ function SchedulePanel(props) {
         closeMenuAction={onCloseMenuScheduleAction}
         lastDragEnterCard={lastDragEnterCard}
         lastDragEnterGrid={lastDragEnterGrid}
-        touchStartAction={touchStartAction}
+        touchStartAction={readOnly ? () => {} : touchStartAction}
         touchMoveAction={
           touchDnd
             ? touchMoveDndAction
