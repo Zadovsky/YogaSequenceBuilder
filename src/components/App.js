@@ -13,6 +13,7 @@ import ReadCookies from "../containers/ReadCookies";
 import InfoPopUpWindow from "../containers/InfoPopUpWindow";
 import YesNoPopUpWindow from "../containers/YesNoPopUpWindow";
 import TouchDnd from "../containers/TouchDnd";
+import IntroWindow from "../containers/IntroWindow";
 import { makeStyles } from "@material-ui/core/styles";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core/styles";
@@ -125,6 +126,7 @@ export default function App(props) {
         <UserPopUpWindows />
         <InfoPopUpWindow />
         <YesNoPopUpWindow />
+        <IntroWindow />
         <TouchDnd />
       </MuiThemeProvider>
     </React.Fragment>
