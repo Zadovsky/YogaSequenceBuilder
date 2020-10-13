@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: yellow[100],
     [theme.breakpoints.up("lg")]: {
-      padding: theme.spacing(1),
+      // padding: theme.spacing(1),
     },
   },
 }));
@@ -20,7 +20,7 @@ function Footer(props) {
 
   return (
     <Paper className={classes.paper}>
-      <Typography align="center">
+      <Typography align="center" variant="body2">
         {props.logo.footerText + " "}
         <Link
           href={props.logo.footerLinkUrl}
