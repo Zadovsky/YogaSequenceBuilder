@@ -1,4 +1,11 @@
+import { CLOSE_INTRO } from "../actions/IntroWindowActions";
+
 const initialState = {
+  isOpen: true,
+  nextButtonText: {
+    ru: "Далее",
+    en: "Next",
+  },
   texts: [
     {
       ru: {
@@ -25,6 +32,11 @@ const initialState = {
 
 export function introReducer(state = initialState, action) {
   switch (action.type) {
+    case CLOSE_INTRO:
+      return {
+        ...state,
+        isOpen: false,
+      };
     default:
       return state;
   }
