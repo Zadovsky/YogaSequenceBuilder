@@ -2,6 +2,7 @@ import { CLOSE_INTRO } from "../actions/IntroWindowActions";
 
 const initialState = {
   isOpen: true,
+  curSlide: 0,
   nextButtonText: {
     ru: "Далее",
     en: "Next",

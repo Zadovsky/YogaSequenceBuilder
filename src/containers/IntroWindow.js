@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useMediaQuery } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import { onCloseIntroWindow } from "../actions/IntroWindowActions";
+import IntroSliderButtons from "../components/IntroSliderButtons";
 
 const useStyles = makeStyles((theme) => ({
   closeButton: {
@@ -22,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function IntroWindow(props) {
+  const { isOpen, curSlide, texts, nextButtonText } = props.intro;
+  const { curLang } = props.language;
+  const { onCloseIntroWindow } = props;
+
   const classes = useStyles();
   const theme = useTheme();
 
@@ -31,25 +36,22 @@ function IntroWindow(props) {
   };
 
   return (
-    <Dialog open={props.intro.isOpen} onClose={props.onCloseIntroWindow}>
+    <Dialog open={isOpen} onClose={onCloseIntroWindow}>
       <IconButton
         {...closeIconButtonProps}
         className={classes.closeButton}
-        onClick={props.onCloseIntroWindow}
+        onClick={onCloseIntroWindow}
       >
         <CloseIcon />
       </IconButton>
-      <DialogTitle>
-        {props.intro.texts[0][props.language.curLang].title}
-      </DialogTitle>
+      <DialogTitle>{texts[curSlide][curLang].title}</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          {props.intro.texts[0][props.language.curLang].text}
-        </DialogContentText>
+        <DialogContentText>{texts[curSlide][curLang].text}</DialogContentText>
       </DialogContent>
+      <IntroSliderButtons slidersNum={texts.length} curSlide={curSlide} />
       <DialogActions>
-        <Button onClick={props.onCloseIntroWindow} color="secondary">
-          {props.intro.nextButtonText[props.language.curLang]}
+        <Button onClick={onCloseIntroWindow} color="secondary">
+          {nextButtonText[curLang]}
         </Button>
       </DialogActions>
     </Dialog>
