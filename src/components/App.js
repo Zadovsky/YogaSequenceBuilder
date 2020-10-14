@@ -78,7 +78,6 @@ export default function App(props) {
 
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const gridContainerProps = { spacing: isSmallScreen ? 1 : 2 };
   const containerProps = { disableGutters: isSmallScreen ? true : false };
 
   return (
@@ -93,17 +92,13 @@ export default function App(props) {
             {...containerProps}
           >
             <div className={classes.appFlexBox}>
-              <Grid container {...gridContainerProps}>
+              <Grid container spacing={1}>
                 <Grid item xs={12}>
                   <PageTop />
                 </Grid>
               </Grid>
               <div className={classes.panelsFlexElement}>
-                <Grid
-                  container
-                  className={classes.gridContainer}
-                  {...gridContainerProps}
-                >
+                <Grid container className={classes.gridContainer} spacing={1}>
                   <Grid item sm={6} className={classes.grid}>
                     <div className={classes.panelListWrapper}>
                       <AsanasPanel />
@@ -115,7 +110,7 @@ export default function App(props) {
                   </Grid>
                 </Grid>
               </div>
-              <Grid container {...gridContainerProps}>
+              <Grid container spacing={1}>
                 <Grid item xs={12}>
                   <Footer />
                 </Grid>

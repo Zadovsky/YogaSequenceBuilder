@@ -21,11 +21,7 @@ import {
 } from "../actions/YesNoPopUpWindowActions";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    [theme.breakpoints.up("lg")]: {
-      margin: theme.spacing(1, 0),
-    },
-  },
+  paper: {},
 }));
 
 function PageTop(props) {
