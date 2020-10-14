@@ -2,33 +2,32 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
-const useStyles = makeStyles((theme) => {
-  console.log(theme);
-  return {
-    bullet: {
-      margin: theme.spacing(0, 1),
-      fontSize: "2.5rem",
-      lineHeight: "1rem",
-      color: theme.palette.text.primary,
-    },
-    bulletSelected: {
-      color: theme.palette.secondary.main,
-    },
-    introSliderButtons: {
-      display: "flex",
-      justifyContent: "center",
-      listStyleType: "none",
-      margin: 0,
-      padding: 0,
-    },
-  };
-});
+const useStyles = makeStyles((theme) => ({
+  bullet: {
+    padding: theme.spacing(1),
+    fontSize: "2.5rem",
+    lineHeight: "1rem",
+    color: theme.palette.text.primary,
+    cursor: "pointer",
+  },
+  bulletSelected: {
+    color: theme.palette.secondary.main,
+  },
+  introSliderButtons: {
+    display: "flex",
+    justifyContent: "center",
+    listStyleType: "none",
+    margin: 0,
+    padding: 0,
+  },
+}));
 
 function createBulletsArr(
   slidersNum,
   curSlide,
   bulletClassName,
-  bulletSelectedClassName
+  bulletSelectedClassName,
+  onClick
 ) {
   let bulletsArr = [];
   for (let n = 0; n < slidersNum; n++) {
@@ -40,6 +39,7 @@ function createBulletsArr(
           curSlide === n && bulletSelectedClassName
         )}
         key={n}
+        onClick={() => onClick(n)}
       >
         &bull;
       </li>
@@ -54,7 +54,8 @@ export default function IntroSliderButtons(props) {
     props.slidersNum,
     props.curSlide,
     classes.bullet,
-    classes.bulletSelected
+    classes.bulletSelected,
+    props.onClick
   );
 
   return (

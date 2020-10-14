@@ -1,4 +1,4 @@
-import { CLOSE_INTRO } from "../actions/IntroWindowActions";
+import { CLOSE_INTRO, CHANGE_INTRO_SLIDE } from "../actions/IntroWindowActions";
 
 const initialState = {
   isOpen: true,
@@ -33,11 +33,18 @@ const initialState = {
 
 export function introReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_INTRO_SLIDE:
+      return {
+        ...state,
+        curSlide: action.payload,
+      };
+
     case CLOSE_INTRO:
       return {
         ...state,
         isOpen: false,
       };
+
     default:
       return state;
   }

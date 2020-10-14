@@ -11,7 +11,10 @@ import CloseIcon from "@material-ui/icons/Close";
 import { makeStyles } from "@material-ui/core/styles";
 import { useMediaQuery } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
-import { onCloseIntroWindow } from "../actions/IntroWindowActions";
+import {
+  onCloseIntroWindow,
+  onSliderButtonClickAction,
+} from "../actions/IntroWindowActions";
 import IntroSliderButtons from "../components/IntroSliderButtons";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 function IntroWindow(props) {
   const { isOpen, curSlide, texts, nextButtonText } = props.intro;
   const { curLang } = props.language;
-  const { onCloseIntroWindow } = props;
+  const { onCloseIntroWindow, onSliderButtonClickAction } = props;
 
   const classes = useStyles();
   const theme = useTheme();
@@ -48,7 +51,11 @@ function IntroWindow(props) {
       <DialogContent>
         <DialogContentText>{texts[curSlide][curLang].text}</DialogContentText>
       </DialogContent>
-      <IntroSliderButtons slidersNum={texts.length} curSlide={curSlide} />
+      <IntroSliderButtons
+        slidersNum={texts.length}
+        curSlide={curSlide}
+        onClick={onSliderButtonClickAction}
+      />
       <DialogActions>
         <Button onClick={onCloseIntroWindow} color="secondary">
           {nextButtonText[curLang]}
@@ -68,6 +75,8 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onCloseIntroWindow: () => dispatch(onCloseIntroWindow()),
+    onSliderButtonClickAction: (slide) =>
+      dispatch(onSliderButtonClickAction(slide)),
   };
 };
 
