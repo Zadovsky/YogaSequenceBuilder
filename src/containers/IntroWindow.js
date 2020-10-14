@@ -57,7 +57,14 @@ function IntroWindow(props) {
         onClick={onSliderButtonClickAction}
       />
       <DialogActions>
-        <Button onClick={onCloseIntroWindow} color="secondary">
+        <Button
+          onClick={
+            curSlide < texts.length - 1
+              ? () => onSliderButtonClickAction(curSlide + 1)
+              : onCloseIntroWindow
+          }
+          color="secondary"
+        >
           {nextButtonText[curLang]}
         </Button>
       </DialogActions>
