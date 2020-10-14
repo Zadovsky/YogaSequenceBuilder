@@ -117,42 +117,6 @@ const initialState = {
       notEmailMsg: "that's not e-mail",
     },
   },
-  headerText: {
-    ru: "Конструктор последова­тель­ностей асан",
-    en: "Yoga Sequence Builder",
-  },
-  whatItIsText: {
-    ru: {
-      title: "Что это",
-      text:
-        "Это веб-приложение помогает составить последовательность асан для практики хатха-йоги. Вы можете сохранить последовательность в коллекцию, в любое время вернуться к ней снова, отредактировать, сохранить в PDF и т.д. Будет полезно тем, кто преподает хатха-йогу или занимается самостоятельно.",
-    },
-    en: {
-      title: "What it is",
-      text:
-        "The web-application helps to build your own asanas sequence for hatha-yoga practice. You will be able to save sequence to collection, load it again any time you want, redact it, save to PDF etc. It’s useful for yoga teachers and solo practitioners.",
-    },
-  },
-  howItWorksText: {
-    ru: {
-      title: "Как все работает",
-      texts: [
-        "Перетаскивайте асаны из списка в расписание",
-        "Меняйте асаны местами и переносите их в другие блоки",
-        "Перетаскивайте блоки асан и меняйте их местами",
-        "Сохраняйте и загружайте последовательности асан, выгружайте их в PDF",
-      ],
-    },
-    en: {
-      title: "How it works",
-      texts: [
-        "Drag’n’drop asanas from the list to the schedule",
-        "Use drag’n’drop to move an asana to another place or another block",
-        "Drag’n’drop asanas blocks and change they places",
-        "Save and load asanas sequences and print it to PDF",
-      ],
-    },
-  },
   signInButtonText: {
     ru: "ВХОД",
     en: "SIGN IN",
