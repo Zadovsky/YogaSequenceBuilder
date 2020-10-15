@@ -12,7 +12,7 @@ const initialState = {
       img: "/img/engflag.png",
     },
   },
-  curLang: "ru",
+  curLang: "en",
 };
 
 export function languageReducer(state = initialState, action) {
