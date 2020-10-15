@@ -7,6 +7,10 @@ export default class SetCookies extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.onSetFirstStartCookieAction();
+  }
+
   render() {
     return null;
   }

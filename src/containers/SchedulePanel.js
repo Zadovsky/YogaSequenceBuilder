@@ -34,7 +34,10 @@ import {
   onClickLoad,
   onClickPdf,
 } from "../actions/SaveLoadPdfButtonsActions";
-import { onSetCookiesAction } from "../actions/SetCookiesActions";
+import {
+  onSetCookiesAction,
+  onSetFirstStartCookieAction,
+} from "../actions/SetCookiesActions";
 import { onPDFDownloadAction } from "../actions/PDFDownloadActions";
 import {
   onOpenMenuScheduleAction,
@@ -101,6 +104,7 @@ function SchedulePanel(props) {
     touchMoveDndAction,
     touchMoveScrollAction,
     touchEndAction,
+    onSetFirstStartCookieAction,
   } = props;
 
   const asanas = asanasArr.arr.map((asana) => {
@@ -196,6 +200,7 @@ function SchedulePanel(props) {
         onSetCookiesAction={() =>
           props.onSetCookiesAction(cards, panelName, nextGridKey, nextCardKey)
         }
+        onSetFirstStartCookieAction={onSetFirstStartCookieAction}
       />
       {renderPdf && (
         <PDFDownload
@@ -264,6 +269,7 @@ const mapDispatchToProps = (dispatch) => {
     touchMoveDndAction: (e, ref) => dispatch(touchMoveDndAction(e, ref)),
     touchMoveScrollAction: () => dispatch(touchMoveScrollAction()),
     touchEndAction: () => dispatch(touchEndAction()),
+    onSetFirstStartCookieAction: () => dispatch(onSetFirstStartCookieAction()),
   };
 };
 

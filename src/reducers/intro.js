@@ -1,7 +1,8 @@
 import { CLOSE_INTRO, CHANGE_INTRO_SLIDE } from "../actions/IntroWindowActions";
+import { GET_COOKIES } from "../actions/ReadCookiesActions";
 
 const initialState = {
-  isOpen: true,
+  isOpen: false,
   curSlide: 0,
   nextButtonText: {
     ru: "Далее",
@@ -59,6 +60,12 @@ const initialState = {
 
 export function introReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_COOKIES:
+      return {
+        ...state,
+        isOpen: action.payload.firstStart,
+      };
+
     case CHANGE_INTRO_SLIDE:
       return {
         ...state,

@@ -9,6 +9,7 @@ export function onReadCookiesAction() {
   var panelName = Cookies.get("panelName");
   var nextGridKey = Cookies.get("nextGridKey");
   var nextCardKey = Cookies.get("nextCardKey");
+  var firstStart = Cookies.get("firstStart");
 
   if (cards === undefined) {
     cards = [{ gridCards: [], gridKey: 0, gridName: null }];
@@ -32,6 +33,10 @@ export function onReadCookiesAction() {
     nextCardKey = +nextCardKey;
   }
 
+  if (firstStart === undefined) {
+    firstStart = true;
+  } else firstStart = false;
+
   if (login === undefined || password === undefined) {
     return {
       type: GET_COOKIES,
@@ -42,6 +47,7 @@ export function onReadCookiesAction() {
         panelName: panelName,
         nextGridKey: nextGridKey,
         nextCardKey: nextCardKey,
+        firstStart: firstStart,
       },
     };
   }
@@ -66,6 +72,7 @@ export function onReadCookiesAction() {
               panelName: panelName,
               nextGridKey: nextGridKey,
               nextCardKey: nextCardKey,
+              firstStart: firstStart,
             },
           });
         } else {
@@ -78,6 +85,7 @@ export function onReadCookiesAction() {
               panelName: panelName,
               nextGridKey: nextGridKey,
               nextCardKey: nextCardKey,
+              firstStart: firstStart,
             },
           });
         }
