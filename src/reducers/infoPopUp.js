@@ -30,7 +30,7 @@ const initialState = {
   texts: null,
   loginExistTexts: {
     ru: { title: "Этот e-mail уже зарегистрирован", text: "" },
-    en: { title: "That e-mail is registered already", text: "" },
+    en: { title: "The e-mail is registered already", text: "" },
   },
   loginRegedTexts: {
     ru: {
