@@ -17,9 +17,10 @@ if (!$res) {
 if ($res->num_rows == 0) {
     $pwd = generate_password(8);
     $mysqli->query("INSERT INTO users(login, password) VALUES ('" . $data['login'] . "','" . $pwd . "')");
-    $answer = "LOGIN_REGED";
+    $answer['action'] = "LOGIN_REGED";
+    $answer['password'] = $pwd;
 } else {
-    $answer = "LOGIN_ALREADY_EXIST";
+    $answer['action'] = "LOGIN_ALREADY_EXIST";
 }
 
 echo (json_encode($answer));

@@ -27,13 +27,17 @@ export function onClickConfirmRegAction(email) {
     })
       .then((response) => response.json())
       .then((result) => {
-        if (result === LOGIN_ALREADY_EXIST) {
+        if (result.action === LOGIN_ALREADY_EXIST) {
           return dispatch({
             type: LOGIN_ALREADY_EXIST,
           });
         } else
           return dispatch({
             type: LOGIN_REGED,
+            payload: {
+              login: email,
+              password: result.password,
+            },
           });
       })
       .catch((error) => console.error(error));
