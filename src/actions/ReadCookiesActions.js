@@ -10,6 +10,7 @@ export function onReadCookiesAction() {
   var nextGridKey = Cookies.get("nextGridKey");
   var nextCardKey = Cookies.get("nextCardKey");
   var firstStart = Cookies.get("firstStart");
+  var lang = Cookies.get("lang");
 
   if (cards === undefined) {
     cards = [{ gridCards: [], gridKey: 0, gridName: null }];
@@ -48,6 +49,7 @@ export function onReadCookiesAction() {
         nextGridKey: nextGridKey,
         nextCardKey: nextCardKey,
         firstStart: firstStart,
+        lang: lang,
       },
     };
   }
@@ -73,6 +75,7 @@ export function onReadCookiesAction() {
               nextGridKey: nextGridKey,
               nextCardKey: nextCardKey,
               firstStart: firstStart,
+              lang: lang,
             },
           });
         } else {
@@ -86,6 +89,7 @@ export function onReadCookiesAction() {
               nextGridKey: nextGridKey,
               nextCardKey: nextCardKey,
               firstStart: firstStart,
+              lang: lang,
             },
           });
         }
