@@ -10,6 +10,7 @@ import PageTop from "../containers/PageTop";
 import Footer from "../containers/Footer";
 import UserPopUpWindows from "../containers/UserPopUpWindows";
 import ReadCookies from "../containers/ReadCookies";
+import CheckLang from "../containers/CheckLang";
 import InfoPopUpWindow from "../containers/InfoPopUpWindow";
 import YesNoPopUpWindow from "../containers/YesNoPopUpWindow";
 import TouchDnd from "../containers/TouchDnd";
@@ -82,6 +83,7 @@ export default function App(props) {
 
   return (
     <React.Fragment>
+      <CheckLang />
       <ReadCookies />
       <CssBaseline />
       <MuiThemeProvider theme={customTheme}>
