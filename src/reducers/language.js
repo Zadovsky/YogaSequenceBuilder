@@ -19,9 +19,7 @@ const initialState = {
 export function languageReducer(state = initialState, action) {
   switch (action.type) {
     case SET_LANG_BY_IP:
-      console.log(action.payload);
-      return state;
-    // return { ...state, curLang: action.payload };
+      return { ...state, curLang: action.payload };
 
     case CHANGE_LANG:
       return { ...state, curLang: action.payload };
