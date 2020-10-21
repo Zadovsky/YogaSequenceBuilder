@@ -1,7 +1,7 @@
 const initialState = {
   logoPath: "/img/logo.png",
   logoText: "YogaSequenceBuilder.online",
-  logoUrl: "localhost:3000",
+  logoUrl: "https://yogasequencebuilder.online/",
   footerText: "Copyright © 2019",
   footerLinkText: "Zadovsky",
   footerLinkUrl: "https://github.com/Zadovsky",
