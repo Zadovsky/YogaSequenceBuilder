@@ -11,6 +11,7 @@ import { sequencesReducer } from "./sequences";
 import { logoReducer } from "./logo";
 import { touchReducer } from "./touch";
 import { introReducer } from "./intro";
+import { mailerReducer } from "./mailer";
 
 export const rootReducer = combineReducers({
   pageTop: pageTopReducer,
@@ -25,4 +26,5 @@ export const rootReducer = combineReducers({
   logo: logoReducer,
   touch: touchReducer,
   intro: introReducer,
+  mailer: mailerReducer,
 });
