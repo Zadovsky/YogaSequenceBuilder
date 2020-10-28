@@ -53,7 +53,6 @@ function changeKeyWord(text, keyWord, exchange) {
 export function mailerReducer(state = initialState, action) {
   switch (action.type) {
     case CONFIRM_CHANGE_PASSWORD:
-      console.log(action.payload);
       return {
         ...state,
         sent: true,
