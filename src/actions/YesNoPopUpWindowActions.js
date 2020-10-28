@@ -26,7 +26,10 @@ export function onConfirmChangePwdAction(email, password) {
         Cookies.set("password", result, { expires: 365 });
         return dispatch({
           type: CONFIRM_CHANGE_PASSWORD,
-          payload: result,
+          payload: {
+            email: email,
+            password: result,
+          },
         });
       })
       .catch((error) => console.error(error));

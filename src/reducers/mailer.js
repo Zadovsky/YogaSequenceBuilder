@@ -1,5 +1,6 @@
 import { SENT_MAIL } from "../actions/MailerActions";
 import { LOGIN_REGED } from "../actions/RegPopUpWindowActions";
+import { CONFIRM_CHANGE_PASSWORD } from "../actions/YesNoPopUpWindowActions";
 
 const initialState = {
   sent: false,
@@ -15,6 +16,18 @@ const initialState = {
       subj: "YogaSequenceBuilder.online registration information",
       text:
         "Hello! <br> Your YogaSequenceBuilder.online account is registered on this e-mail. <br> Password to enter is: #PASSWORD <br> Have a good practice!",
+    },
+  },
+  changePwdText: {
+    ru: {
+      subj: "Новый пароль для входа в аккаунт YogaSequenceBuilder.online",
+      text:
+        "Добрый день! <br> Ваш новый пароль для входа в аккаунт YogaSequenceBuilder.online: #PASSWORD <br> Желаем хорошей практики!",
+    },
+    en: {
+      subj: "New password to YogaSequenceBuilder.online account",
+      text:
+        "Hello! <br> New password to enter your YogaSequenceBuilder.online account is: #PASSWORD <br> Have a good practice!",
     },
   },
 };
@@ -39,6 +52,19 @@ function changeKeyWord(text, keyWord, exchange) {
 
 export function mailerReducer(state = initialState, action) {
   switch (action.type) {
+    case CONFIRM_CHANGE_PASSWORD:
+      console.log(action.payload);
+      return {
+        ...state,
+        sent: true,
+        email: action.payload.email,
+        texts: changeKeyWord(
+          state.changePwdText,
+          "#PASSWORD",
+          action.payload.password
+        ),
+      };
+
     case LOGIN_REGED:
       return {
         ...state,
