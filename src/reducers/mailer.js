@@ -4,8 +4,7 @@ import { LOGIN_REGED } from "../actions/RegPopUpWindowActions";
 const initialState = {
   sent: false,
   email: null,
-  subj: null,
-  text: null,
+  texts: null,
   loginRegedText: {
     ru: {
       subj: "Тест",
@@ -24,6 +23,8 @@ export function mailerReducer(state = initialState, action) {
       return {
         ...state,
         sent: true,
+        email: action.payload.login,
+        texts: state.loginRegedText,
       };
 
     case SENT_MAIL:

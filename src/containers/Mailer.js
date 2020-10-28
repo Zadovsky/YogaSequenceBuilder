@@ -4,8 +4,14 @@ import { sendMailAction } from "../actions/MailerActions";
 
 class Mailer extends React.Component {
   componentDidUpdate() {
-    console.log(this.props);
-    if (this.props.mailer.sent) this.props.sendMailAction();
+    const { sent, email, texts } = this.props.mailer;
+    const { curLang } = this.props.language;
+    if (sent)
+      this.props.sendMailAction(
+        email,
+        texts[curLang].subj,
+        texts[curLang].text
+      );
   }
 
   render() {
@@ -16,12 +22,14 @@ class Mailer extends React.Component {
 const mapStateToProps = (store) => {
   return {
     mailer: store.mailer,
+    language: store.language,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sendMailAction: () => dispatch(sendMailAction()),
+    sendMailAction: (email, subj, text) =>
+      dispatch(sendMailAction(email, subj, text)),
   };
 };
 
