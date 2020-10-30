@@ -20,11 +20,11 @@ $mail = new PHPMailer(true);
 $mail->isSMTP();
 $mail->Host = "smtp.mail.ru";
 $mail->SMTPAuth = true;
-$mail->Username = "vlad@yogasequencebuilder.online";
-$mail->Password = "pXtI3R?jQ8ls";
+$mail->Username = EMAIL;
+$mail->Password = EMAIL_PWD;
 $mail->SMTPSecure = "ssl";
 $mail->Port = 465;
-$mail->setFrom("vlad@yogasequencebuilder.online"); // Ваш Email
+$mail->setFrom(EMAIL); // Ваш Email
 $mail->addAddress($email); // Email получателя
 
 // Письмо
